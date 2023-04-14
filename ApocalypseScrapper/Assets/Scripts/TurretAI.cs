@@ -9,17 +9,24 @@ public class TurretAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] Transform headPos;
     [SerializeField] Transform shootPos;
+    [SerializeField] Transform shootPos2;
+    [SerializeField] SphereCollider turretCollWake;
     //[SerializeField] Rigidbody rigidBody;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int sightAngle;
+    [Range(10, 200)][SerializeField] float radiusSleep;
+    [Range(10, 1000)][SerializeField] float radiusActive;
+    public float activeRadius;
 
     [Header("----- Gun Stats -----")]
     
-    [Range(0.1f, 5)][SerializeField] float shootRate;
-    [Range(1, 100)][SerializeField] int shootDistance;
+    [Range(0.0001f, 5)][SerializeField] float shootRate;
+    [Range(0.1f, 5)][SerializeField] float barrelSwitchSpeed;
+
+    [Range(1, 10000)][SerializeField] int shootDistance;
     [SerializeField] GameObject TurretBullet;
     [SerializeField] int bulletSpeed;
 
@@ -32,10 +39,10 @@ public class TurretAI : MonoBehaviour, IDamage
 
     void Start()
     {
-        
+        activeRadius = radiusSleep;
 
         // caching the original stopping distance that we set
-        
+
     }
 
 
@@ -53,10 +60,10 @@ public class TurretAI : MonoBehaviour, IDamage
     bool CanSeePlayer()
     {
         // this tells us what direction our player is in relative to our enemy
-        playerDirection = (gameManager.instance.player.transform.position - headPos.position);
+        playerDirection = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y+2 - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
 
         // this calculates the angle between where our player is and where we (the enemy) are looking
-        angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, playerDirection.y, playerDirection.z), transform.forward);
+        angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
 
         Debug.DrawRay(headPos.position, playerDirection, Color.red);
 
@@ -98,13 +105,21 @@ public class TurretAI : MonoBehaviour, IDamage
     IEnumerator Shoot()
     {
         isShooting = true;
-        
+
         // this creates a reference to an instantiated bullet, first parameter = what youre instantiating, second = where it's instantiating from on the enemy
         // (which we'll set in unity), third = the bullets orientation (doesn't really matter but it's necessary)
         GameObject bulletClone = Instantiate(TurretBullet, shootPos.position, TurretBullet.transform.rotation);
+        GameObject bulletClone2 = Instantiate(TurretBullet, shootPos2.position, TurretBullet.transform.rotation);
+
+
 
         // this will set the bullets velocity via the rigidbody component of the game object
-        bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+        
+            bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+            yield return new WaitForSeconds(barrelSwitchSpeed/10);
+            bulletClone2.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+            
+        
 
         // our wait time which is going to be our defined shootRate
         yield return new WaitForSeconds(shootRate);
@@ -117,6 +132,8 @@ public class TurretAI : MonoBehaviour, IDamage
     {
         if(other.CompareTag("Player"))
         {
+            turretCollWake.radius = radiusActive;
+            activeRadius = turretCollWake.radius;
             playerInRange = true;
         }
     }
