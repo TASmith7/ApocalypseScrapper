@@ -7,6 +7,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Transform shootPos;
+    [SerializeField] Transform headPos;
+    
 
     [Header("----- Player Stats -----")]
     [Range(1, 100)][SerializeField] int HP;
@@ -29,10 +32,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(1, 10)] [SerializeField] int shootDamage;
     [Range(0.1f, 5)][SerializeField] float shootRate;
     [Range(1, 100)] [SerializeField] int shootDistance;
+    [SerializeField] GameObject bullet;
+    [SerializeField] int bulletSpeed;
     public MeshRenderer gunMaterial;
     public MeshFilter gunModel;
     public int selectedGun;
-
+    public float yOffset;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
@@ -54,6 +59,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     void Update()
     {
+        
         if (gameManager.instance.activeMenu == null)
         {
             SelectGun();
@@ -153,29 +159,37 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     {
         isShooting = true;
         
-        // we use this raycast to return the position of where our raycast hits
-        RaycastHit hit; 
+
         
-        // If the ray going from the middle of our screen hits something, "out" the position of where it hits in our 'hit' variable,
-        // and it will shoot the specified distance via our variable
-        if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
-        {
-            // if the object we hit contains the IDamage interface
-            IDamage damageable = hit.collider.GetComponent<IDamage>();
 
-            // if the above^ has the component IDamage (i.e. it's not null), and it is not the player
-            if(damageable != null && hit.collider.tag != "Player")
+
+        
+        //we use this raycast to return the position of where our raycast hits
+        RaycastHit hit;
+
+        //If the ray going from the middle of our screen hits something, "out" the position of where it hits in our 'hit' variable,
+        //and it will shoot the specified distance via our variable
+        
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
             {
-                // take damage from the damageable object
-                damageable.TakeDamage(shootDamage);
+                
+                //if the object we hit contains the IDamage interface
+                IDamage damageable = hit.collider.GetComponent<IDamage>();
+
+                 //if the above^ has the component IDamage(i.e.it's not null), and it is not the player
+                if (damageable != null && hit.collider.tag != "Player")
+                {
+                    //take damage from the damageable object
+                    damageable.TakeDamage(shootDamage);
+                }
             }
-        }
 
-        // The yield return will wait for the specified amount of seconds
-        // before moving on to the next line. It does NOT exit the method. 
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
+            //The yield return will wait for the specified amount of seconds
 
+            //before moving on to the next line.It does NOT exit the method.
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        
     }
 
     IEnumerator Salvage()

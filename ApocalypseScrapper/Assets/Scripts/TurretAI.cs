@@ -11,6 +11,7 @@ public class TurretAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] Transform shootPos2;
     [SerializeField] SphereCollider turretCollWake;
+    [SerializeField] GameObject turretHeadDestroyed;
     //[SerializeField] Rigidbody rigidBody;
 
     [Header("----- Enemy Stats -----")]
@@ -162,6 +163,7 @@ public class TurretAI : MonoBehaviour, IDamage
         {
             
             Destroy(gameObject);
+            GameObject turretHead = Instantiate(turretHeadDestroyed,new Vector3(transform.position.x, 0.199f, transform.position.z+1.5f), turretHeadDestroyed.transform.rotation);
             //Rigidbody.Instantiate(rigidBody);
         }
     }
