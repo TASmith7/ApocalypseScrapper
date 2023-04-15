@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.SearchService;
-using UnityEngine.SceneManagement;
 
-public class gameManager : MonoBehaviour
+public class NSSgameManager : MonoBehaviour
 {
-    public static gameManager instance;
+    public static NSSgameManager instance;
     
 
     [Header("----- Player Stuff -----")]
@@ -18,7 +16,6 @@ public class gameManager : MonoBehaviour
 
     [Header("----- UI Stuff -----")]
     public GameObject activeMenu;
-    
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
@@ -49,10 +46,9 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
-        {
-            StartCoroutine(SplashScreen());
-        }
+        
+        StartCoroutine(SplashScreen());
+        
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
