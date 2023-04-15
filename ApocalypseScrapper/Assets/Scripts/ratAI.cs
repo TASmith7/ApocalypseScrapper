@@ -21,7 +21,7 @@ public class ratAI : MonoBehaviour, IDamage
     [SerializeField] int sightAngle;
     [Range(10, 200)][SerializeField] float radiusSleep;
     [Range(10,1000)][SerializeField] float radiusActive;
-    [SerializeField] float activeRadius;
+    public float activeRadius;
 
     [Header("----- Rat Bite Stats -----")]
     [Range(1, 10)][SerializeField] int biteDamage;
@@ -73,10 +73,10 @@ public class ratAI : MonoBehaviour, IDamage
 
     bool CanSeePlayer()
     {
-        
+
 
         // this tells us what direction our player is in relative to our enemy
-        playerDirection = (gameManager.instance.player.transform.position - headPos.position);
+        playerDirection = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + 1 - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
 
         // this calculates the angle between where our player is and where we (the enemy) are looking
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x,0, playerDirection.z), transform.forward);
@@ -98,7 +98,7 @@ public class ratAI : MonoBehaviour, IDamage
                 // this gets the enemy to move in the direction of our player
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                if (agent.remainingDistance <agent.stoppingDistance)
+                
                     FacePlayer();
 
                 if (!isShooting)

@@ -7,24 +7,28 @@ public class buttonFunctions : MonoBehaviour
 {
     public void Resume()
     {
-        // Changing our state to be unpaused
         gameManager.instance.UnpauseState();
-
-        // Toggling our is paused bool
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
     }
-    
+    public void Respawn()
+    {
+        gameManager.instance.UnpauseState();
+        gameManager.instance.playerScript.RespawnPlayer();
+        gameManager.instance.isPaused = !gameManager.instance.isPaused;
+
+    }
     public void Restart()
     {
-        // Ensuring we are unpaused when we restart the level
         gameManager.instance.UnpauseState();
-
-        // Reloading our current scene using Scene Manager
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    
-    public void Quit()
+    public void Options()
     {
-        Application.Quit(); 
+
     }
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
 }

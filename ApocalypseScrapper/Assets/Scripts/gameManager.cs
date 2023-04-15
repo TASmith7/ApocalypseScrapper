@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
+    
 
     [Header("----- Player Stuff -----")]
     public GameObject player;
     public playerController playerScript;
+    public GameObject playerSpawnPos;
 
     [Header("----- UI Stuff -----")]
     public GameObject activeMenu;
+    
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
+    public GameObject RSGSplash;
+    public GameObject checkpointMenu;
     public Image HPBar;
     public TextMeshProUGUI enemiesRemainingText;
     public TextMeshProUGUI salvageCollected;
@@ -42,12 +49,35 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+        {
+            StartCoroutine(SplashScreen());
+        }
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         timeScaleOriginal = Time.timeScale;
     }
+    IEnumerator SplashScreen()
+    {
+        
+        
+            activeMenu = RSGSplash;
+            RSGSplash.SetActive(true);
+            yield return new WaitForSeconds(2);
+            /*activeMenu=controlsMenu;
+             yield return new WaitForSeconds(2);
 
+             activeMenu=storyMenu;
+             yield return new WaitForSeconds(2);
+
+             */
+            RSGSplash.SetActive(false);
+            activeMenu = null;
+        
+        
+
+    }
     // Update is called once per frame
     void Update()
     {
@@ -69,7 +99,7 @@ public class gameManager : MonoBehaviour
 
 
     }
-
+    
     public void PauseState()
     {
         Time.timeScale = 0;

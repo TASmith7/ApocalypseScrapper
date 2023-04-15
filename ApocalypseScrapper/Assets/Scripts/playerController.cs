@@ -7,6 +7,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Transform shootPos;
+    [SerializeField] Transform headPos;
+    
 
     [Header("----- Player Stats -----")]
     [Range(1, 100)][SerializeField] int HP;
@@ -23,11 +26,18 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(1, 100)] [SerializeField] int timeToTurnOffFuelBar;
 
 
+    
     [Header("----- Gun Stats -----")]
+    public List<GunStats> gunList = new List<GunStats>();
     [Range(1, 10)] [SerializeField] int shootDamage;
     [Range(0.1f, 5)][SerializeField] float shootRate;
     [Range(1, 100)] [SerializeField] int shootDistance;
-
+    [SerializeField] GameObject bullet;
+    [SerializeField] int bulletSpeed;
+    public MeshRenderer gunMaterial;
+    public MeshFilter gunModel;
+    public int selectedGun;
+    public float yOffset;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
@@ -44,20 +54,20 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         HPOriginal = HP;
         PlayerUIUpdate();
         playerSalvageScore = 0;
+        RespawnPlayer();
     }
 
     void Update()
     {
+        
         if (gameManager.instance.activeMenu == null)
         {
+            SelectGun();
             Movement();
-
-            if (!isShooting && Input.GetButton("Shoot"))
-            {
+            if (gunList.Count > 0 && Input.GetButton("Shoot") && !isShooting)
                 StartCoroutine(Shoot());
-            }
-            
-            if(!isSalvaging && Input.GetButton("Salvage"))
+
+            if (!isSalvaging && Input.GetButton("Salvage"))
             {
                 StartCoroutine(Salvage());
             }
@@ -75,7 +85,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
 
             // if the above^ has the component ISalvageable (i.e. it's not null)
-            if (salvageable != null)
+            if (salvageable != null&&hit.collider.tag!="Player")
             {
                 // change the reticle to salvageable reticle
                 gameManager.instance.CueSalvageableReticle();
@@ -149,29 +159,37 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     {
         isShooting = true;
         
-        // we use this raycast to return the position of where our raycast hits
-        RaycastHit hit; 
+
         
-        // If the ray going from the middle of our screen hits something, "out" the position of where it hits in our 'hit' variable,
-        // and it will shoot the specified distance via our variable
-        if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
-        {
-            // if the object we hit contains the IDamage interface
-            IDamage damageable = hit.collider.GetComponent<IDamage>();
 
-            // if the above^ has the component IDamage (i.e. it's not null), and it is not the player
-            if(damageable != null && hit.collider.tag != "Player")
+
+        
+        //we use this raycast to return the position of where our raycast hits
+        RaycastHit hit;
+
+        //If the ray going from the middle of our screen hits something, "out" the position of where it hits in our 'hit' variable,
+        //and it will shoot the specified distance via our variable
+        
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
             {
-                // take damage from the damageable object
-                damageable.TakeDamage(shootDamage);
+                
+                //if the object we hit contains the IDamage interface
+                IDamage damageable = hit.collider.GetComponent<IDamage>();
+
+                 //if the above^ has the component IDamage(i.e.it's not null), and it is not the player
+                if (damageable != null && hit.collider.tag != "Player")
+                {
+                    //take damage from the damageable object
+                    damageable.TakeDamage(shootDamage);
+                }
             }
-        }
 
-        // The yield return will wait for the specified amount of seconds
-        // before moving on to the next line. It does NOT exit the method. 
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
+            //The yield return will wait for the specified amount of seconds
 
+            //before moving on to the next line.It does NOT exit the method.
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        
     }
 
     IEnumerator Salvage()
@@ -180,18 +198,23 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         RaycastHit hit;
 
-        if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
+
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
+
+            
             // if the object we clicked on contains the ISalvageable interface
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
 
-             // if the object is salvageable
+            // if the object is salvageable
             if (salvageable != null)
             {
                 SalvageObject(hit.collider.gameObject);
             }
-        }
 
+
+
+        }
         yield return new WaitForSeconds(salvageRate);
 
         isSalvaging = false;
@@ -252,6 +275,49 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         // updating salvage score UI
         gameManager.instance.UpdateSalvageScore(playerSalvageScore);
+
+    }
+    public void RespawnPlayer()
+    {
+        HP = HPOriginal;
+        PlayerUIUpdate();
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+    }
+    public void GunPickup(GunStats gunStat)
+    {
+        gunList.Add(gunStat);
+        shootDamage = gunStat.shootDamage;
+        shootDistance = gunStat.shootDistance;
+        shootRate = gunStat.shootRate;
+
+        gunModel.mesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
+        gunMaterial.sharedMaterial = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
+        selectedGun = gunList.Count - 1;
+    }
+    void SelectGun()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+        {
+            selectedGun++;
+            ChangeGun();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        {
+            selectedGun--;
+            ChangeGun();
+        }
+    }
+    void ChangeGun()
+    {
+        shootDamage = gunList[selectedGun].shootDamage;
+        shootDistance = gunList[selectedGun].shootDistance;
+        shootRate = gunList[selectedGun].shootRate;
+
+        gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
+        gunMaterial.sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
+
     }
 }
 
