@@ -7,14 +7,15 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] Animator anim;
+    //[SerializeField] Animator anim;
+    //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     
 
     [Header("----- Player Stats -----")]
     [Range(1, 100)][SerializeField] int HP;
-    [Range(3, 8)] [SerializeField] float playerSpeed;
+    /*[Range(3, 8)]*/ [SerializeField] float playerSpeed;
     [Range(10, 50)] [SerializeField] float gravityValue;
     int playerSalvageScore;
     [Range(1, 10)][SerializeField] int salvageRange;
@@ -45,7 +46,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     bool isShooting;
     bool isSalvaging;
-    float speed;
+    //float speed;
     Vector3 move;
     int HPOriginal;
     bool isThrusting;
@@ -54,6 +55,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     private void Start()
     {
+        
         HPOriginal = HP;
         PlayerUIUpdate();
         playerSalvageScore = 0;
@@ -65,8 +67,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         
         if (gameManager.instance.activeMenu == null)
         {
-            speed = Mathf.Lerp(speed, playerVelocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
-            anim.SetFloat("Speed", speed);
+            //float vel = rb.velocity.normalized.magnitude;
+
+            //if (vel >= 0 && vel <= 1)
+            //{
+            //    speed = Mathf.Lerp(speed, vel, Time.deltaTime * animTransSpeed);
+            //    anim.SetFloat("Speed", speed);
+            //}
             SelectGun();
             Movement();
             if (gunList.Count > 0 && Input.GetButton("Shoot") && !isShooting)
