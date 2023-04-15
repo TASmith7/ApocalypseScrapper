@@ -7,6 +7,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Animator anim;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     
@@ -18,6 +19,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     int playerSalvageScore;
     [Range(1, 10)][SerializeField] int salvageRange;
     [Range(0.5f, 5)][SerializeField] float salvageRate;
+    [SerializeField] float animTransSpeed;
 
     [Header("----- Jetpack Stats -----")]
     [Range(1, 8)][SerializeField] float thrustPower;
@@ -37,12 +39,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public MeshRenderer gunMaterial;
     public MeshFilter gunModel;
     public int selectedGun;
-    public float yOffset;
+    
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
     bool isShooting;
     bool isSalvaging;
+    float speed;
     Vector3 move;
     int HPOriginal;
     bool isThrusting;
@@ -62,6 +65,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         
         if (gameManager.instance.activeMenu == null)
         {
+            speed = Mathf.Lerp(speed, playerVelocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
+            anim.SetFloat("Speed", speed);
             SelectGun();
             Movement();
             if (gunList.Count > 0 && Input.GetButton("Shoot") && !isShooting)
@@ -158,12 +163,18 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     IEnumerator Shoot()
     {
         isShooting = true;
-        
 
-        
+        GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.identity);
 
 
-        
+
+        // Set the bullet's velocity to this 
+        bulletClone.GetComponent<Rigidbody>().velocity = Camera.main.transform.position * bulletSpeed;
+
+
+
+
+
         //we use this raycast to return the position of where our raycast hits
         RaycastHit hit;
 
