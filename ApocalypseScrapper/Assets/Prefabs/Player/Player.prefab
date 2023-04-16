@@ -101,7 +101,7 @@ MonoBehaviour:
   sensHorizontal: 300
   sensVertical: 300
   lockVertMin: -90
-  lockVertMax: 48
+  lockVertMax: 54
   invertY: 0
 --- !u!1 &1950072411
 GameObject:
@@ -126,14 +126,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950072411}
-  m_LocalRotation: {x: -0.06677602, y: 0.055969838, z: -0.005321461, w: 0.99618274}
-  m_LocalPosition: {x: -0.007, y: 0.125, z: 0.664}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.137, z: 0.6752}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2316315233626188018}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -7.611, y: 6.501, z: -1.045}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &20441564796388411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,15 +1411,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2316315233625947168}
-  m_LocalRotation: {x: -0.06677637, y: 0.05596875, z: -0.005325474, w: 0.9961828}
-  m_LocalPosition: {x: -0.22883779, y: -0.3841074, z: 0.10722351}
+  m_LocalRotation: {x: -0.06696138, y: -0.051720522, z: 0.0019023481, w: 0.99641234}
+  m_LocalPosition: {x: 0.14, y: -0.326, z: 0.071}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1950072412}
   m_Father: {fileID: 668238901}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -7.611, y: 6.501, z: -1.045}
+  m_LocalEulerAnglesHint: {x: -7.657, y: -5.984, z: 0.62}
 --- !u!33 &2316315233626903456
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5766,17 +5766,17 @@ MonoBehaviour:
   shootPos: {fileID: 1950072412}
   headPos: {fileID: 690445233921113347}
   HP: 100
-  playerSpeed: 15
+  playerSpeed: 8
   gravityValue: 50
   salvageRange: 10
-  salvageRate: 2
+  salvageRate: 5
   animTransSpeed: 1
   thrustPower: 8
   fuelConsumptionRate: 0.59
   fuelRefillRate: 0.18
   timeToTurnOffFuelBar: 5
   gunList: []
-  shootDamage: 4
+  shootDamage: 3
   shootRate: 0.34
   shootDistance: 100
   bullet: {fileID: 2765080052109346540, guid: 7c147af25d7a04043aba8b70539ba3b0, type: 3}

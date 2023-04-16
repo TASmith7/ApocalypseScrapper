@@ -173,41 +173,34 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.identity);
 
-
-
         // Set the bullet's velocity to this 
-        bulletClone.GetComponent<Rigidbody>().velocity = Camera.main.transform.position * bulletSpeed;
+        bulletClone.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * bulletSpeed;
 
-
-
-
+        // Set the rotation of the bullet to match the direction the player is looking
+        bulletClone.transform.rotation = Camera.main.transform.rotation;
 
         //we use this raycast to return the position of where our raycast hits
-        RaycastHit hit;
+        //RaycastHit hit;
 
-        //If the ray going from the middle of our screen hits something, "out" the position of where it hits in our 'hit' variable,
-        //and it will shoot the specified distance via our variable
-        
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
-            {
-                
-                //if the object we hit contains the IDamage interface
-                IDamage damageable = hit.collider.GetComponent<IDamage>();
+        ////If the ray going from the middle of our screen hits something, "out" the position of where it hits in our 'hit' variable,
+        ////and it will shoot the specified distance via our variable
+        //if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
+        //{
+        //    //if the object we hit contains the IDamage interface
+        //    IDamage damageable = hit.collider.GetComponent<IDamage>();
 
-                 //if the above^ has the component IDamage(i.e.it's not null), and it is not the player
-                if (damageable != null && hit.collider.tag != "Player")
-                {
-                    //take damage from the damageable object
-                    damageable.TakeDamage(shootDamage);
-                }
-            }
+        //    //if the above^ has the component IDamage(i.e.it's not null), and it is not the player
+        //    if (damageable != null && hit.collider.tag != "Player")
+        //    {
+        //        //take damage from the damageable object
+        //        damageable.TakeDamage(shootDamage);
+        //    }
+        //}
 
-            //The yield return will wait for the specified amount of seconds
-
-            //before moving on to the next line.It does NOT exit the method.
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
-        
+        //The yield return will wait for the specified amount of seconds
+        //before moving on to the next line.It does NOT exit the method.
+        yield return new WaitForSeconds(shootRate);
+        isShooting = false;
     }
 
     IEnumerator Salvage()
