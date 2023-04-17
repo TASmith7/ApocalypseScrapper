@@ -91,22 +91,24 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
             // if the object we are looking at is salvageable
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
-
-            // if the above^ has the component ISalvageable (i.e. it's not null)
-            if (salvageable != null&&hit.collider.tag!="Player")
+            if (hit.distance <= salvageRange)
             {
-                // change the reticle to salvageable reticle
-                gameManager.instance.CueSalvageableReticle();
+                // if the above^ has the component ISalvageable (i.e. it's not null)
+                if (salvageable != null && hit.collider.tag != "Player")
+                {
+                    // change the reticle to salvageable reticle
+                    gameManager.instance.CueSalvageableReticle();
+                }
             }
-            else
-            {
-                // else if what we are looking at isn't salvageable, change/keep the reticle to main reticle
-                gameManager.instance.CueMainReticle();
-            }
+            
+                    // else if what we are looking at isn't salvageable, change/keep the reticle to main reticle
+                    gameManager.instance.CueMainReticle();
+                
+            
         }
         
     }
