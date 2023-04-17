@@ -18,7 +18,6 @@ public class gameManager : MonoBehaviour
 
     [Header("----- UI Stuff -----")]
     public GameObject activeMenu;
-    
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
@@ -121,10 +120,7 @@ public class gameManager : MonoBehaviour
     }
 
     public void UpdateGameGoal()
-    {
-
-
-
+    { 
             PlayerWins();
             activeMenu = winMenu;
             activeMenu.SetActive(true);

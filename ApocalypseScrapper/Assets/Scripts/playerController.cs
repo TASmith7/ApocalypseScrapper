@@ -95,20 +95,17 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         {
             // if the object we are looking at is salvageable
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
-            if (hit.distance <= salvageRange)
-            {
                 // if the above^ has the component ISalvageable (i.e. it's not null)
                 if (salvageable != null && hit.collider.tag != "Player")
                 {
                     // change the reticle to salvageable reticle
                     gameManager.instance.CueSalvageableReticle();
                 }
-            }
-            
+                else
+                {
                     // else if what we are looking at isn't salvageable, change/keep the reticle to main reticle
                     gameManager.instance.CueMainReticle();
-                
-            
+                }
         }
         
     }
@@ -214,8 +211,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
-
-            
             // if the object we clicked on contains the ISalvageable interface
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
 
@@ -224,8 +219,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             {
                 SalvageObject(hit.collider.gameObject);
             }
-
-
 
         }
         yield return new WaitForSeconds(salvageRate);
