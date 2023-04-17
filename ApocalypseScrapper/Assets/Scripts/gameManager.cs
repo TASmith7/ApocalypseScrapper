@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.SearchService;
+
 using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
@@ -27,6 +27,7 @@ public class gameManager : MonoBehaviour
     public Image HPBar;
     public TextMeshProUGUI enemiesRemainingText;
     public TextMeshProUGUI salvageCollected;
+    public TextMeshProUGUI scoreText;
     public int amtSalvaged;
     public TextMeshProUGUI grade;
     public char playerGrade;
@@ -48,6 +49,7 @@ public class gameManager : MonoBehaviour
 
     void Awake()
     {
+
         instance = this;
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
         {
@@ -166,9 +168,12 @@ public class gameManager : MonoBehaviour
     }
     public void PlayerWins()
     {
+        string pText = SetGradeText(playerGrade);
+        scoreText.text = pText;
         salvageCollected.text=amtSalvaged.ToString();
         if(amtSalvaged>4501)
         {
+            
             playerGrade = 'S';
         }
         else if(amtSalvaged > 4001 && amtSalvaged <= 4500)
@@ -194,5 +199,27 @@ public class gameManager : MonoBehaviour
         }
         grade.text = playerGrade.ToString();
 
+    }
+    public  string SetGradeText(char grade)
+    {
+        switch (grade)
+        {
+            case 'S':
+                return "Good Job. You Collected a lot of Scrap. Have fun Spending it.";
+            case 'A':
+                return "You understood what to do. Good Job.";
+            case 'B':
+                return "So close, yet so far.";
+            case 'C':
+                return "Getting there. The odds increase";
+            case 'D':
+                return "Salvage=You live. Its not hard";
+            case 'F':
+                return "Maybe try collecting some salvage. Might make the game easier";
+            default:
+                return "Negative Scrap. You owe us Scrap.";
+        }
+
+       
     }
 }
