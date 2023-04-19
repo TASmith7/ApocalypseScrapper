@@ -20,7 +20,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     int playerSalvageScore;
     [Range(1, 10)][SerializeField] int salvageRange;
     [Range(0.5f, 5)][SerializeField] float salvageRate;
-    [Range(1, 50 )][SerializeField] float salvageSpeed;
+    [Range(1, 50)][SerializeField] float salvageSpeed;
     [SerializeField] float animTransSpeed;
 
     [Header("----- Jetpack Stats -----")]
@@ -112,9 +112,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 // else if what we are looking at isn't salvageable, change/keep the reticle to main reticle
                 gameManager.instance.CueMainReticle();
             }
-               
         }
-        
+        else
+        {
+            // else if our raycast isn't hitting anything, change/keep to main reticle
+            gameManager.instance.CueMainReticle();
+        }
+
     }
 
     void Movement()
@@ -223,6 +227,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             // if the object is salvageable
             if (salvageable != null)
             {
+                // setting the salvage speed to be dependent on the object's value 
+                 salvageSpeed = 500 / hit.collider.GetComponent<salvageableObject>().salvageValue;
+
                 gameManager.instance.salvagingObjectReticle.fillAmount += salvageSpeed * Time.deltaTime;
 
                 if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)

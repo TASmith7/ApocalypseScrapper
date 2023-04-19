@@ -2006,10 +2006,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 212340082}
+  - component: {fileID: 212340083}
   - component: {fileID: 212340081}
   - component: {fileID: 212340080}
   - component: {fileID: 212340079}
-  - component: {fileID: 212340083}
   m_Layer: 0
   m_Name: Salvage Test Cube
   m_TagString: Untagged
@@ -2107,7 +2107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 0
+  salvageValue: 300
 --- !u!4 &214557350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 762380492481631229, guid: d867876503194724aa30634f9b16b74b, type: 3}
@@ -4925,10 +4925,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 618657215}
+  - component: {fileID: 618657211}
   - component: {fileID: 618657214}
   - component: {fileID: 618657213}
   - component: {fileID: 618657212}
-  - component: {fileID: 618657211}
   m_Layer: 0
   m_Name: Salvage Test Cube (1)
   m_TagString: Untagged
@@ -4948,7 +4948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 0
+  salvageValue: 200
 --- !u!65 &618657212
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13778,10 +13778,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1683807273}
+  - component: {fileID: 1683807269}
   - component: {fileID: 1683807272}
   - component: {fileID: 1683807271}
   - component: {fileID: 1683807270}
-  - component: {fileID: 1683807269}
   m_Layer: 0
   m_Name: Salvage Test Cube (2)
   m_TagString: Untagged
@@ -13801,7 +13801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 0
+  salvageValue: 50
 --- !u!65 &1683807270
 BoxCollider:
   m_ObjectHideFlags: 0
