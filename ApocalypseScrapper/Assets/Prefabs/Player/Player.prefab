@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 2767874817101310846}
   m_Layer: 3
   m_Name: Underwear
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -973,7 +973,7 @@ GameObject:
   - component: {fileID: 1425159017221661901}
   m_Layer: 3
   m_Name: Armors
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1134,7 +1134,7 @@ GameObject:
   - component: {fileID: 5538596033121293518}
   m_Layer: 3
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1581,7 +1581,7 @@ GameObject:
   - component: {fileID: 3882122914423382330}
   m_Layer: 3
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1895,7 +1895,7 @@ GameObject:
   - component: {fileID: 2333572654939524394}
   m_Layer: 3
   m_Name: Arms
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2107,7 +2107,7 @@ GameObject:
   - component: {fileID: 24007976558917554}
   m_Layer: 3
   m_Name: Accessories
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2544,7 +2544,7 @@ GameObject:
   - component: {fileID: 3728963236285177668}
   m_Layer: 3
   m_Name: Mesh
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3152,7 +3152,7 @@ GameObject:
   - component: {fileID: 7782861873561482889}
   m_Layer: 3
   m_Name: Neck
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3386,7 +3386,7 @@ GameObject:
   - component: {fileID: 8060172952314125207}
   m_Layer: 3
   m_Name: Feet
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3527,7 +3527,7 @@ GameObject:
   - component: {fileID: 6338817587511160659}
   m_Layer: 3
   m_Name: Legs
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3763,7 +3763,7 @@ GameObject:
   - component: {fileID: 7569426784574955919}
   m_Layer: 3
   m_Name: Hands
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4304,7 +4304,7 @@ GameObject:
   - component: {fileID: 349699410393062537}
   m_Layer: 3
   m_Name: Customization
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4800,7 +4800,7 @@ GameObject:
   - component: {fileID: 8971527900417648869}
   m_Layer: 3
   m_Name: Armature
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5705,7 +5705,7 @@ Transform:
   m_GameObject: {fileID: 8882979029083238306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -61}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8971527900417648869}
@@ -5744,7 +5744,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8882979029083238306}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2.413468
@@ -5770,7 +5770,7 @@ MonoBehaviour:
   gravityValue: 50
   salvageRange: 10
   salvageRate: 5
-  salvageSpeed: 0
+  salvageSpeed: 50
   animTransSpeed: 1
   thrustPower: 8
   fuelConsumptionRate: 0.59
@@ -5802,7 +5802,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 1.4, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8893993676101798475
 GameObject:
   m_ObjectHideFlags: 0
@@ -5879,7 +5879,7 @@ GameObject:
   - component: {fileID: 1859303100133114246}
   m_Layer: 3
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

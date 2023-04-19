@@ -61,7 +61,7 @@ public class TurretAI : MonoBehaviour, IDamage
     bool CanSeePlayer()
     {
         // this tells us what direction our player is in relative to our enemy
-        playerDirection = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y+2 - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
+        playerDirection = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y+1.6f - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
 
         // this calculates the angle between where our player is and where we (the enemy) are looking
         angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
