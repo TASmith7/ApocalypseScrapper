@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class salvageableObject : MonoBehaviour, ISalvageable
 {
-    [SerializeField] public int salvageValue;
+    [SerializeField] public float salvageValue;
+    public float salvageTime;
 
    void Start()
     {
-
+        salvageTime = salvageValue / 2000.0f;
     }
 
     void Update()
