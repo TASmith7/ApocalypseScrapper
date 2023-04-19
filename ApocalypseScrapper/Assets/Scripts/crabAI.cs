@@ -79,14 +79,19 @@ public class crabAI : MonoBehaviour, IDamage
         {
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
             anim.SetFloat("Speed", speed);
-
+           
             if (playerInRange && CanSeePlayer())
             {
 
                 StartCoroutine(Roam());
 
             }
-            
+
+
+
+
+
+
         }
         
     }
