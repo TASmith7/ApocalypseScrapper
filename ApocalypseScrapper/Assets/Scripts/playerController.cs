@@ -19,8 +19,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(10, 50)] [SerializeField] float gravityValue;
     int playerSalvageScore;
     [Range(1, 10)][SerializeField] int salvageRange;
-    [Range(0.5f, 5)][SerializeField] float salvageRate;
-    [SerializeField] float salvageSpeed;
+    [Range(0.1f, 1)][SerializeField] float salvageRate;
     [SerializeField] float animTransSpeed;
 
     [Header("----- Jetpack Stats -----")]
@@ -94,6 +93,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             else
             {
                 isSalvaging = false;
+                
+
             }
         }
 
@@ -234,16 +235,18 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             // if the object is salvageable
             if (salvageable != null)
             {
-                gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageSpeed * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
+                gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
 
                 if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
                 {
                     SalvageObject(hit.collider.gameObject);
+                    gameManager.instance.salvagingObjectReticle.fillAmount = 0;
+                    yield return new WaitForSeconds(0.01f);
                 }
             }
 
         }
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
 
         
     }
