@@ -35,6 +35,8 @@ public class gameManager : MonoBehaviour
     public GameObject mainReticle;
     public GameObject salvageableItemReticle;
     public TextMeshProUGUI playerSalvageScoreText;
+    public Image salvagingObjectReticle;
+    public GameObject salvagingObjectParent;
 
     //[Header("-----Turret Stuff-----")]
     
@@ -121,11 +123,10 @@ public class gameManager : MonoBehaviour
 
     public void UpdateGameGoal()
     { 
-            PlayerWins();
-            activeMenu = winMenu;
-            activeMenu.SetActive(true);
-            PauseState();
-        
+        PlayerWins();
+        activeMenu = winMenu;
+        activeMenu.SetActive(true);
+        PauseState();
     }
 
     public void PlayerDead()

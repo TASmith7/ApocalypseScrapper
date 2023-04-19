@@ -20,6 +20,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     int playerSalvageScore;
     [Range(1, 10)][SerializeField] int salvageRange;
     [Range(0.5f, 5)][SerializeField] float salvageRate;
+    [Range(1, 50 )][SerializeField] float salvageSpeed;
     [SerializeField] float animTransSpeed;
 
     [Header("----- Jetpack Stats -----")]
@@ -83,6 +84,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             {
                 StartCoroutine(Salvage());
             }
+            else
+            {
+                isSalvaging = false;
+            }
         }
 
     }
@@ -95,17 +100,19 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         {
             // if the object we are looking at is salvageable
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
-                // if the above^ has the component ISalvageable (i.e. it's not null)
-                if (salvageable != null && hit.collider.tag != "Player")
-                {
-                    // change the reticle to salvageable reticle
-                    gameManager.instance.CueSalvageableReticle();
-                }
-                else
-                {
-                    // else if what we are looking at isn't salvageable, change/keep the reticle to main reticle
-                    gameManager.instance.CueMainReticle();
-                }
+
+            // if the above^ has the component ISalvageable (i.e. it's not null)
+            if (salvageable != null && !isSalvaging)
+            {
+                // change the reticle to salvageable reticle
+                gameManager.instance.CueSalvageableReticle();
+            }
+            else if(salvageable == null)
+            {
+                // else if what we are looking at isn't salvageable, change/keep the reticle to main reticle
+                gameManager.instance.CueMainReticle();
+            }
+               
         }
         
     }
@@ -208,7 +215,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         RaycastHit hit;
 
-
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
             // if the object we clicked on contains the ISalvageable interface
@@ -217,13 +223,18 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             // if the object is salvageable
             if (salvageable != null)
             {
-                SalvageObject(hit.collider.gameObject);
+                gameManager.instance.salvagingObjectReticle.fillAmount += salvageSpeed * Time.deltaTime;
+
+                if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
+                {
+                    SalvageObject(hit.collider.gameObject);
+                }
             }
 
         }
-        yield return new WaitForSeconds(salvageRate);
+        yield return new WaitForSeconds(0.1f);
 
-        isSalvaging = false;
+        
     }
 
     public void TakeDamage(int amount)
@@ -281,6 +292,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         // updating salvage score UI
         gameManager.instance.UpdateSalvageScore(playerSalvageScore);
+
+        // resetting my salvaging object reticle fill amount
+        gameManager.instance.salvagingObjectReticle.fillAmount = 0;
 
     }
     public void RespawnPlayer()
