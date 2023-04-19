@@ -163,7 +163,7 @@ public class TurretAI : MonoBehaviour, IDamage
         {
             
             Destroy(gameObject);
-            GameObject turretHead = Instantiate(turretHeadDestroyed,new Vector3(transform.position.x, 0.199f, transform.position.z+1.5f), turretHeadDestroyed.transform.rotation);
+            GameObject turretHead = Instantiate(turretHeadDestroyed,new Vector3(transform.position.x, 0.199f, transform.position.z+1.5f), headPos.transform.rotation);
             //Rigidbody.Instantiate(rigidBody);
         }
     }
