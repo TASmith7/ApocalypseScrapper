@@ -7,7 +7,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    //[SerializeField] Animator anim;
+    [SerializeField] Animator anim;
     //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
@@ -20,7 +20,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     int playerSalvageScore;
     [Range(1, 10)][SerializeField] int salvageRange;
     [Range(0.5f, 5)][SerializeField] float salvageRate;
-    [Range(1, 50)][SerializeField] float salvageSpeed;
+    [SerializeField] float salvageSpeed;
     [SerializeField] float animTransSpeed;
 
     [Header("----- Jetpack Stats -----")]
@@ -43,11 +43,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public int selectedGun;
     
     private Vector3 playerVelocity;
+    private Vector3 horizontalVelocity;
+    private float horizontalSpeed;
     private bool groundedPlayer;
 
     bool isShooting;
     bool isSalvaging;
-    //float speed;
+    float speed;
     Vector3 move;
     int HPOriginal;
     bool isThrusting;
@@ -56,7 +58,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     private void Start()
     {
-        
         HPOriginal = HP;
         PlayerUIUpdate();
         playerSalvageScore = 0;
@@ -65,15 +66,21 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     void Update()
     {
-        
+
+        horizontalVelocity = controller.velocity;
+        horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
+        horizontalSpeed = horizontalVelocity.magnitude;
+
+        Debug.Log(horizontalSpeed);
         if (gameManager.instance.activeMenu == null)
         {
+            anim.SetFloat("Speed", Input.GetAxis("Vertical"));
             //float vel = rb.velocity.normalized.magnitude;
 
             //if (vel >= 0 && vel <= 1)
             //{
             //    speed = Mathf.Lerp(speed, vel, Time.deltaTime * animTransSpeed);
-            //    anim.SetFloat("Speed", speed);
+            //    
             //}
             SelectGun();
             Movement();
@@ -227,10 +234,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             // if the object is salvageable
             if (salvageable != null)
             {
-                // setting the salvage speed to be dependent on the object's value 
-                 salvageSpeed = 500 / hit.collider.GetComponent<salvageableObject>().salvageValue;
-
-                gameManager.instance.salvagingObjectReticle.fillAmount += salvageSpeed * Time.deltaTime;
+                gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageSpeed * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
 
                 if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
                 {
@@ -292,7 +296,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public void SalvageObject(GameObject objectToSalvage)
     {
         // updating salvage score based on the objects salvage value assigned in inspector
-        playerSalvageScore += objectToSalvage.GetComponent<salvageableObject>().salvageValue;
+        playerSalvageScore += (int) objectToSalvage.GetComponent<salvageableObject>().salvageValue;
 
         // destroying object
         Destroy(objectToSalvage);
