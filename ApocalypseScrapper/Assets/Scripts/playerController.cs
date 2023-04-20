@@ -118,12 +118,18 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             {
                 // else if what we are looking at isn't salvageable, change/keep the reticle to main reticle
                 gameManager.instance.CueMainReticle();
+
+                // resetting my salvaging object reticle fill amount
+                gameManager.instance.salvagingObjectReticle.fillAmount = 0;
             }
         }
         else
         {
             // else if our raycast isn't hitting anything, change/keep to main reticle
             gameManager.instance.CueMainReticle();
+
+            // resetting my salvaging object reticle fill amount
+            gameManager.instance.salvagingObjectReticle.fillAmount = 0;
         }
 
     }
