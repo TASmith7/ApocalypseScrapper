@@ -10,8 +10,8 @@ public class salvageableObject : MonoBehaviour, ISalvageable
    void Start()
     {
         salvageTime = salvageValue / 1000.0f;
-        if (salvageTime < 0.3f)
-            salvageTime = 0.3f;
+        if (salvageTime < 0.5f)
+            salvageTime = 0.5f;
     }
 
     void Update()
