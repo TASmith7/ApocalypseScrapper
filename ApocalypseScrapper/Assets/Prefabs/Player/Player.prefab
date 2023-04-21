@@ -5763,18 +5763,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 125648943}
+  anim: {fileID: 3225998638450921758}
   shootPos: {fileID: 1950072412}
   headPos: {fileID: 690445233921113347}
   HP: 100
   playerSpeed: 8
   gravityValue: 50
   salvageRange: 10
-  salvageRate: 5
-  salvageSpeed: 50
+  salvageRate: 1
   animTransSpeed: 1
   thrustPower: 8
-  fuelConsumptionRate: 0.59
-  fuelRefillRate: 0.18
+  fuelConsumptionRate: 0.6
+  fuelRefillRate: 0.1
   timeToTurnOffFuelBar: 5
   gunList: []
   shootDamage: 3
