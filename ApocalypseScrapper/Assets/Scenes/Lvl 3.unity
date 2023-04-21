@@ -9766,11 +9766,11 @@ MonoBehaviour:
   playerSpeed: 8
   gravityValue: 50
   salvageRange: 10
-  salvageRate: 5
+  salvageRate: 1
   animTransSpeed: 1
   thrustPower: 8
-  fuelConsumptionRate: 0.59
-  fuelRefillRate: 0.18
+  fuelConsumptionRate: 0.6
+  fuelRefillRate: 0.1
   timeToTurnOffFuelBar: 5
   gunList: []
   shootDamage: 3
@@ -48769,7 +48769,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
