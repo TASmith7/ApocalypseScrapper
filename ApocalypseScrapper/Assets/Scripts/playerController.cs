@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage, ISalvageable
@@ -55,6 +56,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     float timeOfLastThrust;
 
+    [Header("-----Upgrades-----")]
+    [SerializeField] bool salvDetector;
+
     private void Start()
     {
         HPOriginal = HP;
@@ -69,6 +73,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         horizontalVelocity = controller.velocity;
         horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
         horizontalSpeed = horizontalVelocity.magnitude;
+
+        if (salvDetector) 
 
         Debug.Log(horizontalSpeed);
         if (gameManager.instance.activeMenu == null)
