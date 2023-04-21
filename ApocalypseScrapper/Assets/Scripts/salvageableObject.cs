@@ -9,6 +9,7 @@ public class salvageableObject : MonoBehaviour, ISalvageable
 
    void Start()
     {
+        gameObject.tag = "Salvage";
         salvageTime = salvageValue / 1000.0f;
         if (salvageTime < 0.5f)
             salvageTime = 0.5f;
