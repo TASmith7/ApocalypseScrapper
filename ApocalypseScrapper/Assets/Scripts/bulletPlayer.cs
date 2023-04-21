@@ -9,6 +9,8 @@ public class bulletPlayer : MonoBehaviour
 
     void Start()
     {
+        //pulling damage from playerController, which should have proper damge w/ upgrades
+        damage = gameManager.instance.player.GetComponent<playerController>().shootDamage;
         // destroying our bullet after a specified amount of time
         Destroy(gameObject, timer);
     }
