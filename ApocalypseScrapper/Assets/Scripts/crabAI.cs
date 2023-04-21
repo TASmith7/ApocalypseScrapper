@@ -80,11 +80,15 @@ public class crabAI : MonoBehaviour, IDamage
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
             anim.SetFloat("Speed", speed);
            
-            if (playerInRange && CanSeePlayer())
+            if (!playerInRange)
             {
 
                 StartCoroutine(Roam());
 
+            }
+            else
+            {
+                CanSeePlayer();
             }
 
 
@@ -117,13 +121,13 @@ public class crabAI : MonoBehaviour, IDamage
     bool CanSeePlayer()
     {
         playerDir = (gameManager.instance.player.transform.position - transform.position);
-        angleToPlayer=Vector3.Angle(new Vector3(playerDir.x,playerDir.y,playerDir.z),transform.forward);
+        
         Debug.DrawRay(transform.position, playerDir);
-        Debug.Log(angleToPlayer);
+        
         RaycastHit hit;
         if (Physics.Raycast(transform.position, playerDir,out hit))
         {
-            if(hit.collider.CompareTag("Player")&&angleToPlayer<=sightLine)
+            if(hit.collider.CompareTag("Player"))
             {
                 agent.stoppingDistance = stoppingDistanceOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
