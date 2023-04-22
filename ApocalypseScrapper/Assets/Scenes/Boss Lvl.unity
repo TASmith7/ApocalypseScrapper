@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1060062919}
-  m_IndirectSpecularColor: {r: 0.64114046, g: 0.0382798, b: 0.006818233, a: 1}
+  m_IndirectSpecularColor: {r: 0.18235935, g: 0.019100137, b: 0.0062105614, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25503,7 +25503,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 1000
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &3666913498033455355
 NavMeshAgent:
@@ -30086,7 +30086,7 @@ MonoBehaviour:
   roamDistance: 15
   animTransSpeed: 8
   radiusSleep: 200
-  radiusActive: 488
+  radiusActive: 333
   activeRadius: 0
   biteDamage: 1
   biteRate: 1.45
