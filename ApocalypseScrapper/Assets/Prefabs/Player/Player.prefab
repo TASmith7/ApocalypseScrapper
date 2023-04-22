@@ -1412,7 +1412,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2316315233625947168}
   m_LocalRotation: {x: -0.06696138, y: -0.051720522, z: 0.0019023481, w: 0.99641234}
-  m_LocalPosition: {x: 0.14, y: -0.326, z: 0.071}
+  m_LocalPosition: {x: 0.13997042, y: -0.3659964, z: 0.07160074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1427,7 +1427,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2316315233625947168}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300002, guid: 584761fab006d6d42b4d0d8c56a51241, type: 3}
 --- !u!23 &2316315233628446580
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1448,7 +1448,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 5c7176cef124e1a4793b448ed91b74e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5767,6 +5767,7 @@ MonoBehaviour:
   shootPos: {fileID: 1950072412}
   headPos: {fileID: 690445233921113347}
   HP: 100
+  HPMax: 99999
   playerSpeed: 8
   gravityValue: 50
   salvageRange: 10
@@ -5785,6 +5786,11 @@ MonoBehaviour:
   gunMaterial: {fileID: 2316315233628446580}
   gunModel: {fileID: 2316315233626903456}
   selectedGun: 0
+  salvDetector: 0
+  shielded: 0
+  shieldValue: 0
+  shieldMax: 0
+  shieldCD: 0
 --- !u!143 &125648943
 CharacterController:
   m_ObjectHideFlags: 0

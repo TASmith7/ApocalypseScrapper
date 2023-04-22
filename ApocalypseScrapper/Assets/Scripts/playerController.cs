@@ -287,7 +287,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     void PlayerUIUpdate()
     {
         // updating the players health bar
-        gameManager.instance.HPBar.fillAmount = (float) HP / (float) HPOriginal;
+        gameManager.instance.HPBar.fillAmount = (float) HP / (float) HPMax;
     }
 
     IEnumerator ReduceJetpackFuelUI()
@@ -335,7 +335,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     }
     public void RespawnPlayer()
     {
-        HP = HPOriginal;
+        HP = HPMax;
         PlayerUIUpdate();
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;

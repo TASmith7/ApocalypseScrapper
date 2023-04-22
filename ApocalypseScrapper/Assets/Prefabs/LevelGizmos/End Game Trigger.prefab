@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6419359910568628771}
   - component: {fileID: 6419359910568628772}
   - component: {fileID: 6419359910568628773}
+  - component: {fileID: 9048482723937033064}
   m_Layer: 9
   m_Name: End Game Trigger
   m_TagString: Finish
@@ -93,7 +94,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6419359910568628774}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -111,3 +112,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82b30139c564ad43a19d9427414d5a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &9048482723937033064
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6419359910568628774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 9999
+  m_Center: {x: 0, y: 0, z: 0}

@@ -5,18 +5,21 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class crabAI : MonoBehaviour, IDamage
+public class BossAI : MonoBehaviour, IDamage
 {
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] Transform headPos;
-    [SerializeField] Transform shootPos;
+    [SerializeField] Transform bitePos;
+    [SerializeField] Transform spitPos;
     [SerializeField] SphereCollider crabWakeColl;
 
     [Header("-----Crab Stats-----")]
-    [SerializeField] int HP;
+    [SerializeField] float HP;
+    public float HPOrig;
+    [SerializeField] int healAmt;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int sightLine;
     [SerializeField] int roamPauseTime;
@@ -28,16 +31,25 @@ public class crabAI : MonoBehaviour, IDamage
     Vector3 playerDir;
     
     [Header("-----Bite Stats-----")]
-    [Range(1, 10)][SerializeField] int shootDamage;
-    [Range(.1f, 5)][SerializeField] float shootRate;
-    [Range(1, 100)][SerializeField] int shootDistance;
-    [SerializeField] int bulletSpeed;
-    [SerializeField] GameObject bullet;
+    [Range(1, 10)][SerializeField] int biteDamage;
+    [Range(.1f, 5)][SerializeField] float biteRate;
+    [Range(1, 100)][SerializeField] int biteDistance;
+    [SerializeField] int biteSpeed;
+    [SerializeField] GameObject bite;
+    [Header("-----Spit Stats-----")]
+    [SerializeField] GameObject spit;
+    [Range(1, 10)][SerializeField] int spitDamage;
+    [Range(.1f, 5)][SerializeField] float spitRate;
+    [Range(1, 100)][SerializeField] int spitDistance;
+    [SerializeField] int spitSpeed;
+    
+    [Header("-----Drop Stats-----")]
     [SerializeField] GameObject drop;
     bool playerInRange;
     float angleToPlayer;
     float speed;
-    bool isShooting;
+    bool isBiting;
+    bool isSpitting;
     float stoppingDistanceOrig;
     bool destinationChosen;
     Vector3 startPos;
@@ -66,8 +78,9 @@ public class crabAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        HPOrig = HP;
         activeRadius = radiusSleep;
-        agent.stoppingDistance = shootDistance;
+        agent.stoppingDistance = biteDistance;
         stoppingDistanceOrig = agent.stoppingDistance;
         //startPos = transform.position;
     }
@@ -80,11 +93,15 @@ public class crabAI : MonoBehaviour, IDamage
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
             anim.SetFloat("Speed", speed);
 
-        if (playerInRange)
-        {
-            CanSeePlayer();
+            if (playerInRange)
+            {
+                CanSeePlayer();
 
-        }
+            }
+            if (HP<(HPOrig-=(HPOrig*.75f)))
+            {
+                Flee();
+            }
 
 
 
@@ -97,11 +114,20 @@ public class crabAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         anim.SetTrigger("Shoot");
-        isShooting = true;
-        GameObject bulletClone =Instantiate(bullet, shootPos.position, bullet.transform.rotation);
-        bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
+        isBiting = true;
+        GameObject biteClone =Instantiate(bite, bitePos.position, bite.transform.rotation);
+        biteClone.GetComponent<Rigidbody>().velocity = transform.forward * biteSpeed;
+        yield return new WaitForSeconds(biteRate);
+        isBiting = false;
+    }
+    IEnumerator Spit()
+    {
+        isSpitting = true;
+        GameObject spitClone = Instantiate(spit, spitPos.position, transform.rotation);
+        spitClone.GetComponent<Rigidbody>().velocity=transform.forward * spitSpeed;
+        yield return new WaitForSeconds(spitRate);
+        isSpitting = false;
+        
     }
     void OnTriggerEnter(Collider other)
     {
@@ -143,8 +169,10 @@ public class crabAI : MonoBehaviour, IDamage
 
                 FacePlayerAlways();
 
-                if (!isShooting&&hit.distance<=shootDistance)
+                if (!isSpitting&&!isBiting&&hit.distance<=biteDistance)
                     StartCoroutine(shoot());
+                if(!isSpitting&&!isBiting&&hit.distance>=biteDistance)
+                        StartCoroutine(Spit() );
 
                 return true;
             }
@@ -199,5 +227,14 @@ public class crabAI : MonoBehaviour, IDamage
     }
     public void Flee()
     {
+        agent.SetDestination(-playerDir);
+        if(!CanSeePlayer()&& angleToPlayer >= sightLine)
+        {
+            Heal();
+        }
+    }
+    void Heal()
+    {
+        HP +=healAmt;
     }
 }
