@@ -15,7 +15,7 @@ public class ratAI : MonoBehaviour, IDamage
     /*[SerializeField] SphereCollider ratCollBite*/
     //[SerializeField] Rigidbody rb;
 
-    [Header("----- Rat Stats -----")]
+    [Header("----- Crab Stats -----")]
     [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int sightAngle;
@@ -23,7 +23,7 @@ public class ratAI : MonoBehaviour, IDamage
     [Range(10,1000)][SerializeField] float radiusActive;
     public float activeRadius;
 
-    [Header("----- Rat Bite Stats -----")]
+    [Header("----- Crab Bite Stats -----")]
     [Range(1, 10)][SerializeField] int biteDamage;
     [Range(0.1f, 5)][SerializeField] float biteRate;
     [SerializeField] float biteDistance;
