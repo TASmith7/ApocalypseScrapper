@@ -149,6 +149,7 @@ public class BossAI : MonoBehaviour, IDamage
         // this calculates the angle between where our player is and where we (the enemy) are looking
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
+        Debug.DrawRay(headPos.position, playerDir, Color.red);
 
 
         // this returns the info of WHAT is HIT by the raycast
@@ -235,10 +236,11 @@ public class BossAI : MonoBehaviour, IDamage
     //}
     IEnumerator Heal()
     {
-        if (HP != HPOrig)
+        if (HP != HPOrig&&!isSpitting&&!isBiting)
         {
             HP += healAmt;
-            yield return new WaitForSeconds(healAmt* Time.deltaTime);
+            yield return new WaitForSeconds(healAmt* ((Time.deltaTime)/2));
+
         }
     }
 }
