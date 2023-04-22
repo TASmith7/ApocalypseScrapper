@@ -5768,14 +5768,16 @@ MonoBehaviour:
   headPos: {fileID: 690445233921113347}
   HP: 100
   HPMax: 99999
-  playerSpeed: 8
+  playerSpeed: 10
+  walkSpeed: 8
+  sprintSpeed: 15
   gravityValue: 50
   salvageRange: 10
   salvageRate: 1
   animTransSpeed: 1
   thrustPower: 8
-  fuelConsumptionRate: 0.6
-  fuelRefillRate: 0.1
+  fuelConsumptionRate: 0
+  fuelRefillRate: 0.5
   timeToTurnOffFuelBar: 5
   gunList: []
   shootDamage: 3
