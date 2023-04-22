@@ -20,6 +20,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(1, 100)][SerializeField] int HP;
     [SerializeField] int HPMax;
     [SerializeField] float playerSpeed;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float sprintSpeed;
+    
     [Range(10, 50)] [SerializeField] float gravityValue;
     int playerSalvageScore;
     [SerializeField] int salvageRange;
@@ -72,6 +75,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private void Start()
     {
         HPMax = HP;
+        playerSpeed = walkSpeed;
         PlayerUIUpdate();
         playerSalvageScore = 0;
         RespawnPlayer();
@@ -161,6 +165,20 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             // set the vertical velocity to 0
             playerVelocity.y = 0f;
         }
+        if(groundedPlayer)
+        {
+            if(Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                playerSpeed = sprintSpeed;
+            }
+            if(Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                playerSpeed = walkSpeed;
+            }
+        }
+            
+
+        
 
         // movement on the x and z axes
         move = (transform.right * Input.GetAxis("Horizontal")) + 
@@ -198,6 +216,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             // turn off jetpack fuel UI
             gameManager.instance.TurnOffJetpackUI();
         }
+
 
 
         // ensuring our players y velocity take gravity into effect
