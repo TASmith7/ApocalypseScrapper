@@ -33,7 +33,7 @@ public class BossAI : MonoBehaviour, IDamage
     [Header("-----Bite Stats-----")]
     [Range(1, 10)][SerializeField] int biteDamage;
     [Range(.1f, 5)][SerializeField] float biteRate;
-    [Range(1, 100)][SerializeField] int biteDistance;
+    [Range(1, 100)] public float biteDistance;
     [SerializeField] int biteSpeed;
     [SerializeField] GameObject bite;
     [Header("-----Spit Stats-----")]
@@ -47,14 +47,19 @@ public class BossAI : MonoBehaviour, IDamage
     [SerializeField] GameObject drop;
     bool playerInRange;
     float angleToPlayer;
+    int wave;
     float speed;
     bool isBiting;
     bool isSpitting;
     float stoppingDistanceOrig;
     bool destinationChosen;
     Vector3 startPos;
-    
-    
+    [Header("----- Crab Spawn Stats-----")]
+    [SerializeField] GameObject crab;
+    [Header("----- Drone Spawn Stats-----")]
+    [SerializeField] GameObject drone;
+
+
     //IEnumerator Roam()
     //{
     //    if (destinationChosen != true && agent.remainingDistance < 0.05)
@@ -80,7 +85,7 @@ public class BossAI : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         activeRadius = radiusSleep;
-        agent.stoppingDistance = biteDistance;
+        biteDistance=agent.stoppingDistance;
         stoppingDistanceOrig = agent.stoppingDistance;
         //startPos = transform.position;
     }
@@ -88,6 +93,42 @@ public class BossAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+       
+        if (HP <= (HPOrig*.75f)&& HP>= (HPOrig / 2))
+        {
+            if (crab)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    Wave1();
+                }
+
+            }
+            
+        }
+        else if (HP <= (HPOrig/2))
+        {
+            if (drone)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    Wave2();
+                }
+
+            }
+        }
+        else if(HP<=(HPOrig*.25f))
+        {
+            if (crab&&drone)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    Wave3();
+                }
+
+            }
+        }
+
         if (agent.isActiveAndEnabled)
         {
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
@@ -241,6 +282,45 @@ public class BossAI : MonoBehaviour, IDamage
             HP += healAmt;
             yield return new WaitForSeconds(healAmt* ((Time.deltaTime)/2));
 
+        }
+    }
+    public void Wave1()
+    {
+        //if (crab)
+        //{
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //    }
+
+        //}
+        
+        Instantiate(crab, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), transform.rotation);
+
+
+    }
+    public void Wave2()
+    {
+        
+        if (drone)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+
+                Instantiate(drone, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), transform.rotation);
+                
+            }
+        }
+    }
+    public void Wave3()
+    {
+        if (crab&&drone)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Instantiate(crab, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), transform.rotation);
+                Instantiate(drone, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), transform.rotation);
+
+            }
         }
     }
 }
