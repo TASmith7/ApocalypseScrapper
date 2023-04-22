@@ -255,7 +255,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
 
             // if the object is salvageable
-            if (salvageable != null)
+            if (salvageable != null && !hit.collider.CompareTag("Player"))
             {
                 gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
 
