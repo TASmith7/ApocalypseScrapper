@@ -14,6 +14,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
+    [SerializeField] AudioSource myAudioSource;
     
 
     [Header("----- Player Stats -----")]
@@ -34,6 +35,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(0, 1)] [SerializeField] float fuelConsumptionRate;
     [Range(0, 0.5f)] [SerializeField] float fuelRefillRate;
     [Range(1, 100)] [SerializeField] int timeToTurnOffFuelBar;
+    [SerializeField] AudioClip jetpackThrustAudio;
 
     [Header("----- Gun Stats -----")]
     public List<GunStats> gunList = new List<GunStats>();
@@ -45,6 +47,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public MeshRenderer gunMaterial;
     public MeshFilter gunModel;
     public int selectedGun;
+    [SerializeField] AudioClip shotAudio;
 
 [Header("-----Upgrades-----")]
     [SerializeField] public bool salvDetector;
@@ -178,8 +181,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         }
             
 
-        
-
         // movement on the x and z axes
         move = (transform.right * Input.GetAxis("Horizontal")) + 
                (transform.forward * Input.GetAxis("Vertical"));
@@ -198,8 +199,20 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 // while player holds down space, give velocity in the y direction a value
                 playerVelocity.y = thrustPower;
 
+                if(!myAudioSource.isPlaying)
+                {
+                    myAudioSource.PlayOneShot(jetpackThrustAudio);
+                }
+
+
                 timeOfLastThrust = Time.fixedTime;
             }
+
+            if(gameManager.instance.jetpackFuelBar.fillAmount <= 0)
+            {
+                myAudioSource.Stop();
+            }
+
             // reducing the fuel bar while the player is pressing space
             StartCoroutine(ReduceJetpackFuelUI());
         }
@@ -218,7 +231,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         }
 
 
-
         // ensuring our players y velocity take gravity into effect
         playerVelocity.y -= gravityValue * Time.deltaTime;
 
@@ -229,6 +241,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     IEnumerator Shoot()
     {
         isShooting = true;
+
+        // play shooting audio
+        myAudioSource.PlayOneShot(shotAudio);
 
         GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.identity);
 
