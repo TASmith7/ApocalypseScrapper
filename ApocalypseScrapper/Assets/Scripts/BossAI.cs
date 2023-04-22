@@ -98,9 +98,9 @@ public class BossAI : MonoBehaviour, IDamage
                 CanSeePlayer();
 
             }
-            if (HP<(HPOrig-=(HPOrig*.75f)))
+            if (HP<=(HPOrig*.75f)&&!CanSeePlayer())
             {
-                Flee();
+                StartCoroutine(Heal());
             }
 
 
@@ -144,7 +144,7 @@ public class BossAI : MonoBehaviour, IDamage
 
 
         // this tells us what direction our player is in relative to our enemy
-        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + 1 - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + .6f - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
 
         // this calculates the angle between where our player is and where we (the enemy) are looking
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
@@ -225,16 +225,20 @@ public class BossAI : MonoBehaviour, IDamage
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x,0,playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
-    public void Flee()
+    //public void Flee()
+    //{
+    //    agent.SetDestination(new Vector3(playerDir.x, 0, playerDir.z));
+        
+        
+    //        Heal();
+        
+    //}
+    IEnumerator Heal()
     {
-        agent.SetDestination(-playerDir);
-        if(!CanSeePlayer()&& angleToPlayer >= sightLine)
+        if (HP != HPOrig)
         {
-            Heal();
+            HP += healAmt;
+            yield return new WaitForSeconds(healAmt* Time.deltaTime);
         }
-    }
-    void Heal()
-    {
-        HP +=healAmt;
     }
 }
