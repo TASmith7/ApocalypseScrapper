@@ -145,6 +145,8 @@ public class BossAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
+
+            gameManager.instance.bossHealthBarParent.SetActive(true);
             crabWakeColl.radius = radiusActive;
             activeRadius = crabWakeColl.radius;
             playerInRange = true;
@@ -199,12 +201,14 @@ public class BossAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            gameManager.instance.bossHealthBarParent.SetActive(false);
             //agent.stoppingDistance = 0;
         }
     }
     public void TakeDamage(int dmg)
     {
         HP -= dmg;
+        gameManager.instance.bossHealthBar.fillAmount = HP;
 
         if (HP <= 0)
         {
@@ -342,4 +346,5 @@ public class BossAI : MonoBehaviour, IDamage
         //}
 
     }
+    
 }

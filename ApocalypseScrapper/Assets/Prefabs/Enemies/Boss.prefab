@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &169400455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 169400456}
+  m_Layer: 6
+  m_Name: Shoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &169400456
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169400455}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0028411802, y: 0.0015767216, z: -0.00022366885}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8201909208664269556}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8203333305004614600
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,6 +1025,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8200110099979266858}
+  - {fileID: 169400456}
   m_Father: {fileID: 8201845893491351064}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3612,9 +3644,8 @@ GameObject:
   - component: {fileID: 8108778266806203030}
   - component: {fileID: 8108778266806203031}
   - component: {fileID: 4786012189931415779}
-  - component: {fileID: 8606138864948942323}
   m_Layer: 6
-  m_Name: Boss Crab
+  m_Name: Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3627,9 +3658,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8204066081240336172}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.60346794, y: 40.407684, z: 1}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8202020235074222298}
@@ -3675,14 +3706,14 @@ MonoBehaviour:
   agent: {fileID: 8108778266806203029}
   anim: {fileID: 8108778266806203024}
   headPos: {fileID: 8200167583107185504}
-  bitePos: {fileID: 8200110099979266858}
-  spitPos: {fileID: 8201929002938608736}
+  bitePos: {fileID: 169400456}
+  spitPos: {fileID: 169400456}
   crabWakeColl: {fileID: 8108778266806203031}
   HP: 200
   HPOrig: 200
   healAmt: 5
-  playerFaceSpeed: 1200
-  sightLine: 600
+  playerFaceSpeed: 600
+  sightLine: 360
   roamPauseTime: 3
   roamDistance: 15
   animTransSpeed: 8
@@ -3691,14 +3722,14 @@ MonoBehaviour:
   activeRadius: 0
   biteDamage: 1
   biteRate: 1.45
-  biteDistance: 16
+  biteDistance: 15
   biteSpeed: 50
   bite: {fileID: 2765080052109346540, guid: a7eb135b0d26fac43a26663efb4460d9, type: 3}
   spit: {fileID: 3427304231639500766, guid: 9c36e34379dc33043907e3be74333a58, type: 3}
   spitDamage: 4
   spitRate: 0.61
-  spitDistance: 9
-  spitSpeed: 50
+  spitDistance: 20
+  spitSpeed: 75
   drop: {fileID: 6419359910568628774, guid: cbf8ee19476b88e479707c9e1f7e175c, type: 3}
   crab: {fileID: 3725011360167264616, guid: d34f7fd18d8d8f84b8e1d30031377215, type: 3}
   drone: {fileID: 0}
@@ -3711,16 +3742,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 8204066081240336172}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
-  m_Speed: 10
+  m_Radius: 2.3
+  m_Speed: 12
   m_Acceleration: 60
   avoidancePriority: 50
-  m_AngularSpeed: 12000
-  m_StoppingDistance: 5
+  m_AngularSpeed: 120
+  m_StoppingDistance: 14
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 2.5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -3765,22 +3796,6 @@ CapsuleCollider:
   m_Height: 2.5997486
   m_Direction: 2
   m_Center: {x: 0, y: 1.2998743, z: 0.33272433}
---- !u!54 &8606138864948942323
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8204066081240336172}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!1 &8204071028945915224
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,34 +11,48 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
     
 
-    [Header("----- Player Stuff -----")]
+    [Header("----- Player/Boss -----")]
     public GameObject player;
     public playerController playerScript;
     public GameObject playerSpawnPos;
+    //public GameObject Boss;
+    //public BossAI bossScript;
 
-    [Header("----- Menu Stuff -----")]
+    [Header("----- Menu's -----")]
     public GameObject activeMenu;
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
     public GameObject RSGSplash;
     public GameObject checkpointMenu;
-    [Header("----- UI Stuff -----")]
+    [Header("----- HP Bar -----")]
     public Image HPBar;
+    [Header("----- Salvage & Grade Bar -----")]
     public TextMeshProUGUI enemiesRemainingText;
     public TextMeshProUGUI salvageCollected;
     public TextMeshProUGUI scoreText;
     public int amtSalvaged;
     public TextMeshProUGUI grade;
     public char playerGrade;
+    [Header("----- Boss Health Bar -----")]
+    public Image bossHealthBar;
+    public GameObject bossHealthBarParent;
+    [Header("----- Jetpack Bar -----")]
     public Image jetpackFuelBar;
     public GameObject jetpackFuelBarParent;
+    [Header("----- Stmaina Bar -----")]
     public Image staminaFillBar;
     public GameObject staminaFillBarParent;
+    [Header("----- Shield Bar -----")]
+    public Image shieldFillBar;
+    public GameObject shieldFillBarParent;
+    [Header("----- Reticle Bar -----")]
     public GameObject mainReticle;
     public GameObject salvageableItemReticle;
-    public TextMeshProUGUI playerSalvageScoreText;
     public Image salvagingObjectReticle;
+    [Header("----- Score Text Bar -----")]
+    public TextMeshProUGUI playerSalvageScoreText;
+    
     public GameObject salvagingObjectParent;
 
     //[Header("-----Turret Stuff-----")]
@@ -63,6 +77,7 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         timeScaleOriginal = Time.timeScale;
+        bossHealthBarParent.SetActive(false);
     }
     IEnumerator SplashScreen()
     {
