@@ -51,7 +51,7 @@ public class BossAI : MonoBehaviour, IDamage
     float speed;
     bool isBiting;
     bool isSpitting;
-    float stoppingDistanceOrig;
+    //float stoppingDistanceOrig;
     bool destinationChosen;
     Vector3 startPos;
     [Header("----- Crab Spawn Stats-----")]
@@ -87,7 +87,7 @@ public class BossAI : MonoBehaviour, IDamage
         HPOrig = HP;
         activeRadius = radiusSleep;
         biteDistance = agent.stoppingDistance;
-        stoppingDistanceOrig = agent.stoppingDistance;
+        //stoppingDistanceOrig = agent.stoppingDistance;
         //startPos = transform.position;
     }
 
@@ -198,7 +198,7 @@ public class BossAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            agent.stoppingDistance = 0;
+            //agent.stoppingDistance = 0;
         }
     }
     public void TakeDamage(int dmg)
@@ -267,7 +267,8 @@ public class BossAI : MonoBehaviour, IDamage
         //}
         playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + .6f - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
         GameObject crabClone=Instantiate(crab,playerDir, transform.rotation);
-        
+        crabClone.GetComponent<crabAI>().activeRadius = 1000;
+        //crabClone.GetComponent<NavMeshAgent>().SetDestination(playerDir);
         
 
     }
