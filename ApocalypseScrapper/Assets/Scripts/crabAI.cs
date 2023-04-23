@@ -13,9 +13,9 @@ public class crabAI : MonoBehaviour, IDamage
     [SerializeField] Animator anim;
     [SerializeField] Transform headPos;
     [SerializeField] Transform shootPos;
-    [SerializeField] SphereCollider ratCollWake;
+    [SerializeField] SphereCollider crabWakeColl;
 
-    [Header("-----Rat Stats-----")]
+    [Header("-----Crab Stats-----")]
     [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int sightLine;
@@ -26,7 +26,7 @@ public class crabAI : MonoBehaviour, IDamage
     [Range(10, 1000)][SerializeField] float radiusActive;
     public float activeRadius;
     Vector3 playerDir;
-    
+
     [Header("-----Bite Stats-----")]
     [Range(1, 10)][SerializeField] int shootDamage;
     [Range(.1f, 5)][SerializeField] float shootRate;
@@ -41,54 +41,55 @@ public class crabAI : MonoBehaviour, IDamage
     float stoppingDistanceOrig;
     bool destinationChosen;
     Vector3 startPos;
-    
-    
-    IEnumerator Roam()
-    {
-        if (destinationChosen != true && agent.remainingDistance < 0.05)
-        {
-            destinationChosen = true;
-            agent.stoppingDistance = 0;
-            yield return new WaitForSeconds(roamPauseTime);
 
-            Vector3 runTo = UnityEngine.Random.insideUnitSphere * roamDistance;
-            runTo += startPos;
 
-            NavMeshHit hit;
-            NavMesh.SamplePosition(runTo, out hit, roamDistance, 1);
+    //IEnumerator Roam()
+    //{
+    //    if (destinationChosen != true && agent.remainingDistance < 0.05)
+    //    {
+    //        destinationChosen = true;
+    //        agent.stoppingDistance = 0;
+    //        yield return new WaitForSeconds(roamPauseTime);
 
-            agent.SetDestination(hit.position);
-            destinationChosen = false;
-        }
-    }    
+    //        Vector3 runTo = UnityEngine.Random.insideUnitSphere * roamDistance;
+    //        runTo += startPos;
+
+    //        NavMeshHit hit;
+    //        NavMesh.SamplePosition(runTo, out hit, roamDistance, 1);
+
+    //        agent.SetDestination(hit.position);
+    //        destinationChosen = false;
+    //    }
+    //}    
 
 
     // Start is called before the first frame update
     void Start()
     {
+        agent.radius = UnityEngine.Random.Range(agent.radius, agent.radius + 2f);
+        agent.speed = UnityEngine.Random.Range(agent.speed, agent.speed + .5f);
         activeRadius = radiusSleep;
         agent.stoppingDistance = shootDistance;
         stoppingDistanceOrig = agent.stoppingDistance;
-        startPos = transform.position;
+        //startPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (agent.isActiveAndEnabled)
         {
+
+            agent.SetDestination(gameManager.instance.player.transform.position);
+
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
             anim.SetFloat("Speed", speed);
-           
-            if (!playerInRange)
-            {
 
-                StartCoroutine(Roam());
-
-            }
-            else
+            if (playerInRange)
             {
                 CanSeePlayer();
+
             }
 
 
@@ -97,61 +98,71 @@ public class crabAI : MonoBehaviour, IDamage
 
 
         }
-        
+
     }
     IEnumerator shoot()
     {
         anim.SetTrigger("Shoot");
         isShooting = true;
-        GameObject bulletClone =Instantiate(bullet, shootPos.position, bullet.transform.rotation);
+        GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
         bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            ratCollWake.radius = radiusActive;
-            activeRadius = ratCollWake.radius;
+            crabWakeColl.radius = radiusActive;
+            activeRadius = crabWakeColl.radius;
             playerInRange = true;
 
         }
     }
     bool CanSeePlayer()
     {
-        playerDir = (gameManager.instance.player.transform.position - transform.position);
-        
-        Debug.DrawRay(transform.position, playerDir);
-        
+
+
+        // this tells us what direction our player is in relative to our enemy
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + 1 - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
+
+        // this calculates the angle between where our player is and where we (the enemy) are looking
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+
+
+
+        // this returns the info of WHAT is HIT by the raycast
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, playerDir,out hit))
+
+        // this will shoot the raycast in the direction of the player at all times. Our 'out' variable is what object is getting hit
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if(hit.collider.CompareTag("Player"))
+            // if the object we are hitting is the player, AND the angle to our player is within our sight angle
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= sightLine)
             {
-                agent.stoppingDistance = stoppingDistanceOrig;
-                agent.SetDestination(gameManager.instance.player.transform.position);
-               
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    FacePlayerAlways();
-                }
-                if (!isShooting)
-                {
-                    if(agent.remainingDistance<=shootDistance)
-                        StartCoroutine(shoot());
-                }
+
+
+
+                // this gets the enemy to move in the direction of our player
+
+
+
+                FacePlayerAlways();
+
+                if (!isShooting && hit.distance <= shootDistance)
+                    StartCoroutine(shoot());
 
                 return true;
             }
         }
+
         return false;
     }
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false ;
+            playerInRange = false;
             agent.stoppingDistance = 0;
         }
     }
@@ -163,13 +174,13 @@ public class crabAI : MonoBehaviour, IDamage
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
-            if (drop) 
-            { 
+            if (drop)
+            {
                 Instantiate(drop, transform.position, drop.transform.rotation);
             }
-                
-                agent.enabled = false;
-                GetComponent<CapsuleCollider>().enabled = false;
+
+            agent.enabled = false;
+            GetComponent<CapsuleCollider>().enabled = false;
 
         }
         else
@@ -189,7 +200,7 @@ public class crabAI : MonoBehaviour, IDamage
     void FacePlayerAlways()
     {
 
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x,playerDir.y,playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
     public void Flee()

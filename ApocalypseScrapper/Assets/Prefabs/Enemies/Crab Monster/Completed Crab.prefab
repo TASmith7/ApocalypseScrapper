@@ -1455,6 +1455,7 @@ GameObject:
   - component: {fileID: 3666913497194558674}
   - component: {fileID: 3666913497194558675}
   - component: {fileID: 1790242471}
+  - component: {fileID: 3820302669831918519}
   m_Layer: 6
   m_Name: Completed Crab
   m_TagString: Enemy
@@ -1470,7 +1471,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3725011360167264616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -46.97}
+  m_LocalPosition: {x: 19, y: 0, z: -46.97}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1518,15 +1519,15 @@ MonoBehaviour:
   anim: {fileID: 3666913497194558676}
   headPos: {fileID: 3722097835043142948}
   shootPos: {fileID: 3726814737696614948}
-  ratCollWake: {fileID: 3666913497194558675}
+  crabWakeColl: {fileID: 3666913497194558675}
   HP: 10
   playerFaceSpeed: 1200
-  sightLine: 260
+  sightLine: 360
   roamPauseTime: 1
   roamDistance: 30
   animTransSpeed: 20
-  radiusSleep: 10
-  radiusActive: 96
+  radiusSleep: 200
+  radiusActive: 1000
   activeRadius: 0
   shootDamage: 10
   shootRate: 0.35
@@ -1597,6 +1598,22 @@ CapsuleCollider:
   m_Height: 2.5997486
   m_Direction: 2
   m_Center: {x: 0, y: 1.2998743, z: 0.33272433}
+--- !u!54 &3820302669831918519
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725011360167264616}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &3725015626787484954
 GameObject:
   m_ObjectHideFlags: 0

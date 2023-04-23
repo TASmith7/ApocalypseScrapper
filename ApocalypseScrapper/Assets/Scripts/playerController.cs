@@ -14,12 +14,16 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
+    [SerializeField] AudioSource myAudioSource;
     
 
     [Header("----- Player Stats -----")]
     [Range(1, 100)][SerializeField] int HP;
     [SerializeField] int HPMax;
     [SerializeField] float playerSpeed;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float sprintSpeed;
+    
     [Range(10, 50)] [SerializeField] float gravityValue;
     int playerSalvageScore;
     [SerializeField] int salvageRange;
@@ -31,6 +35,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(0, 1)] [SerializeField] float fuelConsumptionRate;
     [Range(0, 0.5f)] [SerializeField] float fuelRefillRate;
     [Range(1, 100)] [SerializeField] int timeToTurnOffFuelBar;
+    [SerializeField] AudioClip jetpackThrustAudio;
 
     [Header("----- Gun Stats -----")]
     public List<GunStats> gunList = new List<GunStats>();
@@ -42,6 +47,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public MeshRenderer gunMaterial;
     public MeshFilter gunModel;
     public int selectedGun;
+    [SerializeField] AudioClip shotAudio;
 
 [Header("-----Upgrades-----")]
     [SerializeField] public bool salvDetector;
@@ -72,6 +78,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private void Start()
     {
         HPMax = HP;
+        playerSpeed = walkSpeed;
         PlayerUIUpdate();
         playerSalvageScore = 0;
         RespawnPlayer();
@@ -161,6 +168,18 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             // set the vertical velocity to 0
             playerVelocity.y = 0f;
         }
+        if(groundedPlayer)
+        {
+            if(Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                playerSpeed = sprintSpeed;
+            }
+            if(Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                playerSpeed = walkSpeed;
+            }
+        }
+            
 
         // movement on the x and z axes
         move = (transform.right * Input.GetAxis("Horizontal")) + 
@@ -180,8 +199,20 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 // while player holds down space, give velocity in the y direction a value
                 playerVelocity.y = thrustPower;
 
+                if(!myAudioSource.isPlaying)
+                {
+                    myAudioSource.PlayOneShot(jetpackThrustAudio);
+                }
+
+
                 timeOfLastThrust = Time.fixedTime;
             }
+
+            if(gameManager.instance.jetpackFuelBar.fillAmount <= 0)
+            {
+                myAudioSource.Stop();
+            }
+
             // reducing the fuel bar while the player is pressing space
             StartCoroutine(ReduceJetpackFuelUI());
         }
@@ -210,6 +241,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     IEnumerator Shoot()
     {
         isShooting = true;
+
+        // play shooting audio
+        myAudioSource.PlayOneShot(shotAudio);
 
         GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.identity);
 
@@ -255,7 +289,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
 
             // if the object is salvageable
-            if (salvageable != null)
+            if (salvageable != null && !hit.collider.CompareTag("Player"))
             {
                 gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
 
@@ -287,7 +321,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     void PlayerUIUpdate()
     {
         // updating the players health bar
-        gameManager.instance.HPBar.fillAmount = (float) HP / (float) HPOriginal;
+        gameManager.instance.HPBar.fillAmount = (float) HP / (float) HPMax;
     }
 
     IEnumerator ReduceJetpackFuelUI()
@@ -335,7 +369,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     }
     public void RespawnPlayer()
     {
-        HP = HPOriginal;
+        HP = HPMax;
         PlayerUIUpdate();
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
@@ -405,4 +439,5 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     {
 
     }
+   
 }    
