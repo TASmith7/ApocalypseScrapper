@@ -110,10 +110,10 @@ public class BossAI : MonoBehaviour, IDamage
                 CanSeePlayer();
 
             }
-            if (HP <= (HPOrig * .75f) && !CanSeePlayer())
-            {
-                StartCoroutine(Heal());
-            }
+            //else if (HP <= (HPOrig * .75f) && !CanSeePlayer())
+            //{
+            //    StartCoroutine(Heal());
+            //}
 
 
 
@@ -135,7 +135,7 @@ public class BossAI : MonoBehaviour, IDamage
     IEnumerator Spit()
     {
         isSpitting = true;
-        GameObject spitClone = Instantiate(spit, spitPos.position, transform.rotation);
+        GameObject spitClone = Instantiate(spit, spitPos.position, spit.transform.rotation);
         spitClone.GetComponent<Rigidbody>().velocity = transform.forward * spitSpeed;
         yield return new WaitForSeconds(spitRate);
         isSpitting = false;
@@ -156,10 +156,10 @@ public class BossAI : MonoBehaviour, IDamage
 
 
         // this tells us what direction our player is in relative to our enemy
-        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z-1));
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y  - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
 
         // this calculates the angle between where our player is and where we (the enemy) are looking
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, playerDir.y, playerDir.z), transform.forward);
 
         Debug.DrawRay(headPos.position, playerDir, Color.red);
 
@@ -237,7 +237,7 @@ public class BossAI : MonoBehaviour, IDamage
     void FacePlayerAlways()
     {
 
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, playerDir.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
     //public void Flee()
@@ -248,15 +248,15 @@ public class BossAI : MonoBehaviour, IDamage
     //        Heal();
 
     //}
-    IEnumerator Heal()
-    {
-        if (HP != HPOrig && !isSpitting && !isBiting)
-        {
-            HP += healAmt;
-            yield return new WaitForSeconds(healAmt * (Time.deltaTime /Time.deltaTime));
+    //IEnumerator Heal()
+    //{
+    //    if (HP != HPOrig && !isSpitting && !isBiting)
+    //    {
+    //        HP += healAmt;
+    //        yield return new WaitForSeconds(15);
 
-        }
-    }
+    //    }
+    //}
     public void Wave1()
     {
         //if (crab)

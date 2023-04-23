@@ -1318,6 +1318,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 741942595625703189, guid: 7536355053c01f348b83a63286643060, type: 3}
   m_PrefabInstance: {fileID: 25613566}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &169400455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 169400456}
+  m_Layer: 6
+  m_Name: Shoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &169400456
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169400455}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0028411802, y: 0.0015767216, z: -0.00022366885}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1885672592}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &190219192 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4446686660741974, guid: 85a7668b88111cf4a89090aca530eefe, type: 3}
@@ -10402,6 +10433,10 @@ PrefabInstance:
       propertyPath: m_StoppingDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3666913497194558675, guid: d34f7fd18d8d8f84b8e1d30031377215, type: 3}
+      propertyPath: m_Radius
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 3725011360167264616, guid: d34f7fd18d8d8f84b8e1d30031377215, type: 3}
       propertyPath: m_Name
       value: Completed Crab
@@ -12634,6 +12669,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878759916}
   m_Mesh: {fileID: 4300004, guid: f2d541cec9cde3e4aab35063c6ee1a61, type: 3}
+--- !u!4 &1885672592 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8201909208664269556, guid: 6241b61a94bf19841a6efd951180e6b5, type: 3}
+  m_PrefabInstance: {fileID: 4786012190664209006}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1887732136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42716,6 +42756,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss Crab
       objectReference: {fileID: 0}
+    - target: {fileID: 8606138864948942320, guid: 6241b61a94bf19841a6efd951180e6b5, type: 3}
+      propertyPath: bitePos
+      value: 
+      objectReference: {fileID: 169400456}
+    - target: {fileID: 8606138864948942320, guid: 6241b61a94bf19841a6efd951180e6b5, type: 3}
+      propertyPath: spitPos
+      value: 
+      objectReference: {fileID: 169400456}
     - target: {fileID: 8606138864948942320, guid: 6241b61a94bf19841a6efd951180e6b5, type: 3}
       propertyPath: sightLine
       value: 360
