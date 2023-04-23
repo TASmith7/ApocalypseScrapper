@@ -26,6 +26,7 @@ public class globalSceneControl : MonoBehaviour
     public bool  salvDetector;
     public bool  shielded;
     public int   shieldValue;
+    public float shieldMax;
     public int   shieldCD;
 
     #endregion
