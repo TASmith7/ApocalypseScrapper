@@ -259,7 +259,7 @@ public class BossAI : MonoBehaviour, IDamage
     public void Wave1()
     {
         //if (crab)
-        //{
+        //{W
         //    for (int i = 0; i < 5; i++)
         //    {
         //    }
