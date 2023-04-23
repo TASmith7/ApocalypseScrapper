@@ -83,9 +83,9 @@ public class droneAI : MonoBehaviour, IDamage
                 //{
                 //   rb.AddForce(playerDir * 5f, ForceMode.Acceleration);
                 //}
-
                 // has enemy following player
                 // maybe this one will turn his head
+
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
@@ -157,5 +157,9 @@ public class droneAI : MonoBehaviour, IDamage
     void facePlayer()
     {
         transform.LookAt(player);
+
+        //Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
+
+        //transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 }

@@ -26,7 +26,7 @@ public class crabAI : MonoBehaviour, IDamage
     [Range(10, 1000)][SerializeField] float radiusActive;
     public float activeRadius;
     Vector3 playerDir;
-    
+
     [Header("-----Bite Stats-----")]
     [Range(1, 10)][SerializeField] int shootDamage;
     [Range(.1f, 5)][SerializeField] float shootRate;
@@ -41,8 +41,8 @@ public class crabAI : MonoBehaviour, IDamage
     float stoppingDistanceOrig;
     bool destinationChosen;
     Vector3 startPos;
-    
-    
+
+
     //IEnumerator Roam()
     //{
     //    if (destinationChosen != true && agent.remainingDistance < 0.05)
@@ -66,6 +66,8 @@ public class crabAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        agent.radius = UnityEngine.Random.Range(agent.radius, agent.radius + 2f);
+        agent.speed = UnityEngine.Random.Range(agent.speed, agent.speed + .5f);
         activeRadius = radiusSleep;
         agent.stoppingDistance = shootDistance;
         stoppingDistanceOrig = agent.stoppingDistance;
@@ -75,16 +77,20 @@ public class crabAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+
         if (agent.isActiveAndEnabled)
         {
+
+            agent.SetDestination(gameManager.instance.player.transform.position);
+
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
             anim.SetFloat("Speed", speed);
 
-        if (playerInRange)
-        {
-            CanSeePlayer();
+            if (playerInRange)
+            {
+                CanSeePlayer();
 
-        }
+            }
 
 
 
@@ -98,14 +104,14 @@ public class crabAI : MonoBehaviour, IDamage
     {
         anim.SetTrigger("Shoot");
         isShooting = true;
-        GameObject bulletClone =Instantiate(bullet, shootPos.position, bullet.transform.rotation);
+        GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
         bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             crabWakeColl.radius = radiusActive;
             activeRadius = crabWakeColl.radius;
@@ -132,18 +138,18 @@ public class crabAI : MonoBehaviour, IDamage
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
             // if the object we are hitting is the player, AND the angle to our player is within our sight angle
-            if (hit.collider.CompareTag("Player")&&angleToPlayer<=sightLine )
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= sightLine)
             {
 
 
 
                 // this gets the enemy to move in the direction of our player
-                agent.SetDestination(gameManager.instance.player.transform.position);
+
 
 
                 FacePlayerAlways();
 
-                if (!isShooting&&hit.distance<=shootDistance)
+                if (!isShooting && hit.distance <= shootDistance)
                     StartCoroutine(shoot());
 
                 return true;
@@ -156,7 +162,7 @@ public class crabAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false ;
+            playerInRange = false;
             agent.stoppingDistance = 0;
         }
     }
@@ -168,13 +174,13 @@ public class crabAI : MonoBehaviour, IDamage
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
-            if (drop) 
-            { 
+            if (drop)
+            {
                 Instantiate(drop, transform.position, drop.transform.rotation);
             }
-                
-                agent.enabled = false;
-                GetComponent<CapsuleCollider>().enabled = false;
+
+            agent.enabled = false;
+            GetComponent<CapsuleCollider>().enabled = false;
 
         }
         else
@@ -194,7 +200,7 @@ public class crabAI : MonoBehaviour, IDamage
     void FacePlayerAlways()
     {
 
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x,0,playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
     public void Flee()

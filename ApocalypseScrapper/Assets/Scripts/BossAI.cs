@@ -51,7 +51,7 @@ public class BossAI : MonoBehaviour, IDamage
     float speed;
     bool isBiting;
     bool isSpitting;
-    float stoppingDistanceOrig;
+    //float stoppingDistanceOrig;
     bool destinationChosen;
     Vector3 startPos;
     [Header("----- Crab Spawn Stats-----")]
@@ -87,7 +87,7 @@ public class BossAI : MonoBehaviour, IDamage
         HPOrig = HP;
         activeRadius = radiusSleep;
         biteDistance = agent.stoppingDistance;
-        stoppingDistanceOrig = agent.stoppingDistance;
+        //stoppingDistanceOrig = agent.stoppingDistance;
         //startPos = transform.position;
     }
 
@@ -198,7 +198,7 @@ public class BossAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            agent.stoppingDistance = 0;
+            //agent.stoppingDistance = 0;
         }
     }
     public void TakeDamage(int dmg)
@@ -252,21 +252,22 @@ public class BossAI : MonoBehaviour, IDamage
         if (HP != HPOrig && !isSpitting && !isBiting)
         {
             HP += healAmt;
-            yield return new WaitForSeconds(healAmt * ((Time.deltaTime) / 2));
+            yield return new WaitForSeconds(healAmt * (Time.deltaTime / 4));
 
         }
     }
     public void Wave1()
     {
         //if (crab)
-        //{
+        //{W
         //    for (int i = 0; i < 5; i++)
         //    {
         //    }
 
         //}
-
-        Instantiate(crab, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), transform.rotation);
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x , gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z));
+        GameObject crabClone=Instantiate(crab,playerDir, transform.rotation);
+        
         
 
     }
