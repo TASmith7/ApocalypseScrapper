@@ -66,6 +66,8 @@ public class crabAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        agent.radius=UnityEngine.Random.Range(agent.radius, agent.radius+2f);
+        agent.speed = UnityEngine.Random.Range(agent.speed, agent.speed + .5f);
         activeRadius = radiusSleep;
         agent.stoppingDistance = shootDistance;
         stoppingDistanceOrig = agent.stoppingDistance;
@@ -75,6 +77,7 @@ public class crabAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        agent.SetDestination(gameManager.instance.player.transform.position);
         if (agent.isActiveAndEnabled)
         {
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
@@ -123,7 +126,7 @@ public class crabAI : MonoBehaviour, IDamage
         // this calculates the angle between where our player is and where we (the enemy) are looking
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
-
+        
 
         // this returns the info of WHAT is HIT by the raycast
         RaycastHit hit;
@@ -138,7 +141,7 @@ public class crabAI : MonoBehaviour, IDamage
 
 
                 // this gets the enemy to move in the direction of our player
-                agent.SetDestination(gameManager.instance.player.transform.position);
+                
 
 
                 FacePlayerAlways();
