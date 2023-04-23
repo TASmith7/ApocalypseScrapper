@@ -252,7 +252,7 @@ public class BossAI : MonoBehaviour, IDamage
         if (HP != HPOrig && !isSpitting && !isBiting)
         {
             HP += healAmt;
-            yield return new WaitForSeconds(healAmt * ((Time.deltaTime) / 2));
+            yield return new WaitForSeconds(healAmt * (Time.deltaTime / 4));
 
         }
     }
@@ -265,8 +265,9 @@ public class BossAI : MonoBehaviour, IDamage
         //    }
 
         //}
-
-        Instantiate(crab, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), transform.rotation);
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + .6f - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
+        GameObject crabClone=Instantiate(crab,playerDir, transform.rotation);
+        
         
 
     }
