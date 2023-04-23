@@ -5769,7 +5769,7 @@ MonoBehaviour:
   headPos: {fileID: 690445233921113347}
   myAudioSource: {fileID: 1474259959}
   HP: 100
-  HPMax: 99999
+  HPMax: 100
   playerSpeed: 10
   walkSpeed: 8
   sprintSpeed: 15
@@ -5778,8 +5778,8 @@ MonoBehaviour:
   salvageRate: 1
   animTransSpeed: 1
   thrustPower: 8
-  fuelConsumptionRate: 0.581
-  fuelRefillRate: 0.293
+  fuelConsumptionRate: 0.5
+  fuelRefillRate: 0.2
   timeToTurnOffFuelBar: 5
   jetpackThrustAudio: {fileID: 8300000, guid: 24f20a94ef175c340823e0a07918e522, type: 3}
   gunList: []
@@ -5796,7 +5796,7 @@ MonoBehaviour:
   shielded: 0
   shieldValue: 0
   shieldMax: 0
-  shieldCD: 0
+  shieldCD: 5
 --- !u!143 &125648943
 CharacterController:
   m_ObjectHideFlags: 0
