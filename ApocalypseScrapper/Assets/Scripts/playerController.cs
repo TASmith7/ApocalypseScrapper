@@ -190,6 +190,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         if (Input.GetButton("Jump"))
         {
+            playerSpeed = walkSpeed;
             // turn on our jetpack fuel bar
             gameManager.instance.TurnOnJetpackUI();
 

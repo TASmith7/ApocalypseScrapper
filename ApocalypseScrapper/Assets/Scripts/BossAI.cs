@@ -156,7 +156,7 @@ public class BossAI : MonoBehaviour, IDamage
 
 
         // this tells us what direction our player is in relative to our enemy
-        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + .6f - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z-1));
 
         // this calculates the angle between where our player is and where we (the enemy) are looking
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
@@ -178,13 +178,14 @@ public class BossAI : MonoBehaviour, IDamage
 
                 // this gets the enemy to move in the direction of our player
                 agent.SetDestination(gameManager.instance.player.transform.position);
+                
 
 
                 FacePlayerAlways();
 
                 if (!isSpitting && !isBiting && hit.distance <= biteDistance)
                     StartCoroutine(Shoot());
-                if (!isSpitting && !isBiting && hit.distance >= biteDistance)
+                if (!isSpitting && !isBiting && hit.distance >= spitDistance)
                     StartCoroutine(Spit());
 
                 return true;
@@ -223,7 +224,7 @@ public class BossAI : MonoBehaviour, IDamage
             WaveSet();
             anim.SetTrigger("Damage");
             agent.SetDestination(gameManager.instance.player.transform.position);
-            agent.stoppingDistance = 0;
+            
             StartCoroutine(Hurt());
         }
     }
@@ -252,7 +253,7 @@ public class BossAI : MonoBehaviour, IDamage
         if (HP != HPOrig && !isSpitting && !isBiting)
         {
             HP += healAmt;
-            yield return new WaitForSeconds(healAmt * (Time.deltaTime / 4));
+            yield return new WaitForSeconds(healAmt * (Time.deltaTime /Time.deltaTime));
 
         }
     }

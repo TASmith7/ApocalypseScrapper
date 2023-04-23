@@ -187,7 +187,7 @@ public class crabAI : MonoBehaviour, IDamage
         {
             anim.SetTrigger("Damage");
             agent.SetDestination(gameManager.instance.player.transform.position);
-            agent.stoppingDistance = 0;
+            //agent.stoppingDistance = 0;
             StartCoroutine(Hurt());
         }
     }
