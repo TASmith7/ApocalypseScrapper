@@ -21,11 +21,16 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] int HPMax;
     [SerializeField] float playerSpeed;
     [Range(10, 50)] [SerializeField] float gravityValue;
+    [Range(0.3f, 1.0f)][SerializeField] float walkingFootstepRate;
+    [Range(0.2f, 1.0f)][SerializeField] float runningFootstepRate;
     private Vector3 playerVelocity;
     private Vector3 horizontalVelocity;
     private float horizontalSpeed;
     private bool groundedPlayer;
     Vector3 move;
+    Vector3 lastPosition;
+    private float timeBetweenFootsteps;
+    private float minimumMovement;
 
     [Header("----- Salvage Stats -----")]
     int playerSalvageScore;
@@ -89,6 +94,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         RespawnPlayer();
         jetpackPowerDownAudioPlayed = false;
         outOfBreathAudioPlayed = false;
+        timeBetweenFootsteps = walkingFootstepRate;
     }
 
     void Update()
@@ -113,6 +119,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             //}
             //SelectGun();
             Movement();
+
+
+            CueFootstepAudio();
+
+
             if (Input.GetButton("Shoot") && !isShooting)
                 StartCoroutine(Shoot());
 
@@ -139,6 +150,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     void FixedUpdate()
     {
         RaycastHit hit;
+
+        lastPosition = transform.position;
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
@@ -176,6 +189,19 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     }
 
+    // might change this in the future to determine animation speed, but right now this works to tell if we are moving or not
+    bool IsMoving
+    {
+        get
+        {
+            // check how far our player has moved since the last update
+            float distance = Vector3.Distance(transform.position, lastPosition);
+
+            // if the distance we have moved is greater than our min movement, it's true, if not, it's false
+            return (distance > minimumMovement);
+        }
+    }
+
     void Movement()
     {
         groundedPlayer = controller.isGrounded;
@@ -189,7 +215,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         if(groundedPlayer)
         {
             playerSpeed = walkSpeed;
-            
             
                 if (Input.GetButton("Sprint") )
                 {
@@ -210,7 +235,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                     // else if we are out of stamina
                     else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
                     {
-
                         // if not already playing our out of breath audio, and we haven't already played it once
                         if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
                         {
@@ -225,7 +249,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             }
                 
 
-            // refilling the stmaina bar when the player is not pressing shift until it's full
+            // refilling the stamina bar when the player is not pressing shift until it's full
             if (gameManager.instance.staminaFillBar.fillAmount < 1 && !isSprinting)
                 {
                     playerSpeed = walkSpeed;
@@ -529,5 +553,33 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public void SetPlayerFloorStats()
     {
 
+    }
+
+    void CueFootstepAudio()
+    {
+        // if we are not on the ground or not moving, return
+        if (!controller.isGrounded) return;
+        if (!IsMoving) return;
+
+        // reducing the time between footsteps each frame
+        timeBetweenFootsteps -= Time.deltaTime;
+
+        // once we reach 
+        if (timeBetweenFootsteps <= 0)
+        {
+            
+
+            if(gameManager.instance.staminaFillBar.fillAmount > 0  && isSprinting)
+            {
+                timeBetweenFootsteps = runningFootstepRate; 
+                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length - 1)]);
+            }
+            else
+            {
+                timeBetweenFootsteps = walkingFootstepRate;
+                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length - 1)]);
+            }
+        }
+        
     }
 }    
