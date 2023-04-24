@@ -52583,6 +52583,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8202020235074222298, guid: 6241b61a94bf19841a6efd951180e6b5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202020235074222298, guid: 6241b61a94bf19841a6efd951180e6b5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202020235074222298, guid: 6241b61a94bf19841a6efd951180e6b5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202020235074222298, guid: 6241b61a94bf19841a6efd951180e6b5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202020235074222298, guid: 6241b61a94bf19841a6efd951180e6b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 8204066081240336172, guid: 6241b61a94bf19841a6efd951180e6b5, type: 3}
       propertyPath: m_Name
       value: Boss

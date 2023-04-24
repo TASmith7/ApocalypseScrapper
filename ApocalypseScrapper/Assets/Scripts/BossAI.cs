@@ -247,7 +247,7 @@ public class BossAI : MonoBehaviour, IDamage
     void FacePlayerAlways()
     {
 
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, playerDir.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
     //public void Flee()
