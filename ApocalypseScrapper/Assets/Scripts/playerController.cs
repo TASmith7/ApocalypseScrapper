@@ -55,6 +55,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     
     public bool isSprinting;
     float timeOfLastSprint;
+    bool jetpackPowerDownAudioPlayed;
 
 
     [Header("----- Gun Stats -----")]
@@ -85,6 +86,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         PlayerUIUpdate();
         playerSalvageScore = 0;
         RespawnPlayer();
+        jetpackPowerDownAudioPlayed = false;
+
+        // levelAudioManager.instance.musicAudioSource.Play();
     }
 
     void Update()
@@ -225,6 +229,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         if (Input.GetButton("Jump"))
         {
             playerSpeed = walkSpeed;
+
             // turn on our jetpack fuel bar
             gameManager.instance.TurnOnJetpackUI();
 
@@ -239,16 +244,24 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 {
                     // play our jetpack audio
                     playerAudioManager.instance.jetpackAudioSource.Play();
+                    jetpackPowerDownAudioPlayed = false;
                 }
 
 
                 timeOfLastThrust = Time.fixedTime;
             }
-
-            if(gameManager.instance.jetpackFuelBar.fillAmount <= 0)
+            // else if we are out of fuel
+            else if(gameManager.instance.jetpackFuelBar.fillAmount <= 0)
             {
-                // if we run out of fuel, stop our jetpack audio
+                // if we run out of fuel, stop our jetpack audio 
                 playerAudioManager.instance.jetpackAudioSource.Stop();
+
+                // if not already playing our power down audio, and we haven't already played it once
+                if(!playerAudioManager.instance.jetpackPowerDownAudioSource.isPlaying && jetpackPowerDownAudioPlayed == false)
+                {
+                    playerAudioManager.instance.jetpackPowerDownAudioSource.Play();
+                    jetpackPowerDownAudioPlayed = true;
+                }
             }
 
             // reducing the fuel bar while the player is pressing space
