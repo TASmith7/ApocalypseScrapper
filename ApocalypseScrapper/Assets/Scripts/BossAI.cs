@@ -97,7 +97,7 @@ public class BossAI : MonoBehaviour, IDamage
 
 
 
-
+        BossHPUIUpdate();
 
 
         if (agent.isActiveAndEnabled)
@@ -158,10 +158,10 @@ public class BossAI : MonoBehaviour, IDamage
 
 
         // this tells us what direction our player is in relative to our enemy
-        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y+1 - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
 
         // this calculates the angle between where our player is and where we (the enemy) are looking
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, playerDir.y, playerDir.z), transform.forward);
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
         Debug.DrawRay(headPos.position, playerDir, Color.red);
 
@@ -214,7 +214,7 @@ public class BossAI : MonoBehaviour, IDamage
     public void TakeDamage(float dmg)
     {
         HP -= dmg;
-        BossHPUIUpdate();
+        
 
         if (HP <= 0)
         {
@@ -276,7 +276,8 @@ public class BossAI : MonoBehaviour, IDamage
         //    }
 
         //}
-        playerDir = (new Vector3(gameManager.instance.player.transform.position.x, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z));
+        int randNum=UnityEngine.Random.Range(5, 15);
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x+randNum, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z+randNum));
         GameObject crabClone = Instantiate(crab, new Vector3(playerDir.x,transform.position.y,playerDir.z), transform.rotation);
 
 
@@ -285,13 +286,13 @@ public class BossAI : MonoBehaviour, IDamage
     public void Wave2()
     {
         playerDir = (new Vector3(gameManager.instance.player.transform.position.x, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z));
-        GameObject droneClone = Instantiate(drone, new Vector3(playerDir.x, headPos.position.y, playerDir.z), transform.rotation);
+        GameObject droneClone = Instantiate(drone, new Vector3(playerDir.x, transform.position.y, playerDir.z), transform.rotation);
     }
     public void Wave3()
     {
 
         playerDir = (new Vector3(gameManager.instance.player.transform.position.x, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z));
-        GameObject crabClone = Instantiate(crab, new Vector3(playerDir.x, headPos.position.y, playerDir.z), transform.rotation); 
+        GameObject crabClone = Instantiate(crab, new Vector3(playerDir.x, transform.position.y, playerDir.z), transform.rotation); 
 
         playerDir = (new Vector3(gameManager.instance.player.transform.position.x, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z));
         GameObject droneClone = Instantiate(drone, new Vector3(playerDir.x, transform.position.y, playerDir.z), transform.rotation);
