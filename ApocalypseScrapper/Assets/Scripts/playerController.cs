@@ -124,6 +124,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             else if (!isSalvaging && playerAudioManager.instance.salvagingAudioSource.isPlaying)
             {
                 playerAudioManager.instance.salvagingAudioSource.Stop();
+
+                // if we let go of salvage button, reset reticle fill
+                gameManager.instance.salvagingObjectReticle.fillAmount = 0;
             }
             else
             {
