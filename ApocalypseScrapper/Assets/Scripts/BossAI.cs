@@ -313,6 +313,7 @@ public class BossAI : MonoBehaviour, IDamage
                 {
                     for (int i = 0; i < 5; i++)
                     {
+                        
                         Wave1();
                     }
 
