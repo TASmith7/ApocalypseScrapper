@@ -145,6 +145,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             // if the above^ has the component ISalvageable (i.e. it's not null)
             if (salvageable != null && !isSalvaging)
             {
+                // update our salvage value on salvageable reticle to the value of the object being looked at
+                if (hit.collider.GetComponent<salvageableObject>() != null)
+                {
+                    gameManager.instance.salvageValueText.text = hit.collider.GetComponent<salvageableObject>().salvageValue.ToString();
+                }
                 // change the reticle to salvageable reticle
                 gameManager.instance.CueSalvageableReticle();
             }

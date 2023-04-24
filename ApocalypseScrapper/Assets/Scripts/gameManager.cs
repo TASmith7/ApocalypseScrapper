@@ -28,7 +28,7 @@ public class gameManager : MonoBehaviour
     [Header("----- HP Bar -----")]
     public Image HPBar;
     [Header("----- Salvage & Grade Bar -----")]
-    public TextMeshProUGUI enemiesRemainingText;
+    public TextMeshProUGUI salvageValueText;
     public TextMeshProUGUI salvageCollected;
     public TextMeshProUGUI scoreText;
     public int amtSalvaged;
