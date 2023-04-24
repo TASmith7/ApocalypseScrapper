@@ -131,9 +131,8 @@ public class gameManager : MonoBehaviour
         salvageableItemReticle.SetActive(false);
 
         // stopping all game audio that might be playing
-        playerAudioManager.instance.jetpackAudioSource.Stop();
-        playerAudioManager.instance.gunAudioSource.Stop();
-        playerAudioManager.instance.salvagingAudioSource.Stop();
+        playerAudioManager.instance.PauseAllAudio();
+        levelAudioManager.instance.PauseAllAudio();
 
     }
 
@@ -144,6 +143,9 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         activeMenu.SetActive(false);
         activeMenu = null;
+        
+        // unpausing level audio
+        levelAudioManager.instance.UnpauseAllAudio();
     }
 
     public void UpdateGameGoal()

@@ -52,13 +52,25 @@ public class levelAudioManager : MonoBehaviour
 
         // playing sounds that should play on awake - for some reason they don't play unless I call their play method
         // even though I set their play on awake to true
-        instance.whiteNoiseAudioSource.Play();
-        instance.musicAudioSource.Play();
+        whiteNoiseAudioSource.Play();
+        musicAudioSource.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void PauseAllAudio()
+    {
+        musicAudioSource.Pause();
+        whiteNoiseAudioSource.Pause();
+    }
+
+    public void UnpauseAllAudio()
+    {
+        musicAudioSource.Play();
+        whiteNoiseAudioSource.Play();
     }
 }

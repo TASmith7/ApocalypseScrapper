@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerAudioManager : MonoBehaviour
@@ -87,5 +88,14 @@ public class playerAudioManager : MonoBehaviour
     void Update()
     {
        
+    }
+
+    public void PauseAllAudio()
+    {
+        jetpackAudioSource.Pause();
+        jetpackPowerDownAudioSource.Pause();
+        salvagingAudioSource.Pause();
+        objectSalvagedAudioSource.Pause();
+        gunAudioSource.Pause();
     }
 }
