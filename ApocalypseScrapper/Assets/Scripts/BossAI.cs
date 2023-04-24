@@ -51,6 +51,7 @@ public class BossAI : MonoBehaviour, IDamage
     float speed;
     bool isBiting;
     bool isSpitting;
+    bool hasHealed;
     //float stoppingDistanceOrig;
     bool destinationChosen;
     Vector3 startPos;
@@ -83,10 +84,12 @@ public class BossAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        hasHealed = false;
         wave = 0;
         HPOrig = HP;
         activeRadius = radiusSleep;
         biteDistance = agent.stoppingDistance;
+        BossHPUIUpdate();
         //stoppingDistanceOrig = agent.stoppingDistance;
         //startPos = transform.position;
     }
@@ -97,7 +100,7 @@ public class BossAI : MonoBehaviour, IDamage
 
 
 
-        BossHPUIUpdate();
+        
 
 
         if (agent.isActiveAndEnabled)
@@ -208,13 +211,13 @@ public class BossAI : MonoBehaviour, IDamage
     }
     void BossHPUIUpdate()
     {
-        // updating the players health bar
-        gameManager.instance.bossHealthBar.fillAmount = (float)HPOrig / (float)HP;
+        // updating the Boss health bar
+        gameManager.instance.bossHealthBar.fillAmount = (float)HP / (float)HPOrig;
     }
     public void TakeDamage(float dmg)
     {
         HP -= dmg;
-        
+        BossHPUIUpdate();
 
         if (HP <= 0)
         {
@@ -232,6 +235,7 @@ public class BossAI : MonoBehaviour, IDamage
         else
         {
             WaveSet();
+            
             anim.SetTrigger("Damage");
             agent.SetDestination(gameManager.instance.player.transform.position);
 
@@ -279,14 +283,31 @@ public class BossAI : MonoBehaviour, IDamage
         int randNum=UnityEngine.Random.Range(5, 15);
         playerDir = (new Vector3(gameManager.instance.player.transform.position.x+randNum, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z+randNum));
         GameObject crabClone = Instantiate(crab, new Vector3(playerDir.x,transform.position.y,playerDir.z), transform.rotation);
+        if (!hasHealed)
+        {
 
 
+            HP += (HP / 4);
 
+
+        }
+
+        hasHealed = true;
     }
     public void Wave2()
-    {
+    {        
+
         playerDir = (new Vector3(gameManager.instance.player.transform.position.x, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z));
         GameObject droneClone = Instantiate(drone, new Vector3(playerDir.x, transform.position.y, playerDir.z), transform.rotation);
+        if (!hasHealed)
+        {
+
+
+            HP += (HP / 4);
+
+
+        }
+        hasHealed = true;
     }
     public void Wave3()
     {
@@ -296,12 +317,20 @@ public class BossAI : MonoBehaviour, IDamage
 
         playerDir = (new Vector3(gameManager.instance.player.transform.position.x, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z));
         GameObject droneClone = Instantiate(drone, new Vector3(playerDir.x, transform.position.y, playerDir.z), transform.rotation);
+        if (!hasHealed)
+        {
 
 
+            HP += (HP / 4);
+
+
+        }
+
+        hasHealed= true;
     }
     public void WaveSet()
     {
-
+        
         if (wave != 1 && wave != 3)
         {
 
@@ -315,6 +344,7 @@ public class BossAI : MonoBehaviour, IDamage
                     {
                         
                         Wave1();
+                        
                     }
 
                 }
@@ -333,6 +363,8 @@ public class BossAI : MonoBehaviour, IDamage
                 {
                     for (int i = 0; i < 5; i++)
                     {
+                        hasHealed = false;
+                        
                         Wave2();
                     }
 
@@ -348,6 +380,7 @@ public class BossAI : MonoBehaviour, IDamage
                 {
                     for (int i = 0; i < 5; i++)
                     {
+                        hasHealed = false;
                         Wave3();
                     }
 

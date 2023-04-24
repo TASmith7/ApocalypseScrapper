@@ -14,6 +14,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
     public GameObject playerSpawnPos;
+    [SerializeField] GameObject[] enemySpawners;
     //public GameObject Boss;
     //public BossAI bossScript;
 
@@ -23,6 +24,8 @@ public class gameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject loseMenu;
     public GameObject RSGSplash;
+    public GameObject ControlsSplash;
+    public GameObject ApocSplash;
     public GameObject checkpointMenu;
 
     [Header("----- HP Bar -----")]
@@ -87,6 +90,7 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        enemySpawners = GameObject.FindGameObjectsWithTag("Enemy Spawn");
         timeScaleOriginal = Time.timeScale;
         bossHealthBarParent.SetActive(false);
         
@@ -97,15 +101,21 @@ public class gameManager : MonoBehaviour
         
             activeMenu = RSGSplash;
             RSGSplash.SetActive(true);
-            yield return new WaitForSeconds(2);
-            /*activeMenu=controlsMenu;
-             yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
+        RSGSplash.SetActive(false);
+        activeMenu =ApocSplash;
+        ApocSplash.SetActive(true);
+             yield return new WaitForSeconds(3);
+        ApocSplash.SetActive(false);
+            activeMenu=controlsSplash;
+        ControlsSplash.SetActive(true);
+             yield return new WaitForSeconds(3);
+        ControlsSplash.SetActive(false);
 
-             activeMenu=storyMenu;
-             yield return new WaitForSeconds(2);
+             
 
-             */
-            RSGSplash.SetActive(false);
+             
+            
             activeMenu = null;
         
         
