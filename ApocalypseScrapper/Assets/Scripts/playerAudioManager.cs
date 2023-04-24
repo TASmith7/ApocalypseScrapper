@@ -14,6 +14,7 @@ public class playerAudioManager : MonoBehaviour
     public AudioSource salvagingAudioSource;
     public AudioSource objectSalvagedAudioSource;
     public AudioSource jetpackPowerDownAudioSource;
+    public AudioSource outOfBreathAudioSource;
 
     // audio clips (the actual sound)
     [Header("----- Clips -----")]
@@ -22,6 +23,7 @@ public class playerAudioManager : MonoBehaviour
     public AudioClip salvagingAudio;
     public AudioClip objectSalvagedAudio;
     public AudioClip jetpackPowerDownAudio;
+    public AudioClip outOfBreathAudio;
 
     [Header("----- Volume -----")]
     [Range(0f, 1.0f)][SerializeField] float jetpackThrustVolume;
@@ -29,6 +31,7 @@ public class playerAudioManager : MonoBehaviour
     [Range(0f, 1.0f)][SerializeField] float salvagingAudioVolume;
     [Range(0f, 1.0f)][SerializeField] float objectSalvagedVolume;
     [Range(0f, 1.0f)][SerializeField] float jetpackPowerDownVolume;
+    [Range(0f, 1.0f)][SerializeField] float outOfBreathVolume;
 
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float jetpackThrustPitch;
@@ -36,6 +39,7 @@ public class playerAudioManager : MonoBehaviour
     [Range(0f, 3.0f)][SerializeField] float salvagingAudioPitch;
     [Range(0f, 3.0f)][SerializeField] float objectSalvagedPitch;
     [Range(0f, 3.0f)][SerializeField] float jetpackPowerDownPitch;
+    [Range(0f, 3.0f)][SerializeField] float outOfBreathPitch;
 
     void Awake()
     {
@@ -50,6 +54,7 @@ public class playerAudioManager : MonoBehaviour
         salvagingAudioSource = gameObject.AddComponent<AudioSource>();
         objectSalvagedAudioSource = gameObject.AddComponent<AudioSource>();
         jetpackPowerDownAudioSource = gameObject.AddComponent<AudioSource>();
+        outOfBreathAudioSource = gameObject.AddComponent<AudioSource>();
 
         // assigning each audio sources clip (the actual sound that it makes)
         jetpackAudioSource.clip = jetpackThrustAudio;
@@ -57,6 +62,7 @@ public class playerAudioManager : MonoBehaviour
         salvagingAudioSource.clip = salvagingAudio;
         objectSalvagedAudioSource.clip = objectSalvagedAudio;
         jetpackPowerDownAudioSource.clip = jetpackPowerDownAudio;
+        outOfBreathAudioSource.clip = outOfBreathAudio;
 
         // setting each audio sources components
         jetpackAudioSource.playOnAwake = false;
@@ -82,6 +88,11 @@ public class playerAudioManager : MonoBehaviour
         jetpackPowerDownAudioSource.loop = false;
         jetpackPowerDownAudioSource.volume = jetpackPowerDownVolume;
         jetpackPowerDownAudioSource.pitch = jetpackPowerDownPitch;
+
+        outOfBreathAudioSource.playOnAwake = false;
+        outOfBreathAudioSource.loop = false;
+        outOfBreathAudioSource.volume = outOfBreathVolume;
+        outOfBreathAudioSource.pitch = outOfBreathPitch;
     }
 
     // Update is called once per frame
@@ -97,5 +108,6 @@ public class playerAudioManager : MonoBehaviour
         salvagingAudioSource.Pause();
         objectSalvagedAudioSource.Pause();
         gunAudioSource.Pause();
+        outOfBreathAudioSource.Pause();
     }
 }

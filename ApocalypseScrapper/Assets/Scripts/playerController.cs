@@ -56,6 +56,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public bool isSprinting;
     float timeOfLastSprint;
     bool jetpackPowerDownAudioPlayed;
+    bool outOfBreathAudioPlayed;
 
 
     [Header("----- Gun Stats -----")]
@@ -87,8 +88,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         playerSalvageScore = 0;
         RespawnPlayer();
         jetpackPowerDownAudioPlayed = false;
-
-        // levelAudioManager.instance.musicAudioSource.Play();
+        outOfBreathAudioPlayed = false;
     }
 
     void Update()
@@ -204,14 +204,29 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                         playerSpeed = sprintSpeed;
 
                         timeOfLastSprint = Time.fixedTime;
+
+                        outOfBreathAudioPlayed = false;
+                    }
+                    // else if we are out of stamina
+                    else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
+                    {
+
+                        // if not already playing our out of breath audio, and we haven't already played it once
+                        if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
+                        {
+                            playerAudioManager.instance.outOfBreathAudioSource.Play();
+                            outOfBreathAudioPlayed = true;
+                        }
                     }
 
-                    // reducing the stamina bar while the player is pressing shift
-                    StartCoroutine(ReduceStaminaUI());
-                }
+                // reducing the stamina bar while the player is pressing shift
+                StartCoroutine(ReduceStaminaUI());
+                    
+            }
+                
 
-                // refilling the stmaina bar when the player is not pressing shift until it's full
-                if (gameManager.instance.staminaFillBar.fillAmount < 1 && !isSprinting)
+            // refilling the stmaina bar when the player is not pressing shift until it's full
+            if (gameManager.instance.staminaFillBar.fillAmount < 1 && !isSprinting)
                 {
                     playerSpeed = walkSpeed;
                     StartCoroutine(RefillStaminaUI());

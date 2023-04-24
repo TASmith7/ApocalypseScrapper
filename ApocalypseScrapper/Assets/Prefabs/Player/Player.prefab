@@ -5768,21 +5768,25 @@ MonoBehaviour:
   salvagingAudioSource: {fileID: 0}
   objectSalvagedAudioSource: {fileID: 0}
   jetpackPowerDownAudioSource: {fileID: 0}
+  outOfBreathAudioSource: {fileID: 0}
   jetpackThrustAudio: {fileID: 8300000, guid: 24f20a94ef175c340823e0a07918e522, type: 3}
   gunShotAudio: {fileID: 8300000, guid: d5bc61ff5074df74082c4cde0b6fd037, type: 3}
   salvagingAudio: {fileID: 8300000, guid: 183b19c0308d08e408ae94e4975ddc8a, type: 3}
   objectSalvagedAudio: {fileID: 8300000, guid: 33ff3e656d58c374585a36c91291a73f, type: 3}
   jetpackPowerDownAudio: {fileID: 8300000, guid: bb97e78f12e2ced4e847eedbb92b7963, type: 3}
+  outOfBreathAudio: {fileID: 8300000, guid: bb2eac262852f804882aa346da04d31d, type: 3}
   jetpackThrustVolume: 0.6
   gunAudioVolume: 0.8
   salvagingAudioVolume: 1
   objectSalvagedVolume: 0.7
   jetpackPowerDownVolume: 1
+  outOfBreathVolume: 0.3
   jetpackThrustPitch: 1.5
   gunAudioPitch: 1
   salvagingAudioPitch: 1
   objectSalvagedPitch: 1
   jetpackPowerDownPitch: 1
+  outOfBreathPitch: 1
 --- !u!114 &125648944
 MonoBehaviour:
   m_ObjectHideFlags: 0
