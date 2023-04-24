@@ -161,12 +161,15 @@ public class droneAI : MonoBehaviour, IDamage
         }
     }
 
-
-    //needs to be public and the exact same name as IDamage script
     public void TakeDamage(int amount)
     {
-        // subtracts damage taken from HP
         HP -= amount;
+        //rb.AddForce(playerDir * 5f, ForceMode.Impulse);
+        agent.SetDestination(gameManager.instance.player.transform.position);
+        agent.stoppingDistance = 0;
+
+
+        StartCoroutine(flashColor());
 
         if (HP <= 0)
         {

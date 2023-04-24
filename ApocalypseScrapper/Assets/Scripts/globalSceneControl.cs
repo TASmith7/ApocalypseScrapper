@@ -6,9 +6,18 @@ public class globalSceneControl : MonoBehaviour
 {
     public static globalSceneControl Instance;
 
+    #region Mission Start player stats. 
+    // <summary>
+    //To be used of player restarts mission. Hardcoded for demo, but designed to
+    //be0 updated at end of mission or when buying permanent upgrades at hub.
+    // </summary>
+
+
+
+    #endregion
 
     #region Player statistics to be ported to next level
-    
+
     public int   HP;
     public int   HPMax;
     
@@ -26,6 +35,7 @@ public class globalSceneControl : MonoBehaviour
     public bool  salvDetector;
     public bool  shielded;
     public int   shieldValue;
+    public float shieldMax;
     public int   shieldCD;
 
     #endregion

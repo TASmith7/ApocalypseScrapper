@@ -14,28 +14,50 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
-    [SerializeField] AudioSource myAudioSource;
     
 
     [Header("----- Player Stats -----")]
     [Range(1, 100)][SerializeField] int HP;
     [SerializeField] int HPMax;
     [SerializeField] float playerSpeed;
-    [SerializeField] float walkSpeed;
-    [SerializeField] float sprintSpeed;
-    
     [Range(10, 50)] [SerializeField] float gravityValue;
+    private Vector3 playerVelocity;
+    private Vector3 horizontalVelocity;
+    private float horizontalSpeed;
+    private bool groundedPlayer;
+    Vector3 move;
+
+    [Header("----- Salvage Stats -----")]
     int playerSalvageScore;
     [SerializeField] int salvageRange;
     [Range(0.1f, 1)][SerializeField] float salvageRate;
+    bool isSalvaging;
+    
+
+    [Header("----- Animation Stats -----")]
     [SerializeField] float animTransSpeed;
+    
 
     [Header("----- Jetpack Stats -----")]
     [Range(1, 8)][SerializeField] float thrustPower;
     [Range(0, 1)] [SerializeField] float fuelConsumptionRate;
     [Range(0, 0.5f)] [SerializeField] float fuelRefillRate;
     [Range(1, 100)] [SerializeField] int timeToTurnOffFuelBar;
-    [SerializeField] AudioClip jetpackThrustAudio;
+    bool isThrusting;
+    float timeOfLastThrust;
+
+    [Header("----- Stamina Stats -----")]
+    [Range(10, 20)][SerializeField] float sprintSpeed;
+    [Range(0, 1)][SerializeField] float staminaDrain;
+    [Range(0, 0.5f)][SerializeField] float stmainaRefillRate;
+    [Range(1, 100)][SerializeField] int timeToTurnOffStaminaBar;
+    [Range(5,10)][SerializeField] float walkSpeed;
+    
+    public bool isSprinting;
+    float timeOfLastSprint;
+    bool jetpackPowerDownAudioPlayed;
+    bool outOfBreathAudioPlayed;
+
 
     [Header("----- Gun Stats -----")]
     public List<GunStats> gunList = new List<GunStats>();
@@ -47,7 +69,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public MeshRenderer gunMaterial;
     public MeshFilter gunModel;
     public int selectedGun;
-    [SerializeField] AudioClip shotAudio;
+    bool isShooting;
 
 [Header("-----Upgrades-----")]
     [SerializeField] public bool salvDetector;
@@ -55,23 +77,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] public int shieldValue;
     [SerializeField] public int shieldMax;
     [SerializeField] public int shieldCD;
-
-    
-    private Vector3 playerVelocity;
-    private Vector3 horizontalVelocity;
-    private float horizontalSpeed;
-    private bool groundedPlayer;
-
-    bool isShooting;
-    bool isSalvaging;
-    float speed;
-    Vector3 move;
-    
-    bool isThrusting;
-
-    float timeOfLastThrust;
-
-    
 
     #endregion
 
@@ -82,6 +87,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         PlayerUIUpdate();
         playerSalvageScore = 0;
         RespawnPlayer();
+        jetpackPowerDownAudioPlayed = false;
+        outOfBreathAudioPlayed = false;
     }
 
     void Update()
@@ -113,11 +120,17 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             {
                 StartCoroutine(Salvage());
             }
+            // else if I am not salvaging and not pressing right click and my salvaging audio is playing, turn off the audio
+            else if (!isSalvaging && playerAudioManager.instance.salvagingAudioSource.isPlaying)
+            {
+                playerAudioManager.instance.salvagingAudioSource.Stop();
+
+                // if we let go of salvage button, reset reticle fill
+                gameManager.instance.salvagingObjectReticle.fillAmount = 0;
+            }
             else
             {
                 isSalvaging = false;
-                
-
             }
         }
 
@@ -135,6 +148,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             // if the above^ has the component ISalvageable (i.e. it's not null)
             if (salvageable != null && !isSalvaging)
             {
+                // update our salvage value on salvageable reticle to the value of the object being looked at
+                if (hit.collider.GetComponent<salvageableObject>() != null)
+                {
+                    gameManager.instance.salvageValueText.text = hit.collider.GetComponent<salvageableObject>().salvageValue.ToString();
+                }
                 // change the reticle to salvageable reticle
                 gameManager.instance.CueSalvageableReticle();
             }
@@ -170,14 +188,57 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         }
         if(groundedPlayer)
         {
-            if(Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                playerSpeed = sprintSpeed;
+            playerSpeed = walkSpeed;
+            
+            
+                if (Input.GetButton("Sprint") )
+                {
+
+                    // turn on our stamina bar
+                    gameManager.instance.TurnOnStaminaUI();
+
+                    // if we are not out of stamina
+                    if (gameManager.instance.staminaFillBar.fillAmount > 0)
+                    {
+                        // while player holds down shift, give velocity in the z direction a value
+                        playerSpeed = sprintSpeed;
+
+                        timeOfLastSprint = Time.fixedTime;
+
+                        outOfBreathAudioPlayed = false;
+                    }
+                    // else if we are out of stamina
+                    else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
+                    {
+
+                        // if not already playing our out of breath audio, and we haven't already played it once
+                        if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
+                        {
+                            playerAudioManager.instance.outOfBreathAudioSource.Play();
+                            outOfBreathAudioPlayed = true;
+                        }
+                    }
+
+                // reducing the stamina bar while the player is pressing shift
+                StartCoroutine(ReduceStaminaUI());
+                    
             }
-            if(Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                playerSpeed = walkSpeed;
-            }
+                
+
+            // refilling the stmaina bar when the player is not pressing shift until it's full
+            if (gameManager.instance.staminaFillBar.fillAmount < 1 && !isSprinting)
+                {
+                    playerSpeed = walkSpeed;
+                    StartCoroutine(RefillStaminaUI());
+                }
+
+                // if the elapsed time at our last sprint minus our current time elapsed is greater than or equal to 2 seconds
+                if (Time.fixedTime - timeOfLastSprint >= timeToTurnOffStaminaBar)
+                {
+                    // turn off stamina fuel UI
+                    gameManager.instance.TurnOffStaminaUI();
+                }
+            
         }
             
 
@@ -190,6 +251,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         if (Input.GetButton("Jump"))
         {
+            playerSpeed = walkSpeed;
+
             // turn on our jetpack fuel bar
             gameManager.instance.TurnOnJetpackUI();
 
@@ -199,22 +262,38 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 // while player holds down space, give velocity in the y direction a value
                 playerVelocity.y = thrustPower;
 
-                if(!myAudioSource.isPlaying)
+                // if our jetpack audio isn't already playing
+                if(!playerAudioManager.instance.jetpackAudioSource.isPlaying)
                 {
-                    myAudioSource.PlayOneShot(jetpackThrustAudio);
+                    // play our jetpack audio
+                    playerAudioManager.instance.jetpackAudioSource.Play();
+                    jetpackPowerDownAudioPlayed = false;
                 }
 
 
                 timeOfLastThrust = Time.fixedTime;
             }
-
-            if(gameManager.instance.jetpackFuelBar.fillAmount <= 0)
+            // else if we are out of fuel
+            else if(gameManager.instance.jetpackFuelBar.fillAmount <= 0)
             {
-                myAudioSource.Stop();
+                // if we run out of fuel, stop our jetpack audio 
+                playerAudioManager.instance.jetpackAudioSource.Stop();
+
+                // if not already playing our power down audio, and we haven't already played it once
+                if(!playerAudioManager.instance.jetpackPowerDownAudioSource.isPlaying && jetpackPowerDownAudioPlayed == false)
+                {
+                    playerAudioManager.instance.jetpackPowerDownAudioSource.Play();
+                    jetpackPowerDownAudioPlayed = true;
+                }
             }
 
             // reducing the fuel bar while the player is pressing space
             StartCoroutine(ReduceJetpackFuelUI());
+        }
+        // if we aren't pressing space and our jetpack audio is playing, turn it off
+        else if(playerAudioManager.instance.jetpackAudioSource.isPlaying)
+        {
+            playerAudioManager.instance.jetpackAudioSource.Stop();
         }
 
         // refilling the fuel bar when the player is not pressing space until it's full
@@ -243,7 +322,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         isShooting = true;
 
         // play shooting audio
-        myAudioSource.PlayOneShot(shotAudio);
+        playerAudioManager.instance.gunAudioSource.Play();
 
         GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.identity);
 
@@ -279,8 +358,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     IEnumerator Salvage()
     {
-        isSalvaging = true;
-
         RaycastHit hit;
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
@@ -291,7 +368,15 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             // if the object is salvageable
             if (salvageable != null && !hit.collider.CompareTag("Player"))
             {
+                isSalvaging = true;
+
                 gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
+
+                // if our salvaging audio isn't already playing
+                if(!playerAudioManager.instance.salvagingAudioSource.isPlaying)
+                {
+                    playerAudioManager.instance.salvagingAudioSource.Play();
+                }
 
                 if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
                 {
@@ -300,16 +385,26 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                     yield return new WaitForSeconds(0.01f);
                 }
             }
+            // else what we are looking at is not salvageable, so stop our salvaging audio and set isSalvaging bool to false
+            else
+            {
+                playerAudioManager.instance.salvagingAudioSource.Stop();
+                isSalvaging = false;
+            }
 
+        }
+        else
+        {
+            isSalvaging = false;
         }
         yield return new WaitForSeconds(0.01f);
 
         
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
-        HP -= amount;
+        HP -= (int)amount;
         PlayerUIUpdate();
 
         if(HP <= 0)
@@ -360,6 +455,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         // destroying object
         Destroy(objectToSalvage);
 
+        playerAudioManager.instance.objectSalvagedAudioSource.Play();
+
         // updating salvage score UI
         gameManager.instance.UpdateSalvageScore(playerSalvageScore);
 
@@ -375,41 +472,35 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
     }
-    //public void GunPickup(GunStats gunStat)
-    //{
-    //    gunList.Add(gunStat);
-    //    shootDamage = gunStat.shootDamage;
-    //    shootDistance = gunStat.shootDistance;
-    //    shootRate = gunStat.shootRate;
+    IEnumerator ReduceStaminaUI()
+    {
+        // this bool will be helpful for future development of thrusting capabilities. It currently has no effective use
+        isSprinting = true;
 
-    //    gunModel.mesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
-    //    gunMaterial.sharedMaterial = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
-    //    selectedGun = gunList.Count - 1;
-    //}
-    //void SelectGun()
-    //{
-    //    if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
-    //    {
-    //        selectedGun++;
-    //        ChangeGun();
-    //    }
-    //    else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
-    //    {
-    //        selectedGun--;
-    //        ChangeGun();
-    //    }
-    //}
-    //void ChangeGun()
-    //{
-    //    shootDamage = gunList[selectedGun].shootDamage;
-    //    shootDistance = gunList[selectedGun].shootDistance;
-    //    shootRate = gunList[selectedGun].shootRate;
+        // stopping the refill coroutine while thrusting
+        StopCoroutine(RefillStaminaUI());
 
-    //    gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
-    //    gunMaterial.sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
-    //}
+        // reducing the jetpack fuel bar
+        gameManager.instance.staminaFillBar.fillAmount -= staminaDrain * Time.deltaTime;
 
-    public void SavePlayerStats()
+        yield return new WaitForSeconds(0.25f);
+
+        isSprinting = false;
+    }
+
+    IEnumerator RefillStaminaUI()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        if (!isSprinting)
+        {
+            // refilling the jetpack fuel bar
+            gameManager.instance.staminaFillBar.fillAmount += staminaDrain * Time.deltaTime;
+        }
+    }
+
+        
+   public void SavePlayerStats()
     {
         globalSceneControl.Instance.HP = HP;
         globalSceneControl.Instance.HPMax = HPMax;
@@ -439,5 +530,4 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     {
 
     }
-   
 }    

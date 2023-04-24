@@ -51,7 +51,7 @@ public class BossAI : MonoBehaviour, IDamage
     float speed;
     bool isBiting;
     bool isSpitting;
-    float stoppingDistanceOrig;
+    //float stoppingDistanceOrig;
     bool destinationChosen;
     Vector3 startPos;
     [Header("----- Crab Spawn Stats-----")]
@@ -87,7 +87,7 @@ public class BossAI : MonoBehaviour, IDamage
         HPOrig = HP;
         activeRadius = radiusSleep;
         biteDistance = agent.stoppingDistance;
-        stoppingDistanceOrig = agent.stoppingDistance;
+        //stoppingDistanceOrig = agent.stoppingDistance;
         //startPos = transform.position;
     }
 
@@ -95,10 +95,10 @@ public class BossAI : MonoBehaviour, IDamage
     void Update()
     {
 
-        
 
 
-        
+        BossHPUIUpdate();
+
 
         if (agent.isActiveAndEnabled)
         {
@@ -110,10 +110,10 @@ public class BossAI : MonoBehaviour, IDamage
                 CanSeePlayer();
 
             }
-            if (HP <= (HPOrig * .75f) && !CanSeePlayer())
-            {
-                StartCoroutine(Heal());
-            }
+            //else if (HP <= (HPOrig * .75f) && !CanSeePlayer())
+            //{
+            //    StartCoroutine(Heal());
+            //}
 
 
 
@@ -135,7 +135,7 @@ public class BossAI : MonoBehaviour, IDamage
     IEnumerator Spit()
     {
         isSpitting = true;
-        GameObject spitClone = Instantiate(spit, spitPos.position, transform.rotation);
+        GameObject spitClone = Instantiate(spit, spitPos.position, spit.transform.rotation);
         spitClone.GetComponent<Rigidbody>().velocity = transform.forward * spitSpeed;
         yield return new WaitForSeconds(spitRate);
         isSpitting = false;
@@ -145,6 +145,8 @@ public class BossAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
+
+            gameManager.instance.bossHealthBarParent.SetActive(true);
             crabWakeColl.radius = radiusActive;
             activeRadius = crabWakeColl.radius;
             playerInRange = true;
@@ -156,7 +158,7 @@ public class BossAI : MonoBehaviour, IDamage
 
 
         // this tells us what direction our player is in relative to our enemy
-        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + .6f - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y+1 - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
 
         // this calculates the angle between where our player is and where we (the enemy) are looking
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
@@ -180,11 +182,12 @@ public class BossAI : MonoBehaviour, IDamage
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
 
+
                 FacePlayerAlways();
 
                 if (!isSpitting && !isBiting && hit.distance <= biteDistance)
                     StartCoroutine(Shoot());
-                if (!isSpitting && !isBiting && hit.distance >= biteDistance)
+                if (!isSpitting && !isBiting && hit.distance >= spitDistance)
                     StartCoroutine(Spit());
 
                 return true;
@@ -198,12 +201,20 @@ public class BossAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            agent.stoppingDistance = 0;
+            gameManager.instance.bossHealthBarParent.SetActive(false);
+            //agent.stoppingDistance = 0;
         }
+
     }
-    public void TakeDamage(int dmg)
+    void BossHPUIUpdate()
+    {
+        // updating the players health bar
+        gameManager.instance.bossHealthBar.fillAmount = (float)HPOrig / (float)HP;
+    }
+    public void TakeDamage(float dmg)
     {
         HP -= dmg;
+        
 
         if (HP <= 0)
         {
@@ -223,7 +234,7 @@ public class BossAI : MonoBehaviour, IDamage
             WaveSet();
             anim.SetTrigger("Damage");
             agent.SetDestination(gameManager.instance.player.transform.position);
-            agent.stoppingDistance = 0;
+
             StartCoroutine(Hurt());
         }
     }
@@ -236,7 +247,7 @@ public class BossAI : MonoBehaviour, IDamage
     void FacePlayerAlways()
     {
 
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, playerDir.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
     //public void Flee()
@@ -247,97 +258,103 @@ public class BossAI : MonoBehaviour, IDamage
     //        Heal();
 
     //}
-    IEnumerator Heal()
-    {
-        if (HP != HPOrig && !isSpitting && !isBiting)
-        {
-            HP += healAmt;
-            yield return new WaitForSeconds(healAmt * ((Time.deltaTime) / 2));
+    //IEnumerator Heal()
+    //{
+    //    if (HP != HPOrig && !isSpitting && !isBiting)
+    //    {
+    //        HP += healAmt;
+    //        yield return new WaitForSeconds(15);
 
-        }
-    }
+    //    }
+    //}
     public void Wave1()
     {
         //if (crab)
-        //{
+        //{W
         //    for (int i = 0; i < 5; i++)
         //    {
         //    }
 
         //}
+        int randNum=UnityEngine.Random.Range(5, 15);
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x+randNum, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z+randNum));
+        GameObject crabClone = Instantiate(crab, new Vector3(playerDir.x,transform.position.y,playerDir.z), transform.rotation);
 
-        Instantiate(crab, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), transform.rotation);
-        
+
 
     }
     public void Wave2()
     {
-        Instantiate(drone, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), transform.rotation);
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z));
+        GameObject droneClone = Instantiate(drone, new Vector3(playerDir.x, transform.position.y, playerDir.z), transform.rotation);
     }
     public void Wave3()
     {
 
-        Instantiate(crab, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), transform.rotation);
-        Instantiate(drone, new Vector3(transform.position.x, transform.position.y, transform.position.z + 2), transform.rotation);
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z));
+        GameObject crabClone = Instantiate(crab, new Vector3(playerDir.x, transform.position.y, playerDir.z), transform.rotation); 
 
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z));
+        GameObject droneClone = Instantiate(drone, new Vector3(playerDir.x, transform.position.y, playerDir.z), transform.rotation);
 
 
     }
     public void WaveSet()
     {
+
+        if (wave != 1 && wave != 3)
+        {
+
+            if (HP <= (HPOrig * .75f) && HP >= (HPOrig / 2))
+            {
+                wave = 1;
+
+                if (crab)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Wave1();
+                    }
+
+                }
+
+            }
+        }
+        else if (wave != 2)
+
+        {
+
+
+            if (HP <= (HPOrig / 2))
+            {
+                wave = 2;
+                if (drone)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Wave2();
+                    }
+
+                }
+            }
+        }
+        else if (wave != 3)
+        {
+            wave = 3;
+            if (HP <= (HPOrig * .25f))
+            {
+                if (crab && drone)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Wave3();
+                    }
+
+                }
+            }
+        }
         
-            if (wave != 1&&wave!=3)
-            {
-                
-                if (HP <= (HPOrig * .75f) && HP >= (HPOrig / 2))
-                {  
-                    wave = 1;
-                    
-                    if (crab)
-                    {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            Wave1();
-                        }
-
-                    }
-
-                }
-            }
-            else if (wave != 2)
-                
-            {
-                
-                
-                if (HP <= (HPOrig / 2))
-                {
-                    wave = 2;
-                    if (drone)
-                    {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            Wave2();
-                        }
-
-                    }
-                }
-            }
-            else if (wave != 3)
-            {
-                wave = 3;
-                if (HP <= (HPOrig * .25f))
-                {
-                    if (crab && drone)
-                    {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            Wave3();
-                        }
-
-                    }
-                }
-            }
-        //}
 
     }
 }
+    
