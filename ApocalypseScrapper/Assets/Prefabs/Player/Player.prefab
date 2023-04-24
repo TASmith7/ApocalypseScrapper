@@ -5771,8 +5771,6 @@ MonoBehaviour:
   HP: 100
   HPMax: 100
   playerSpeed: 10
-  walkSpeed: 8
-  sprintSpeed: 15
   gravityValue: 50
   salvageRange: 10
   salvageRate: 1
@@ -5782,6 +5780,12 @@ MonoBehaviour:
   fuelRefillRate: 0.2
   timeToTurnOffFuelBar: 5
   jetpackThrustAudio: {fileID: 8300000, guid: 24f20a94ef175c340823e0a07918e522, type: 3}
+  sprintSpeed: 20
+  staminaDrain: 0.296
+  stmainaRefillRate: 0.078
+  timeToTurnOffStaminaBar: 2
+  walkSpeed: 10
+  isSprinting: 0
   gunList: []
   shootDamage: 3
   shootRate: 0.34
