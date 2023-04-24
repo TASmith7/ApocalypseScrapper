@@ -116,11 +116,14 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             {
                 StartCoroutine(Salvage());
             }
+            // else if I am not salvaging and not pressing right click and my salvaging audio is playing, turn off the audio
+            else if (!isSalvaging && playerAudioManager.instance.salvagingAudioSource.isPlaying)
+            {
+                playerAudioManager.instance.salvagingAudioSource.Stop();
+            }
             else
             {
                 isSalvaging = false;
-                
-
             }
         }
 
@@ -319,8 +322,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     IEnumerator Salvage()
     {
-        isSalvaging = true;
-
         RaycastHit hit;
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
@@ -331,7 +332,15 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             // if the object is salvageable
             if (salvageable != null && !hit.collider.CompareTag("Player"))
             {
+                isSalvaging = true;
+
                 gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
+
+                // if our salvaging audio isn't already playing
+                if(!playerAudioManager.instance.salvagingAudioSource.isPlaying)
+                {
+                    playerAudioManager.instance.salvagingAudioSource.Play();
+                }
 
                 if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
                 {
@@ -340,7 +349,17 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                     yield return new WaitForSeconds(0.01f);
                 }
             }
+            // else what we are looking at is not salvageable, so stop our salvaging audio and set isSalvaging bool to false
+            else
+            {
+                playerAudioManager.instance.salvagingAudioSource.Stop();
+                isSalvaging = false;
+            }
 
+        }
+        else
+        {
+            isSalvaging = false;
         }
         yield return new WaitForSeconds(0.01f);
 
@@ -399,6 +418,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         // destroying object
         Destroy(objectToSalvage);
+
+        playerAudioManager.instance.objectSalvagedAudioSource.Play();
 
         // updating salvage score UI
         gameManager.instance.UpdateSalvageScore(playerSalvageScore);

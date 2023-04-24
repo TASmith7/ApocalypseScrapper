@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class salvageableObject : MonoBehaviour, ISalvageable
@@ -8,7 +9,7 @@ public class salvageableObject : MonoBehaviour, ISalvageable
     public float salvageTime;
 
    void Start()
-    {
+    { 
         gameObject.tag = "Salvage";
         salvageTime = salvageValue / 1000.0f;
         if (salvageTime < 0.5f)
@@ -19,8 +20,4 @@ public class salvageableObject : MonoBehaviour, ISalvageable
     {
 
     }
-
-    //public void SalvageObject(GameObject objectToSalvage) { }
-    
-
 }

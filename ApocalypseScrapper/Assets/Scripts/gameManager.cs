@@ -129,6 +129,12 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         mainReticle.SetActive(false);
         salvageableItemReticle.SetActive(false);
+
+        // stopping all game audio that might be playing
+        playerAudioManager.instance.jetpackAudioSource.Stop();
+        playerAudioManager.instance.gunAudioSource.Stop();
+        playerAudioManager.instance.salvagingAudioSource.Stop();
+
     }
 
     public void UnpauseState()
