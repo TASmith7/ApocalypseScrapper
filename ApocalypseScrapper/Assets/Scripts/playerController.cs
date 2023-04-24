@@ -14,7 +14,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
-    [SerializeField] AudioSource myAudioSource;
     
 
     [Header("----- Player Stats -----")]
@@ -44,7 +43,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(0, 1)] [SerializeField] float fuelConsumptionRate;
     [Range(0, 0.5f)] [SerializeField] float fuelRefillRate;
     [Range(1, 100)] [SerializeField] int timeToTurnOffFuelBar;
-    [SerializeField] AudioClip jetpackThrustAudio;
     bool isThrusting;
     float timeOfLastThrust;
 
@@ -69,7 +67,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public MeshRenderer gunMaterial;
     public MeshFilter gunModel;
     public int selectedGun;
-    [SerializeField] AudioClip shotAudio;
     bool isShooting;
 
 [Header("-----Upgrades-----")]
@@ -191,19 +188,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                         // while player holds down shift, give velocity in the z direction a value
                         playerSpeed = sprintSpeed;
 
-                        //if (!myAudioSource.isPlaying)
-                        //{
-                        //    myAudioSource.PlayOneShot(RunAudio);
-                        //}
-
-
                         timeOfLastSprint = Time.fixedTime;
                     }
-
-                    //if (gameManager.instance.staminaFillBar.fillAmount <= 0)
-                    //{
-                    //    myAudioSource.Stop();
-                    //}
 
                     // reducing the stamina bar while the player is pressing shift
                     StartCoroutine(ReduceStaminaUI());
@@ -245,9 +231,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 // while player holds down space, give velocity in the y direction a value
                 playerVelocity.y = thrustPower;
 
-                if(!myAudioSource.isPlaying)
+                // if our jetpack audio isn't already playing
+                if(!playerAudioManager.instance.jetpackAudioSource.isPlaying)
                 {
-                    myAudioSource.PlayOneShot(jetpackThrustAudio);
+                    // play our jetpack audio
+                    playerAudioManager.instance.jetpackAudioSource.Play();
                 }
 
 
@@ -256,11 +244,17 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
             if(gameManager.instance.jetpackFuelBar.fillAmount <= 0)
             {
-                myAudioSource.Stop();
+                // if we run out of fuel, stop our jetpack audio
+                playerAudioManager.instance.jetpackAudioSource.Stop();
             }
 
             // reducing the fuel bar while the player is pressing space
             StartCoroutine(ReduceJetpackFuelUI());
+        }
+        // if we aren't pressing space and our jetpack audio is playing, turn it off
+        else if(playerAudioManager.instance.jetpackAudioSource.isPlaying)
+        {
+            playerAudioManager.instance.jetpackAudioSource.Stop();
         }
 
         // refilling the fuel bar when the player is not pressing space until it's full
@@ -289,7 +283,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         isShooting = true;
 
         // play shooting audio
-        myAudioSource.PlayOneShot(shotAudio);
+        playerAudioManager.instance.gunAudioSource.Play();
 
         GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.identity);
 
