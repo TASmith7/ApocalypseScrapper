@@ -58,22 +58,22 @@ public class droneAI : MonoBehaviour, IDamage
     {
         if (agent.isActiveAndEnabled)
         {
-            anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
-
+            // anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
+            //agent.SetDestination(gameManager.instance.player.transform.position);
             // only start following and shooting if player is in range of enemy
-            if (playerInRange && !canSeePlayer())
+            if (playerInRange && !CanSeePlayer())
             {
-                StartCoroutine(roam());
+                StartCoroutine(Roam());
             }
             else if (agent.destination != gameManager.instance.player.transform.position)
             {
-                StartCoroutine(roam());
+                StartCoroutine(Roam());
             }
         }
     }
 
     // (Roaming)
-    IEnumerator roam()
+    IEnumerator Roam()
     {
         if (!destinationChosen && agent.remainingDistance < 0.05f)
         {
@@ -94,7 +94,7 @@ public class droneAI : MonoBehaviour, IDamage
         }
     }
 
-    bool canSeePlayer()
+    bool CanSeePlayer()
     {
         //player direction
         playerDir = (gameManager.instance.player.transform.position - headPos.position);
@@ -117,12 +117,12 @@ public class droneAI : MonoBehaviour, IDamage
                 // how far he is from destination
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
-                    facePlayer();
+                    FacePlayer();
                 }
 
                 if (!isShooting)
                 {
-                    StartCoroutine(shoot());
+                    StartCoroutine(Shoot());
                 }
 
                 return true;
@@ -131,10 +131,10 @@ public class droneAI : MonoBehaviour, IDamage
         return false;
     }
 
-    IEnumerator shoot()
+    IEnumerator Shoot()
     {
         isShooting = true;
-        anim.SetTrigger("Shoot(trigger)");
+        //anim.SetTrigger("Shoot");
         // to reference a bullet
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
         // to give bullet a velocity                     this transform would need to be the camera (Camera.main.transform.forward) for player to shoot bullets
@@ -161,40 +161,60 @@ public class droneAI : MonoBehaviour, IDamage
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float dmg)
     {
-        HP -= amount;
+        HP -= (int)dmg;
         //rb.AddForce(playerDir * 5f, ForceMode.Impulse);
         agent.SetDestination(gameManager.instance.player.transform.position);
         agent.stoppingDistance = 0;
 
 
-        StartCoroutine(flashColor());
+        StartCoroutine(FlashColor());
 
+        //if (HP <= 0)
+        //{
+        //    StopAllCoroutines();
+        //    // enemy will drop a GameOjbect after being killing
+        //    Instantiate(drop, transform.position, drop.transform.rotation);
+        //    //gameManager.instance.updatGameGoal(-1);
+        //    //die
+        //    anim.SetBool("Dead", true);
+        //    GetComponent<CapsuleCollider>().enabled = false;
+        //    agent.enabled = false;
+        //    Destroy(gameObject);
+        //}
+        //else
+        //{
+        //    anim.SetTrigger("Damage");
+        //    // when shot the enemy will turn towards the shooter
+        //    agent.SetDestination(gameManager.instance.player.transform.position);
+        //    agent.stoppingDistance = 0;
+        //    StartCoroutine(FlashColor());
+        //}
         if (HP <= 0)
         {
             StopAllCoroutines();
-            // enemy will drop a GameOjbect after being killing
-            Instantiate(drop, transform.position, drop.transform.rotation);
-            //gameManager.instance.updatGameGoal(-1);
-            //die
-            //Destroy(gameObject);
-            anim.SetBool("Dead(bool)", true);
-            GetComponent<CapsuleCollider>().enabled = false;
+            anim.SetBool("Dead", true);
+            if (drop)
+            {
+                Instantiate(drop, transform.position, drop.transform.rotation);
+            }
+
             agent.enabled = false;
+            GetComponent<CapsuleCollider>().enabled = false;
+
         }
         else
         {
-            anim.SetTrigger("Damage(trigger)");
-            // when shot the enemy will turn towards the shooter
+            anim.SetTrigger("Damage");
             agent.SetDestination(gameManager.instance.player.transform.position);
-            agent.stoppingDistance = 0;
-            StartCoroutine(flashColor());
+            //agent.stoppingDistance = 0;
+            StartCoroutine(FlashColor());
         }
     }
 
     // Function Flashes enemy red 
-    IEnumerator flashColor()
+    IEnumerator FlashColor()
     {
         // turns enemy red
         model.material.color = Color.red;
@@ -205,7 +225,7 @@ public class droneAI : MonoBehaviour, IDamage
     }
 
     // fixes Bug that enemy does not turn when not moving
-    void facePlayer()
+    void FacePlayer()
     {
         ////call when condition is meet 
         ////dont want the enemy to take in the consideration of the players y
