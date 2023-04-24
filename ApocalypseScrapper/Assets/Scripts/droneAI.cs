@@ -56,19 +56,28 @@ public class droneAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+
         if (agent.isActiveAndEnabled)
         {
+            if (playerInRange && CanSeePlayer())
+            {
+                anim.SetBool("playerInRange", true);
+            }
             // anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
             //agent.SetDestination(gameManager.instance.player.transform.position);
             // only start following and shooting if player is in range of enemy
             if (playerInRange && !CanSeePlayer())
             {
                 StartCoroutine(Roam());
+                
+
             }
             else if (agent.destination != gameManager.instance.player.transform.position)
             {
                 StartCoroutine(Roam());
             }
+            
+
         }
     }
 
@@ -157,6 +166,7 @@ public class droneAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+
             agent.stoppingDistance = 0;
         }
     }

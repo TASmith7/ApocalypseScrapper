@@ -771,7 +771,7 @@ Animator:
   m_GameObject: {fileID: 5682082307837556350}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
-  m_Controller: {fileID: 9100000, guid: b73383ab2459f2643abe557b2d08dcd5, type: 2}
+  m_Controller: {fileID: 9100000, guid: e22898449ae42764daf4bea82fa07f39, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -866,7 +866,7 @@ MonoBehaviour:
   playerFaceSpeed: 5
   sightAngle: 180
   roamPauseTime: 1
-  roamDist: 20
+  roamDist: 0
   shootDamage: 1
   shootRate: 2
   shootDist: 50
