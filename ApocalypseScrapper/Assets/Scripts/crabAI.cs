@@ -166,9 +166,9 @@ public class crabAI : MonoBehaviour, IDamage
             agent.stoppingDistance = 0;
         }
     }
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
-        HP -= dmg;
+        HP -= (int) dmg;
 
         if (HP <= 0)
         {
