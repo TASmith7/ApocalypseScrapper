@@ -16,6 +16,7 @@ public class levelAudioManager : MonoBehaviour
     [Header("----- Clips -----")]
     public AudioClip lvl1MusicAudio;
     public AudioClip lvl2MusicAudio;
+    public AudioClip lvl3MusicAudio;
     public AudioClip bossLvlMusicAudio;
     public AudioClip whiteNoiseAudio;
 
@@ -60,6 +61,10 @@ public class levelAudioManager : MonoBehaviour
         else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 2"))
         {
             musicAudioSource.clip = lvl2MusicAudio;
+        }
+        else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 3"))
+        {
+            musicAudioSource.clip = lvl3MusicAudio;
         }
         else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
