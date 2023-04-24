@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class levelAudioManager : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class levelAudioManager : MonoBehaviour
 
     // audio clips (the actual sound)
     [Header("----- Clips -----")]
-    public AudioClip musicAudio;
+    public AudioClip lvl1MusicAudio;
+    public AudioClip lvl2MusicAudio;
+    public AudioClip bossLvlMusicAudio;
     public AudioClip whiteNoiseAudio;
 
 
@@ -37,7 +40,6 @@ public class levelAudioManager : MonoBehaviour
         whiteNoiseAudioSource = gameObject.AddComponent<AudioSource>();
 
         // assigning each audio sources clip (the actual sound that it makes)
-        musicAudioSource.clip = musicAudio;
         whiteNoiseAudioSource.clip = whiteNoiseAudio;
 
         // setting each audio sources components
@@ -49,6 +51,21 @@ public class levelAudioManager : MonoBehaviour
         whiteNoiseAudioSource.volume = whiteNoiseVolume;
         whiteNoiseAudioSource.playOnAwake = true;
         whiteNoiseAudioSource.loop = true;
+
+        // setting our music based on which scene we're in
+        if(gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 1"))
+        {
+            musicAudioSource.clip = lvl1MusicAudio;
+        }
+        else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 2"))
+        {
+            musicAudioSource.clip = lvl2MusicAudio;
+        }
+        else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        {
+            musicAudioSource.clip = bossLvlMusicAudio;
+        }
+
 
         // playing sounds that should play on awake - for some reason they don't play unless I call their play method
         // even though I set their play on awake to true
