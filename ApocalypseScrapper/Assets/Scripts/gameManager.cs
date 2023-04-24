@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
 using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
@@ -25,8 +24,10 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject RSGSplash;
     public GameObject checkpointMenu;
+
     [Header("----- HP Bar -----")]
     public Image HPBar;
+
     [Header("----- Salvage & Grade Bar -----")]
     public TextMeshProUGUI salvageValueText;
     public TextMeshProUGUI salvageCollected;
@@ -34,22 +35,28 @@ public class gameManager : MonoBehaviour
     public int amtSalvaged;
     public TextMeshProUGUI grade;
     public char playerGrade;
+
     [Header("----- Boss Health Bar -----")]
     public Image bossHealthBar;
     public GameObject bossHealthBarParent;
+
     [Header("----- Jetpack Bar -----")]
     public Image jetpackFuelBar;
     public GameObject jetpackFuelBarParent;
+
     [Header("----- Stmaina Bar -----")]
     public Image staminaFillBar;
     public GameObject staminaFillBarParent;
+
     [Header("----- Shield Bar -----")]
     public Image shieldFillBar;
     public GameObject shieldFillBarParent;
+
     [Header("----- Reticle Bar -----")]
     public GameObject mainReticle;
     public GameObject salvageableItemReticle;
     public Image salvagingObjectReticle;
+
     [Header("----- Score Text Bar -----")]
     public TextMeshProUGUI playerSalvageScoreText;
     
@@ -64,12 +71,16 @@ public class gameManager : MonoBehaviour
 
     public bool isPaused;
     float timeScaleOriginal;
+    public Scene currentScene;
 
     void Awake()
     {
-
         instance = this;
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+
+        // setting our current scene
+        currentScene = SceneManager.GetActiveScene();
+
+        if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
             StartCoroutine(SplashScreen());
         }
