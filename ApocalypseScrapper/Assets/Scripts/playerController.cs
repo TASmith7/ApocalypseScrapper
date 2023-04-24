@@ -353,9 +353,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
-        HP -= amount;
+        HP -= (int)amount;
         PlayerUIUpdate();
 
         if(HP <= 0)

@@ -78,6 +78,7 @@ public class gameManager : MonoBehaviour
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         timeScaleOriginal = Time.timeScale;
         bossHealthBarParent.SetActive(false);
+        
     }
     IEnumerator SplashScreen()
     {
@@ -172,6 +173,16 @@ public class gameManager : MonoBehaviour
     {
         jetpackFuelBarParent.SetActive(true);
     }
+    public void TurnOffBossHPUI()
+    {
+        jetpackFuelBarParent.SetActive(false);
+    }
+
+    public void TurnOnBossHPUI()
+    {
+        jetpackFuelBarParent.SetActive(true);
+    }
+
 
     public void CueSalvageableReticle()
     {

@@ -1,38 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BossSpit : MonoBehaviour
 {
-    [SerializeField] int damage;
+    [SerializeField] float splashRadius;
+    [SerializeField] float damage;
     [SerializeField] float timer;
-    [SerializeField] float splashRad;
+    [SerializeField] float splashDamage;
 
     void Start()
     {
         // destroying our bullet after a specified amount of time
         Destroy(gameObject, timer);
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // checking if the object that we collided with (other) has the IDamage script (i.e. is damageable)
-        IDamage damageable = other.GetComponent<IDamage>();
+        ExplosionDamage(transform.position, splashRadius);
 
-        // if the object is damageable
-        if (damageable != null)
-        {
-            // calculate the distance from the center of the splash attack to the object
-            float distance = Vector3.Distance(transform.position, other.transform.position);
-
-            // calculate the splash damage using the distance and splash radius
-            float splashDamage = damage * (1 - distance / splashRad);
-
-            // then take the calculated amount of splash damage
-            damageable.TakeDamage(Mathf.RoundToInt(splashDamage));
-        }
 
         // destroying the bullet if it hits something
         Destroy(gameObject);
+    }
+    void ExplosionDamage(Vector3 center, float radius)
+    {
+        
+
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        foreach (var hitCollider in hitColliders)
+        {
+            
+            //checking if the object that we collided with(other) has the IDamage script(i.e. is damageable)
+                IDamage damageable = hitCollider.GetComponent<IDamage>();
+
+            // if the object is damageable
+            if (damageable != null)
+            {
+                //finds objects position relative to bullet
+                float proximity = (hitCollider.transform.position - center).magnitude;
+              //figures the damage applied
+                splashDamage = splashDamage-(proximity / radius);
+                damageable.TakeDamage(splashDamage);
+            }
+
+
+            
+            
+            
+        }
     }
 }
