@@ -11,31 +11,48 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
     
 
-    [Header("----- Player Stuff -----")]
+    [Header("----- Player/Boss -----")]
     public GameObject player;
     public playerController playerScript;
     public GameObject playerSpawnPos;
+    //public GameObject Boss;
+    //public BossAI bossScript;
 
-    [Header("----- UI Stuff -----")]
+    [Header("----- Menu's -----")]
     public GameObject activeMenu;
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
     public GameObject RSGSplash;
     public GameObject checkpointMenu;
+    [Header("----- HP Bar -----")]
     public Image HPBar;
+    [Header("----- Salvage & Grade Bar -----")]
     public TextMeshProUGUI enemiesRemainingText;
     public TextMeshProUGUI salvageCollected;
     public TextMeshProUGUI scoreText;
     public int amtSalvaged;
     public TextMeshProUGUI grade;
     public char playerGrade;
+    [Header("----- Boss Health Bar -----")]
+    public Image bossHealthBar;
+    public GameObject bossHealthBarParent;
+    [Header("----- Jetpack Bar -----")]
     public Image jetpackFuelBar;
     public GameObject jetpackFuelBarParent;
+    [Header("----- Stmaina Bar -----")]
+    public Image staminaFillBar;
+    public GameObject staminaFillBarParent;
+    [Header("----- Shield Bar -----")]
+    public Image shieldFillBar;
+    public GameObject shieldFillBarParent;
+    [Header("----- Reticle Bar -----")]
     public GameObject mainReticle;
     public GameObject salvageableItemReticle;
-    public TextMeshProUGUI playerSalvageScoreText;
     public Image salvagingObjectReticle;
+    [Header("----- Score Text Bar -----")]
+    public TextMeshProUGUI playerSalvageScoreText;
+    
     public GameObject salvagingObjectParent;
 
     //[Header("-----Turret Stuff-----")]
@@ -60,6 +77,8 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         timeScaleOriginal = Time.timeScale;
+        bossHealthBarParent.SetActive(false);
+        
     }
     IEnumerator SplashScreen()
     {
@@ -145,6 +164,25 @@ public class gameManager : MonoBehaviour
     {
         jetpackFuelBarParent.SetActive(true);
     }
+    public void TurnOffStaminaUI()
+    {
+        jetpackFuelBarParent.SetActive(false);
+    }
+
+    public void TurnOnStaminaUI()
+    {
+        jetpackFuelBarParent.SetActive(true);
+    }
+    public void TurnOffBossHPUI()
+    {
+        jetpackFuelBarParent.SetActive(false);
+    }
+
+    public void TurnOnBossHPUI()
+    {
+        jetpackFuelBarParent.SetActive(true);
+    }
+
 
     public void CueSalvageableReticle()
     {
@@ -202,19 +240,19 @@ public class gameManager : MonoBehaviour
         switch (grade)
         {
             case 'S':
-                return "Good Job. You Collected a lot of Scrap. Have fun Spending it.";
+                return "Good Job. \nYou Collected a lot of Scrap. \nHave fun Spending it.";
             case 'A':
-                return "You understood what to do. Good Job.";
+                return "You understood what to do. \nGood Job.";
             case 'B':
                 return "So close, yet so far.";
             case 'C':
-                return "Getting there. The odds increase";
+                return "Getting there. \nThe odds increase";
             case 'D':
-                return "Salvage=You live. Its not hard";
+                return "Salvage=You live. It's not hard";
             case 'F':
-                return "Maybe try collecting some salvage. Might make the game easier";
+                return "Maybe try collecting some salvage.\n Might make the game easier";
             default:
-                return "Negative Scrap. You owe us Scrap.";
+                return "Negative salvage. You owe us.";
         }
 
        

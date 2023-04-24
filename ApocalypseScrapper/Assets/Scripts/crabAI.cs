@@ -166,9 +166,9 @@ public class crabAI : MonoBehaviour, IDamage
             agent.stoppingDistance = 0;
         }
     }
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
-        HP -= dmg;
+        HP -= (int) dmg;
 
         if (HP <= 0)
         {
@@ -200,7 +200,7 @@ public class crabAI : MonoBehaviour, IDamage
     void FacePlayerAlways()
     {
 
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, playerDir.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
     public void Flee()

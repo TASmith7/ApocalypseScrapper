@@ -130,9 +130,9 @@ public class enemyAI : MonoBehaviour, IDamage
             playerInRange = false;
         }
     }
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
-        HP -= amount;
+        HP -= (int) amount;
 
         // if we (the enemy) gets shot, we should know where the player shot us from
         //agent.SetDestination(gameManager.instance.player.transform.position);

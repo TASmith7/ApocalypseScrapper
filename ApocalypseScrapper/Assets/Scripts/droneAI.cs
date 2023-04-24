@@ -130,9 +130,9 @@ public class droneAI : MonoBehaviour, IDamage
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
-        HP -= amount;
+        HP -= (int)amount;
         //rb.AddForce(playerDir * 5f, ForceMode.Impulse);
         agent.SetDestination(gameManager.instance.player.transform.position);
         agent.stoppingDistance = 0;
