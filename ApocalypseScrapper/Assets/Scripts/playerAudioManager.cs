@@ -15,6 +15,7 @@ public class playerAudioManager : MonoBehaviour
     public AudioSource objectSalvagedAudioSource;
     public AudioSource jetpackPowerDownAudioSource;
     public AudioSource outOfBreathAudioSource;
+    public AudioSource footstepAudioSource;
 
     // audio clips (the actual sound)
     [Header("----- Clips -----")]
@@ -24,6 +25,7 @@ public class playerAudioManager : MonoBehaviour
     public AudioClip objectSalvagedAudio;
     public AudioClip jetpackPowerDownAudio;
     public AudioClip outOfBreathAudio;
+    public AudioClip[] footstepAudio;
 
     [Header("----- Volume -----")]
     [Range(0f, 1.0f)][SerializeField] float jetpackThrustVolume;
@@ -32,6 +34,7 @@ public class playerAudioManager : MonoBehaviour
     [Range(0f, 1.0f)][SerializeField] float objectSalvagedVolume;
     [Range(0f, 1.0f)][SerializeField] float jetpackPowerDownVolume;
     [Range(0f, 1.0f)][SerializeField] float outOfBreathVolume;
+    [Range(0f, 1.0f)][SerializeField] float footstepAudioVolume;
 
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float jetpackThrustPitch;
@@ -40,6 +43,7 @@ public class playerAudioManager : MonoBehaviour
     [Range(0f, 3.0f)][SerializeField] float objectSalvagedPitch;
     [Range(0f, 3.0f)][SerializeField] float jetpackPowerDownPitch;
     [Range(0f, 3.0f)][SerializeField] float outOfBreathPitch;
+    [Range(0f, 3.0f)][SerializeField] float footstepAudioPitch;
 
     void Awake()
     {
@@ -55,6 +59,7 @@ public class playerAudioManager : MonoBehaviour
         objectSalvagedAudioSource = gameObject.AddComponent<AudioSource>();
         jetpackPowerDownAudioSource = gameObject.AddComponent<AudioSource>();
         outOfBreathAudioSource = gameObject.AddComponent<AudioSource>();
+        footstepAudioSource = gameObject.AddComponent<AudioSource>();
 
         // assigning each audio sources clip (the actual sound that it makes)
         jetpackAudioSource.clip = jetpackThrustAudio;
@@ -93,6 +98,11 @@ public class playerAudioManager : MonoBehaviour
         outOfBreathAudioSource.loop = false;
         outOfBreathAudioSource.volume = outOfBreathVolume;
         outOfBreathAudioSource.pitch = outOfBreathPitch;
+
+        footstepAudioSource.playOnAwake = false;
+        footstepAudioSource.loop = false;
+        footstepAudioSource.volume = footstepAudioVolume;
+        footstepAudioSource.pitch = footstepAudioPitch;
     }
 
     // Update is called once per frame
