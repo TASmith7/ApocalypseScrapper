@@ -78,6 +78,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public int selectedGun;
     bool isShooting;
 
+
     [Header("-----Upgrades-----")]
     [SerializeField] public bool salvDetector;
     [SerializeField] public bool shielded;
@@ -157,6 +158,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             {
                 isSalvaging = false;
             }
+
         }
 
     }
@@ -216,6 +218,15 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         }
     }
 
+    bool AllowWeaponSway()
+    {
+        if(IsMoving && controller.isGrounded)
+        {
+            return true;
+        }
+
+        return false;
+    }
     void Movement()
     {
         groundedPlayer = controller.isGrounded;
@@ -364,10 +375,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             playerCam.transform.localPosition = new Vector3(playerCam.transform.localPosition.x,
                 defaultYPosForCam + Mathf.Sin(headBobTimer) * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobAmount : walkBobAmount), 
                 playerCam.transform.localPosition.z);
-        }
-        else
-        {
-            playerCam.transform.localPosition = new Vector3(playerCam.transform.localPosition.x, defaultYPosForCam, playerCam.transform.localPosition.z);
         }
     }
 
