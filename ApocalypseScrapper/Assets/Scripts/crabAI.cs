@@ -43,24 +43,24 @@ public class crabAI : MonoBehaviour, IDamage
     Vector3 startPos;
 
 
-    //IEnumerator Roam()
-    //{
-    //    if (destinationChosen != true && agent.remainingDistance < 0.05)
-    //    {
-    //        destinationChosen = true;
-    //        agent.stoppingDistance = 0;
-    //        yield return new WaitForSeconds(roamPauseTime);
+    IEnumerator Roam()
+    {
+        if (destinationChosen != true && agent.remainingDistance < 0.05)
+        {
+            destinationChosen = true;
+            agent.stoppingDistance = 0;
+            yield return new WaitForSeconds(roamPauseTime);
 
-    //        Vector3 runTo = UnityEngine.Random.insideUnitSphere * roamDistance;
-    //        runTo += startPos;
+            Vector3 runTo = UnityEngine.Random.insideUnitSphere * roamDistance;
+            runTo += startPos;
 
-    //        NavMeshHit hit;
-    //        NavMesh.SamplePosition(runTo, out hit, roamDistance, 1);
+            NavMeshHit hit;
+            NavMesh.SamplePosition(runTo, out hit, roamDistance, 1);
 
-    //        agent.SetDestination(hit.position);
-    //        destinationChosen = false;
-    //    }
-    //}    
+            agent.SetDestination(hit.position);
+            destinationChosen = false;
+        }
+    }
 
 
     // Start is called before the first frame update
@@ -71,7 +71,7 @@ public class crabAI : MonoBehaviour, IDamage
         activeRadius = radiusSleep;
         agent.stoppingDistance = shootDistance;
         stoppingDistanceOrig = agent.stoppingDistance;
-        //startPos = transform.position;
+       startPos = transform.position;
     }
 
     // Update is called once per frame
@@ -88,8 +88,13 @@ public class crabAI : MonoBehaviour, IDamage
 
             if (playerInRange)
             {
+                agent.SetDestination(gameManager.instance.player.transform.position);
                 CanSeePlayer();
 
+            }
+            else if(!playerInRange)
+            {
+                Roam();
             }
 
 

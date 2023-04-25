@@ -5748,9 +5748,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2.413468
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1.1883991, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1589334314830556034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5782,11 +5782,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e1a34816cd27c04e9c45295d4bf07a0, type: 3}
   - {fileID: 8300000, guid: 791086e7bbe66f246a94bbbfad5af0f7, type: 3}
   - {fileID: 8300000, guid: 4784a6f23c944eb4f90338da62d1a25d, type: 3}
-  jetpackThrustVolume: 0.6
-  gunAudioVolume: 0.8
+  jetpackThrustVolume: 0.47
+  gunAudioVolume: 0.66
   salvagingAudioVolume: 1
   objectSalvagedVolume: 0.7
-  jetpackPowerDownVolume: 1
+  jetpackPowerDownVolume: 0.79
   outOfBreathVolume: 0.3
   footstepAudioVolume: 0.5
   jetpackThrustPitch: 1.5
