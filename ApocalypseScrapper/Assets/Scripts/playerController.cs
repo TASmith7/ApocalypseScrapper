@@ -86,7 +86,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] public int shieldMax;
     [SerializeField] public int shieldCD;
 
-    Scene currentScene = SceneManager.GetActiveScene();
+    
 
     #endregion
 
@@ -496,7 +496,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     }
     public void RestartLevel()
     {
-        SceneManager.LoadScene(currentScene.name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void RestartMission()
