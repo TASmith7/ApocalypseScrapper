@@ -568,7 +568,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         if (timeBetweenFootsteps <= 0)
         {
             
-
             if(gameManager.instance.staminaFillBar.fillAmount > 0  && isSprinting)
             {
                 timeBetweenFootsteps = runningFootstepRate; 
