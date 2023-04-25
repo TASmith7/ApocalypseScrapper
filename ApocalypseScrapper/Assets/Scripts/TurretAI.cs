@@ -110,17 +110,22 @@ public class TurretAI : MonoBehaviour, IDamage
         // this creates a reference to an instantiated bullet, first parameter = what youre instantiating, second = where it's instantiating from on the enemy
         // (which we'll set in unity), third = the bullets orientation (doesn't really matter but it's necessary)
         GameObject bulletClone = Instantiate(TurretBullet, shootPos.position, TurretBullet.transform.rotation);
+        
         GameObject bulletClone2 = Instantiate(TurretBullet, shootPos2.position, TurretBullet.transform.rotation);
 
 
 
+
+        turretAudioManager.instance.turretShotAudioSource.Play();
+
         // this will set the bullets velocity via the rigidbody component of the game object
-        
-            bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+
+        bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
             yield return new WaitForSeconds(barrelSwitchSpeed/10);
             bulletClone2.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
-            
-        
+
+        turretAudioManager.instance.turretShotAudioSource.Play();
+
 
         // our wait time which is going to be our defined shootRate
         yield return new WaitForSeconds(shootRate);
@@ -150,6 +155,8 @@ public class TurretAI : MonoBehaviour, IDamage
     public void TakeDamage(float amount)
     {
         HP -= (int)amount;
+
+        turretAudioManager.instance.turretDamageAudioSource.Play();
 
         // if we (the enemy) gets shot, we should know where the player shot us from
         //agent.SetDestination(gameManager.instance.player.transform.position);
