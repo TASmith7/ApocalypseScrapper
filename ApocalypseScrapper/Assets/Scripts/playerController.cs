@@ -15,7 +15,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
-
+    [SerializeField] Camera playerCam;
+    
 
     [Header("----- Player Stats -----")]
     [Range(1, 100)][SerializeField] int HP;
@@ -44,8 +45,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [Header("----- Animation Stats -----")]
     [SerializeField] float animTransSpeed;
-
-
+    
     [Header("----- Jetpack Stats -----")]
     [Range(1, 8)][SerializeField] float thrustPower;
     [Range(0, 1)][SerializeField] float fuelConsumptionRate;
@@ -66,7 +66,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     bool jetpackPowerDownAudioPlayed;
     bool outOfBreathAudioPlayed;
 
-
     [Header("----- Gun Stats -----")]
     public List<GunStats> gunList = new List<GunStats>();
     [Range(1, 10)][SerializeField] public int shootDamage;
@@ -86,7 +85,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] public int shieldMax;
     [SerializeField] public int shieldCD;
 
-    
+    [Header("----- Headbob Settings -----")]
+    [SerializeField] float walkBobSpeed;
+    [SerializeField] float walkBobAmount;
+    [SerializeField] float sprintBobSpeed;
+    [SerializeField] float sprintBobAmount;
+    float defaultYPosForCam;
+    float headBobTimer;
 
     #endregion
 
@@ -101,6 +106,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         jetpackPowerDownAudioPlayed = false;
         outOfBreathAudioPlayed = false;
         timeBetweenFootsteps = walkingFootstepRate;
+
+        // setting default y position for main camera
+        defaultYPosForCam = playerCam.transform.localPosition.y;
     }
 
     void Update()
@@ -126,7 +134,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             //SelectGun();
             Movement();
 
-
+            CueHeadBobMovement();
             CueFootstepAudio();
 
 
@@ -345,6 +353,18 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
 
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    void CueHeadBobMovement()
+    {
+        if (!controller.isGrounded) return;
+        if(IsMoving)
+        {
+            headBobTimer += Time.deltaTime * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobSpeed : walkBobSpeed);
+            playerCam.transform.localPosition = new Vector3(playerCam.transform.localPosition.x,
+                defaultYPosForCam + Mathf.Sin(headBobTimer) * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobAmount : walkBobAmount), 
+                playerCam.transform.localPosition.z);
+        }
     }
 
     IEnumerator Shoot()
