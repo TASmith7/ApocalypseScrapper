@@ -47,7 +47,7 @@ public class gameManager : MonoBehaviour
     public Image jetpackFuelBar;
     public GameObject jetpackFuelBarParent;
 
-    [Header("----- Stmaina Bar -----")]
+    [Header("----- Stamina Bar -----")]
     public Image staminaFillBar;
     public GameObject staminaFillBarParent;
 
@@ -286,4 +286,11 @@ public class gameManager : MonoBehaviour
 
        
     }
+
+    public void NextLevel()
+    {
+
+    }
 }
+
+

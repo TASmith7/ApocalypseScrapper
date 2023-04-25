@@ -96,7 +96,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6575580949335262156, guid: cf991b60bffe4d149b9b71463a44be9c, type: 3}
 --- !u!1 &5490711652950048126
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 500
+  salvageValue: 1000
   salvageTime: 0
 --- !u!64 &2191981072704405485
 MeshCollider:

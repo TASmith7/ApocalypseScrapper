@@ -10,17 +10,17 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.UnpauseState();
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
     }
-    public void Respawn()
+    public void RestartLevel()
     {
         gameManager.instance.UnpauseState();
-        gameManager.instance.playerScript.RespawnPlayer();
+        gameManager.instance.playerScript.RestartLevel();
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
 
     }
-    public void Restart()
+    public void RestartMission()
     {
         gameManager.instance.UnpauseState();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameManager.instance.playerScript.RestartMission();
     }
     public void Options()
     {
