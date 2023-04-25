@@ -40,28 +40,28 @@ public class globalSceneControl : MonoBehaviour
 
     #region Player statistics to be ported to next level
 
-    public int   HP;
-    public int   HPMax;
+    public int   HP = 100;
+    public int   HPMax = 100;
     
-    public float salvageRate;
-    public int   salvageRange;
+    public float salvageRate = 1;
+    public int   salvageRange = 5;
 
-    public float thrustPower;
-    public float fuelConsumptionRate;
-    public float fuelRefillRate;
+    public float thrustPower = 8;
+    public float fuelConsumptionRate = 0.5f;
+    public float fuelRefillRate = 0.2f;
 
-    public int   shootDamage;
-    public float shootRate;
-    public int   shootDistance;
+    public int   shootDamage = 1;
+    public float shootRate = 0.33f;
+    public int   shootDistance = 100;
 
-    public bool  salvDetector;
-    public bool  shielded;
-    public int   shieldValue;
-    public int shieldMax;
-    public int   shieldCD;
+    public bool  salvDetector = false;
+    public bool  shielded = false;
+    public int   shieldValue = 0;
+    public int shieldMax = 0;
+    public int   shieldCD = 5;
 
-    public int playerTotalScore;
-    public int playerBonus;
+    public int playerTotalScore = 0;
+    public int playerBonus = 0;
 
     #endregion
 
