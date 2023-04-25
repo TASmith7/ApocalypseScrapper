@@ -118,9 +118,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
         horizontalSpeed = horizontalVelocity.magnitude;
 
-        if (salvDetector)
 
-            Debug.Log(horizontalSpeed);
+        // if (salvDetector)
+
         if (gameManager.instance.activeMenu == null)
         {
             anim.SetFloat("Speed", Input.GetAxis("Vertical"));
@@ -365,6 +365,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 defaultYPosForCam + Mathf.Sin(headBobTimer) * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobAmount : walkBobAmount), 
                 playerCam.transform.localPosition.z);
         }
+        else
+        {
+            playerCam.transform.localPosition = new Vector3(playerCam.transform.localPosition.x, defaultYPosForCam, playerCam.transform.localPosition.z);
+        }
     }
 
     IEnumerator Shoot()
@@ -584,23 +588,26 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     public void SetPlayerStats()
     {
-        HP = globalSceneControl.Instance.HP;
-        HPMax = globalSceneControl.Instance.HPMax;
-        salvageRate = globalSceneControl.Instance.salvageRate;
-        salvageRange = globalSceneControl.Instance.salvageRange;
-        thrustPower = globalSceneControl.Instance.thrustPower;
-        fuelConsumptionRate = globalSceneControl.Instance.fuelConsumptionRate;
-        fuelRefillRate = globalSceneControl.Instance.fuelRefillRate;
-        shootDamage = globalSceneControl.Instance.shootDamage;
-        shootRate = globalSceneControl.Instance.shootRate;
-        shootDistance = globalSceneControl.Instance.shootDistance;
-        salvDetector = globalSceneControl.Instance.salvDetector;
-        shielded = globalSceneControl.Instance.shielded;
-        shieldValue = globalSceneControl.Instance.shieldValue;
-        shieldMax = globalSceneControl.Instance.shieldMax;
-        shieldCD = globalSceneControl.Instance.shieldCD;
-        playerTotalScore = globalSceneControl.Instance.playerTotalScore;
-        playerBonus = globalSceneControl.Instance.playerBonus;
+        if (globalSceneControl.Instance != null)
+        {
+            HP = globalSceneControl.Instance.HP;
+            HPMax = globalSceneControl.Instance.HPMax;
+            salvageRate = globalSceneControl.Instance.salvageRate;
+            salvageRange = globalSceneControl.Instance.salvageRange;
+            thrustPower = globalSceneControl.Instance.thrustPower;
+            fuelConsumptionRate = globalSceneControl.Instance.fuelConsumptionRate;
+            fuelRefillRate = globalSceneControl.Instance.fuelRefillRate;
+            shootDamage = globalSceneControl.Instance.shootDamage;
+            shootRate = globalSceneControl.Instance.shootRate;
+            shootDistance = globalSceneControl.Instance.shootDistance;
+            salvDetector = globalSceneControl.Instance.salvDetector;
+            shielded = globalSceneControl.Instance.shielded;
+            shieldValue = globalSceneControl.Instance.shieldValue;
+            shieldMax = globalSceneControl.Instance.shieldMax;
+            shieldCD = globalSceneControl.Instance.shieldCD;
+            playerTotalScore = globalSceneControl.Instance.playerTotalScore;
+            playerBonus = globalSceneControl.Instance.playerBonus;
+        }
     }
 
     void CueFootstepAudio()
