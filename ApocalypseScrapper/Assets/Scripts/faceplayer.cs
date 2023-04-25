@@ -12,22 +12,13 @@ public class faceplayer : MonoBehaviour
     [SerializeField] Transform headPos;
 
     [Header("----- Enemy Stats -----")]
-    //// Health Points
-    //[SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int sightAngle;
-    //[SerializeField] int roamPauseTime;
-    //[SerializeField] int roamDist;
 
-    [SerializeField] GameObject drop;
-
-    //direction of the player is in
     Vector3 playerDir;
     bool playerInRange;
     float angleToPlayer;
-    //bool isShooting;
     float stoppingDistOrig;
-    bool destinationChosen;
     Vector3 startingPos;
 
     // Start is called before the first frame update

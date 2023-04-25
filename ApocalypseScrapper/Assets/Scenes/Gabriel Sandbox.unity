@@ -5154,22 +5154,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 908961358852187237, guid: f2170157340b87248bba7dab76d693b4, type: 3}
-      propertyPath: roamDist
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 908961358852187237, guid: f2170157340b87248bba7dab76d693b4, type: 3}
-      propertyPath: roamPauseTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3701739066329770384, guid: f2170157340b87248bba7dab76d693b4, type: 3}
-      propertyPath: roamDist
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3701739066329770384, guid: f2170157340b87248bba7dab76d693b4, type: 3}
-      propertyPath: roamPauseTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4550768415314073724, guid: f2170157340b87248bba7dab76d693b4, type: 3}
       propertyPath: m_Name
       value: Robot_Guardian

@@ -91,8 +91,8 @@ MonoBehaviour:
   HP: 20
   playerFaceSpeed: 5
   sightAngle: 180
-  roamPauseTime: 0
-  roamDist: 0
+  roamPauseTime: 1
+  roamDist: 20
   shootDamage: 10
   shootRate: 2
   shootDist: 50
@@ -310,9 +310,5 @@ MonoBehaviour:
   model: {fileID: 3741948480526080313}
   agent: {fileID: 4549735176250218761}
   headPos: {fileID: 3727525052595804889}
-  HP: 20
   playerFaceSpeed: 5
   sightAngle: 180
-  roamPauseTime: 0
-  roamDist: 0
-  drop: {fileID: 0}
