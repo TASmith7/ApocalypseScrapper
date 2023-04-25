@@ -564,23 +564,26 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     public void SetPlayerStats()
     {
-        HP = globalSceneControl.Instance.HP;
-        HPMax = globalSceneControl.Instance.HPMax;
-        salvageRate = globalSceneControl.Instance.salvageRate;
-        salvageRange = globalSceneControl.Instance.salvageRange;
-        thrustPower = globalSceneControl.Instance.thrustPower;
-        fuelConsumptionRate = globalSceneControl.Instance.fuelConsumptionRate;
-        fuelRefillRate = globalSceneControl.Instance.fuelRefillRate;
-        shootDamage = globalSceneControl.Instance.shootDamage;
-        shootRate = globalSceneControl.Instance.shootRate;
-        shootDistance = globalSceneControl.Instance.shootDistance;
-        salvDetector = globalSceneControl.Instance.salvDetector;
-        shielded = globalSceneControl.Instance.shielded;
-        shieldValue = globalSceneControl.Instance.shieldValue;
-        shieldMax = globalSceneControl.Instance.shieldMax;
-        shieldCD = globalSceneControl.Instance.shieldCD;
-        playerTotalScore = globalSceneControl.Instance.playerTotalScore;
-        playerBonus = globalSceneControl.Instance.playerBonus;
+        if (globalSceneControl.Instance != null)
+        {
+            HP = globalSceneControl.Instance.HP;
+            HPMax = globalSceneControl.Instance.HPMax;
+            salvageRate = globalSceneControl.Instance.salvageRate;
+            salvageRange = globalSceneControl.Instance.salvageRange;
+            thrustPower = globalSceneControl.Instance.thrustPower;
+            fuelConsumptionRate = globalSceneControl.Instance.fuelConsumptionRate;
+            fuelRefillRate = globalSceneControl.Instance.fuelRefillRate;
+            shootDamage = globalSceneControl.Instance.shootDamage;
+            shootRate = globalSceneControl.Instance.shootRate;
+            shootDistance = globalSceneControl.Instance.shootDistance;
+            salvDetector = globalSceneControl.Instance.salvDetector;
+            shielded = globalSceneControl.Instance.shielded;
+            shieldValue = globalSceneControl.Instance.shieldValue;
+            shieldMax = globalSceneControl.Instance.shieldMax;
+            shieldCD = globalSceneControl.Instance.shieldCD;
+            playerTotalScore = globalSceneControl.Instance.playerTotalScore;
+            playerBonus = globalSceneControl.Instance.playerBonus;
+        }
     }
 
     void CueFootstepAudio()
