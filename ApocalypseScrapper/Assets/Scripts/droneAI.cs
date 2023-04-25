@@ -213,6 +213,7 @@ public class droneAI : MonoBehaviour, IDamage
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
 
+            //Destroy(gameObject);
         }
         else
         {

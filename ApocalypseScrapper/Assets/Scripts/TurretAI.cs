@@ -12,6 +12,16 @@ public class TurretAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos2;
     [SerializeField] SphereCollider turretCollWake;
     [SerializeField] GameObject turretHeadDestroyed;
+
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource turretAudioSource;
+    [SerializeField] AudioClip shotAudio;
+    [SerializeField] AudioClip damageAudio;
+    [Range(0, 1)][SerializeField] float shotAudioVolume;
+    [Range(0, 1)][SerializeField] float damageAudioVolume;
+
+
+
     //[SerializeField] Rigidbody rigidBody;
 
     [Header("----- Enemy Stats -----")]
@@ -41,7 +51,6 @@ public class TurretAI : MonoBehaviour, IDamage
     void Start()
     {
         activeRadius = radiusSleep;
-
         // caching the original stopping distance that we set
 
     }
@@ -116,7 +125,7 @@ public class TurretAI : MonoBehaviour, IDamage
 
 
 
-        turretAudioManager.instance.turretShotAudioSource.Play();
+        turretAudioSource.PlayOneShot(shotAudio, shotAudioVolume);
 
         // this will set the bullets velocity via the rigidbody component of the game object
 
@@ -124,7 +133,7 @@ public class TurretAI : MonoBehaviour, IDamage
             yield return new WaitForSeconds(barrelSwitchSpeed/10);
             bulletClone2.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
 
-        turretAudioManager.instance.turretShotAudioSource.Play();
+        turretAudioSource.PlayOneShot(shotAudio, shotAudioVolume);
 
 
         // our wait time which is going to be our defined shootRate
@@ -156,7 +165,7 @@ public class TurretAI : MonoBehaviour, IDamage
     {
         HP -= (int)amount;
 
-        turretAudioManager.instance.turretDamageAudioSource.Play();
+        turretAudioSource.PlayOneShot(damageAudio, damageAudioVolume);
 
         // if we (the enemy) gets shot, we should know where the player shot us from
         //agent.SetDestination(gameManager.instance.player.transform.position);
