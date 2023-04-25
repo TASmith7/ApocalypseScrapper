@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 5157331412084464717}
   - component: {fileID: 6591542840246954215}
   - component: {fileID: 5157331412084464716}
+  - component: {fileID: -7603005962437325265}
   m_Layer: 6
   m_Name: Destroyed Turret
   m_TagString: Enemy
@@ -315,6 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   salvageValue: 300
+  salvageTime: 0
 --- !u!136 &5157331412084464716
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -329,6 +331,22 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &-7603005962437325265
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157331412084464755}
+  serializedVersion: 2
+  m_Mass: 25
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &5157331412684004270
 GameObject:
   m_ObjectHideFlags: 0
