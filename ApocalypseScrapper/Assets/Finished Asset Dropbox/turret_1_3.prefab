@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 3570499196472049867}
   - component: {fileID: 353114111588010697}
   - component: {fileID: 353114111588010699}
+  - component: {fileID: 2093466548}
   m_Layer: 6
   m_Name: turret_head1
   m_TagString: Enemy
@@ -210,6 +211,26 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2093466548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353114111588010698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3679ffb6279f17f4484f954ace9551cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretShotAudioSource: {fileID: 0}
+  turretDamageAudioSource: {fileID: 0}
+  turretShotAudio: {fileID: 8300000, guid: 46123e778ea6b0d428b75ced853bfc23, type: 3}
+  turretDamageAudio: {fileID: 8300000, guid: 33ff3e656d58c374585a36c91291a73f, type: 3}
+  turretShotVolume: 1
+  turretDamageVolume: 1
+  turretShotSpatialBlend: 0.509
+  turretDamageSpatialBlend: 1
 --- !u!1 &459600438699372399
 GameObject:
   m_ObjectHideFlags: 0
