@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2267214608120575647}
   - component: {fileID: 7123070923139627370}
   - component: {fileID: 6026049098322999017}
-  - component: {fileID: 5766489728081892253}
+  - component: {fileID: 1016213963}
   m_Layer: 0
   m_Name: book.007
   m_TagString: Untagged
@@ -111,10 +111,10 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7120944197157407872, guid: cf991b60bffe4d149b9b71463a44be9c, type: 3}
---- !u!54 &5766489728081892253
+--- !u!54 &1016213963
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

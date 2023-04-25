@@ -14,7 +14,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
     public GameObject playerSpawnPos;
-    [SerializeField] GameObject[] enemySpawners;
+    
     //public GameObject Boss;
     //public BossAI bossScript;
 
@@ -90,7 +90,7 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        enemySpawners = GameObject.FindGameObjectsWithTag("Enemy Spawn");
+        
         timeScaleOriginal = Time.timeScale;
         bossHealthBarParent.SetActive(false);
         
@@ -107,7 +107,7 @@ public class gameManager : MonoBehaviour
         ApocSplash.SetActive(true);
              yield return new WaitForSeconds(3);
         ApocSplash.SetActive(false);
-            activeMenu=controlsSplash;
+            activeMenu=ControlsSplash;
         ControlsSplash.SetActive(true);
              yield return new WaitForSeconds(3);
         ControlsSplash.SetActive(false);

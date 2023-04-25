@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 91edaac7cc7dfc34db35b1a283c245a6, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -37,8 +37,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_Sun: {fileID: 331089779}
+  m_IndirectSpecularColor: {r: 0.37433153, g: 0.042398393, b: 0.011373663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9763,8 +9763,11 @@ MonoBehaviour:
   shootPos: {fileID: 0}
   headPos: {fileID: 1947363927}
   HP: 100
+  HPMax: 0
   playerSpeed: 8
   gravityValue: 50
+  walkingFootstepRate: 0
+  runningFootstepRate: 0
   salvageRange: 10
   salvageRate: 1
   animTransSpeed: 1
@@ -9772,6 +9775,12 @@ MonoBehaviour:
   fuelConsumptionRate: 0.6
   fuelRefillRate: 0.1
   timeToTurnOffFuelBar: 5
+  sprintSpeed: 0
+  staminaDrain: 0
+  stmainaRefillRate: 0
+  timeToTurnOffStaminaBar: 0
+  walkSpeed: 0
+  isSprinting: 0
   gunList: []
   shootDamage: 3
   shootRate: 0.34
@@ -9781,6 +9790,11 @@ MonoBehaviour:
   gunMaterial: {fileID: 0}
   gunModel: {fileID: 0}
   selectedGun: 0
+  salvDetector: 0
+  shielded: 0
+  shieldValue: 0
+  shieldMax: 0
+  shieldCD: 0
 --- !u!4 &295323525
 Transform:
   m_ObjectHideFlags: 0
