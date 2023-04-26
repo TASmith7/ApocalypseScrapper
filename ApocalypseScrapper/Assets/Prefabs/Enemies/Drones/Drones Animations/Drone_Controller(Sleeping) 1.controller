@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DroneGuard|WakeUp
-  m_Speed: 10
+  m_Speed: 7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -76636887863465218}
@@ -61,7 +61,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: wake
-  m_Speed: 10
+  m_Speed: 7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3553889746627395049}
