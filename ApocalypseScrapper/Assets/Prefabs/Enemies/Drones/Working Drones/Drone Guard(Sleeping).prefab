@@ -279,7 +279,7 @@ Transform:
   - {fileID: 672112429455588922}
   m_Father: {fileID: 427900182838064931}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -0.000004325713, y: 0.00001365887, z: 90.00001}
+  m_LocalEulerAnglesHint: {x: -0.000004325715, y: 0.00001365887, z: 90.00001}
 --- !u!1 &1138071553901385094
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,9 +730,9 @@ GameObject:
   - component: {fileID: 1588528049709787415}
   - component: {fileID: 1309011078159000692}
   - component: {fileID: 1309011078159000695}
-  - component: {fileID: 1309011078159000703}
   - component: {fileID: 1309011078159000694}
   - component: {fileID: 1309011078159000697}
+  - component: {fileID: 908186536}
   m_Layer: 6
   m_Name: Drone Guard(Sleeping)
   m_TagString: Enemy
@@ -805,24 +805,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.55
-  m_Height: 1
+  m_Radius: 0.34
+  m_Height: 0.55
   m_Direction: 1
-  m_Center: {x: 0, y: 1.5, z: 0}
---- !u!136 &1309011078159000703
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5682082307837556350}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.55
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Center: {x: 0, y: 1.62, z: 0}
 --- !u!195 &1309011078159000694
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -864,6 +850,7 @@ MonoBehaviour:
   shootPos: {fileID: 1309011078615383061}
   droneDetection: {fileID: 1309011078159000692}
   wakeAnimation: {fileID: -4209235661617177664, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
+  capsuleCollider: {fileID: 0}
   HP: 6
   playerFaceSpeed: 5
   sightAngle: 180
@@ -878,6 +865,20 @@ MonoBehaviour:
   bullet: {fileID: 1366219754717700336, guid: b82f1ff65d11256438556a8a2d35466f, type: 3}
   bulletSpeed: 50
   drop: {fileID: 0}
+--- !u!136 &908186536
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5682082307837556350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.34
+  m_Height: 0.55
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.62, z: 0}
 --- !u!1 &6769046884543861033
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +913,7 @@ Transform:
   - {fileID: 8884833693954116035}
   m_Father: {fileID: 4204548354832005368}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 89.98021, y: -0.000013660382, z: 0}
+  m_LocalEulerAnglesHint: {x: 89.98021, y: -0.000013660381, z: 0}
 --- !u!1 &8183655271938866962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,4 +1008,4 @@ Transform:
   - {fileID: 3608115211619454463}
   m_Father: {fileID: 427900182838064931}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0.000026637515, y: 0.000013658869, z: -90.00001}
+  m_LocalEulerAnglesHint: {x: 0.000026637514, y: 0.000013658869, z: -90.00001}
