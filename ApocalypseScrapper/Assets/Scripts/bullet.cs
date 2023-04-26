@@ -15,8 +15,6 @@ public class bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        
             Debug.Log("Bullet hit+", other.gameObject);
             // checking if the object that we collided with (other) has the IDamage script (i.e. is damageable)
             IDamage damageable = other.GetComponent<IDamage>();
@@ -31,5 +29,12 @@ public class bullet : MonoBehaviour
             // destroying the bullet if it hits something
             Destroy(gameObject);
         
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    { 
+        // destroying the bullet if it hits something
+        Destroy(gameObject);
+        Debug.Log("Destroyed Bullet!");
     }
 }
