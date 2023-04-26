@@ -15,7 +15,6 @@ public class droneAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] SphereCollider droneDetection;
     [SerializeField] AnimationClip wakeAnimation;
-    [SerializeField] CapsuleCollider capsuleCollider;
 
 
     [Header("----- Enemy Stats -----")]
@@ -248,7 +247,9 @@ public class droneAI : MonoBehaviour, IDamage
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
 
-            //Destroy(gameObject);
+            //yield return new WaitForSeconds(4);
+
+            Destroy(gameObject);
         }
         else
         {
@@ -268,6 +269,11 @@ public class droneAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
         // returns enemy back to white
         model.material.color = Color.white;
+    }
+
+    IEnumerator WaitaSec()
+    {
+        yield return new WaitForSeconds(4);
     }
 
     // fixes Bug that enemy does not turn when not moving

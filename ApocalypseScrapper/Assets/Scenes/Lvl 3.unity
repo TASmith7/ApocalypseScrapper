@@ -47179,6 +47179,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1535059674}
     m_Modifications:
+    - target: {fileID: 1662746753949264501, guid: cd9e753ae586326438deffd5ecdd5c9a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7546825811929280183, guid: cd9e753ae586326438deffd5ecdd5c9a, type: 3}
       propertyPath: m_Name
       value: Pallet Variation 02
