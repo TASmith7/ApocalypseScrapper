@@ -99,6 +99,7 @@ public class gameManager : MonoBehaviour
         {
             StartCoroutine(SplashScreen());
         }
+
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
