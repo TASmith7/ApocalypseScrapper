@@ -17,6 +17,7 @@ public class playerAudioManager : MonoBehaviour
     public AudioSource outOfBreathAudioSource;
     public AudioSource footstepAudioSource;
     public AudioSource takeDamageAudioSource;
+    public AudioSource shieldBreakAudioSource;
 
     // audio clips (the actual sound)
     [Header("----- Clips -----")]
@@ -28,6 +29,7 @@ public class playerAudioManager : MonoBehaviour
     public AudioClip outOfBreathAudio;
     public AudioClip[] footstepAudio;
     public AudioClip[] takeDamageAudio;
+    public AudioClip shieldBreakAudio;
 
     [Header("----- Volume -----")]
     [Range(0f, 1.0f)][SerializeField] float jetpackThrustVolume;
@@ -38,6 +40,7 @@ public class playerAudioManager : MonoBehaviour
     [Range(0f, 1.0f)][SerializeField] float outOfBreathVolume;
     [Range(0f, 1.0f)][SerializeField] float footstepAudioVolume;
     [Range(0f, 1.0f)][SerializeField] public float takeDamageAudioVolume;
+    [Range(0f, 1.0f)][SerializeField] public float shieldBreakAudioVolume;
 
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float jetpackThrustPitch;
@@ -64,6 +67,7 @@ public class playerAudioManager : MonoBehaviour
         outOfBreathAudioSource = gameObject.AddComponent<AudioSource>();
         footstepAudioSource = gameObject.AddComponent<AudioSource>();
         takeDamageAudioSource = gameObject.AddComponent<AudioSource>();
+        shieldBreakAudioSource = gameObject.AddComponent<AudioSource>();
 
 
 
@@ -74,6 +78,7 @@ public class playerAudioManager : MonoBehaviour
         objectSalvagedAudioSource.clip = objectSalvagedAudio;
         jetpackPowerDownAudioSource.clip = jetpackPowerDownAudio;
         outOfBreathAudioSource.clip = outOfBreathAudio;
+        shieldBreakAudioSource.clip = shieldBreakAudio;
 
 
 
@@ -114,7 +119,11 @@ public class playerAudioManager : MonoBehaviour
 
         takeDamageAudioSource.playOnAwake = false;
         takeDamageAudioSource.loop = false;
-        takeDamageAudioSource.volume = footstepAudioVolume;
+        takeDamageAudioSource.volume = takeDamageAudioVolume;
+
+        shieldBreakAudioSource.playOnAwake = false;
+        shieldBreakAudioSource.loop = false;
+        shieldBreakAudioSource.volume = shieldBreakAudioVolume;
     }
 
     public void PauseAllAudio()
@@ -127,6 +136,7 @@ public class playerAudioManager : MonoBehaviour
         outOfBreathAudioSource.Pause();
         takeDamageAudioSource.Pause();
         footstepAudioSource.Pause();
+        shieldBreakAudioSource.Pause();
     }
 
    

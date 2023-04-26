@@ -506,7 +506,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             shieldValue = 0;
             HP -= overflow;
 
-            //insert shieldbreak audio here
+            // play shield breaking audio
+            if (!playerAudioManager.instance.shieldBreakAudioSource.isPlaying)
+            {
+                playerAudioManager.instance.shieldBreakAudioSource.Play();
+            }
 
             //if (shielded)
             //    StartCoroutine(ShieldCoolDown());

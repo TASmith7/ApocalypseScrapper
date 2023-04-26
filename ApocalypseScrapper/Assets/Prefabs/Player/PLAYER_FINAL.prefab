@@ -1999,6 +1999,7 @@ MonoBehaviour:
   outOfBreathAudioSource: {fileID: 0}
   footstepAudioSource: {fileID: 0}
   takeDamageAudioSource: {fileID: 0}
+  shieldBreakAudioSource: {fileID: 0}
   jetpackThrustAudio: {fileID: 8300000, guid: 24f20a94ef175c340823e0a07918e522, type: 3}
   gunShotAudio: {fileID: 8300000, guid: d5bc61ff5074df74082c4cde0b6fd037, type: 3}
   salvagingAudio: {fileID: 8300000, guid: 183b19c0308d08e408ae94e4975ddc8a, type: 3}
@@ -2016,6 +2017,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dd5de749fe4d8714eabcca999f209969, type: 3}
   - {fileID: 8300000, guid: 3cdfde2afe12a8b40b1f3780dc5f71b9, type: 3}
   - {fileID: 8300000, guid: e60af8099e12c1043b900e49df15ebb8, type: 3}
+  shieldBreakAudio: {fileID: 8300000, guid: dc10b13c5d073074b9254932ec396d7c, type: 3}
   jetpackThrustVolume: 0.298
   gunAudioVolume: 0.66
   salvagingAudioVolume: 1
@@ -2024,6 +2026,7 @@ MonoBehaviour:
   outOfBreathVolume: 0.227
   footstepAudioVolume: 0.5
   takeDamageAudioVolume: 0.65
+  shieldBreakAudioVolume: 0.35
   jetpackThrustPitch: 1.5
   gunAudioPitch: 1
   salvagingAudioPitch: 1
@@ -2081,7 +2084,7 @@ MonoBehaviour:
   shielded: 0
   shieldValue: 0
   shieldMax: 0
-  shieldCD: 5
+  shieldCD: 0
   shieldRate: 0
   walkBobSpeed: 12
   walkBobAmount: 0.05
