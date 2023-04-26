@@ -291,6 +291,33 @@ public class gameManager : MonoBehaviour
 
     public void NextLevel()
     {
+        instance.playerScript.SavePlayerStats();
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Lvl 1":
+                SceneManager.LoadScene("Lvl 2");
+                break;
+
+            case "Lvl 2":
+                SceneManager.LoadScene("Lvl 3");
+                break;
+
+            case "Lvl 3":
+                SceneManager.LoadScene("Boss Lvl");
+                break;
+
+            case "Boss Lvl":
+                WinGame();
+                break;
+
+            default:
+                Debug.Log("Level failed to load");
+                break;
+        }
+    }
+
+    public void WinGame()
+    {
 
     }
 }
