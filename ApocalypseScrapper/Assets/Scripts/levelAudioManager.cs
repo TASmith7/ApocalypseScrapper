@@ -11,6 +11,9 @@ public class levelAudioManager : MonoBehaviour
     [Header("----- Sources -----")]
     public AudioSource musicAudioSource;
     public AudioSource whiteNoiseAudioSource;
+    public AudioSource buttonClickAudioSource;
+    public AudioSource pauseMenuAudioSource;
+    public AudioSource buttonHoverAudioSource;
 
     // audio clips (the actual sound)
     [Header("----- Clips -----")]
@@ -19,18 +22,29 @@ public class levelAudioManager : MonoBehaviour
     public AudioClip lvl3MusicAudio;
     public AudioClip bossLvlMusicAudio;
     public AudioClip whiteNoiseAudio;
+    public AudioClip buttonClickAudio;
+    public AudioClip pauseMenuAudio;
+    public AudioClip buttonHoverAudio;
 
 
     [Header("----- Volume -----")]
     [Range(0f, 1.0f)][SerializeField] float musicVolume;
     [Range(0f, 1.0f)][SerializeField] float whiteNoiseVolume;
+    [Range(0f, 1.0f)][SerializeField] float buttonClickVolume;
+    [Range(0f, 1.0f)][SerializeField] float pauseMenuVolume;
+    [Range(0f, 1.0f)][SerializeField] float buttonHoverVolume;
 
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float musicPitch;
-
+    [Range(0f, 3.0f)][SerializeField] float buttonClickPitch;
+    
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+
     }
 
     // Start is called before the first frame update
@@ -39,9 +53,15 @@ public class levelAudioManager : MonoBehaviour
         // creating all audio sources for our level
         musicAudioSource = gameObject.AddComponent<AudioSource>();
         whiteNoiseAudioSource = gameObject.AddComponent<AudioSource>();
+        buttonClickAudioSource = gameObject.AddComponent<AudioSource>();
+        pauseMenuAudioSource = gameObject.AddComponent<AudioSource>();
+        buttonHoverAudioSource = gameObject.AddComponent<AudioSource>();
 
         // assigning each audio sources clip (the actual sound that it makes)
         whiteNoiseAudioSource.clip = whiteNoiseAudio;
+        buttonClickAudioSource.clip = buttonClickAudio;
+        pauseMenuAudioSource.clip = pauseMenuAudio;
+        buttonHoverAudioSource.clip = buttonHoverAudio;
 
         // setting each audio sources components
         musicAudioSource.volume = musicVolume;
@@ -53,8 +73,19 @@ public class levelAudioManager : MonoBehaviour
         whiteNoiseAudioSource.playOnAwake = true;
         whiteNoiseAudioSource.loop = true;
 
+        buttonClickAudioSource.volume = buttonClickVolume;
+        buttonClickAudioSource.pitch = buttonClickPitch;
+        buttonClickAudioSource.playOnAwake = false;
+
+        buttonHoverAudioSource.volume = buttonHoverVolume;
+        buttonHoverAudioSource.playOnAwake = false;
+
+        pauseMenuAudioSource.volume = pauseMenuVolume;
+        pauseMenuAudioSource.playOnAwake = false;
+
+
         // setting our music based on which scene we're in
-        if(gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 1"))
+        if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
             musicAudioSource.clip = lvl1MusicAudio;
         }
@@ -94,5 +125,15 @@ public class levelAudioManager : MonoBehaviour
     {
         musicAudioSource.Play();
         whiteNoiseAudioSource.Play();
+    }
+
+    public void PlayButtonClickAudio()
+    {
+        buttonClickAudioSource.Play();
+    }
+
+    public void PlayButtonHoverAudio()
+    {
+        buttonHoverAudioSource.Play();
     }
 }
