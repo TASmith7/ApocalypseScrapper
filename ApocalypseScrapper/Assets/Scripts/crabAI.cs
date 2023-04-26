@@ -112,10 +112,9 @@ public class crabAI : MonoBehaviour, IDamage
     }
     IEnumerator shoot()
     {
-        
         isShooting = true;
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
-        // crabAudioManager.instance.crabBiteAudioSource.Play();
+        crabAudioSource.PlayOneShot(biteAudioClip[UnityEngine.Random.Range(0, biteAudioClip.Length)]);
         bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
         anim.SetTrigger("Shoot");
         yield return new WaitForSeconds(shootRate);
