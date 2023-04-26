@@ -31,6 +31,8 @@ public class globalSceneControl : MonoBehaviour
     public int   _MSshieldValue = 0;
     public int _MSshieldMax = 0;
     public int   _MSshieldCD = 5;
+    public int _MSshieldRate = 1;
+
     public int _MSplayerTotalScore = 0;
     public int _MSplayerBonus = 0;
 
@@ -59,6 +61,7 @@ public class globalSceneControl : MonoBehaviour
     public int   shieldValue = 0;
     public int shieldMax = 0;
     public int   shieldCD = 5;
+    public int shieldRate;
 
     public int playerTotalScore = 0;
     public int playerBonus = 0;
@@ -104,7 +107,8 @@ public class globalSceneControl : MonoBehaviour
             shieldValue = _MSshieldValue;
             shieldMax = _MSshieldMax;
             shieldCD = _MSshieldCD;
-            
+            shieldRate = _MSshieldRate;
+
             playerTotalScore = _MSplayerTotalScore;
             playerBonus = _MSplayerBonus;
 
