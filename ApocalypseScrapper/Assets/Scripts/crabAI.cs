@@ -109,11 +109,12 @@ public class crabAI : MonoBehaviour, IDamage
     }
     IEnumerator shoot()
     {
-        anim.SetTrigger("Shoot");
+        
         isShooting = true;
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
-        crabAudioManager.instance.crabBiteAudioSource.Play();
+        // crabAudioManager.instance.crabBiteAudioSource.Play();
         bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+        anim.SetTrigger("Shoot");
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
