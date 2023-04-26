@@ -126,6 +126,8 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
+            levelAudioManager.instance.pauseMenuAudioSource.Play();
+
             isPaused = !isPaused;
             activeMenu = pauseMenu;
             pauseMenu.SetActive(isPaused);
@@ -181,7 +183,7 @@ public class gameManager : MonoBehaviour
     {
         PauseState();
         activeMenu = loseMenu;
-        activeMenu.SetActive(true);
+        activeMenu.SetActive(true); 
     }
 
     public void TurnOffJetpackUI()
@@ -288,6 +290,33 @@ public class gameManager : MonoBehaviour
     }
 
     public void NextLevel()
+    {
+        instance.playerScript.SavePlayerStats();
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Lvl 1":
+                SceneManager.LoadScene("Lvl 2");
+                break;
+
+            case "Lvl 2":
+                SceneManager.LoadScene("Lvl 3");
+                break;
+
+            case "Lvl 3":
+                SceneManager.LoadScene("Boss Lvl");
+                break;
+
+            case "Boss Lvl":
+                WinGame();
+                break;
+
+            default:
+                Debug.Log("Level failed to load");
+                break;
+        }
+    }
+
+    public void WinGame()
     {
 
     }
