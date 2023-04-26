@@ -56,8 +56,11 @@ MonoBehaviour:
   pauseMenuAudio: {fileID: 8300000, guid: 8750c9d8b5c4c4241989c7fd69885436, type: 3}
   VOIntro: {fileID: 8300000, guid: 2f4e4ecb30164d440a7c31ce90d01bc6, type: 3}
   VOPlayerDead: {fileID: 8300000, guid: 50d843c410e1bc64f99202adeb4e571d, type: 3}
+  VOLvl2Intro: {fileID: 8300000, guid: aa7258eb05e6686448cd3460e3267f0d, type: 3}
+  VOLvl3Intro: {fileID: 8300000, guid: 9bbdd66a00aa9834fa89418bc0a7cc14, type: 3}
+  VOBossLvlIntro: {fileID: 8300000, guid: 380a22eb8a61a24488a405809f4b4aa3, type: 3}
   musicVolume: 0.75
   whiteNoiseVolume: 1
   pauseMenuVolume: 0.6
-  voiceOverVolume: 1
+  voiceOverVolume: 5
   musicPitch: 1
