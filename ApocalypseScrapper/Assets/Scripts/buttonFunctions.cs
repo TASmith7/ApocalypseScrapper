@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class buttonFunctions : MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class buttonFunctions : MonoBehaviour
     }
     public void RestartLevel()
     {
-        gameManager.instance.UnpauseState();
         gameManager.instance.playerScript.RestartLevel();
+        gameManager.instance.UnpauseState();
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
 
     }

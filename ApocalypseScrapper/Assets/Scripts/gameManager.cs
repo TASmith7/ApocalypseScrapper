@@ -126,6 +126,8 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
+            levelAudioManager.instance.pauseMenuAudioSource.Play();
+
             isPaused = !isPaused;
             activeMenu = pauseMenu;
             pauseMenu.SetActive(isPaused);
@@ -181,7 +183,7 @@ public class gameManager : MonoBehaviour
     {
         PauseState();
         activeMenu = loseMenu;
-        activeMenu.SetActive(true);
+        activeMenu.SetActive(true); 
     }
 
     public void TurnOffJetpackUI()
