@@ -242,7 +242,7 @@ public class roamDrone : MonoBehaviour, IDamage
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
 
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
         else
         {
