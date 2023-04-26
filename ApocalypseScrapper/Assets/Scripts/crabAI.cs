@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -98,7 +98,11 @@ public class crabAI : MonoBehaviour, IDamage
 
             if (playerInRange)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
+                if(agent.gameObject.CompareTag("Minion"))
+                {
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+                }
+                    
                 CanSeePlayer();
 
             }
@@ -152,7 +156,10 @@ public class crabAI : MonoBehaviour, IDamage
             if (hit.collider.CompareTag("Player") && angleToPlayer <= sightLine)
             {
 
-
+                if (!agent.gameObject.CompareTag("Minion"))
+                {
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+                }
 
                 // this gets the enemy to move in the direction of our player
 
