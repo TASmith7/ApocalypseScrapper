@@ -193,7 +193,10 @@ public class crabAI : MonoBehaviour, IDamage
             }
 
             // cue death audio
-            crabAudioSource.PlayOneShot(dieAudioClip, 0.4f);
+            if(agent.isActiveAndEnabled)
+            {
+                crabAudioSource.PlayOneShot(dieAudioClip, 0.4f);
+            }
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
 
@@ -202,9 +205,12 @@ public class crabAI : MonoBehaviour, IDamage
         {
             anim.SetTrigger("Damage");
             agent.SetDestination(gameManager.instance.player.transform.position);
-            
-            // cue damage audio
-            crabAudioSource.PlayOneShot(damageAudioClip[UnityEngine.Random.Range(0, damageAudioClip.Length)], 0.4f);
+
+            if (agent.isActiveAndEnabled)
+            {
+                // cue damage audio
+                crabAudioSource.PlayOneShot(damageAudioClip[UnityEngine.Random.Range(0, damageAudioClip.Length)], 0.4f);
+            }
 
             //agent.stoppingDistance = 0;
             StartCoroutine(Hurt());
