@@ -26,7 +26,7 @@ public class globalSceneControl : MonoBehaviour
     public float _MSshootRate = 0.33f;
     public int   _MSshootDistance = 100;
 
-    public bool  _MSsalvDetector = false;
+    public bool  _MSsalvDetector = true;
     public bool  _MSshielded = false;
     public int   _MSshieldValue = 0;
     public int _MSshieldMax = 0;

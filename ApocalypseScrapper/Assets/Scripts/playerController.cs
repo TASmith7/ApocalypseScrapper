@@ -41,6 +41,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] int salvageRange;
     [Range(0.1f, 1)][SerializeField] float salvageRate;
     bool isSalvaging;
+    [SerializeField] public float totalLevelSalvage;
 
 
     [Header("----- Animation Stats -----")]
@@ -106,6 +107,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         playerFloorScore = 0;
         
         SpawnPlayer();
+        StartCoroutine(FindTotalLevelSalvage());
         
         jetpackPowerDownAudioPlayed = false;
         outOfBreathAudioPlayed = false;
@@ -628,7 +630,30 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         Debug.Log("Player stats loaded.");
     }
 
+    IEnumerator FindTotalLevelSalvage()
+    {
+        yield return new WaitForSeconds(1);
+        GameObject[] enemList = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemList)
+        {
+            if (enemy.name.Contains("Drone"))
+            {
+                totalLevelSalvage += 150;
+            }
 
+            if (enemy.name.Contains("turret"))
+            {
+                totalLevelSalvage += 400;
+            }
+        }
+
+        GameObject[] salvList = GameObject.FindGameObjectsWithTag("Salvage");
+        Debug.Log("Salvagable objects: " + salvList.Length);
+        foreach (GameObject obj in salvList)
+        {
+            totalLevelSalvage += obj.GetComponent<salvageableObject>().salvageValue;
+        }
+    }
 
     void CueFootstepAudio()
     {

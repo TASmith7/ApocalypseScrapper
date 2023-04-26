@@ -64,6 +64,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI playerSalvageScoreText;
     
     public GameObject salvagingObjectParent;
+    
 
     //[Header("-----Turret Stuff-----")]
     
@@ -93,8 +94,8 @@ public class gameManager : MonoBehaviour
         
         timeScaleOriginal = Time.timeScale;
         bossHealthBarParent.SetActive(false);
-        
     }
+
     IEnumerator SplashScreen()
     {
         
@@ -229,7 +230,13 @@ public class gameManager : MonoBehaviour
 
     public void UpdateSalvageScore(int score)
     {
-        playerSalvageScoreText.text = score.ToString();
+        if (playerScript.salvDetector == true)
+        {
+            salvageCollected.text = score.ToString() + " of " + playerScript.totalLevelSalvage;
+        }
+        else salvageCollected.text = score.ToString();
+        
+        
         amtSalvaged = score;
     }
     public void PlayerWins()
@@ -320,6 +327,8 @@ public class gameManager : MonoBehaviour
     {
 
     }
+
+
 }
 
 
