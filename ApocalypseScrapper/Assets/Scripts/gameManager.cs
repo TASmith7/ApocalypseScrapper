@@ -38,6 +38,9 @@ public class gameManager : MonoBehaviour
     public int amtSalvaged;
     public TextMeshProUGUI grade;
     public char playerGrade;
+    public GameObject totalScoreLabel;
+    public GameObject playerBonusLabel;
+    public GameObject floorScoreLabel;
 
     [Header("----- Boss Health Bar -----")]
     public Image bossHealthBar;
@@ -98,29 +101,33 @@ public class gameManager : MonoBehaviour
 
     IEnumerator SplashScreen()
     {
-        
-        
-            activeMenu = RSGSplash;
-            RSGSplash.SetActive(true);
-            yield return new WaitForSeconds(3);
+        // turning off all UI while splash screen is displayed
+        TurnOffJetpackUI();
+        TurnOffShieldUI();
+        TurnOffStaminaUI();
+        totalScoreLabel.SetActive(false);
+        playerBonusLabel.SetActive(false);
+        floorScoreLabel.SetActive(false);
+
+        activeMenu = RSGSplash;
+        RSGSplash.SetActive(true);
+        yield return new WaitForSeconds(3);
         RSGSplash.SetActive(false);
-        activeMenu =ApocSplash;
+        activeMenu = ApocSplash;
         ApocSplash.SetActive(true);
-             yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3);
         ApocSplash.SetActive(false);
-            activeMenu=ControlsSplash;
+        activeMenu = ControlsSplash;
         ControlsSplash.SetActive(true);
-             yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3);
         ControlsSplash.SetActive(false);
 
-             
+        activeMenu = null;
 
-             
-            
-            activeMenu = null;
-        
-        
-
+        // turning back on salvage UI (all other UI is cued to turn back on elsewhere)
+        totalScoreLabel.SetActive(true);
+        playerBonusLabel.SetActive(true);
+        floorScoreLabel.SetActive(true);
     }
     // Update is called once per frame
     void Update()
