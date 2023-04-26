@@ -16,6 +16,7 @@ public class playerAudioManager : MonoBehaviour
     public AudioSource jetpackPowerDownAudioSource;
     public AudioSource outOfBreathAudioSource;
     public AudioSource footstepAudioSource;
+    public AudioSource takeDamageAudioSource;
 
     // audio clips (the actual sound)
     [Header("----- Clips -----")]
@@ -26,6 +27,7 @@ public class playerAudioManager : MonoBehaviour
     public AudioClip jetpackPowerDownAudio;
     public AudioClip outOfBreathAudio;
     public AudioClip[] footstepAudio;
+    public AudioClip[] takeDamageAudio;
 
     [Header("----- Volume -----")]
     [Range(0f, 1.0f)][SerializeField] float jetpackThrustVolume;
@@ -35,6 +37,7 @@ public class playerAudioManager : MonoBehaviour
     [Range(0f, 1.0f)][SerializeField] float jetpackPowerDownVolume;
     [Range(0f, 1.0f)][SerializeField] float outOfBreathVolume;
     [Range(0f, 1.0f)][SerializeField] float footstepAudioVolume;
+    [Range(0f, 1.0f)][SerializeField] public float takeDamageAudioVolume;
 
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float jetpackThrustPitch;
@@ -60,6 +63,7 @@ public class playerAudioManager : MonoBehaviour
         jetpackPowerDownAudioSource = gameObject.AddComponent<AudioSource>();
         outOfBreathAudioSource = gameObject.AddComponent<AudioSource>();
         footstepAudioSource = gameObject.AddComponent<AudioSource>();
+        takeDamageAudioSource = gameObject.AddComponent<AudioSource>();
 
         // assigning each audio sources clip (the actual sound that it makes)
         jetpackAudioSource.clip = jetpackThrustAudio;
@@ -103,12 +107,10 @@ public class playerAudioManager : MonoBehaviour
         footstepAudioSource.loop = false;
         footstepAudioSource.volume = footstepAudioVolume;
         footstepAudioSource.pitch = footstepAudioPitch;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
+        takeDamageAudioSource.playOnAwake = false;
+        takeDamageAudioSource.loop = false;
+        takeDamageAudioSource.volume = footstepAudioVolume;
     }
 
     public void PauseAllAudio()
@@ -119,5 +121,7 @@ public class playerAudioManager : MonoBehaviour
         objectSalvagedAudioSource.Pause();
         gunAudioSource.Pause();
         outOfBreathAudioSource.Pause();
+        takeDamageAudioSource.Pause();
+        footstepAudioSource.Pause();
     }
 }

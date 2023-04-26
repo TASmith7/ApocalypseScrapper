@@ -1998,6 +1998,7 @@ MonoBehaviour:
   jetpackPowerDownAudioSource: {fileID: 0}
   outOfBreathAudioSource: {fileID: 0}
   footstepAudioSource: {fileID: 0}
+  takeDamageAudioSource: {fileID: 0}
   jetpackThrustAudio: {fileID: 8300000, guid: 24f20a94ef175c340823e0a07918e522, type: 3}
   gunShotAudio: {fileID: 8300000, guid: d5bc61ff5074df74082c4cde0b6fd037, type: 3}
   salvagingAudio: {fileID: 8300000, guid: 183b19c0308d08e408ae94e4975ddc8a, type: 3}
@@ -2010,6 +2011,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e1a34816cd27c04e9c45295d4bf07a0, type: 3}
   - {fileID: 8300000, guid: 791086e7bbe66f246a94bbbfad5af0f7, type: 3}
   - {fileID: 8300000, guid: 4784a6f23c944eb4f90338da62d1a25d, type: 3}
+  takeDamageAudio:
+  - {fileID: 8300000, guid: 72293707ca0e9a148bbc5cb47bddb521, type: 3}
+  - {fileID: 8300000, guid: dd5de749fe4d8714eabcca999f209969, type: 3}
+  - {fileID: 8300000, guid: 3cdfde2afe12a8b40b1f3780dc5f71b9, type: 3}
+  - {fileID: 8300000, guid: e60af8099e12c1043b900e49df15ebb8, type: 3}
   jetpackThrustVolume: 0.298
   gunAudioVolume: 0.66
   salvagingAudioVolume: 1
@@ -2017,6 +2023,7 @@ MonoBehaviour:
   jetpackPowerDownVolume: 0.79
   outOfBreathVolume: 0.227
   footstepAudioVolume: 0.5
+  takeDamageAudioVolume: 0.65
   jetpackThrustPitch: 1.5
   gunAudioPitch: 1
   salvagingAudioPitch: 1
@@ -2057,7 +2064,7 @@ MonoBehaviour:
   sprintSpeed: 15
   staminaDrain: 0.296
   stmainaRefillRate: 0.078
-  timeToTurnOffStaminaBar: 2
+  timeToTurnOffStaminaBar: 5
   walkSpeed: 7
   isSprinting: 0
   gunList: []
