@@ -65,6 +65,8 @@ public class playerAudioManager : MonoBehaviour
         footstepAudioSource = gameObject.AddComponent<AudioSource>();
         takeDamageAudioSource = gameObject.AddComponent<AudioSource>();
 
+
+
         // assigning each audio sources clip (the actual sound that it makes)
         jetpackAudioSource.clip = jetpackThrustAudio;
         gunAudioSource.clip = gunShotAudio;
@@ -72,6 +74,8 @@ public class playerAudioManager : MonoBehaviour
         objectSalvagedAudioSource.clip = objectSalvagedAudio;
         jetpackPowerDownAudioSource.clip = jetpackPowerDownAudio;
         outOfBreathAudioSource.clip = outOfBreathAudio;
+
+
 
         // setting each audio sources components
         jetpackAudioSource.playOnAwake = false;
@@ -124,4 +128,6 @@ public class playerAudioManager : MonoBehaviour
         takeDamageAudioSource.Pause();
         footstepAudioSource.Pause();
     }
+
+   
 }

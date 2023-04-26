@@ -1162,8 +1162,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-        m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+      - m_Target: {fileID: 5760779665548096624}
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: PlayButtonClickAudio
         m_Mode: 1
         m_Arguments:
@@ -1203,8 +1203,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-          m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+        - m_Target: {fileID: 5760779665548096624}
+          m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
           m_MethodName: PlayButtonHoverAudio
           m_Mode: 1
           m_Arguments:
@@ -1716,8 +1716,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+      - m_Target: {fileID: 5760779665548096624}
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: PlayButtonClickAudio
         m_Mode: 1
         m_Arguments:
@@ -1745,8 +1745,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+        - m_Target: {fileID: 5760779665548096624}
+          m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
           m_MethodName: PlayButtonHoverAudio
           m_Mode: 1
           m_Arguments:
@@ -3321,6 +3321,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f42a808609f644089c47da9371110a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonHoverAudioSource: {fileID: 0}
+  buttonClickAudioSource: {fileID: 0}
+  buttonHoverAudio: {fileID: 8300000, guid: cbc57e7cc5b335746a99c664ca59204f, type: 3}
+  buttonClickAudio: {fileID: 8300000, guid: d3a3bf36650d8124a8e214e612e0e998, type: 3}
+  buttonHoverVolume: 1
+  buttonClickVolume: 0.7
+  buttonClickPitch: 0.8
 --- !u!114 &2517184956811140910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3493,8 +3500,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-        m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+      - m_Target: {fileID: 5760779665548096624}
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: PlayButtonClickAudio
         m_Mode: 1
         m_Arguments:
@@ -3534,8 +3541,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-          m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+        - m_Target: {fileID: 5760779665548096624}
+          m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
           m_MethodName: PlayButtonHoverAudio
           m_Mode: 1
           m_Arguments:
@@ -4181,8 +4188,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-          m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+        - m_Target: {fileID: 5760779665548096624}
+          m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
           m_MethodName: PlayButtonHoverAudio
           m_Mode: 1
           m_Arguments:
@@ -4892,8 +4899,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-        m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+      - m_Target: {fileID: 5760779665548096624}
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: PlayButtonClickAudio
         m_Mode: 1
         m_Arguments:
@@ -4921,8 +4928,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-          m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+        - m_Target: {fileID: 5760779665548096624}
+          m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
           m_MethodName: PlayButtonHoverAudio
           m_Mode: 1
           m_Arguments:
@@ -5530,8 +5537,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-          m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+        - m_Target: {fileID: 5760779665548096624}
+          m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
           m_MethodName: PlayButtonHoverAudio
           m_Mode: 1
           m_Arguments:
@@ -6234,8 +6241,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-          m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+        - m_Target: {fileID: 5760779665548096624}
+          m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
           m_MethodName: PlayButtonHoverAudio
           m_Mode: 1
           m_Arguments:
@@ -6921,8 +6928,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-        m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+      - m_Target: {fileID: 5760779665548096624}
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: PlayButtonClickAudio
         m_Mode: 1
         m_Arguments:
@@ -6950,8 +6957,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-          m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+        - m_Target: {fileID: 5760779665548096624}
+          m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
           m_MethodName: PlayButtonHoverAudio
           m_Mode: 1
           m_Arguments:
@@ -7232,8 +7239,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-        m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+      - m_Target: {fileID: 5760779665548096624}
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: PlayButtonClickAudio
         m_Mode: 1
         m_Arguments:
@@ -7261,8 +7268,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-          m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+        - m_Target: {fileID: 5760779665548096624}
+          m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
           m_MethodName: PlayButtonHoverAudio
           m_Mode: 1
           m_Arguments:
@@ -7814,8 +7821,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-        m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+      - m_Target: {fileID: 5760779665548096624}
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: PlayButtonClickAudio
         m_Mode: 1
         m_Arguments:
@@ -7843,8 +7850,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
-          m_TargetAssemblyTypeName: levelAudioManager, Assembly-CSharp
+        - m_Target: {fileID: 5760779665548096624}
+          m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
           m_MethodName: PlayButtonHoverAudio
           m_Mode: 1
           m_Arguments:
