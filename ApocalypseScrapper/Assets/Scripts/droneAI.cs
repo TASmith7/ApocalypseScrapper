@@ -15,6 +15,8 @@ public class droneAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] SphereCollider droneDetection;
     [SerializeField] AnimationClip wakeAnimation;
+    [SerializeField] CapsuleCollider capsuleCollider;
+
 
     [Header("----- Enemy Stats -----")]
     // Health Points
@@ -75,6 +77,7 @@ public class droneAI : MonoBehaviour, IDamage
 
         if (agent.isActiveAndEnabled)
         {
+
             if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && anim.GetCurrentAnimatorStateInfo(0).IsName(wakeAnimation.name))
             {
                 canShoot = true;
@@ -147,6 +150,7 @@ public class droneAI : MonoBehaviour, IDamage
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     FacePlayer();
+                    
                 }
 
                 if (!isShooting)
@@ -202,7 +206,7 @@ public class droneAI : MonoBehaviour, IDamage
     {
         HP -= (int)dmg;
         //rb.AddForce(playerDir * 5f, ForceMode.Impulse);
-
+        anim.SetBool("Hurt", true);
         if (agent.isActiveAndEnabled)
         {
             agent.SetDestination(gameManager.instance.player.transform.position);
@@ -272,10 +276,5 @@ public class droneAI : MonoBehaviour, IDamage
      
         transform.LookAt(gameManager.instance.player.transform.position);
 
-    }
-
-    private void MoveCollider(Vector3 newPosition)
-    {
-        transform.position = newPosition;
     }
 }
