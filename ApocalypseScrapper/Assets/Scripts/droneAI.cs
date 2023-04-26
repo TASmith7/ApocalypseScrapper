@@ -13,6 +13,7 @@ public class droneAI : MonoBehaviour, IDamage
     // allows us to cast the ray from anywhere but we choice to cast it from the head
     [SerializeField] Transform headPos;
     [SerializeField] Transform shootPos;
+    [SerializeField] SphereCollider droneDetection;
 
     [Header("----- Enemy Stats -----")]
     // Health Points
@@ -21,6 +22,9 @@ public class droneAI : MonoBehaviour, IDamage
     [SerializeField] int sightAngle;
     [SerializeField] int roamPauseTime;
     [SerializeField] int roamDist;
+    [Range(10, 200)][SerializeField] float droneSleep; //(sleep)
+    [Range(10, 200)][SerializeField] float droneActive; //(active)
+    public float droneRadius; //(radius)
 
     //[Header("----- Enemy Gun -----")]
 
@@ -48,6 +52,8 @@ public class droneAI : MonoBehaviour, IDamage
     {
         //gameManager.instance.updatGameGoal(1);
         // sets the stoppingDistOrig to the current stopping distance
+
+        droneRadius = droneSleep;
         stoppingDistOrig = agent.stoppingDistance;
         startingPos = transform.position;
 
@@ -157,6 +163,7 @@ public class droneAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
+            droneDetection.radius = droneActive;
             playerInRange = true;
         }
     }

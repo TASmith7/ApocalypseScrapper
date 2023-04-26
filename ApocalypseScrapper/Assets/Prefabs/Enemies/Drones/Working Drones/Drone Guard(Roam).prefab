@@ -239,11 +239,15 @@ MonoBehaviour:
   anim: {fileID: 9071683539460623911}
   headPos: {fileID: 8774146109650410277}
   shootPos: {fileID: 8774146109650410277}
-  HP: 100
+  droneDetection: {fileID: 0}
+  HP: 6
   playerFaceSpeed: 5
   sightAngle: 180
   roamPauseTime: 1
   roamDist: 20
+  droneSleep: 10
+  droneActive: 200
+  droneRadius: 10
   shootDamage: 1
   shootRate: 2
   shootDist: 50

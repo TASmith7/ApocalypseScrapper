@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1514580609689459488, guid: a0d135b74f70b6f4ea0c46082035ba7c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.859999
+      value: -5.49
       objectReference: {fileID: 0}
     - target: {fileID: 1514580609689459488, guid: a0d135b74f70b6f4ea0c46082035ba7c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1118,6 +1118,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1195415760139927943, guid: 43057a7f1b1cd47438b7b98fdf3fb6f2, type: 3}
   m_PrefabInstance: {fileID: 328587205}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &330625114 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 3701739066329770387, guid: f2170157340b87248bba7dab76d693b4, type: 3}
+  m_PrefabInstance: {fileID: 3727525053700258847}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &349608942
 PrefabInstance:
@@ -3627,6 +3632,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1554161176115921225, guid: b5602e145d926564f97f8069f2488821, type: 3}
   m_PrefabInstance: {fileID: 1506667163}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &1523497936 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 8774146109267952452, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+  m_PrefabInstance: {fileID: 8774146108715536545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1534266332 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2517184957286297180, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
@@ -4734,34 +4744,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1309011078159000692, guid: 578c255348a9da344b14801841c11373, type: 3}
-      propertyPath: m_Radius
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1309011078159000695, guid: 578c255348a9da344b14801841c11373, type: 3}
-      propertyPath: m_Radius
-      value: 0.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 1309011078159000695, guid: 578c255348a9da344b14801841c11373, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1309011078159000697, guid: 578c255348a9da344b14801841c11373, type: 3}
-      propertyPath: HP
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1309011078159000697, guid: 578c255348a9da344b14801841c11373, type: 3}
-      propertyPath: sightAngle
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 1309011078159000703, guid: 578c255348a9da344b14801841c11373, type: 3}
-      propertyPath: m_Radius
-      value: 0.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 1309011078159000703, guid: 578c255348a9da344b14801841c11373, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5682082307837556350, guid: 578c255348a9da344b14801841c11373, type: 3}
       propertyPath: m_Name
       value: Drone Guard(Sleeping)
@@ -5296,6 +5278,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3701739066329770384, guid: f2170157340b87248bba7dab76d693b4, type: 3}
+      propertyPath: droneSleep
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701739066329770384, guid: f2170157340b87248bba7dab76d693b4, type: 3}
+      propertyPath: droneActive
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701739066329770384, guid: f2170157340b87248bba7dab76d693b4, type: 3}
+      propertyPath: droneRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701739066329770384, guid: f2170157340b87248bba7dab76d693b4, type: 3}
+      propertyPath: droneDetection
+      value: 
+      objectReference: {fileID: 330625114}
     - target: {fileID: 4550768415314073724, guid: f2170157340b87248bba7dab76d693b4, type: 3}
       propertyPath: m_Name
       value: Robot_Guardian
@@ -5401,5 +5399,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drone Guard(Roam)
       objectReference: {fileID: 0}
+    - target: {fileID: 8774146109267952457, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: droneDetection
+      value: 
+      objectReference: {fileID: 1523497936}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
