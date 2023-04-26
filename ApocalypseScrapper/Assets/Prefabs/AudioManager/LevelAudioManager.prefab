@@ -46,21 +46,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicAudioSource: {fileID: 0}
   whiteNoiseAudioSource: {fileID: 0}
-  buttonClickAudioSource: {fileID: 0}
   pauseMenuAudioSource: {fileID: 0}
-  buttonHoverAudioSource: {fileID: 0}
+  voiceOverAudioSource: {fileID: 0}
   lvl1MusicAudio: {fileID: 8300000, guid: 9f0691ea94d15a4438ec0d0a7bff35a1, type: 3}
   lvl2MusicAudio: {fileID: 8300000, guid: 95ca4e1d42e222745b765263cfc1be5a, type: 3}
   lvl3MusicAudio: {fileID: 8300000, guid: efb7c5008b73563418fe3dcdf4615c49, type: 3}
   bossLvlMusicAudio: {fileID: 8300000, guid: e6cfa55de0b3ddb41a8c36fcafb567e5, type: 3}
   whiteNoiseAudio: {fileID: 8300000, guid: ae13e0298ae0b9d48b8a084c796fe683, type: 3}
-  buttonClickAudio: {fileID: 8300000, guid: d3a3bf36650d8124a8e214e612e0e998, type: 3}
   pauseMenuAudio: {fileID: 8300000, guid: 8750c9d8b5c4c4241989c7fd69885436, type: 3}
-  buttonHoverAudio: {fileID: 8300000, guid: cbc57e7cc5b335746a99c664ca59204f, type: 3}
+  VOIntro: {fileID: 8300000, guid: 2f4e4ecb30164d440a7c31ce90d01bc6, type: 3}
   musicVolume: 0.75
   whiteNoiseVolume: 1
-  buttonClickVolume: 0.5
   pauseMenuVolume: 0.6
-  buttonHoverVolume: 1
+  voiceOverVolume: 1
   musicPitch: 1
-  buttonClickPitch: 0.8
