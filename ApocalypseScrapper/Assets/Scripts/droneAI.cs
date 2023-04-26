@@ -53,6 +53,7 @@ public class droneAI : MonoBehaviour, IDamage
     private float wakeAnimationLength;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -183,6 +184,7 @@ public class droneAI : MonoBehaviour, IDamage
         {
             droneDetection.radius = droneActive;
             playerInRange = true;
+            
         }
     }
     // When the player leaves the enemies range this is what the enemy will do
@@ -270,5 +272,10 @@ public class droneAI : MonoBehaviour, IDamage
      
         transform.LookAt(gameManager.instance.player.transform.position);
 
+    }
+
+    private void MoveCollider(Vector3 newPosition)
+    {
+        transform.position = newPosition;
     }
 }
