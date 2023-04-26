@@ -243,7 +243,7 @@ public class crabAI : MonoBehaviour, IDamage
         // once we reach 0, play audio for footsteps
         if (timeBetweenFootsteps <= 0)
         {
-            crabAudioSource.PlayOneShot(stepAudioClip[UnityEngine.Random.Range(0, stepAudioClip.Length)]);
+            crabAudioSource.PlayOneShot(stepAudioClip[UnityEngine.Random.Range(0, stepAudioClip.Length)], 0.4f);
             timeBetweenFootsteps = timeBetweenFootstepsOrig;
         }
 
