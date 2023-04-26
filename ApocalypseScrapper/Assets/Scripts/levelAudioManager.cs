@@ -23,6 +23,7 @@ public class levelAudioManager : MonoBehaviour
     public AudioClip whiteNoiseAudio;
     public AudioClip pauseMenuAudio;
     public AudioClip VOIntro;
+    public AudioClip VOPlayerDead;
 
 
     [Header("----- Volume -----")]

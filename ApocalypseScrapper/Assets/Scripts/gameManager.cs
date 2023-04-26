@@ -241,6 +241,7 @@ public class gameManager : MonoBehaviour
     public void PlayerDead()
     {
         PauseState();
+        levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOPlayerDead);
         activeMenu = loseMenu;
         activeMenu.SetActive(true); 
     }
