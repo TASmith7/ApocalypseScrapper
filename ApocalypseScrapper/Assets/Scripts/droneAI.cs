@@ -16,7 +16,7 @@ public class droneAI : MonoBehaviour, IDamage
 
     [Header("----- Enemy Stats -----")]
     // Health Points
-    [SerializeField] int HP;
+    [SerializeField] float HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int sightAngle;
     [SerializeField] int roamPauseTime;
@@ -61,7 +61,7 @@ public class droneAI : MonoBehaviour, IDamage
         {
             if (playerInRange && CanSeePlayer())
             {
-                anim.SetBool("playerInRange", true);
+               anim.SetBool("playerInRange", true);
             }
             // anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
             //agent.SetDestination(gameManager.instance.player.transform.position);
@@ -173,9 +173,13 @@ public class droneAI : MonoBehaviour, IDamage
 
     public void TakeDamage(float dmg)
     {
-        HP -= (int)dmg;
+        HP -= dmg;
         //rb.AddForce(playerDir * 5f, ForceMode.Impulse);
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        //if (agent.isActiveAndEnabled)
+        //{
+            agent.SetDestination(gameManager.instance.player.transform.position);
+
+        //}
         agent.stoppingDistance = 0;
 
 
