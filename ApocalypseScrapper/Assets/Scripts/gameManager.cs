@@ -192,6 +192,16 @@ public class gameManager : MonoBehaviour
         jetpackFuelBarParent.SetActive(false);
     }
 
+    public void TurnOnShieldUI()
+    {
+        shieldFillBarParent.SetActive(true);
+    }
+
+    public void TurnOffShieldUI()
+    {
+        shieldFillBarParent.SetActive(false);
+    }
+
     public void TurnOnJetpackUI()
     {
         jetpackFuelBarParent.SetActive(true);

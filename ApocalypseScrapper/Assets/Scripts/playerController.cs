@@ -85,7 +85,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] public bool shielded;
     [SerializeField] public int shieldValue;
     [SerializeField] public int shieldMax;
-    [SerializeField] public int shieldCD;
+    [SerializeField] public int shieldCD; 
+    [SerializeField] public int shieldRate;
+    bool shieldOnCD;
+    bool isShieldRegen;
+    float tookDamage;
 
     [Header("----- Headbob Settings -----")]
     [SerializeField] float walkBobSpeed;
@@ -124,9 +128,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
         horizontalSpeed = horizontalVelocity.magnitude;
 
-
-        // if (salvDetector)
-
         if (gameManager.instance.activeMenu == null)
         {
             anim.SetFloat("Speed", Input.GetAxis("Vertical"));
@@ -139,7 +140,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             //}
             //SelectGun();
             Movement();
-
+            Shielding();
             CueHeadBobMovement();
             CueFootstepAudio();
 
@@ -373,6 +374,23 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
+    void Shielding()
+    {
+        
+        if (shielded)
+        {
+            gameManager.instance.TurnOnShieldUI();
+
+            if (shieldValue != shieldMax && !isShieldRegen)
+            {
+                StartCoroutine(ShieldFill());
+            }
+        }
+        else gameManager.instance.TurnOffShieldUI();
+
+
+    }
+
     void CueHeadBobMovement()
     {
         if (!controller.isGrounded) return;
@@ -472,7 +490,37 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     public void TakeDamage(float amount)
     {
-        HP -= (int)amount;
+        if (shieldValue >= (int)amount)
+        {
+            
+            //StopCoroutine(ShieldCoolDown());
+            shieldValue -= (int)amount;
+            //if (shielded)
+            //    StartCoroutine(ShieldCoolDown());
+        }
+        else if (shieldValue <= (int)amount && shieldValue > 0)
+        {
+            
+            //StopCoroutine(ShieldCoolDown());
+            int overflow = (int)amount - shieldValue;
+            shieldValue = 0;
+            HP -= overflow;
+
+            //insert shieldbreak audio here
+
+            //if (shielded)
+            //    StartCoroutine(ShieldCoolDown());
+        }
+        else
+        {
+            
+            //StopCoroutine(ShieldCoolDown());
+            HP -= (int)amount;
+            //if(shielded)
+                //StartCoroutine(ShieldCoolDown());
+        }
+
+        tookDamage = Time.time;
         PlayerUIUpdate();
 
         if(!playerAudioManager.instance.takeDamageAudioSource.isPlaying)
@@ -487,10 +535,34 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         }
     }
 
+    //IEnumerator ShieldCoolDown()
+    //{
+    //    shieldOnCD = true;
+    //    yield return new WaitForSeconds(shieldCD);
+    //    shieldOnCD = false;
+    //}
+
+    IEnumerator ShieldFill()
+    {
+        isShieldRegen = true;
+        while (shieldValue < shieldMax && Time.time > (tookDamage + shieldCD))
+        {
+            yield return new WaitForSeconds(1);
+            shieldValue += shieldRate;
+            PlayerUIUpdate ();
+            
+        }
+        isShieldRegen = false;
+    }
+
     void PlayerUIUpdate()
     {
         // updating the players health bar
         gameManager.instance.HPBar.fillAmount = (float)HP / (float)HPMax;
+        if (shielded)
+        {
+            gameManager.instance.shieldFillBar.fillAmount = (float)shieldValue / (float)shieldMax;
+        }
     }
 
     IEnumerator ReduceJetpackFuelUI()
@@ -559,10 +631,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         // this bool will be helpful for future development of thrusting capabilities. It currently has no effective use
         isSprinting = true;
 
-        // stopping the refill coroutine while thrusting
+        // stopping the refill coroutine while sprinting
         StopCoroutine(RefillStaminaUI());
 
-        // reducing the jetpack fuel bar
+        // reducing the stamina bar
         gameManager.instance.staminaFillBar.fillAmount -= staminaDrain * Time.deltaTime;
 
         yield return new WaitForSeconds(0.25f);
@@ -576,7 +648,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         if (!isSprinting)
         {
-            // refilling the jetpack fuel bar
+            // refilling the stamina bar
             gameManager.instance.staminaFillBar.fillAmount += staminaDrain * Time.deltaTime;
         }
     }
@@ -603,6 +675,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             globalSceneControl.Instance.shielded = shielded;
             globalSceneControl.Instance.shieldValue = shieldValue;
             globalSceneControl.Instance.shieldCD = shieldCD;
+            globalSceneControl.Instance.shieldRate = shieldRate;
+
+
             globalSceneControl.Instance.playerTotalScore = playerTotalScore;
             globalSceneControl.Instance.playerBonus = playerBonus;
 
@@ -630,6 +705,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             shieldValue = globalSceneControl.Instance.shieldValue;
             shieldMax = globalSceneControl.Instance.shieldMax;
             shieldCD = globalSceneControl.Instance.shieldCD;
+            shieldRate = globalSceneControl.Instance.shieldRate;
             playerTotalScore = globalSceneControl.Instance.playerTotalScore;
             playerBonus = globalSceneControl.Instance.playerBonus;
         }
