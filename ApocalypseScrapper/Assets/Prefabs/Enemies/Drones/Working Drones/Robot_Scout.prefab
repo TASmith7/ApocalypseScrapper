@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 544669210173730445}
   - component: {fileID: 544669210173730446}
   - component: {fileID: 544669210173730434}
-  - component: {fileID: 544669210173730435}
+  - component: {fileID: 1643047967}
   m_Layer: 6
   m_Name: Robot_Scout
   m_TagString: Enemy
@@ -101,7 +101,7 @@ NavMeshAgent:
   m_BaseOffset: -0.65
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &544669210173730435
+--- !u!114 &1643047967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,28 +110,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 543176919177025765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 547110a96b8ed8b4b9e919fbdf94e555, type: 3}
+  m_Script: {fileID: 11500000, guid: 59b7efb027abc094caab7723fc530575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 566171539965862299}
   agent: {fileID: 544669210173730434}
-  anim: {fileID: 544669210254957125}
+  anim: {fileID: 1607955298}
   headPos: {fileID: 544669209355920940}
   shootPos: {fileID: 544669209355920940}
   droneDetection: {fileID: 544669210173730446}
-  HP: 15
+  HP: 6
   playerFaceSpeed: 5
   sightAngle: 180
   roamPauseTime: 1
-  roamDist: 0
+  roamDist: 20
   droneSleep: 10
   droneActive: 200
   droneRadius: 10
-  shootDamage: 5
+  shootDamage: 1
   shootRate: 2
   shootDist: 50
   bullet: {fileID: 1366219754717700336, guid: b82f1ff65d11256438556a8a2d35466f, type: 3}
-  bulletSpeed: 50
+  bulletSpeed: 5
   drop: {fileID: 0}
 --- !u!1 &544669209355920931
 GameObject:
@@ -221,37 +221,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 614ae078bc54b724ba88e5ad5fcf173f, type: 3}
+--- !u!95 &1607955298 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 544669210254957125, guid: 614ae078bc54b724ba88e5ad5fcf173f, type: 3}
+  m_PrefabInstance: {fileID: 544669209267906855}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &540460986186753173 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4248125747219890, guid: 614ae078bc54b724ba88e5ad5fcf173f, type: 3}
   m_PrefabInstance: {fileID: 544669209267906855}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &543176919726872263 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1914547237781472, guid: 614ae078bc54b724ba88e5ad5fcf173f, type: 3}
-  m_PrefabInstance: {fileID: 544669209267906855}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &544669210254957125
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 543176919726872263}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f10c47cab8a3a414897c964210a07fb6, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!23 &566171539965862299 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 23784388623354044, guid: 614ae078bc54b724ba88e5ad5fcf173f, type: 3}

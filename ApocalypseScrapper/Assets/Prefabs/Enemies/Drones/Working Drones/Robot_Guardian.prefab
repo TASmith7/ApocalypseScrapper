@@ -40,7 +40,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3723012920287919673}
-  - component: {fileID: 3701739066329770384}
   - component: {fileID: 3732581277699909351}
   - component: {fileID: 3741948480526080313}
   - component: {fileID: 3701739066329770389}
@@ -48,6 +47,7 @@ GameObject:
   - component: {fileID: 3701739066329770385}
   - component: {fileID: 3701739066329770386}
   - component: {fileID: 3701739066329770387}
+  - component: {fileID: 2034605518}
   m_Layer: 6
   m_Name: Robot_Guardian (1)
   m_TagString: Enemy
@@ -71,38 +71,6 @@ Transform:
   m_Father: {fileID: 4554248382975194966}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3701739066329770384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3728610521101734163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 547110a96b8ed8b4b9e919fbdf94e555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 3741948480526080313}
-  agent: {fileID: 4549735176250218761}
-  anim: {fileID: 3701739066329770388}
-  headPos: {fileID: 3727525052595804889}
-  shootPos: {fileID: 3727525052595804889}
-  droneDetection: {fileID: 3701739066329770387}
-  HP: 20
-  playerFaceSpeed: 5
-  sightAngle: 180
-  roamPauseTime: 1
-  roamDist: 20
-  droneSleep: 10
-  droneActive: 200
-  droneRadius: 10
-  shootDamage: 10
-  shootRate: 2
-  shootDist: 50
-  bullet: {fileID: 1366219754717700336, guid: b82f1ff65d11256438556a8a2d35466f, type: 3}
-  bulletSpeed: 50
-  drop: {fileID: 0}
 --- !u!33 &3732581277699909351
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -229,6 +197,38 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 10
   m_Center: {x: 0, y: 1.1744165, z: -0.028170496}
+--- !u!114 &2034605518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3728610521101734163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b7efb027abc094caab7723fc530575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 3741948480526080313}
+  agent: {fileID: 4549735176250218761}
+  anim: {fileID: 3701739066329770388}
+  headPos: {fileID: 3727525052595804889}
+  shootPos: {fileID: 3727525052595804889}
+  droneDetection: {fileID: 3701739066329770387}
+  HP: 6
+  playerFaceSpeed: 5
+  sightAngle: 180
+  roamPauseTime: 1
+  roamDist: 20
+  droneSleep: 10
+  droneActive: 200
+  droneRadius: 10
+  shootDamage: 1
+  shootRate: 2
+  shootDist: 50
+  bullet: {fileID: 1366219754717700336, guid: b82f1ff65d11256438556a8a2d35466f, type: 3}
+  bulletSpeed: 50
+  drop: {fileID: 0}
 --- !u!1 &4550768415314073724
 GameObject:
   m_ObjectHideFlags: 0
