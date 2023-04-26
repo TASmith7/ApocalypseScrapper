@@ -14,6 +14,7 @@ public class droneAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Transform shootPos;
     [SerializeField] SphereCollider droneDetection;
+    [SerializeField] AnimationClip wakeAnimation;
 
     [Header("----- Enemy Stats -----")]
     // Health Points
@@ -47,6 +48,11 @@ public class droneAI : MonoBehaviour, IDamage
     bool destinationChosen;
     Vector3 startingPos;
 
+    //Animation 
+    private bool canShoot = false;
+    private float wakeAnimationLength;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +63,9 @@ public class droneAI : MonoBehaviour, IDamage
         stoppingDistOrig = agent.stoppingDistance;
         startingPos = transform.position;
 
+        //getting the length of the wake animation clip
+        wakeAnimationLength = wakeAnimation.length;
+
     }
 
     // Update is called once per frame
@@ -65,6 +74,10 @@ public class droneAI : MonoBehaviour, IDamage
 
         if (agent.isActiveAndEnabled)
         {
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && anim.GetCurrentAnimatorStateInfo(0).IsName(wakeAnimation.name))
+            {
+                canShoot = true;
+            }
             if (playerInRange && CanSeePlayer())
             {
                 anim.SetBool("playerInRange", true);
@@ -72,18 +85,18 @@ public class droneAI : MonoBehaviour, IDamage
             // anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
             //agent.SetDestination(gameManager.instance.player.transform.position);
             // only start following and shooting if player is in range of enemy
+
+            //Checking if the wake clip is finished
+
             if (playerInRange && !CanSeePlayer())
             {
                 StartCoroutine(Roam());
-                
-
             }
             else if (agent.destination != gameManager.instance.player.transform.position)
             {
                 StartCoroutine(Roam());
             }
             
-
         }
     }
 
@@ -137,7 +150,10 @@ public class droneAI : MonoBehaviour, IDamage
 
                 if (!isShooting)
                 {
-                    StartCoroutine(Shoot());
+                    if(canShoot)
+                    {
+                        StartCoroutine(Shoot());
+                    }
                 }
 
                 return true;
@@ -148,8 +164,10 @@ public class droneAI : MonoBehaviour, IDamage
 
     IEnumerator Shoot()
     {
+
         isShooting = true;
         //anim.SetTrigger("Shoot");
+        Debug.Log("AI shot!");
         // to reference a bullet
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
         // to give bullet a velocity                     this transform would need to be the camera (Camera.main.transform.forward) for player to shoot bullets

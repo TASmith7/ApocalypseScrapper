@@ -15,6 +15,13 @@ public class crabAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] SphereCollider crabWakeColl;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource crabAudioSource;
+    [SerializeField] AudioClip[] biteAudioClip;
+    [SerializeField] AudioClip[] damageAudioClip;
+    [SerializeField] AudioClip[] stepAudioClip;
+    [SerializeField] AudioClip dieAudioClip;
+
     [Header("-----Crab Stats-----")]
     [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
@@ -26,7 +33,8 @@ public class crabAI : MonoBehaviour, IDamage
     [Range(10, 1000)][SerializeField] float radiusActive;
     public float activeRadius;
     Vector3 playerDir;
-    private float timeBetweenFootsteps;
+    [Range(0.05f, 1)][SerializeField] float timeBetweenFootsteps;
+    float timeBetweenFootstepsOrig;
     
 
     [Header("-----Bite Stats-----")]
@@ -73,7 +81,9 @@ public class crabAI : MonoBehaviour, IDamage
         activeRadius = radiusSleep;
         agent.stoppingDistance = shootDistance;
         stoppingDistanceOrig = agent.stoppingDistance;
-       startPos = transform.position;
+        startPos = transform.position;
+        timeBetweenFootstepsOrig = timeBetweenFootsteps;
+        
     }
 
     // Update is called once per frame
@@ -82,8 +92,6 @@ public class crabAI : MonoBehaviour, IDamage
 
         if (agent.isActiveAndEnabled)
         {
-
-            
 
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
             anim.SetFloat("Speed", speed);
@@ -99,20 +107,15 @@ public class crabAI : MonoBehaviour, IDamage
                 StartCoroutine(Roam());
             }
 
-
-
-
-
-
+            CueFootstepAudio();
         }
 
     }
     IEnumerator shoot()
     {
-        
         isShooting = true;
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
-        // crabAudioManager.instance.crabBiteAudioSource.Play();
+        crabAudioSource.PlayOneShot(biteAudioClip[UnityEngine.Random.Range(0, biteAudioClip.Length)]);
         bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
         anim.SetTrigger("Shoot");
         yield return new WaitForSeconds(shootRate);
@@ -128,6 +131,7 @@ public class crabAI : MonoBehaviour, IDamage
 
         }
     }
+
     bool CanSeePlayer()
     {
 
@@ -188,6 +192,8 @@ public class crabAI : MonoBehaviour, IDamage
                 Instantiate(drop, transform.position, drop.transform.rotation);
             }
 
+            // cue death audio
+            crabAudioSource.PlayOneShot(dieAudioClip, 0.4f);
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
 
@@ -196,6 +202,10 @@ public class crabAI : MonoBehaviour, IDamage
         {
             anim.SetTrigger("Damage");
             agent.SetDestination(gameManager.instance.player.transform.position);
+            
+            // cue damage audio
+            crabAudioSource.PlayOneShot(damageAudioClip[UnityEngine.Random.Range(0, damageAudioClip.Length)], 0.4f);
+
             //agent.stoppingDistance = 0;
             StartCoroutine(Hurt());
         }
@@ -224,21 +234,11 @@ public class crabAI : MonoBehaviour, IDamage
         // reducing the time between footsteps each frame
         timeBetweenFootsteps -= Time.deltaTime;
 
-        // once we reach 
+        // once we reach 0, play audio for footsteps
         if (timeBetweenFootsteps <= 0)
         {
-
-
-            if (gameManager.instance.staminaFillBar.fillAmount > 0)
-            {
-                timeBetweenFootsteps = 2;
-                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[UnityEngine.Random.Range(0, playerAudioManager.instance.footstepAudio.Length - 1)]);
-            }
-            else
-            {
-                timeBetweenFootsteps = 2;
-                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[UnityEngine.Random.Range(0, playerAudioManager.instance.footstepAudio.Length - 1)]);
-            }
+            crabAudioSource.PlayOneShot(stepAudioClip[UnityEngine.Random.Range(0, stepAudioClip.Length)]);
+            timeBetweenFootsteps = timeBetweenFootstepsOrig;
         }
 
     }

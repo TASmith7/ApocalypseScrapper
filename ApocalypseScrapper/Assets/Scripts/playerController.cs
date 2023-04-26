@@ -475,6 +475,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         HP -= (int)amount;
         PlayerUIUpdate();
 
+        if(!playerAudioManager.instance.takeDamageAudioSource.isPlaying)
+        {
+            playerAudioManager.instance.takeDamageAudioSource.PlayOneShot(playerAudioManager.instance.takeDamageAudio[Random.Range
+                (0, playerAudioManager.instance.takeDamageAudio.Length)], playerAudioManager.instance.takeDamageAudioVolume);
+        }
+
         if (HP <= 0)
         {
             gameManager.instance.PlayerDead();
@@ -671,12 +677,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             if(gameManager.instance.staminaFillBar.fillAmount > 0  && isSprinting)
             {
                 timeBetweenFootsteps = runningFootstepRate; 
-                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length - 1)]);
+                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length)]);
             }
             else
             {
                 timeBetweenFootsteps = walkingFootstepRate;
-                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length - 1)]);
+                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length)]);
             }
         }
         
