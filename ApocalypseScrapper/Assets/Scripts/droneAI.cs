@@ -16,6 +16,12 @@ public class droneAI : MonoBehaviour, IDamage
     [SerializeField] SphereCollider droneDetection;
     [SerializeField] AnimationClip wakeAnimation;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource droneAudSource;
+    [SerializeField] AudioClip hoverAudio;
+    [SerializeField] AudioClip shotAudio;
+    [SerializeField] AudioClip damageAudio;
+
 
     [Header("----- Enemy Stats -----")]
     // Health Points
@@ -48,10 +54,12 @@ public class droneAI : MonoBehaviour, IDamage
     float stoppingDistOrig;
     bool destinationChosen;
     Vector3 startingPos;
+    private bool isAwake = false;
 
     //Animation 
     private bool canShoot = false;
     private float wakeAnimationLength;
+
 
 
 
@@ -99,8 +107,14 @@ public class droneAI : MonoBehaviour, IDamage
             {
                 StartCoroutine(Roam());
             }
+
+            if(!droneAudSource.isPlaying && isAwake)
+            {
+                droneAudSource.PlayOneShot(hoverAudio);
+            }
             
         }
+
     }
 
     // (Roaming)
@@ -168,7 +182,6 @@ public class droneAI : MonoBehaviour, IDamage
 
     IEnumerator Shoot()
     {
-
         isShooting = true;
         //anim.SetTrigger("Shoot");
         Debug.Log("AI shot!");
@@ -187,7 +200,7 @@ public class droneAI : MonoBehaviour, IDamage
         {
             droneDetection.radius = droneActive;
             playerInRange = true;
-            
+            isAwake = true;
         }
     }
     // When the player leaves the enemies range this is what the enemy will do
