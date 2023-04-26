@@ -24,6 +24,9 @@ public class levelAudioManager : MonoBehaviour
     public AudioClip pauseMenuAudio;
     public AudioClip VOIntro;
     public AudioClip VOPlayerDead;
+    public AudioClip VOLvl2Intro;
+    public AudioClip VOLvl3Intro;
+    public AudioClip VOVBossLvlIntro;
 
 
     [Header("----- Volume -----")]
@@ -78,14 +81,17 @@ public class levelAudioManager : MonoBehaviour
         else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 2"))
         {
             musicAudioSource.clip = lvl2MusicAudio;
+            voiceOverAudioSource.PlayOneShot(VOLvl2Intro);
         }
         else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 3"))
         {
             musicAudioSource.clip = lvl3MusicAudio;
+            voiceOverAudioSource.PlayOneShot(VOLvl2Intro);
         }
         else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
             musicAudioSource.clip = bossLvlMusicAudio;
+            voiceOverAudioSource.PlayOneShot(VOLvl2Intro);
         }
 
         // playing sounds that should play on awake - for some reason they don't play unless I call their play method

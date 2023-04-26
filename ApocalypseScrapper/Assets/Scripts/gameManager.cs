@@ -99,6 +99,7 @@ public class gameManager : MonoBehaviour
         {
             StartCoroutine(SplashScreen());
         }
+
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
@@ -240,6 +241,10 @@ public class gameManager : MonoBehaviour
     public void PlayerDead()
     {
         PauseState();
+
+        // stop any voice over audio that might already be playing
+        levelAudioManager.instance.voiceOverAudioSource.Stop();
+
         levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOPlayerDead);
         activeMenu = loseMenu;
         activeMenu.SetActive(true); 
