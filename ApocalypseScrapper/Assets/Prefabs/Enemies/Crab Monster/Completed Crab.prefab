@@ -1529,13 +1529,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a3a28f21735b49c45be5091376c28055, type: 3}
   - {fileID: 8300000, guid: 34c9426a1c3f14e49a7987e2429d2f2d, type: 3}
   - {fileID: 8300000, guid: 55bd48198b9064c4498e593361b750d2, type: 3}
-  damageAudioClip: []
+  damageAudioClip:
+  - {fileID: 8300000, guid: 06be309fde76f30468a8a82b18729f69, type: 3}
+  - {fileID: 8300000, guid: ff960e7bd312a294da42fba83ca31733, type: 3}
+  - {fileID: 8300000, guid: c903a6286a5714a4596e50e9c2fb346c, type: 3}
   stepAudioClip:
   - {fileID: 8300000, guid: 648d0e464bca1ac49a4e0854291c0eb4, type: 3}
   - {fileID: 8300000, guid: 99707fabf3c618e4a8f9f9b72fb47fd0, type: 3}
   - {fileID: 8300000, guid: a064bd20beb32ed428dc996f648fd282, type: 3}
   - {fileID: 8300000, guid: 37366b8ceb805454eb380caee2aa3b24, type: 3}
   - {fileID: 8300000, guid: 9d596443e4db4c548b82a93f3dbdd00c, type: 3}
+  dieAudioClip: {fileID: 8300000, guid: 5c384bd48aece764eadbcd6d36f76341, type: 3}
   HP: 10
   playerFaceSpeed: 1200
   sightLine: 360

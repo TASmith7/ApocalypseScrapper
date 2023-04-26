@@ -20,6 +20,7 @@ public class crabAI : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] biteAudioClip;
     [SerializeField] AudioClip[] damageAudioClip;
     [SerializeField] AudioClip[] stepAudioClip;
+    [SerializeField] AudioClip dieAudioClip;
 
     [Header("-----Crab Stats-----")]
     [SerializeField] int HP;
@@ -130,6 +131,7 @@ public class crabAI : MonoBehaviour, IDamage
 
         }
     }
+
     bool CanSeePlayer()
     {
 
@@ -190,6 +192,8 @@ public class crabAI : MonoBehaviour, IDamage
                 Instantiate(drop, transform.position, drop.transform.rotation);
             }
 
+            // cue death audio
+            crabAudioSource.PlayOneShot(dieAudioClip, 0.4f);
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
 
@@ -198,6 +202,10 @@ public class crabAI : MonoBehaviour, IDamage
         {
             anim.SetTrigger("Damage");
             agent.SetDestination(gameManager.instance.player.transform.position);
+            
+            // cue damage audio
+            crabAudioSource.PlayOneShot(damageAudioClip[UnityEngine.Random.Range(0, damageAudioClip.Length)], 0.4f);
+
             //agent.stoppingDistance = 0;
             StartCoroutine(Hurt());
         }
