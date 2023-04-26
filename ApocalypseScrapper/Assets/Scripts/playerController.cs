@@ -99,11 +99,14 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private void Start()
     {
 
+        SetPlayerStats();
         playerSpeed = walkSpeed;
+        
         PlayerUIUpdate();
         playerFloorScore = 0;
-        SetPlayerStats();
+        
         SpawnPlayer();
+        
         jetpackPowerDownAudioPlayed = false;
         outOfBreathAudioPlayed = false;
         timeBetweenFootsteps = walkingFootstepRate;
@@ -590,6 +593,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         globalSceneControl.Instance.shieldCD = shieldCD;
         globalSceneControl.Instance.playerTotalScore = playerTotalScore;
         globalSceneControl.Instance.playerBonus = playerBonus;
+
+        Debug.Log("Player Stats Saved");
     }
 
 
@@ -615,7 +620,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             playerTotalScore = globalSceneControl.Instance.playerTotalScore;
             playerBonus = globalSceneControl.Instance.playerBonus;
         }
+        Debug.Log("Player stats loaded.");
     }
+
+
 
     void CueFootstepAudio()
     {
