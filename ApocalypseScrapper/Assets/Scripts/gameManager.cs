@@ -177,11 +177,10 @@ public class gameManager : MonoBehaviour
             skipTransmissionText.SetActive(false);
         }
 
-        // if we press enter while listening to a VO, stop the VO
+        // if we press T while listening to a VO, stop the VO
         if(Input.GetButtonDown("Skip") && levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
             levelAudioManager.instance.voiceOverAudioSource.Stop();
-            Debug.Log("Enter Pressed!");
         }
 
     }
