@@ -13,14 +13,18 @@ public class droneAI : MonoBehaviour, IDamage
     // allows us to cast the ray from anywhere but we choice to cast it from the head
     [SerializeField] Transform headPos;
     [SerializeField] Transform shootPos;
+    [SerializeField] SphereCollider droneDetection;
 
     [Header("----- Enemy Stats -----")]
     // Health Points
-    [SerializeField] float HP;
+    [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int sightAngle;
     [SerializeField] int roamPauseTime;
     [SerializeField] int roamDist;
+    [Range(10, 200)][SerializeField] float droneSleep; //(sleep)
+    [Range(10, 200)][SerializeField] float droneActive; //(active)
+    public float droneRadius; //(radius)
 
     //[Header("----- Enemy Gun -----")]
 
@@ -48,6 +52,8 @@ public class droneAI : MonoBehaviour, IDamage
     {
         //gameManager.instance.updatGameGoal(1);
         // sets the stoppingDistOrig to the current stopping distance
+
+        droneRadius = droneSleep;
         stoppingDistOrig = agent.stoppingDistance;
         startingPos = transform.position;
 
@@ -61,7 +67,7 @@ public class droneAI : MonoBehaviour, IDamage
         {
             if (playerInRange && CanSeePlayer())
             {
-               anim.SetBool("playerInRange", true);
+                anim.SetBool("playerInRange", true);
             }
             // anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
             //agent.SetDestination(gameManager.instance.player.transform.position);
@@ -106,7 +112,7 @@ public class droneAI : MonoBehaviour, IDamage
     bool CanSeePlayer()
     {
         //player direction
-        playerDir = (gameManager.instance.player.transform.position - headPos.position);
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + 1 - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward); // but i had change transform.forward to headPos.forward and enemy was only able to see me on his left side and my right
         //draws the raysfrom enemy to player
         Debug.DrawRay(headPos.position, playerDir, Color.red);
@@ -157,6 +163,7 @@ public class droneAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
+            droneDetection.radius = droneActive;
             playerInRange = true;
         }
     }
@@ -173,15 +180,15 @@ public class droneAI : MonoBehaviour, IDamage
 
     public void TakeDamage(float dmg)
     {
-        HP -= dmg;
+        HP -= (int)dmg;
         //rb.AddForce(playerDir * 5f, ForceMode.Impulse);
-        //if (agent.isActiveAndEnabled)
-        //{
+
+        if (agent.isActiveAndEnabled)
+        {
             agent.SetDestination(gameManager.instance.player.transform.position);
+        }
 
-        //}
         agent.stoppingDistance = 0;
-
 
         StartCoroutine(FlashColor());
 
@@ -242,14 +249,8 @@ public class droneAI : MonoBehaviour, IDamage
     // fixes Bug that enemy does not turn when not moving
     void FacePlayer()
     {
-        ////call when condition is meet 
-        ////dont want the enemy to take in the consideration of the players y
-        //// Quaternion rot = Quaternion.LookRotation(playerDir);
-        //// may need the y consideration for flying players
-        ////Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
-        ////transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
-        //Quaternion lookRotation = Quaternion.LookRotation(playerDir, Vector3.up);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * playerFaceSpeed);
+     
         transform.LookAt(gameManager.instance.player.transform.position);
+
     }
 }

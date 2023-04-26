@@ -805,7 +805,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.6
+  m_Radius: 0.55
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
@@ -819,7 +819,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
+  m_Radius: 0.55
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
@@ -862,11 +862,15 @@ MonoBehaviour:
   anim: {fileID: 1588528049709787415}
   headPos: {fileID: 1309011078615383061}
   shootPos: {fileID: 1309011078615383061}
-  HP: 100
+  droneDetection: {fileID: 1309011078159000692}
+  HP: 6
   playerFaceSpeed: 5
   sightAngle: 180
   roamPauseTime: 1
   roamDist: 0
+  droneSleep: 10
+  droneActive: 200
+  droneRadius: 10
   shootDamage: 1
   shootRate: 2
   shootDist: 50
