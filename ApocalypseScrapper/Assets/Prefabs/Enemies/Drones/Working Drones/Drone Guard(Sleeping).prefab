@@ -271,7 +271,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037311012779611242}
-  m_LocalRotation: {x: 0.00000005759185, y: 0.00000011097694, z: 0.7071068, w: 0.7071067}
+  m_LocalRotation: {x: 0.000000057591862, y: 0.00000011097694, z: 0.7071069, w: 0.7071067}
   m_LocalPosition: {x: -0.0020918965, y: -0.0012752294, z: 0.000018019504}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -279,7 +279,7 @@ Transform:
   - {fileID: 672112429455588922}
   m_Father: {fileID: 427900182838064931}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -0.000004325715, y: 0.00001365887, z: 90.00001}
+  m_LocalEulerAnglesHint: {x: -0.000004325713, y: 0.00001365887, z: 90.00001}
 --- !u!1 &1138071553901385094
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,8 +395,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217331987322604901}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 1.68, z: 0}
+  m_LocalRotation: {x: -0.7069847, y: 0, z: 0, w: 0.70722884}
+  m_LocalPosition: {x: -0, y: 1.5946891, z: 0}
   m_LocalScale: {x: 32.652996, y: 32.652996, z: 32.652996}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -808,7 +808,7 @@ CapsuleCollider:
   m_Radius: 0.34
   m_Height: 0.55
   m_Direction: 1
-  m_Center: {x: 0, y: 1.62, z: 0}
+  m_Center: {x: 0, y: 0.32, z: 0}
 --- !u!195 &1309011078159000694
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -850,7 +850,6 @@ MonoBehaviour:
   shootPos: {fileID: 1309011078615383061}
   droneDetection: {fileID: 1309011078159000692}
   wakeAnimation: {fileID: -4209235661617177664, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
-  capsuleCollider: {fileID: 0}
   HP: 6
   playerFaceSpeed: 5
   sightAngle: 180
@@ -864,7 +863,7 @@ MonoBehaviour:
   shootDist: 50
   bullet: {fileID: 1366219754717700336, guid: b82f1ff65d11256438556a8a2d35466f, type: 3}
   bulletSpeed: 50
-  drop: {fileID: 0}
+  drop: {fileID: 8900562455022253971, guid: 3094b6b8c479cb24384c3208af623446, type: 3}
 --- !u!136 &908186536
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -902,8 +901,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6769046884543861033}
-  m_LocalRotation: {x: 0.7071068, y: -0.00000008429372, z: -0.0000000842937, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: -0.03781467}
+  m_LocalRotation: {x: 0.7069847, y: -0.000000084308276, z: 0.00000008427917, w: 0.70722884}
+  m_LocalPosition: {x: -0, y: 0, z: -0.03781467}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -913,7 +912,7 @@ Transform:
   - {fileID: 8884833693954116035}
   m_Father: {fileID: 4204548354832005368}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 89.98021, y: -0.000013660381, z: 0}
+  m_LocalEulerAnglesHint: {x: 50.56124, y: -134.31387, z: -95.66617}
 --- !u!1 &8183655271938866962
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +967,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8728221123975646896}
-  m_LocalRotation: {x: 0.5000005, y: -0.4999998, z: -0.4999995, w: 0.50000024}
+  m_LocalRotation: {x: 0.5000005, y: -0.49999976, z: -0.4999995, w: 0.50000024}
   m_LocalPosition: {x: -0.000017127868, y: 0.0052973283, z: -0.0002802831}
   m_LocalScale: {x: 0.99999994, y: 0.9999998, z: 0.9999999}
   m_ConstrainProportionsScale: 0
@@ -1000,7 +999,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8904704665095617319}
-  m_LocalRotation: {x: 0.00000008008694, y: 0.00000024865574, z: -0.7071068, w: 0.7071067}
+  m_LocalRotation: {x: 0.00000008008694, y: 0.00000024865577, z: -0.7071069, w: 0.7071067}
   m_LocalPosition: {x: 0.0020829248, y: -0.0012923598, z: 0.000018018583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1008,4 +1007,4 @@ Transform:
   - {fileID: 3608115211619454463}
   m_Father: {fileID: 427900182838064931}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0.000026637514, y: 0.000013658869, z: -90.00001}
+  m_LocalEulerAnglesHint: {x: 0.000026637515, y: 0.000013658869, z: -90.00001}
