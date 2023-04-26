@@ -108,9 +108,16 @@ public class droneAI : MonoBehaviour, IDamage
                 StartCoroutine(Roam());
             }
 
+            // if audio source isn't playing and we are awake, play hover audio
             if(!droneAudSource.isPlaying && isAwake)
             {
                 droneAudSource.PlayOneShot(hoverAudio);
+            }
+
+            // if we pause, stop all drone audio
+            if(gameManager.instance.isPaused)
+            {
+                droneAudSource.Stop();
             }
             
         }
@@ -189,6 +196,7 @@ public class droneAI : MonoBehaviour, IDamage
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
         // to give bullet a velocity                     this transform would need to be the camera (Camera.main.transform.forward) for player to shoot bullets
         bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+        droneAudSource.PlayOneShot(shotAudio);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
@@ -219,6 +227,9 @@ public class droneAI : MonoBehaviour, IDamage
         HP -= (int)dmg;
         //rb.AddForce(playerDir * 5f, ForceMode.Impulse);
         anim.SetBool("Hurt", true);
+
+        droneAudSource.PlayOneShot(damageAudio, 0.75f);
+
         if (agent.isActiveAndEnabled)
         {
             agent.SetDestination(gameManager.instance.player.transform.position);
