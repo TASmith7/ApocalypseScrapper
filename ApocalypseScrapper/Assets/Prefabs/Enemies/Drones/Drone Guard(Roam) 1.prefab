@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 8774146109267952455}
   - component: {fileID: 8774146109267952463}
   - component: {fileID: 8774146109267952454}
-  - component: {fileID: 8774146109267952457}
+  - component: {fileID: 864418579}
   m_Layer: 6
   m_Name: Drone Guard(Roam) 1
   m_TagString: Enemy
@@ -222,7 +222,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8774146109267952457
+--- !u!114 &864418579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2680840266458157390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 547110a96b8ed8b4b9e919fbdf94e555, type: 3}
+  m_Script: {fileID: 11500000, guid: 59b7efb027abc094caab7723fc530575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 259546515870447867}
@@ -239,11 +239,15 @@ MonoBehaviour:
   anim: {fileID: 9071683539460623911}
   headPos: {fileID: 8774146109650410277}
   shootPos: {fileID: 8774146109650410277}
-  HP: 100
+  droneDetection: {fileID: 8774146109267952452}
+  HP: 6
   playerFaceSpeed: 5
   sightAngle: 180
   roamPauseTime: 1
   roamDist: 20
+  droneSleep: 10
+  droneActive: 200
+  droneRadius: 10
   shootDamage: 1
   shootRate: 2
   shootDist: 50
