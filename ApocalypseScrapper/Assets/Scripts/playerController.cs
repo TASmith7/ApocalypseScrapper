@@ -646,12 +646,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             if(gameManager.instance.staminaFillBar.fillAmount > 0  && isSprinting)
             {
                 timeBetweenFootsteps = runningFootstepRate; 
-                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length - 1)]);
+                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length)]);
             }
             else
             {
                 timeBetweenFootsteps = walkingFootstepRate;
-                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length - 1)]);
+                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length)]);
             }
         }
         
