@@ -12,6 +12,7 @@ public class levelAudioManager : MonoBehaviour
     public AudioSource musicAudioSource;
     public AudioSource whiteNoiseAudioSource;
     public AudioSource pauseMenuAudioSource;
+    public AudioSource voiceOverAudioSource;
 
     // audio clips (the actual sound)
     [Header("----- Clips -----")]
@@ -21,12 +22,15 @@ public class levelAudioManager : MonoBehaviour
     public AudioClip bossLvlMusicAudio;
     public AudioClip whiteNoiseAudio;
     public AudioClip pauseMenuAudio;
+    public AudioClip VOIntro;
+    public AudioClip VOPlayerDead;
 
 
     [Header("----- Volume -----")]
     [Range(0f, 1.0f)][SerializeField] float musicVolume;
     [Range(0f, 1.0f)][SerializeField] float whiteNoiseVolume;
     [Range(0f, 1.0f)][SerializeField] float pauseMenuVolume;
+    [Range(0f, 1.0f)][SerializeField] float voiceOverVolume;
 
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float musicPitch;
@@ -47,6 +51,7 @@ public class levelAudioManager : MonoBehaviour
         musicAudioSource = gameObject.AddComponent<AudioSource>();
         whiteNoiseAudioSource = gameObject.AddComponent<AudioSource>();
         pauseMenuAudioSource = gameObject.AddComponent<AudioSource>();
+        voiceOverAudioSource = gameObject.AddComponent<AudioSource>();
 
         // assigning each audio sources clip (the actual sound that it makes)
         whiteNoiseAudioSource.clip = whiteNoiseAudio;

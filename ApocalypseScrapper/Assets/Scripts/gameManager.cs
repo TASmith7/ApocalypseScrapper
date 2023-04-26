@@ -65,8 +65,13 @@ public class gameManager : MonoBehaviour
 
     [Header("----- Score Text Bar -----")]
     public TextMeshProUGUI playerSalvageScoreText;
-    
-    public GameObject salvagingObjectParent;
+
+
+    [Header("----- Incoming Transmission -----")]
+    public GameObject incomingTransmissionText;
+    public GameObject skipTransmissionText;
+
+    //public GameObject salvagingObjectParent;
     
 
     //[Header("-----Turret Stuff-----")]
@@ -79,6 +84,9 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     float timeScaleOriginal;
     public Scene currentScene;
+    bool voWasPlaying;
+
+    AudioClip currentVOPlaying;
 
     void Awake()
     {
@@ -124,6 +132,12 @@ public class gameManager : MonoBehaviour
 
         activeMenu = null;
 
+        if(!levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        {
+            // playing intro voice over
+            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
+        }
+
         // turning back on salvage UI (all other UI is cued to turn back on elsewhere)
         totalScoreLabel.SetActive(true);
         playerBonusLabel.SetActive(true);
@@ -150,6 +164,24 @@ public class gameManager : MonoBehaviour
             }
         }
 
+        // if we are hearing a voice over, cue incoming transmission text
+        if(levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        {
+            incomingTransmissionText.SetActive(true);
+            skipTransmissionText.SetActive(true);
+        }
+        // else turn it off
+        else
+        {
+            incomingTransmissionText.SetActive(false);
+            skipTransmissionText.SetActive(false);
+        }
+
+        // if we press T while listening to a VO, stop the VO
+        if(Input.GetButtonDown("Skip") && levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        {
+            levelAudioManager.instance.voiceOverAudioSource.Stop();
+        }
 
     }
     
@@ -165,6 +197,18 @@ public class gameManager : MonoBehaviour
         playerAudioManager.instance.PauseAllAudio();
         levelAudioManager.instance.PauseAllAudio();
 
+        // if we are playing a voice over, pause when in pause state and set flag to true
+        if(levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        {
+            levelAudioManager.instance.voiceOverAudioSource.Pause();
+            voWasPlaying = true;
+        }
+        // else set flag to false
+        else 
+        {
+            voWasPlaying = false;
+        }
+
     }
 
     public void UnpauseState()
@@ -177,6 +221,12 @@ public class gameManager : MonoBehaviour
         
         // unpausing level audio
         levelAudioManager.instance.UnpauseAllAudio();
+
+        // if we were playing a vo when we paused, resume that vo
+        if(voWasPlaying)
+        {
+            levelAudioManager.instance.voiceOverAudioSource.UnPause();
+        }
     }
 
     public void UpdateGameGoal()
@@ -190,6 +240,7 @@ public class gameManager : MonoBehaviour
     public void PlayerDead()
     {
         PauseState();
+        levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOPlayerDead);
         activeMenu = loseMenu;
         activeMenu.SetActive(true); 
     }
