@@ -104,7 +104,7 @@ public class crabAI : MonoBehaviour, IDamage
             }
             else if(!playerInRange)
             {
-                StartCoroutine(Roam());
+                // StartCoroutine(Roam());
             }
 
             CueFootstepAudio();
