@@ -1119,11 +1119,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1195415760139927943, guid: 43057a7f1b1cd47438b7b98fdf3fb6f2, type: 3}
   m_PrefabInstance: {fileID: 328587205}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &330625114 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 3701739066329770387, guid: f2170157340b87248bba7dab76d693b4, type: 3}
-  m_PrefabInstance: {fileID: 3727525053700258847}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &349608942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5278,22 +5273,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3701739066329770384, guid: f2170157340b87248bba7dab76d693b4, type: 3}
-      propertyPath: droneSleep
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3701739066329770384, guid: f2170157340b87248bba7dab76d693b4, type: 3}
-      propertyPath: droneActive
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 3701739066329770384, guid: f2170157340b87248bba7dab76d693b4, type: 3}
-      propertyPath: droneRadius
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3701739066329770384, guid: f2170157340b87248bba7dab76d693b4, type: 3}
-      propertyPath: droneDetection
-      value: 
-      objectReference: {fileID: 330625114}
     - target: {fileID: 4550768415314073724, guid: f2170157340b87248bba7dab76d693b4, type: 3}
       propertyPath: m_Name
       value: Robot_Guardian
