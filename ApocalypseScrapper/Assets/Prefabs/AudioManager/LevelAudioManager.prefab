@@ -48,16 +48,19 @@ MonoBehaviour:
   whiteNoiseAudioSource: {fileID: 0}
   buttonClickAudioSource: {fileID: 0}
   pauseMenuAudioSource: {fileID: 0}
-  lvl1MusicAudio: {fileID: 8300000, guid: 3a164ba7011ce4b40a6af8b94f8d6f49, type: 3}
-  lvl2MusicAudio: {fileID: 8300000, guid: cbe850162f000fd4fa08111a51a27b22, type: 3}
-  lvl3MusicAudio: {fileID: 8300000, guid: f090be4463b3ab54c9a89a12c0cc0ea0, type: 3}
-  bossLvlMusicAudio: {fileID: 8300000, guid: 36a88c697379aa1429ae115d3b8a454b, type: 3}
+  buttonHoverAudioSource: {fileID: 0}
+  lvl1MusicAudio: {fileID: 8300000, guid: 9f0691ea94d15a4438ec0d0a7bff35a1, type: 3}
+  lvl2MusicAudio: {fileID: 8300000, guid: 95ca4e1d42e222745b765263cfc1be5a, type: 3}
+  lvl3MusicAudio: {fileID: 8300000, guid: efb7c5008b73563418fe3dcdf4615c49, type: 3}
+  bossLvlMusicAudio: {fileID: 8300000, guid: e6cfa55de0b3ddb41a8c36fcafb567e5, type: 3}
   whiteNoiseAudio: {fileID: 8300000, guid: ae13e0298ae0b9d48b8a084c796fe683, type: 3}
   buttonClickAudio: {fileID: 8300000, guid: d3a3bf36650d8124a8e214e612e0e998, type: 3}
   pauseMenuAudio: {fileID: 8300000, guid: 8750c9d8b5c4c4241989c7fd69885436, type: 3}
+  buttonHoverAudio: {fileID: 8300000, guid: cbc57e7cc5b335746a99c664ca59204f, type: 3}
   musicVolume: 0.75
   whiteNoiseVolume: 1
   buttonClickVolume: 0.5
   pauseMenuVolume: 0.6
+  buttonHoverVolume: 1
   musicPitch: 1
   buttonClickPitch: 0.8

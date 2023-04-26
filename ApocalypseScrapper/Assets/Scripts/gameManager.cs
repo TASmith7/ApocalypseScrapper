@@ -197,21 +197,21 @@ public class gameManager : MonoBehaviour
     }
     public void TurnOffStaminaUI()
     {
-        jetpackFuelBarParent.SetActive(false);
+        staminaFillBarParent.SetActive(false);
     }
 
     public void TurnOnStaminaUI()
     {
-        jetpackFuelBarParent.SetActive(true);
+        staminaFillBarParent.SetActive(true);
     }
     public void TurnOffBossHPUI()
     {
-        jetpackFuelBarParent.SetActive(false);
+        // jetpackFuelBarParent.SetActive(false);
     }
 
     public void TurnOnBossHPUI()
     {
-        jetpackFuelBarParent.SetActive(true);
+        // jetpackFuelBarParent.SetActive(true);
     }
 
 

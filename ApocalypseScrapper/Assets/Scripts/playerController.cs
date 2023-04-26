@@ -324,6 +324,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
 
                 timeOfLastThrust = Time.fixedTime;
+
             }
             // else if we are out of fuel
             else if (gameManager.instance.jetpackFuelBar.fillAmount <= 0)
@@ -359,6 +360,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         {
             // turn off jetpack fuel UI
             gameManager.instance.TurnOffJetpackUI();
+
         }
 
 
