@@ -69,6 +69,7 @@ public class gameManager : MonoBehaviour
 
     [Header("----- Incoming Transmission -----")]
     public GameObject incomingTransmissionText;
+    public GameObject skipTransmissionText;
 
     //public GameObject salvagingObjectParent;
     
@@ -167,11 +168,20 @@ public class gameManager : MonoBehaviour
         if(levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
             incomingTransmissionText.SetActive(true);
+            skipTransmissionText.SetActive(true);
         }
         // else turn it off
         else
         {
             incomingTransmissionText.SetActive(false);
+            skipTransmissionText.SetActive(false);
+        }
+
+        // if we press enter while listening to a VO, stop the VO
+        if(Input.GetButtonDown("Skip") && levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        {
+            levelAudioManager.instance.voiceOverAudioSource.Stop();
+            Debug.Log("Enter Pressed!");
         }
 
     }
