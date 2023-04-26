@@ -574,27 +574,30 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         
    public void SavePlayerStats()
     {
-        globalSceneControl.Instance.HP = HP;
-        globalSceneControl.Instance.HPMax = HPMax;
-        globalSceneControl.Instance.salvageRate = salvageRate;
-        globalSceneControl.Instance.salvageRange = salvageRange;
-        
-        globalSceneControl.Instance.thrustPower = thrustPower;
-        globalSceneControl.Instance.fuelConsumptionRate = fuelConsumptionRate;
-        globalSceneControl.Instance.fuelRefillRate = fuelRefillRate;
-        
-        globalSceneControl.Instance.shootDamage = shootDamage;
-        globalSceneControl.Instance.shootRate = shootRate;
-        globalSceneControl.Instance.shootDistance = shootDistance;
-        
-        globalSceneControl.Instance.salvDetector = salvDetector;
-        globalSceneControl.Instance.shielded = shielded;
-        globalSceneControl.Instance.shieldValue = shieldValue;
-        globalSceneControl.Instance.shieldCD = shieldCD;
-        globalSceneControl.Instance.playerTotalScore = playerTotalScore;
-        globalSceneControl.Instance.playerBonus = playerBonus;
+        if (globalSceneControl.Instance != null)
+        {
+            globalSceneControl.Instance.HP = HP;
+            globalSceneControl.Instance.HPMax = HPMax;
+            globalSceneControl.Instance.salvageRate = salvageRate;
+            globalSceneControl.Instance.salvageRange = salvageRange;
 
-        Debug.Log("Player Stats Saved");
+            globalSceneControl.Instance.thrustPower = thrustPower;
+            globalSceneControl.Instance.fuelConsumptionRate = fuelConsumptionRate;
+            globalSceneControl.Instance.fuelRefillRate = fuelRefillRate;
+
+            globalSceneControl.Instance.shootDamage = shootDamage;
+            globalSceneControl.Instance.shootRate = shootRate;
+            globalSceneControl.Instance.shootDistance = shootDistance;
+
+            globalSceneControl.Instance.salvDetector = salvDetector;
+            globalSceneControl.Instance.shielded = shielded;
+            globalSceneControl.Instance.shieldValue = shieldValue;
+            globalSceneControl.Instance.shieldCD = shieldCD;
+            globalSceneControl.Instance.playerTotalScore = playerTotalScore;
+            globalSceneControl.Instance.playerBonus = playerBonus;
+
+            Debug.Log("Player Stats Saved");
+        }
     }
 
 
