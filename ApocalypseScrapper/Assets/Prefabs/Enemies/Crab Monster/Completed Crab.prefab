@@ -1521,7 +1521,14 @@ MonoBehaviour:
   shootPos: {fileID: 3726814737696614948}
   crabWakeColl: {fileID: 3666913497194558675}
   crabAudioSource: {fileID: 93931830}
-  biteAudioClip: []
+  biteAudioClip:
+  - {fileID: 8300000, guid: 6f28c2014d56cc146a33e6d943fc225d, type: 3}
+  - {fileID: 8300000, guid: f349c549508a94347b35af3c65a41c4b, type: 3}
+  - {fileID: 8300000, guid: 5900b24cc5ce32448bd55b875deda76e, type: 3}
+  - {fileID: 8300000, guid: fe4457b58230a5b4098d838385992161, type: 3}
+  - {fileID: 8300000, guid: a3a28f21735b49c45be5091376c28055, type: 3}
+  - {fileID: 8300000, guid: 34c9426a1c3f14e49a7987e2429d2f2d, type: 3}
+  - {fileID: 8300000, guid: 55bd48198b9064c4498e593361b750d2, type: 3}
   damageAudioClip: []
   stepAudioClip:
   - {fileID: 8300000, guid: 648d0e464bca1ac49a4e0854291c0eb4, type: 3}

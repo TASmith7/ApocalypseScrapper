@@ -473,6 +473,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         HP -= (int)amount;
         PlayerUIUpdate();
 
+        if(!playerAudioManager.instance.takeDamageAudioSource.isPlaying)
+        {
+            playerAudioManager.instance.takeDamageAudioSource.PlayOneShot(playerAudioManager.instance.takeDamageAudio[Random.Range
+                (0, playerAudioManager.instance.takeDamageAudio.Length)], playerAudioManager.instance.takeDamageAudioVolume);
+        }
+
         if (HP <= 0)
         {
             gameManager.instance.PlayerDead();
