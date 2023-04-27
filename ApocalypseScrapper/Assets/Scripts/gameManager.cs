@@ -219,6 +219,11 @@ public class gameManager : MonoBehaviour
         playerAudioManager.instance.PauseAllAudio();
         levelAudioManager.instance.PauseAllAudio();
 
+        if(currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        {
+            gameManager.instance.endGameBeam.GetComponent<AudioSource>().Stop();
+        }
+
         // if we are playing a voice over, pause when in pause state and set flag to true
         if(levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
@@ -240,7 +245,12 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         activeMenu.SetActive(false);
         activeMenu = null;
-        
+
+        if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        {
+            gameManager.instance.endGameBeam.GetComponent<AudioSource>().Play();
+        }
+
         // unpausing level audio
         levelAudioManager.instance.UnpauseAllAudio();
 
@@ -253,7 +263,7 @@ public class gameManager : MonoBehaviour
 
     public void UpdateGameGoal()
     { 
-        PlayerWins();
+        // PlayerWins();
         activeMenu = winMenu;
         activeMenu.SetActive(true);
         PauseState();
