@@ -79,7 +79,7 @@ public class buttonFunctions : MonoBehaviour
     #region Store Menu Buttons
     public void SmallHeal()
     {
-        if (gameManager.instance.spendable >= 75)
+        if (gameManager.instance.spendable >= 75 && gameManager.instance.playerScript.HP != gameManager.instance.playerScript.HPMax)
         {
 
             if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP <= 25)
@@ -95,7 +95,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void LargeHeal()
     {
-        if (gameManager.instance.spendable >= 200)
+        if (gameManager.instance.spendable >= 200 && gameManager.instance.playerScript.HP != gameManager.instance.playerScript.HPMax)
         {
 
             if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP <= 100)
