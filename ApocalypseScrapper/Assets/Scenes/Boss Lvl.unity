@@ -5040,10 +5040,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: turret_1_3 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 353114111588010697, guid: a37deb481896a244c9318e4d177de6af, type: 3}
-      propertyPath: m_Radius
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 2256369672032071909, guid: a37deb481896a244c9318e4d177de6af, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -23608,14 +23604,6 @@ PrefabInstance:
     - target: {fileID: 275458137688883357, guid: a37deb481896a244c9318e4d177de6af, type: 3}
       propertyPath: m_Name
       value: turret_1_3
-      objectReference: {fileID: 0}
-    - target: {fileID: 353114111588010697, guid: a37deb481896a244c9318e4d177de6af, type: 3}
-      propertyPath: m_Radius
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 353114111588010697, guid: a37deb481896a244c9318e4d177de6af, type: 3}
-      propertyPath: m_Center.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2256369672032071909, guid: a37deb481896a244c9318e4d177de6af, type: 3}
       propertyPath: m_RootOrder
@@ -74552,18 +74540,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1796663526807133985, guid: 909aa5160772b5f45a17d741ddf784a4, type: 3}
-      propertyPath: maxBiteDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796663526807133985, guid: 909aa5160772b5f45a17d741ddf784a4, type: 3}
-      propertyPath: minBiteDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796663526807133985, guid: 909aa5160772b5f45a17d741ddf784a4, type: 3}
-      propertyPath: minSpitDistance
-      value: 14
-      objectReference: {fileID: 0}
     - target: {fileID: 2185140469249554555, guid: 909aa5160772b5f45a17d741ddf784a4, type: 3}
       propertyPath: m_RootOrder
       value: 8

@@ -55,7 +55,7 @@ public class BossAI : MonoBehaviour, IDamage
     float speed;
     bool isBiting;
     bool isSpitting;
-    bool hasHealed;
+   
     //float stoppingDistanceOrig;
     bool destinationChosen;
     Vector3 startPos;
@@ -89,7 +89,7 @@ public class BossAI : MonoBehaviour, IDamage
     void Start()
     {
         
-        hasHealed = false;
+        
         wave = 0;
         HPOrig = HP;
         activeRadius = radiusSleep;
@@ -340,7 +340,7 @@ public class BossAI : MonoBehaviour, IDamage
                 {
 
 
-                    hasHealed = false;
+                    
 
                     Wave2();
 
@@ -357,7 +357,7 @@ public class BossAI : MonoBehaviour, IDamage
                 {
 
 
-                    hasHealed = false;
+                    
                     Wave3();
 
 
