@@ -131,6 +131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1796663526807133985, guid: 909aa5160772b5f45a17d741ddf784a4, type: 3}
+      propertyPath: bossSpit
+      value: 
+      objectReference: {fileID: 8300000, guid: 0282c74e21cbc7a4f82557b72de152fc, type: 3}
+    - target: {fileID: 1796663526807133985, guid: 909aa5160772b5f45a17d741ddf784a4, type: 3}
       propertyPath: bossDamage.Array.size
       value: 6
       objectReference: {fileID: 0}
