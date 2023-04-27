@@ -409,6 +409,7 @@ public class gameManager : MonoBehaviour
 
     public void CueStore()
     {
+        levelAudioManager.instance.voiceOverAudioSource.Stop();
         PauseState();
         char rank = Rank();
         int clearPercent = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
