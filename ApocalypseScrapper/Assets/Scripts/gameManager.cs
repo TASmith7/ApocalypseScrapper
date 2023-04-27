@@ -82,6 +82,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI BonusData;
     public TextMeshProUGUI BonusSpendable;
 
+
     //public GameObject salvagingObjectParent;
 
 

@@ -251,7 +251,13 @@ public class BossAI : MonoBehaviour, IDamage
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
-            
+
+            if(levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+            {
+                levelAudioManager.instance.voiceOverAudioSource.Stop();
+            }
+
+            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOKillBoss);
 
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
