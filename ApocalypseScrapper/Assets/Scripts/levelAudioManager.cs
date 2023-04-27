@@ -27,6 +27,18 @@ public class levelAudioManager : MonoBehaviour
     public AudioClip VOLvl2Intro;
     public AudioClip VOLvl3Intro;
     public AudioClip VOBossLvlIntro;
+    public AudioClip VOFinishWithS;
+    public AudioClip VOFinishWithA;
+    public AudioClip VOFinishWithB;
+    public AudioClip VOFinishWithC;
+    public AudioClip VOFinishWithD;
+    public AudioClip VOFinishWithF;
+    public AudioClip VOKillBoss;
+    public AudioClip VOFloorPass;
+    public AudioClip VOFloorFail;
+    public AudioClip VONextLevel;
+    public AudioClip VOBonusSpendIt;
+    public AudioClip VOStoreTutorial;
 
 
     [Header("----- Volume -----")]

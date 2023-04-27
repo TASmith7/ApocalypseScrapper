@@ -27565,7 +27565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 20
+  salvageValue: 60
   salvageTime: 0
 --- !u!1001 &752607292
 PrefabInstance:
@@ -30188,7 +30188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 20
+  salvageValue: 60
   salvageTime: 0
 --- !u!1001 &827136498
 PrefabInstance:
@@ -40076,7 +40076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 20
+  salvageValue: 60
   salvageTime: 0
 --- !u!1001 &1138218939
 PrefabInstance:
@@ -45847,7 +45847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 20
+  salvageValue: 60
   salvageTime: 0
 --- !u!1001 &1284959358
 PrefabInstance:
@@ -46920,7 +46920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 20
+  salvageValue: 60
   salvageTime: 0
 --- !u!1001 &1315935237
 PrefabInstance:
@@ -51947,7 +51947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 20
+  salvageValue: 60
   salvageTime: 0
 --- !u!1001 &1473907677
 PrefabInstance:
@@ -52191,7 +52191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 20
+  salvageValue: 60
   salvageTime: 0
 --- !u!1001 &1483122429
 PrefabInstance:
@@ -52998,7 +52998,7 @@ Transform:
   - {fileID: 47770094}
   - {fileID: 607943337}
   m_Father: {fileID: 1790388991}
-  m_RootOrder: 27
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1506128517
 PrefabInstance:
@@ -62255,6 +62255,7 @@ Transform:
   - {fileID: 1280774709}
   - {fileID: 1257900037}
   - {fileID: 2128479272}
+  - {fileID: 1504823006}
   - {fileID: 1614078331}
   - {fileID: 1108347865}
   - {fileID: 1220564182}
@@ -62263,11 +62264,10 @@ Transform:
   - {fileID: 1923821541}
   - {fileID: 706778325}
   - {fileID: 1561800177}
-  - {fileID: 1735607391}
   - {fileID: 637515149}
+  - {fileID: 1735607391}
   - {fileID: 1867711103}
   - {fileID: 386247539}
-  - {fileID: 1504823006}
   - {fileID: 201589266}
   - {fileID: 1758430891}
   - {fileID: 414699968}
@@ -64303,6 +64303,58 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: VOKillBoss
+      value: 
+      objectReference: {fileID: 8300000, guid: 9878d03e3ffd63f40b1d01a75065a00f, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: VOFloorFail
+      value: 
+      objectReference: {fileID: 8300000, guid: f44ff679f9576ee45ad3f60f75b90afb, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: VOFloorPass
+      value: 
+      objectReference: {fileID: 8300000, guid: 46b466dfe69775c429477af1ea9e1c05, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: VONextLevel
+      value: 
+      objectReference: {fileID: 8300000, guid: 3274f36d3f2c77e4290c573aefb9fcc0, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: VOFinishWithA
+      value: 
+      objectReference: {fileID: 8300000, guid: 563785585e4d0354fa0d54bfe2634d11, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: VOFinishWithB
+      value: 
+      objectReference: {fileID: 8300000, guid: 19bc3aaf435b1ea4f9f7646542e94691, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: VOFinishWithC
+      value: 
+      objectReference: {fileID: 8300000, guid: 9b0bef4035f6e58499d7f68b5fd373bf, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: VOFinishWithD
+      value: 
+      objectReference: {fileID: 8300000, guid: f9374936d461c1f499247befcc6b7c16, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: VOFinishWithF
+      value: 
+      objectReference: {fileID: 8300000, guid: da65b0e10dbb4b845ac0cd43710b23ae, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: VOFinishWithS
+      value: 
+      objectReference: {fileID: 8300000, guid: 6dd200cbc4e042149a2d30868b8f86e6, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: VOBonusSpendIt
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d67a05f16dd3544682fba7af98fdadd, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: VOStoreTutorial
+      value: 
+      objectReference: {fileID: 8300000, guid: 3c32953d9829a1f43a6ed4def6d94146, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: voiceOverVolume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8200925025790724419, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
       propertyPath: m_Name
       value: LevelAudioManager
@@ -64900,7 +64952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 20
+  salvageValue: 60
   salvageTime: 0
 --- !u!4 &1860959092 stripped
 Transform:
@@ -66196,7 +66248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 20
+  salvageValue: 60
   salvageTime: 0
 --- !u!1001 &1896060112
 PrefabInstance:
