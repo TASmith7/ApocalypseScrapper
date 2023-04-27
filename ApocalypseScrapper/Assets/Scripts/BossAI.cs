@@ -36,18 +36,19 @@ public class BossAI : MonoBehaviour, IDamage
     [Header("-----Bite Stats-----")]
     [Range(1, 10)][SerializeField] int biteDamage;
     [Range(.1f, 5)][SerializeField] float biteRate;
-    [Range(1, 100)] public float biteDistance;
+    public float biteDistance;
+    
     [SerializeField] int biteSpeed;
     [SerializeField] GameObject bite;
     [Header("-----Spit Stats-----")]
     [SerializeField] GameObject spit;
     [Range(1, 10)][SerializeField] int spitDamage;
     [Range(.1f, 5)][SerializeField] float spitRate;
-    [Range(1, 100)][SerializeField] int spitDistance;
+    [SerializeField] float spitDistance;
+    
     [SerializeField] int spitSpeed;
 
-    [Header("-----Drop Stats-----")]
-    [SerializeField] GameObject drop;
+    
     bool playerInRange;
     float angleToPlayer;
     int wave;
@@ -87,11 +88,13 @@ public class BossAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        
         hasHealed = false;
         wave = 0;
         HPOrig = HP;
         activeRadius = radiusSleep;
         biteDistance = agent.stoppingDistance;
+        gameManager.instance.TurnOnBossHPUI();
         BossHPUIUpdate();
         //stoppingDistanceOrig = agent.stoppingDistance;
         //startPos = transform.position;
@@ -99,7 +102,7 @@ public class BossAI : MonoBehaviour, IDamage
 
         droneSpawners = GameObject.FindGameObjectsWithTag("Drone Spawn");
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -126,7 +129,7 @@ public class BossAI : MonoBehaviour, IDamage
         }
 
     }
-    IEnumerator Shoot()
+    IEnumerator Bite()
     {
         anim.SetTrigger("Shoot");
         isBiting = true;
@@ -139,7 +142,7 @@ public class BossAI : MonoBehaviour, IDamage
     {
         isSpitting = true;
         GameObject spitClone = Instantiate(spit, spitPos.position, spit.transform.rotation);
-        spitClone.GetComponent<Rigidbody>().velocity = new Vector3(transform.forward.x,transform.forward.y+1,transform.forward.z) * spitSpeed;
+        spitClone.GetComponent<Rigidbody>().velocity = new Vector3(transform.forward.x,transform.forward.y+.5f,transform.forward.z) * spitSpeed;
         yield return new WaitForSeconds(spitRate);
         isSpitting = false;
 
@@ -189,7 +192,7 @@ public class BossAI : MonoBehaviour, IDamage
                 FacePlayerAlways();
 
                 if (!isSpitting && !isBiting && hit.distance <= biteDistance)
-                    StartCoroutine(Shoot());
+                    StartCoroutine(Bite());
                 if (!isSpitting && !isBiting && hit.distance >= spitDistance)
                     StartCoroutine(Spit());
 
@@ -223,10 +226,7 @@ public class BossAI : MonoBehaviour, IDamage
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
-            if (drop)
-            {
-                Instantiate(drop, transform.position, drop.transform.rotation);
-            }
+            
 
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
@@ -287,7 +287,7 @@ public class BossAI : MonoBehaviour, IDamage
             GameObject droneClone = Instantiate(drone, droneSpawners[i].transform.position, transform.rotation);
         }
             HP += (HP / 4);
-            hasHealed = true;  
+            
     }
     public void Wave3()
     {
@@ -300,16 +300,15 @@ public class BossAI : MonoBehaviour, IDamage
         {
             GameObject droneClone = Instantiate(drone, droneSpawners[i].transform.position, transform.rotation);
         }
-        if (!hasHealed)
-        {
+        
 
 
-            HP += (HP / 4);
+            HP += (HP / 2);
 
 
-        }
+        
 
-        hasHealed = true;
+        
     }
     public void WaveSet()
     {
@@ -351,7 +350,7 @@ public class BossAI : MonoBehaviour, IDamage
         }
         else if (wave == 3)
         {
-            wave = 3;
+            wave = 4;
             if (HP <= (HPOrig * .25f))
             {
                 if (crab && drone)

@@ -5,26 +5,23 @@ using UnityEngine;
 
 public class BossSpit : MonoBehaviour
 {
-    [SerializeField] float damage;
+    
     [SerializeField] GameObject splashBall;
-    
 
-    
 
-    private void OnTriggerEnter(Collider other)
+   
+
+    private void OnCollisionEnter(Collision other)
     {
-        StartCoroutine(explodeDelay());
+        
         //instantiate SPlash ball
-        Instantiate(splashBall,transform.position,transform.rotation);
+        Instantiate(splashBall, transform.position, transform.rotation);
 
-        // destroying the bulletonce blown up
+        // destroying the bullet once blown up
         Destroy(gameObject);
         
     }
-    IEnumerator explodeDelay()
-    {
-        yield return new WaitForSeconds(3);
-    }
+    
 
    
 }

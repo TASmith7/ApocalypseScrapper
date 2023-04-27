@@ -282,15 +282,14 @@ public class gameManager : MonoBehaviour
     }
     public void TurnOffBossHPUI()
     {
-        bossHealthBarParent.SetActive(false);
-        bossHealthBar.enabled = false;
+        
         
     }
 
     public void TurnOnBossHPUI()
     {
         bossHealthBarParent.SetActive(true);
-        bossHealthBar.enabled = true;
+        
         
     }
     
