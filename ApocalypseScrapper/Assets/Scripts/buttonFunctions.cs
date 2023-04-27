@@ -82,7 +82,7 @@ public class buttonFunctions : MonoBehaviour
         if (gameManager.instance.spendable >= 75)
         {
 
-            if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP >= 25)
+            if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP <= 25)
             {
                 gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPMax;
             }
@@ -98,7 +98,7 @@ public class buttonFunctions : MonoBehaviour
         if (gameManager.instance.spendable >= 200)
         {
 
-            if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP >= 100)
+            if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP <= 100)
             {
                 gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPMax;
             }
