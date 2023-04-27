@@ -628,6 +628,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     public void RestartMission()
     {
+
         SceneManager.LoadScene("Lvl 1");
     }
     
@@ -685,10 +686,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             globalSceneControl.Instance.salvDetector = salvDetector;
             globalSceneControl.Instance.shielded = shielded;
             globalSceneControl.Instance.shieldValue = shieldValue;
+            globalSceneControl.Instance.shieldMax = shieldMax;
             globalSceneControl.Instance.shieldCD = shieldCD;
             globalSceneControl.Instance.shieldRate = shieldRate;
-
-
             globalSceneControl.Instance.playerTotalScore = playerTotalScore;
             globalSceneControl.Instance.playerBonus = playerBonus;
 
