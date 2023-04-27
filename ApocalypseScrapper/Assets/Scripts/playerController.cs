@@ -628,6 +628,26 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     public void RestartMission()
     {
+        HP = globalSceneControl.Instance._MSHP;
+        HPMax = globalSceneControl.Instance._MSHPMax;
+
+        salvageRate = globalSceneControl.Instance._MSsalvageRate;
+        salvageRange = globalSceneControl.Instance._MSsalvageRange;
+        thrustPower = globalSceneControl.Instance._MSthrustPower;
+        fuelConsumptionRate = globalSceneControl.Instance._MSfuelConsumptionRate;
+        fuelRefillRate = globalSceneControl.Instance._MSfuelRefillRate;
+        shootDamage = globalSceneControl.Instance._MSshootDamage;
+        shootRate = globalSceneControl.Instance._MSshootRate;
+        shootDistance = globalSceneControl.Instance._MSshootDistance;
+        salvDetector = globalSceneControl.Instance._MSsalvDetector;
+        shielded = globalSceneControl.Instance._MSshielded;
+        shieldValue = globalSceneControl.Instance._MSshieldValue;
+        shieldMax = globalSceneControl.Instance._MSshieldMax;
+        shieldCD = globalSceneControl.Instance._MSshieldCD;
+        shieldRate = globalSceneControl.Instance._MSshieldRate;
+        
+        playerTotalScore = globalSceneControl.Instance._MSplayerTotalScore;
+        playerBonus = globalSceneControl.Instance._MSplayerBonus;
 
         SceneManager.LoadScene("Lvl 1");
     }
