@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
@@ -91,7 +92,7 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-
+        TurnOffBossHPUI();
         // setting our current scene
         currentScene = SceneManager.GetActiveScene();
 
@@ -105,11 +106,12 @@ public class gameManager : MonoBehaviour
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         
         timeScaleOriginal = Time.timeScale;
-        bossHealthBarParent.SetActive(false);
+        
     }
 
     IEnumerator SplashScreen()
     {
+        
         // turning off all UI while splash screen is displayed
         TurnOffJetpackUI();
         TurnOffShieldUI();
@@ -280,14 +282,18 @@ public class gameManager : MonoBehaviour
     }
     public void TurnOffBossHPUI()
     {
-        // jetpackFuelBarParent.SetActive(false);
+        bossHealthBarParent.SetActive(false);
+        bossHealthBar.enabled = false;
+        
     }
 
     public void TurnOnBossHPUI()
     {
-        // jetpackFuelBarParent.SetActive(true);
+        bossHealthBarParent.SetActive(true);
+        bossHealthBar.enabled = true;
+        
     }
-
+    
 
     public void CueSalvageableReticle()
     {

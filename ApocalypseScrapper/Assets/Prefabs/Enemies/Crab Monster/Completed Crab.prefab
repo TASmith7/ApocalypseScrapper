@@ -1541,18 +1541,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9d596443e4db4c548b82a93f3dbdd00c, type: 3}
   dieAudioClip: {fileID: 8300000, guid: 5c384bd48aece764eadbcd6d36f76341, type: 3}
   HP: 10
-  playerFaceSpeed: 1200
+  playerFaceSpeed: 200
   sightLine: 360
   roamPauseTime: 1
   roamDistance: 30
   animTransSpeed: 20
-  radiusSleep: 200
-  radiusActive: 1000
+  radiusSleep: 100
+  radiusActive: 217
   activeRadius: 0
   timeBetweenFootsteps: 0.15
-  shootDamage: 10
-  shootRate: 0.95
-  shootDistance: 2
+  shootDamage: 2
+  shootRate: 1.35
+  shootDistance: 5
   bulletSpeed: 50
   bullet: {fileID: 2765080052109346540, guid: a7eb135b0d26fac43a26663efb4460d9, type: 3}
   drop: {fileID: 0}
