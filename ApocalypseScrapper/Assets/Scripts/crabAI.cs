@@ -14,6 +14,7 @@ public class crabAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Transform shootPos;
     [SerializeField] SphereCollider crabWakeColl;
+    [SerializeField] CapsuleCollider crabCapsuleCollider;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource crabAudioSource;
@@ -203,7 +204,7 @@ public class crabAI : MonoBehaviour, IDamage
                 crabAudioSource.PlayOneShot(dieAudioClip, 0.4f);
             }
             agent.enabled = false;
-            GetComponent<CapsuleCollider>().enabled = false;
+            crabCapsuleCollider.enabled = false;
             
             
             
