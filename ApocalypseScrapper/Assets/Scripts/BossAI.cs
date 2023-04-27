@@ -65,6 +65,7 @@ public class BossAI : MonoBehaviour, IDamage
     float speed;
     bool isBiting;
     bool isSpitting;
+    float takeDamageTimer;
    
     //float stoppingDistanceOrig;
     bool destinationChosen;
@@ -98,7 +99,6 @@ public class BossAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        
         
         wave = 0;
         HPOrig = HP;
@@ -237,6 +237,13 @@ public class BossAI : MonoBehaviour, IDamage
     {
         HP -= dmg;
         BossHPUIUpdate();
+
+        // cue take damage audio
+        if(agent.isActiveAndEnabled && Time.fixedTime - takeDamageTimer > 1)
+        {
+            bossAudioSource.PlayOneShot(bossDamage[UnityEngine.Random.Range(0, bossDamage.Length)]);
+            takeDamageTimer = Time.fixedTime;
+        }
 
         if (HP <= 0)
         {
