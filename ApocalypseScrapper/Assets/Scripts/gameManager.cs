@@ -81,6 +81,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI PerformanceData;
     public TextMeshProUGUI BonusData;
     public TextMeshProUGUI BonusSpendable;
+    public int spendable;
 
     //public GameObject salvagingObjectParent;
 
@@ -390,17 +391,46 @@ public class gameManager : MonoBehaviour
         FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
         PerformanceData.text = "RANK " + rank + " FOR " + clearPercent + "% OF AVAILABLE SCRAP LOCATED"; 
         BonusData.text = bonus.ToString();
-        BonusSpendable.text = (bonus + playerScript.playerBonus).ToString();
+        spendable = bonus + playerScript.playerBonus;
+        BonusSpendable.text = spendable.ToString();
 
-        if (rank == 'F') levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
-        else levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
+        activeMenu = storeMenu;
+        activeMenu.SetActive(true);
 
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+        if (rank == 'F')
         {
-            if (rank == 'F') levelAudioManager.instance.voiceOverAudioSource.PlayDelayed(13);
-            else levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
-        }
+            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
 
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+            {
+                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+                next.clip = levelAudioManager.instance.VOStoreTutorial;
+                next.PlayDelayed(13);
+            }
+            else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
+            {
+                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+                next.clip = levelAudioManager.instance.VOBonusSpendIt;
+                next.PlayDelayed(13);
+            }
+        }
+        else
+        {
+            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
+
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+            {
+                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+                next.clip = levelAudioManager.instance.VOStoreTutorial;
+                next.PlayDelayed(6);
+            }
+            else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
+            {
+                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+                next.clip = levelAudioManager.instance.VOBonusSpendIt;
+                next.PlayDelayed(6);
+            }
+        }
     }
 
     public char Rank()

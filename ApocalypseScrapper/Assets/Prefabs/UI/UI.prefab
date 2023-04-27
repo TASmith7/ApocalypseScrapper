@@ -7632,7 +7632,7 @@ GameObject:
   - component: {fileID: 1962050529}
   - component: {fileID: 1962050528}
   m_Layer: 5
-  m_Name: FloorAvailData
+  m_Name: PerformanceData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10297,7 +10297,7 @@ MonoBehaviour:
   ControlsSplash: {fileID: 492986550}
   ApocSplash: {fileID: 1894532464}
   checkpointMenu: {fileID: 7862353615075596834}
-  storeMenu: {fileID: 0}
+  storeMenu: {fileID: 2138703054}
   HPBar: {fileID: 2517184956499220138}
   salvageValueText: {fileID: 1762994063}
   salvageCollected: {fileID: 2517184956642034932}
@@ -10325,6 +10325,11 @@ MonoBehaviour:
   playerSalvageScoreText: {fileID: 2517184956642034932}
   incomingTransmissionText: {fileID: 115225122}
   skipTransmissionText: {fileID: 1980018}
+  FinalFloorScoreData: {fileID: 1804118337}
+  FloorAvailData: {fileID: 1962050528}
+  PerformanceData: {fileID: 1962050528}
+  BonusData: {fileID: 1378060743}
+  BonusSpendable: {fileID: 633716393}
   isPaused: 0
   currentScene:
     m_Handle: 0
