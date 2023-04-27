@@ -20,9 +20,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     
 
     [Header("----- Player Stats -----")]
-    [Range(1, 100)][SerializeField] int HP;
-    [SerializeField] int HPMax;
-    [SerializeField] float playerSpeed;
+    [Range(1, 100)][SerializeField] public int HP;
+    [SerializeField] public int HPMax;
+    [SerializeField] public float playerSpeed;
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(0.3f, 1.0f)][SerializeField] float walkingFootstepRate;
     [Range(0.2f, 1.0f)][SerializeField] float runningFootstepRate;
@@ -37,8 +37,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [Header("----- Salvage Stats -----")]
     
-    [SerializeField] int salvageRange;
-    [Range(0.1f, 1)][SerializeField] float salvageRate;
+    [SerializeField] public int salvageRange;
+    [Range(0.1f, 1)][SerializeField] public float salvageRate;
     bool isSalvaging;
     
 
@@ -47,9 +47,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] float animTransSpeed;
     
     [Header("----- Jetpack Stats -----")]
-    [Range(1, 8)][SerializeField] float thrustPower;
-    [Range(0, 1)][SerializeField] float fuelConsumptionRate;
-    [Range(0, 0.5f)][SerializeField] float fuelRefillRate;
+    [Range(1, 8)][SerializeField] public float thrustPower;
+    [Range(0, 1)][SerializeField] public float fuelConsumptionRate;
+    [Range(0, 0.5f)][SerializeField] public float fuelRefillRate;
     [Range(1, 100)][SerializeField] int timeToTurnOffFuelBar;
     bool isThrusting;
     float timeOfLastThrust;
@@ -73,7 +73,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(0.1f, 5)][SerializeField] public float shootRate;
     [Range(1, 100)][SerializeField] public int shootDistance;
     [SerializeField] GameObject bullet;
-    [SerializeField] int bulletSpeed;
+    [SerializeField] public int bulletSpeed;
     public MeshRenderer gunMaterial;
     public MeshFilter gunModel;
     public int selectedGun;

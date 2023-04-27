@@ -75,4 +75,147 @@ public class buttonFunctions : MonoBehaviour
     {
         buttonClickAudioSource.Play();
     }
+
+    #region Store Menu Buttons
+    public void SmallHeal()
+    {
+        if (gameManager.instance.spendable >= 75) 
+        {
+            
+            if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP >= 25)
+            {
+                gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPMax;
+            }
+            else gameManager.instance.playerScript.HP += 25;
+
+            gameManager.instance.spendable -= 75;
+            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
+        }
+    }
+
+    public void LargeHeal()
+    {
+        if (gameManager.instance.spendable >= 200)
+        {
+
+            if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP >= 100)
+            {
+                gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPMax;
+            }
+            else gameManager.instance.playerScript.HP += 100;
+
+            gameManager.instance.spendable -= 200;
+            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
+        }
+    }
+    public void MaxHealth()
+    {
+        if (gameManager.instance.spendable >= 150)
+        {
+
+            gameManager.instance.playerScript.HPMax += 25;
+            gameManager.instance.playerScript.HP += 25;
+
+            gameManager.instance.spendable -= 150;
+            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
+        }
+    }
+
+    public void GetShield()
+    {
+        if (gameManager.instance.spendable >= 200)
+        {
+
+            gameManager.instance.playerScript.shielded = true;
+            gameManager.instance.playerScript.shieldMax += 25;            
+            gameManager.instance.playerScript.shieldValue += 25;
+
+            gameManager.instance.spendable -= 200;
+            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
+        }
+    }
+
+    public void ModShield()
+    {
+        if (gameManager.instance.spendable >= 150 && gameManager.instance.playerScript.shielded == true)
+        {
+            gameManager.instance.playerScript.shieldRate += 1;
+            gameManager.instance.playerScript.shieldCD -= 1;
+
+            gameManager.instance.spendable -= 150;
+            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
+        }
+    }
+
+    public void PlusWeapDmg()
+    {
+        if (gameManager.instance.spendable >= 100)
+        {
+            
+            gameManager.instance.playerScript.shootDamage += 1;
+
+            gameManager.instance.spendable -= 100;
+            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
+        }
+    }
+
+    public void OverchargeWeapDmg()
+    {
+        if (gameManager.instance.spendable >= 300)
+        {
+            gameManager.instance.playerScript.shootDamage += 5;
+            gameManager.instance.playerScript.shootRate += 0.33f;
+
+            gameManager.instance.spendable -= 300;
+            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
+        }
+    }
+
+    public void JPFuel()
+    {
+        if (gameManager.instance.spendable >= 200)
+        {
+            gameManager.instance.playerScript.fuelConsumptionRate -= 0.1f;
+            
+
+            gameManager.instance.spendable -= 200;
+            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
+        }
+    }
+
+    public void JPRecharge()
+    {
+        if (gameManager.instance.spendable >= 150)
+        {
+            gameManager.instance.playerScript.fuelRefillRate += 0.1f;
+            
+            gameManager.instance.spendable -= 150;
+            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
+        }
+    }
+
+    public void GetDetector()
+    {
+        if (gameManager.instance.spendable >= 650)
+        {
+            gameManager.instance.playerScript.salvDetector = true;
+            
+            gameManager.instance.spendable -= 650;
+            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
+        }
+    }
+
+    public void FinishUpgrade()
+    {
+        gameManager.instance.playerScript.playerTotalScore += gameManager.instance.playerScript.playerFloorScore;
+        gameManager.instance.playerScript.playerBonus += gameManager.instance.spendable;
+        gameManager.instance.UnpauseState();
+        gameManager.instance.NextLevel();
+    }
+    #endregion
+
+
+
 }
+
+
