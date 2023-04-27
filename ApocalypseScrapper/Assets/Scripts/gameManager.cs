@@ -75,11 +75,18 @@ public class gameManager : MonoBehaviour
     public GameObject incomingTransmissionText;
     public GameObject skipTransmissionText;
 
+    [Header("----- Store Objects -----")]
+    public TextMeshProUGUI FinalFloorScoreData;
+    public TextMeshProUGUI FloorAvailData;
+    public TextMeshProUGUI PerformanceData;
+    public TextMeshProUGUI BonusData;
+    public TextMeshProUGUI BonusSpendable;
+
     //public GameObject salvagingObjectParent;
-    
+
 
     //[Header("-----Turret Stuff-----")]
-    
+
     //public GameObject turret;
     //[Header("-----Rat Stuff-----")]
     //public GameObject rat;
@@ -284,15 +291,12 @@ public class gameManager : MonoBehaviour
     }
     public void TurnOffBossHPUI()
     {
-        
-        
+        // jetpackFuelBarParent.SetActive(false);
     }
 
     public void TurnOnBossHPUI()
     {
-        bossHealthBarParent.SetActive(true);
-        
-        
+        // jetpackFuelBarParent.SetActive(true);
     }
 
 
@@ -378,8 +382,24 @@ public class gameManager : MonoBehaviour
 
     public void CueStore()
     {
+        PauseState();
         char rank = Rank();
-        Bonus(rank);
+        int clearPercent = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
+        int bonus = Bonus(rank);
+        FinalFloorScoreData.text = playerScript.playerFloorScore.ToString();
+        FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
+        PerformanceData.text = "RANK " + rank + " FOR " + clearPercent + "% OF AVAILABLE SCRAP LOCATED"; 
+        BonusData.text = bonus.ToString();
+        BonusSpendable.text = (bonus + playerScript.playerBonus).ToString();
+
+        if (rank == 'F') levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
+        else levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
+
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+        {
+            if (rank == 'F') levelAudioManager.instance.voiceOverAudioSource.PlayDelayed(13);
+            else levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
+        }
 
     }
 
