@@ -10330,6 +10330,8 @@ MonoBehaviour:
   PerformanceData: {fileID: 1962050528}
   BonusData: {fileID: 1378060743}
   BonusSpendable: {fileID: 633716393}
+  spendable: 0
+  endGameBeam: {fileID: 0}
   isPaused: 0
   currentScene:
     m_Handle: 0

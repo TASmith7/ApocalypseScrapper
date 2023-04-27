@@ -8,6 +8,12 @@ public class EndLevel : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            // stop any voice overs from playing
+            if(levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+            {
+                levelAudioManager.instance.voiceOverAudioSource.Stop();
+            }
+
             gameManager.instance.CueStore();
         }
         

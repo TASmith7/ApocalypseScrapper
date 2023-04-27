@@ -69,7 +69,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [Header("----- Gun Stats -----")]
     public List<GunStats> gunList = new List<GunStats>();
-    [Range(1, 10)][SerializeField] public int shootDamage;
+    [Range(1, 100)][SerializeField] public int shootDamage;
     [Range(0.1f, 5)][SerializeField] public float shootRate;
     [Range(1, 100)][SerializeField] public int shootDistance;
     [SerializeField] GameObject bullet;

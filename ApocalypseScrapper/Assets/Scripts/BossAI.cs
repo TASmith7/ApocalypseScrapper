@@ -66,7 +66,9 @@ public class BossAI : MonoBehaviour, IDamage
     bool isBiting;
     bool isSpitting;
     float takeDamageTimer;
-   
+
+    bool hasPlayedEndGameAudio = false;
+
     //float stoppingDistanceOrig;
     bool destinationChosen;
     Vector3 startPos;
@@ -252,12 +254,13 @@ public class BossAI : MonoBehaviour, IDamage
             StopAllCoroutines();
             anim.SetBool("Dead", true);
 
-            if(levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+            if(!hasPlayedEndGameAudio)
             {
-                levelAudioManager.instance.voiceOverAudioSource.Stop();
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOKillBoss);
+                hasPlayedEndGameAudio = true;
             }
 
-            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOKillBoss);
+            gameManager.instance.endGameBeam.SetActive(true);
 
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;

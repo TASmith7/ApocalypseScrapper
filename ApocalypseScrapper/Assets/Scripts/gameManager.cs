@@ -84,6 +84,9 @@ public class gameManager : MonoBehaviour
     public int spendable;
 
 
+    [Header("----- End Game Beam -----")]
+    public GameObject endGameBeam;
+
     //public GameObject salvagingObjectParent;
 
 
@@ -119,6 +122,11 @@ public class gameManager : MonoBehaviour
         
         timeScaleOriginal = Time.timeScale;
         bossHealthBarParent.SetActive(false);
+
+        if(currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        {
+            endGameBeam.SetActive(false);
+        }
     }
 
     IEnumerator SplashScreen()
