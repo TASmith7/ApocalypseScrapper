@@ -129,7 +129,7 @@ public class roamDrone : MonoBehaviour, IDamage
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward); // but i had change transform.forward to headPos.forward and enemy was only able to see me on his left side and my right
         //draws the raysfrom enemy to player
         Debug.DrawRay(headPos.position, playerDir, Color.red);
-        Debug.Log(angleToPlayer);
+        // Debug.Log(angleToPlayer);
 
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))

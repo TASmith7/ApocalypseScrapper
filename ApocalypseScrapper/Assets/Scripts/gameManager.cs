@@ -49,6 +49,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI totalPayoutData;
     public TextMeshProUGUI remainingBonusData;
     public TextMeshProUGUI totalSalvagedData;
+    public TextMeshProUGUI finalRankData;
 
 
     [Header("----- Boss Health Bar -----")]
@@ -560,8 +561,73 @@ public class gameManager : MonoBehaviour
         int totalPayout = salvageCut + playerScript.playerBonus;
         totalPayoutData.text = totalPayout.ToString();
 
+        char rank = EndGameRank();
+
+        // updating final rank
+        finalRankData.text = rank.ToString();
+
+        switch(rank)
+        {
+            case 'S':
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithS);
+                break;
+
+            case 'A':
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithA);
+                break;
+
+            case 'B':
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithB);
+                break;
+
+            case 'C':
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithC);
+                break;
+
+            case 'D':
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithD);
+                break;
+
+            case 'F':
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithF);
+                break;
+        }
+
     }
 
+    public char EndGameRank()
+    {
+        float totalPossibleSalvage = 50654.0f;
+
+        int percentClear = (int)((playerScript.playerTotalScore / totalPossibleSalvage) * 100);
+
+        if (percentClear > 90)
+        {
+            return 'S';
+        }
+        else if (percentClear > 80 && percentClear <= 90)
+        {
+            return 'A';
+        }
+        else if (percentClear > 70 && percentClear <= 80)
+        {
+            return 'B';
+        }
+        else if (percentClear > 60 && percentClear <= 70)
+        {
+            return 'C';
+        }
+        else if (percentClear > 50 && percentClear <= 60)
+        {
+            return 'D';
+        }
+        else if (percentClear < 50)
+        {
+            return 'F';
+        }
+
+        else return 'Z';
+    }
 
 }
 
