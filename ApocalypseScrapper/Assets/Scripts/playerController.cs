@@ -19,7 +19,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] Camera playerCam;
 
 
-    [Header("----- Player Stats -----")
+    [Header("----- Player Stats -----")]
     [Range(1, 100)][SerializeField] public int HP;
     [SerializeField] public int HPMax;
     [SerializeField] public float playerSpeed;
