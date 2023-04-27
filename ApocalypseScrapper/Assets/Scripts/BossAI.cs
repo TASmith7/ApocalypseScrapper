@@ -52,7 +52,7 @@ public class BossAI : MonoBehaviour, IDamage
     [SerializeField] AudioSource bossAudioSource;
     [SerializeField] AudioClip[] bossFootsteps;
     [SerializeField] AudioClip[] bossDamage;
-    [SerializeField] AudioClip bossBite;
+    [SerializeField] AudioClip[] bossBite;
     [SerializeField] AudioClip bossSpit;
 
     [Range(0.05f, 1)][SerializeField] float timeBetweenFootsteps;
@@ -151,6 +151,7 @@ public class BossAI : MonoBehaviour, IDamage
         isBiting = true;
         GameObject biteClone = Instantiate(bite, bitePos.position, bite.transform.rotation);
         biteClone.GetComponent<Rigidbody>().velocity = transform.forward * biteSpeed;
+        bossAudioSource.PlayOneShot(bossBite[UnityEngine.Random.Range(0, bossBite.Length)], 0.6f);
         yield return new WaitForSeconds(biteRate);
         isBiting = false;
     }

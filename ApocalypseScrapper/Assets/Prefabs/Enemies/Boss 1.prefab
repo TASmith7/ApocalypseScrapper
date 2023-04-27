@@ -3427,9 +3427,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4c7ec64bb9f21d743aba0f7d17fe6ebb, type: 3}
   - {fileID: 8300000, guid: 37fb3a2e5858c9f47beb4cfd39b42f0e, type: 3}
   - {fileID: 8300000, guid: 76454d19152e0ef46b8c330e6de9fc3a, type: 3}
-  bossDamage: []
-  bossBite: {fileID: 0}
-  bossSpit: {fileID: 0}
+  bossDamage:
+  - {fileID: 8300000, guid: 83dea38256bc8d94ab259b79189a43a4, type: 3}
+  - {fileID: 8300000, guid: dd34abd3f902d6640995a56120f669aa, type: 3}
+  - {fileID: 8300000, guid: 404771ab172134949943237217827103, type: 3}
+  - {fileID: 8300000, guid: bb32509636e3bc641b6a6be127672ee6, type: 3}
+  - {fileID: 8300000, guid: 290135db3b2f7254d9263733ef0d49e7, type: 3}
+  - {fileID: 8300000, guid: 32cb5de46698c8842865014fa45ad4de, type: 3}
+  bossBite:
+  - {fileID: 8300000, guid: b9d2b59adf888a64aa5620c40b681ff6, type: 3}
+  - {fileID: 8300000, guid: ec1d656ccb813fe48933eb205a250add, type: 3}
+  - {fileID: 8300000, guid: a1ca94248a51f3e4bb4f9db25807a9b8, type: 3}
+  bossSpit: {fileID: 8300000, guid: 0282c74e21cbc7a4f82557b72de152fc, type: 3}
   timeBetweenFootsteps: 0.175
   crab: {fileID: 3725011360167264616, guid: d34f7fd18d8d8f84b8e1d30031377215, type: 3}
   drone: {fileID: 5682082307837556350, guid: 578c255348a9da344b14801841c11373, type: 3}
