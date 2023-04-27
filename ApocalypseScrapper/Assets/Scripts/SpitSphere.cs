@@ -12,7 +12,7 @@ public class SpitSphere : MonoBehaviour
 
     public void Start()
     {
-        Destroy(gameObject, .1f);
+        Destroy(gameObject, timer);
     }
 
     private void OnTriggerEnter(Collider other)
