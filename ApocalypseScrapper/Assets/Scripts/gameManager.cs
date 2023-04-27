@@ -28,6 +28,7 @@ public class gameManager : MonoBehaviour
     public GameObject ControlsSplash;
     public GameObject ApocSplash;
     public GameObject checkpointMenu;
+    public GameObject storeMenu;
 
     [Header("----- HP Bar -----")]
     public Image HPBar;
@@ -39,9 +40,9 @@ public class gameManager : MonoBehaviour
     public int amtSalvaged;
     public TextMeshProUGUI grade;
     public char playerGrade;
-    public GameObject totalScoreLabel;
-    public GameObject playerBonusLabel;
-    public GameObject floorScoreLabel;
+    public GameObject totalScoreData;
+    public GameObject playerBonusData;
+    public GameObject floorScoreData;
 
     [Header("----- Boss Health Bar -----")]
     public Image bossHealthBar;
@@ -375,9 +376,70 @@ public class gameManager : MonoBehaviour
        
     }
 
+    public void CueStore()
+    {
+        char rank = Rank();
+        Bonus(rank);
+
+    }
+
+    public char Rank()
+    {
+        int percentClear = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
+
+        if (percentClear > 90)
+        {
+            return 'S';
+        }
+        else if (percentClear > 80 && percentClear <= 90)
+        {
+            return 'A';
+        }
+        else if (percentClear > 70 && percentClear <= 80)
+        {
+            return 'B';
+        }
+        else if (percentClear > 60 && percentClear <= 70)
+        {
+            return 'C';
+        }
+        else if (percentClear > 50 && percentClear <= 60)
+        {
+            return 'D';
+        }
+        else if (percentClear < 50)
+        {
+            return 'F';
+        }
+
+        else return 'Z';
+    }
+
+    public int Bonus(char rank)
+    {
+        switch (rank)
+        {
+            case 'S':
+                return 1000;
+            case 'A':
+                return 800;
+            case 'B':
+                return 600;
+            case 'C':
+                return 400;
+            case 'D':
+                return 200;
+            case 'F':
+                return 0;
+            default: return 0;
+        }
+    }
+
     public void NextLevel()
     {
+
         instance.playerScript.SavePlayerStats();
+
         switch (SceneManager.GetActiveScene().name)
         {
             case "Lvl 1":
