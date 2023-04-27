@@ -172,7 +172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.5, y: -429}
+  m_AnchoredPosition: {x: -650, y: -429}
   m_SizeDelta: {x: 369.9, y: 61.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &88908594
@@ -5108,7 +5108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -645, y: -422.875}
+  m_AnchoredPosition: {x: 0, y: -422.875}
   m_SizeDelta: {x: 490, y: 114.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1480224042
@@ -10297,6 +10297,7 @@ MonoBehaviour:
   ControlsSplash: {fileID: 492986550}
   ApocSplash: {fileID: 1894532464}
   checkpointMenu: {fileID: 7862353615075596834}
+  storeMenu: {fileID: 0}
   HPBar: {fileID: 2517184956499220138}
   salvageValueText: {fileID: 1762994063}
   salvageCollected: {fileID: 2517184956642034932}
@@ -10307,6 +10308,9 @@ MonoBehaviour:
   totalScoreLabel: {fileID: 887700856}
   playerBonusLabel: {fileID: 1602493923}
   floorScoreLabel: {fileID: 2517184957063307075}
+  totalScoreData: {fileID: 2054541675}
+  playerBonusData: {fileID: 634979773}
+  floorScoreData: {fileID: 2517184956642034932}
   bossHealthBar: {fileID: 149417874}
   bossHealthBarParent: {fileID: 1571312138}
   jetpackFuelBar: {fileID: 2517184956508921917}
