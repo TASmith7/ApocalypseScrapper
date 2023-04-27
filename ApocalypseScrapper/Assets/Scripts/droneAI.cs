@@ -105,7 +105,10 @@ public class droneAI : MonoBehaviour, IDamage
             }
             else if (agent.destination != gameManager.instance.player.transform.position)
             {
-                StartCoroutine(Roam());
+                if(agent.isActiveAndEnabled)
+                {
+                    StartCoroutine(Roam());
+                }
             }
 
             // if audio source isn't playing and we are awake, play hover audio
