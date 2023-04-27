@@ -45,6 +45,11 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI totalScoreData;
     public TextMeshProUGUI playerBonusData;
     public TextMeshProUGUI floorScoreData;
+    public TextMeshProUGUI salvageCutData;
+    public TextMeshProUGUI totalPayoutData;
+    public TextMeshProUGUI remainingBonusData;
+    public TextMeshProUGUI totalSalvagedData;
+
 
     [Header("----- Boss Health Bar -----")]
     public Image bossHealthBar;
@@ -267,6 +272,7 @@ public class gameManager : MonoBehaviour
         activeMenu = winMenu;
         activeMenu.SetActive(true);
         PauseState();
+        WinGame();
     }
 
     public void PlayerDead()
@@ -536,6 +542,24 @@ public class gameManager : MonoBehaviour
 
     public void WinGame()
     {
+        // updating total score value
+        playerScript.playerTotalScore += playerScript.playerFloorScore;
+
+        playerScript.playerBonus += 50;
+
+        // updating total salvage for all levels
+        totalSalvagedData.text = playerScript.playerTotalScore.ToString(); 
+
+        // updating salvage cut value
+        int salvageCut = (int) (playerScript.playerTotalScore * 0.03);
+        salvageCutData.text = salvageCut.ToString();
+
+        // updating remaining bonus
+        remainingBonusData.text = playerScript.playerBonus.ToString();
+
+        // updating total payout
+        int totalPayout = salvageCut + playerScript.playerBonus;
+        totalPayoutData.text = totalPayout.ToString();
 
     }
 
