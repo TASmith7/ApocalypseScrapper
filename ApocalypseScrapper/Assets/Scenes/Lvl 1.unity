@@ -10464,17 +10464,6 @@ Transform:
   m_Father: {fileID: 2061578010}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &610398509 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5760779665548096624, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-  m_PrefabInstance: {fileID: 1525734040}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40f42a808609f644089c47da9371110a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &610501475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28368,30 +28357,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1434756256, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1493962632, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1515350735, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetDetector
-      objectReference: {fileID: 0}
-    - target: {fileID: 2138703054, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 175046514076182992, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LargeHeal
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145097550503815467, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: JPFuel
-      objectReference: {fileID: 0}
     - target: {fileID: 2517184957286297176, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -28479,42 +28444,6 @@ PrefabInstance:
     - target: {fileID: 2517184957286297180, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 3804302895975061661, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OverchargeWeapDmg
-      objectReference: {fileID: 0}
-    - target: {fileID: 4648149252966238127, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ModShield
-      objectReference: {fileID: 0}
-    - target: {fileID: 5756841944458427727, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 610398509}
-    - target: {fileID: 5756841944458427727, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SmallHeal
-      objectReference: {fileID: 0}
-    - target: {fileID: 7210643378298340781, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: JPRecharge
-      objectReference: {fileID: 0}
-    - target: {fileID: 7714998004008747209, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MaxHealth
-      objectReference: {fileID: 0}
-    - target: {fileID: 8022106990126035310, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlusWeapDmg
-      objectReference: {fileID: 0}
-    - target: {fileID: 8642057311712604961, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetShield
-      objectReference: {fileID: 0}
-    - target: {fileID: 8854004798294577134, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FinishUpgrade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
@@ -43642,15 +43571,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1065836638622170543, guid: a5040a861288b504a878f210411c4c4d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 1065836638622170543, guid: a5040a861288b504a878f210411c4c4d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.5
+      value: 1.375
       objectReference: {fileID: 0}
     - target: {fileID: 1065836638622170543, guid: a5040a861288b504a878f210411c4c4d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1065836638622170543, guid: a5040a861288b504a878f210411c4c4d, type: 3}
       propertyPath: m_LocalRotation.w
