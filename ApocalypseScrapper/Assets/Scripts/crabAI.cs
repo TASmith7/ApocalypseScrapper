@@ -204,6 +204,9 @@ public class crabAI : MonoBehaviour, IDamage
             }
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
+            
+            
+            
 
         }
         else
