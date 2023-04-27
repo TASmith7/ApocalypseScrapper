@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Rendering.Universal;
 using UnityEngine;
@@ -35,13 +36,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private float minimumMovement;
 
     [Header("----- Salvage Stats -----")]
-    int playerFloorScore;
-    int playerTotalScore;
-    int playerBonus;
+    
     [SerializeField] int salvageRange;
     [Range(0.1f, 1)][SerializeField] float salvageRate;
     bool isSalvaging;
-    [SerializeField] public float totalLevelSalvage;
+    
 
 
     [Header("----- Animation Stats -----")]
@@ -61,6 +60,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(0, 0.5f)][SerializeField] float stmainaRefillRate;
     [Range(1, 100)][SerializeField] int timeToTurnOffStaminaBar;
     [Range(5, 10)][SerializeField] float walkSpeed;
+
 
     public bool isSprinting;
     float timeOfLastSprint;
@@ -98,6 +98,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] float sprintBobAmount;
     float defaultYPosForCam;
     float headBobTimer;
+
+
+    [Header("----- Score Stats -----")]
+    [SerializeField] public float totalLevelSalvage;
+    [SerializeField] public int playerFloorScore;
+    [SerializeField] public int playerTotalScore;
+    [SerializeField] public int playerBonus;
 
     #endregion
 
@@ -711,7 +718,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             shieldCD = globalSceneControl.Instance.shieldCD;
             shieldRate = globalSceneControl.Instance.shieldRate;
             playerTotalScore = globalSceneControl.Instance.playerTotalScore;
+            gameManager.instance.totalScoreData.text = playerTotalScore.ToString();
             playerBonus = globalSceneControl.Instance.playerBonus;
+            gameManager.instance.playerBonusData.text = playerBonus.ToString();
         }
         Debug.Log("Player stats loaded.");
     }

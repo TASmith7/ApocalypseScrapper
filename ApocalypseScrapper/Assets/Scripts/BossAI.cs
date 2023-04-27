@@ -103,12 +103,6 @@ public class BossAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-
-
-
-        
-
-
         if (agent.isActiveAndEnabled)
         {
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
@@ -145,7 +139,7 @@ public class BossAI : MonoBehaviour, IDamage
     {
         isSpitting = true;
         GameObject spitClone = Instantiate(spit, spitPos.position, spit.transform.rotation);
-        spitClone.GetComponent<Rigidbody>().velocity = transform.forward * spitSpeed;
+        spitClone.GetComponent<Rigidbody>().velocity = new Vector3(transform.forward.x,transform.forward.y+1,transform.forward.z) * spitSpeed;
         yield return new WaitForSeconds(spitRate);
         isSpitting = false;
 
@@ -167,7 +161,7 @@ public class BossAI : MonoBehaviour, IDamage
 
 
         // this tells us what direction our player is in relative to our enemy
-        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y+1 - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + 1 - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
 
         // this calculates the angle between where our player is and where we (the enemy) are looking
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
@@ -241,7 +235,7 @@ public class BossAI : MonoBehaviour, IDamage
         else
         {
             WaveSet();
-            
+
             anim.SetTrigger("Damage");
             agent.SetDestination(gameManager.instance.player.transform.position);
 
@@ -279,29 +273,11 @@ public class BossAI : MonoBehaviour, IDamage
     //}
     public void Wave1()
     {
-        //if (crab)
-        //{W
-        //    for (int i = 0; i < 5; i++)
-        //    {
-        //    }
-
-        //}
-        int randNum=UnityEngine.Random.Range(5, 15);
         for (int i = 0; i < 5; i++)
         {
             GameObject crabClone = Instantiate(crab, crabSpawners[i].transform.position, transform.rotation);
         }
-            
-        if (!hasHealed)
-        {
-
-
-            HP += (HP / 4);
-
-
-        }
-
-        hasHealed = true;
+        HP += (HP / 5);
     }
     public void Wave2()
     {
@@ -310,16 +286,8 @@ public class BossAI : MonoBehaviour, IDamage
         {
             GameObject droneClone = Instantiate(drone, droneSpawners[i].transform.position, transform.rotation);
         }
-
-        if (!hasHealed)
-        {
-
-
             HP += (HP / 4);
-
-
-        }
-        hasHealed = true;
+            hasHealed = true;  
     }
     public void Wave3()
     {
@@ -341,69 +309,64 @@ public class BossAI : MonoBehaviour, IDamage
 
         }
 
-        hasHealed= true;
+        hasHealed = true;
     }
     public void WaveSet()
     {
-        
-        if (wave != 1 && wave != 3)
+
+        if (wave == 0)
         {
 
             if (HP <= (HPOrig * .75f) && HP >= (HPOrig / 2))
             {
-                wave = 1;
+                wave = 2;
 
                 if (crab)
                 {
-                    
-                    
-                        
-                        Wave1();
-                        
-                    
+                    Wave1();
 
                 }
 
             }
         }
-        else if (wave != 2)
+        else if (wave == 2)
 
         {
 
 
             if (HP <= (HPOrig / 2))
             {
-                wave = 2;
+                wave = 3;
                 if (drone)
                 {
-                    
-                    
-                        hasHealed = false;
-                        
-                        Wave2();
-                    
+
+
+                    hasHealed = false;
+
+                    Wave2();
+
 
                 }
             }
         }
-        else if (wave != 3)
+        else if (wave == 3)
         {
             wave = 3;
             if (HP <= (HPOrig * .25f))
             {
                 if (crab && drone)
                 {
-                    
-                    
-                        hasHealed = false;
-                        Wave3();
-                    
+
+
+                    hasHealed = false;
+                    Wave3();
+
 
                 }
             }
         }
-        
+
 
     }
 }
-    
+
