@@ -48,7 +48,17 @@ public class BossAI : MonoBehaviour, IDamage
     
     [SerializeField] int spitSpeed;
 
-    
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource bossAudioSource;
+    [SerializeField] AudioClip[] bossFootsteps;
+    [SerializeField] AudioClip[] bossDamage;
+    [SerializeField] AudioClip bossBite;
+    [SerializeField] AudioClip bossSpit;
+
+    [Range(0.05f, 1)][SerializeField] float timeBetweenFootsteps;
+    float timeBetweenFootstepsOrig;
+
+
     bool playerInRange;
     float angleToPlayer;
     int wave;
@@ -101,6 +111,9 @@ public class BossAI : MonoBehaviour, IDamage
         crabSpawners = GameObject.FindGameObjectsWithTag("Crab Spawn");
 
         droneSpawners = GameObject.FindGameObjectsWithTag("Drone Spawn");
+
+
+        timeBetweenFootstepsOrig = timeBetweenFootsteps;
     }
     
     // Update is called once per frame
@@ -108,6 +121,9 @@ public class BossAI : MonoBehaviour, IDamage
     {
         if (agent.isActiveAndEnabled)
         {
+
+            CueFootstepAudio();
+
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
             anim.SetFloat("Speed", speed);
 
@@ -365,6 +381,24 @@ public class BossAI : MonoBehaviour, IDamage
             }
         }
 
+
+    }
+
+    void CueFootstepAudio()
+    {
+        // if we are not on the ground or not moving, return
+        if (!agent.isOnNavMesh) return;
+        if (agent.velocity.magnitude <= 0) return;
+
+        // reducing the time between footsteps each frame
+        timeBetweenFootsteps -= Time.deltaTime;
+
+        // once we reach 0, play audio for footsteps
+        if (timeBetweenFootsteps <= 0)
+        {
+            bossAudioSource.PlayOneShot(bossFootsteps[UnityEngine.Random.Range(0, bossFootsteps.Length)], 0.4f);
+            timeBetweenFootsteps = timeBetweenFootstepsOrig;
+        }
 
     }
 }
