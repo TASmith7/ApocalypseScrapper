@@ -111,7 +111,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private void Start()
     {
 
-        SetPlayerStats();
+
+        if (gameManager.instance.currentScene != SceneManager.GetSceneByName("Lvl 1"))
+            SetPlayerStats();
+        else DefaultPlayerStats();
         playerSpeed = walkSpeed;
         
         PlayerUIUpdate();
@@ -628,6 +631,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     public void RestartMission()
     {
+        
+
+        SceneManager.LoadScene("Lvl 1");
+    }
+
+    public void DefaultPlayerStats()
+    {
         HP = globalSceneControl.Instance._MSHP;
         HPMax = globalSceneControl.Instance._MSHPMax;
 
@@ -645,11 +655,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         shieldMax = globalSceneControl.Instance._MSshieldMax;
         shieldCD = globalSceneControl.Instance._MSshieldCD;
         shieldRate = globalSceneControl.Instance._MSshieldRate;
-        
+
         playerTotalScore = globalSceneControl.Instance._MSplayerTotalScore;
         playerBonus = globalSceneControl.Instance._MSplayerBonus;
-
-        SceneManager.LoadScene("Lvl 1");
     }
     
     public void SpawnPlayer()

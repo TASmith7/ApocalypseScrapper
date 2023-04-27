@@ -29,12 +29,12 @@ public class globalSceneControl : MonoBehaviour
     public bool  _MSsalvDetector = false;
     public bool  _MSshielded = false;
     public int   _MSshieldValue = 0;
-    public int _MSshieldMax = 0;
+    public int   _MSshieldMax = 0;
     public int   _MSshieldCD = 5;
-    public int _MSshieldRate = 1;
+    public int   _MSshieldRate = 1;
 
-    public int _MSplayerTotalScore = 0;
-    public int _MSplayerBonus = 0;
+    public int   _MSplayerTotalScore = 0;
+    public int   _MSplayerBonus = 0;
 
 
 
@@ -59,9 +59,9 @@ public class globalSceneControl : MonoBehaviour
     public bool  salvDetector = false;
     public bool  shielded = false;
     public int   shieldValue = 0;
-    public int shieldMax = 0;
+    public int   shieldMax = 0;
     public int   shieldCD = 5;
-    public int shieldRate;
+    public int   shieldRate;
 
     public int playerTotalScore = 0;
     public int playerBonus = 0;
