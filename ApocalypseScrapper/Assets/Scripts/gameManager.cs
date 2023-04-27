@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
@@ -40,9 +39,12 @@ public class gameManager : MonoBehaviour
     public int amtSalvaged;
     public TextMeshProUGUI grade;
     public char playerGrade;
-    public GameObject totalScoreData;
-    public GameObject playerBonusData;
-    public GameObject floorScoreData;
+    public GameObject totalScoreLabel;
+    public GameObject playerBonusLabel;
+    public GameObject floorScoreLabel;
+    public TextMeshProUGUI totalScoreData;
+    public TextMeshProUGUI playerBonusData;
+    public TextMeshProUGUI floorScoreData;
 
     [Header("----- Boss Health Bar -----")]
     public Image bossHealthBar;
@@ -93,7 +95,7 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        TurnOffBossHPUI();
+
         // setting our current scene
         currentScene = SceneManager.GetActiveScene();
 
@@ -107,12 +109,11 @@ public class gameManager : MonoBehaviour
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         
         timeScaleOriginal = Time.timeScale;
-        
+        bossHealthBarParent.SetActive(false);
     }
 
     IEnumerator SplashScreen()
     {
-        
         // turning off all UI while splash screen is displayed
         TurnOffJetpackUI();
         TurnOffShieldUI();
@@ -283,18 +284,14 @@ public class gameManager : MonoBehaviour
     }
     public void TurnOffBossHPUI()
     {
-        bossHealthBarParent.SetActive(false);
-        bossHealthBar.enabled = false;
-        
+        // jetpackFuelBarParent.SetActive(false);
     }
 
     public void TurnOnBossHPUI()
     {
-        bossHealthBarParent.SetActive(true);
-        bossHealthBar.enabled = true;
-        
+        // jetpackFuelBarParent.SetActive(true);
     }
-    
+
 
     public void CueSalvageableReticle()
     {

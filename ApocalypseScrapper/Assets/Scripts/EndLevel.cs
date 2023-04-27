@@ -8,7 +8,7 @@ public class EndLevel : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.NextLevel();
+            gameManager.instance.CueStore();
         }
         
     }
