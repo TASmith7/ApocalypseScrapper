@@ -6,7 +6,10 @@ public class EndGameTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        gameManager.instance.UpdateGameGoal();
+        if(other.gameObject.CompareTag("Player"))
+        {
+            gameManager.instance.UpdateGameGoal();
+        }
     }
     
     

@@ -48,14 +48,27 @@ public class BossAI : MonoBehaviour, IDamage
     
     [SerializeField] int spitSpeed;
 
-    
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource bossAudioSource;
+    [SerializeField] AudioClip[] bossFootsteps;
+    [SerializeField] AudioClip[] bossDamage;
+    [SerializeField] AudioClip[] bossBite;
+    [SerializeField] AudioClip bossSpit;
+
+    [Range(0.05f, 1)][SerializeField] float timeBetweenFootsteps;
+    float timeBetweenFootstepsOrig;
+
+
     bool playerInRange;
     float angleToPlayer;
     int wave;
     float speed;
     bool isBiting;
     bool isSpitting;
-   
+    float takeDamageTimer;
+
+    bool hasPlayedEndGameAudio = false;
+
     //float stoppingDistanceOrig;
     bool destinationChosen;
     Vector3 startPos;
@@ -89,7 +102,6 @@ public class BossAI : MonoBehaviour, IDamage
     void Start()
     {
         
-        
         wave = 0;
         HPOrig = HP;
         activeRadius = radiusSleep;
@@ -101,6 +113,9 @@ public class BossAI : MonoBehaviour, IDamage
         crabSpawners = GameObject.FindGameObjectsWithTag("Crab Spawn");
 
         droneSpawners = GameObject.FindGameObjectsWithTag("Drone Spawn");
+
+
+        timeBetweenFootstepsOrig = timeBetweenFootsteps;
     }
     
     // Update is called once per frame
@@ -108,6 +123,9 @@ public class BossAI : MonoBehaviour, IDamage
     {
         if (agent.isActiveAndEnabled)
         {
+
+            CueFootstepAudio();
+
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
             anim.SetFloat("Speed", speed);
 
@@ -135,6 +153,7 @@ public class BossAI : MonoBehaviour, IDamage
         isBiting = true;
         GameObject biteClone = Instantiate(bite, bitePos.position, bite.transform.rotation);
         biteClone.GetComponent<Rigidbody>().velocity = transform.forward * biteSpeed;
+        bossAudioSource.PlayOneShot(bossBite[UnityEngine.Random.Range(0, bossBite.Length)], 0.6f);
         yield return new WaitForSeconds(biteRate);
         isBiting = false;
     }
@@ -143,6 +162,7 @@ public class BossAI : MonoBehaviour, IDamage
         isSpitting = true;
         GameObject spitClone = Instantiate(spit, spitPos.position, spit.transform.rotation);
         spitClone.GetComponent<Rigidbody>().velocity = new Vector3(transform.forward.x,transform.forward.y+.5f,transform.forward.z) * spitSpeed;
+        bossAudioSource.PlayOneShot(bossSpit);
         yield return new WaitForSeconds(spitRate);
         isSpitting = false;
 
@@ -222,11 +242,25 @@ public class BossAI : MonoBehaviour, IDamage
         HP -= dmg;
         BossHPUIUpdate();
 
+        // cue take damage audio
+        if(agent.isActiveAndEnabled && Time.fixedTime - takeDamageTimer > 1)
+        {
+            bossAudioSource.PlayOneShot(bossDamage[UnityEngine.Random.Range(0, bossDamage.Length)]);
+            takeDamageTimer = Time.fixedTime;
+        }
+
         if (HP <= 0)
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
-            
+
+            if(!hasPlayedEndGameAudio)
+            {
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOKillBoss);
+                hasPlayedEndGameAudio = true;
+            }
+
+            gameManager.instance.endGameBeam.SetActive(true);
 
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
@@ -365,6 +399,24 @@ public class BossAI : MonoBehaviour, IDamage
             }
         }
 
+
+    }
+
+    void CueFootstepAudio()
+    {
+        // if we are not on the ground or not moving, return
+        if (!agent.isOnNavMesh) return;
+        if (agent.velocity.magnitude <= 0) return;
+
+        // reducing the time between footsteps each frame
+        timeBetweenFootsteps -= Time.deltaTime;
+
+        // once we reach 0, play audio for footsteps
+        if (timeBetweenFootsteps <= 0)
+        {
+            bossAudioSource.PlayOneShot(bossFootsteps[UnityEngine.Random.Range(0, bossFootsteps.Length)], 0.4f);
+            timeBetweenFootsteps = timeBetweenFootstepsOrig;
+        }
 
     }
 }

@@ -17,12 +17,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] Camera playerCam;
-    
+
 
     [Header("----- Player Stats -----")]
-    [Range(1, 100)][SerializeField] int HP;
-    [SerializeField] int HPMax;
-    [SerializeField] float playerSpeed;
+    [Range(1, 100)][SerializeField] public int HP;
+    [SerializeField] public int HPMax;
+    [SerializeField] public float playerSpeed;
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(0.3f, 1.0f)][SerializeField] float walkingFootstepRate;
     [Range(0.2f, 1.0f)][SerializeField] float runningFootstepRate;
@@ -36,9 +36,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private float minimumMovement;
 
     [Header("----- Salvage Stats -----")]
-    
-    [SerializeField] int salvageRange;
-    [Range(0.1f, 1)][SerializeField] float salvageRate;
+
+    [SerializeField] public int salvageRange;
+    [Range(0.1f, 1)][SerializeField] public float salvageRate;
     bool isSalvaging;
     
 
@@ -47,19 +47,19 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] float animTransSpeed;
     
     [Header("----- Jetpack Stats -----")]
-    [Range(1, 8)][SerializeField] float thrustPower;
-    [Range(0, 1)][SerializeField] float fuelConsumptionRate;
-    [Range(0, 0.5f)][SerializeField] float fuelRefillRate;
+    [Range(1, 8)][SerializeField] public float thrustPower;
+    [Range(0, 1)][SerializeField] public float fuelConsumptionRate;
+    [Range(0, 0.5f)][SerializeField] public float fuelRefillRate;
     [Range(1, 100)][SerializeField] int timeToTurnOffFuelBar;
     bool isThrusting;
     float timeOfLastThrust;
 
     [Header("----- Stamina Stats -----")]
-    [Range(10, 20)][SerializeField] float sprintSpeed;
-    [Range(0, 1)][SerializeField] float staminaDrain;
-    [Range(0, 0.5f)][SerializeField] float stmainaRefillRate;
+    [Range(10, 20)][SerializeField] public float sprintSpeed;
+    [Range(0, 1)][SerializeField] public float staminaDrain;
+    [Range(0, 0.5f)][SerializeField] public float stmainaRefillRate;
     [Range(1, 100)][SerializeField] int timeToTurnOffStaminaBar;
-    [Range(5, 10)][SerializeField] float walkSpeed;
+    [Range(5, 10)][SerializeField] public float walkSpeed;
 
 
     public bool isSprinting;
@@ -69,7 +69,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [Header("----- Gun Stats -----")]
     public List<GunStats> gunList = new List<GunStats>();
-    [Range(1, 10)][SerializeField] public int shootDamage;
+    [Range(1, 100)][SerializeField] public int shootDamage;
     [Range(0.1f, 5)][SerializeField] public float shootRate;
     [Range(1, 100)][SerializeField] public int shootDistance;
     [SerializeField] GameObject bullet;
@@ -111,7 +111,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private void Start()
     {
 
-        SetPlayerStats();
+
+        if (gameManager.instance.currentScene != SceneManager.GetSceneByName("Lvl 1"))
+            SetPlayerStats();
+        else DefaultPlayerStats();
         playerSpeed = walkSpeed;
         
         PlayerUIUpdate();
@@ -628,7 +631,33 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     public void RestartMission()
     {
+        
+
         SceneManager.LoadScene("Lvl 1");
+    }
+
+    public void DefaultPlayerStats()
+    {
+        HP = globalSceneControl.Instance._MSHP;
+        HPMax = globalSceneControl.Instance._MSHPMax;
+
+        salvageRate = globalSceneControl.Instance._MSsalvageRate;
+        salvageRange = globalSceneControl.Instance._MSsalvageRange;
+        thrustPower = globalSceneControl.Instance._MSthrustPower;
+        fuelConsumptionRate = globalSceneControl.Instance._MSfuelConsumptionRate;
+        fuelRefillRate = globalSceneControl.Instance._MSfuelRefillRate;
+        shootDamage = globalSceneControl.Instance._MSshootDamage;
+        shootRate = globalSceneControl.Instance._MSshootRate;
+        shootDistance = globalSceneControl.Instance._MSshootDistance;
+        salvDetector = globalSceneControl.Instance._MSsalvDetector;
+        shielded = globalSceneControl.Instance._MSshielded;
+        shieldValue = globalSceneControl.Instance._MSshieldValue;
+        shieldMax = globalSceneControl.Instance._MSshieldMax;
+        shieldCD = globalSceneControl.Instance._MSshieldCD;
+        shieldRate = globalSceneControl.Instance._MSshieldRate;
+
+        playerTotalScore = globalSceneControl.Instance._MSplayerTotalScore;
+        playerBonus = globalSceneControl.Instance._MSplayerBonus;
     }
     
     public void SpawnPlayer()
@@ -685,10 +714,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             globalSceneControl.Instance.salvDetector = salvDetector;
             globalSceneControl.Instance.shielded = shielded;
             globalSceneControl.Instance.shieldValue = shieldValue;
+            globalSceneControl.Instance.shieldMax = shieldMax;
             globalSceneControl.Instance.shieldCD = shieldCD;
             globalSceneControl.Instance.shieldRate = shieldRate;
-
-
             globalSceneControl.Instance.playerTotalScore = playerTotalScore;
             globalSceneControl.Instance.playerBonus = playerBonus;
 

@@ -45,6 +45,12 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI totalScoreData;
     public TextMeshProUGUI playerBonusData;
     public TextMeshProUGUI floorScoreData;
+    public TextMeshProUGUI salvageCutData;
+    public TextMeshProUGUI totalPayoutData;
+    public TextMeshProUGUI remainingBonusData;
+    public TextMeshProUGUI totalSalvagedData;
+    public TextMeshProUGUI finalRankData;
+
 
     [Header("----- Boss Health Bar -----")]
     public Image bossHealthBar;
@@ -81,6 +87,11 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI PerformanceData;
     public TextMeshProUGUI BonusData;
     public TextMeshProUGUI BonusSpendable;
+    public int spendable;
+
+
+    [Header("----- End Game Beam -----")]
+    public GameObject endGameBeam;
 
     //public GameObject salvagingObjectParent;
 
@@ -117,6 +128,11 @@ public class gameManager : MonoBehaviour
         
         timeScaleOriginal = Time.timeScale;
         bossHealthBarParent.SetActive(false);
+
+        if(currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        {
+            endGameBeam.SetActive(false);
+        }
     }
 
     IEnumerator SplashScreen()
@@ -209,6 +225,11 @@ public class gameManager : MonoBehaviour
         playerAudioManager.instance.PauseAllAudio();
         levelAudioManager.instance.PauseAllAudio();
 
+        if(currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        {
+            gameManager.instance.endGameBeam.GetComponent<AudioSource>().Stop();
+        }
+
         // if we are playing a voice over, pause when in pause state and set flag to true
         if(levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
@@ -230,7 +251,12 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         activeMenu.SetActive(false);
         activeMenu = null;
-        
+
+        if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        {
+            gameManager.instance.endGameBeam.GetComponent<AudioSource>().Play();
+        }
+
         // unpausing level audio
         levelAudioManager.instance.UnpauseAllAudio();
 
@@ -243,10 +269,11 @@ public class gameManager : MonoBehaviour
 
     public void UpdateGameGoal()
     { 
-        PlayerWins();
+        // PlayerWins();
         activeMenu = winMenu;
         activeMenu.SetActive(true);
         PauseState();
+        WinGame();
     }
 
     public void PlayerDead()
@@ -382,6 +409,7 @@ public class gameManager : MonoBehaviour
 
     public void CueStore()
     {
+        levelAudioManager.instance.voiceOverAudioSource.Stop();
         PauseState();
         char rank = Rank();
         int clearPercent = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
@@ -390,17 +418,46 @@ public class gameManager : MonoBehaviour
         FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
         PerformanceData.text = "RANK " + rank + " FOR " + clearPercent + "% OF AVAILABLE SCRAP LOCATED"; 
         BonusData.text = bonus.ToString();
-        BonusSpendable.text = (bonus + playerScript.playerBonus).ToString();
+        spendable = bonus + playerScript.playerBonus;
+        BonusSpendable.text = spendable.ToString();
 
-        if (rank == 'F') levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
-        else levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
+        activeMenu = storeMenu;
+        activeMenu.SetActive(true);
 
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+        if (rank == 'F')
         {
-            if (rank == 'F') levelAudioManager.instance.voiceOverAudioSource.PlayDelayed(13);
-            else levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
-        }
+            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
 
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+            {
+                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+                next.clip = levelAudioManager.instance.VOStoreTutorial;
+                next.PlayDelayed(13);
+            }
+            else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
+            {
+                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+                next.clip = levelAudioManager.instance.VOBonusSpendIt;
+                next.PlayDelayed(13);
+            }
+        }
+        else
+        {
+            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
+
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+            {
+                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+                next.clip = levelAudioManager.instance.VOStoreTutorial;
+                next.PlayDelayed(6);
+            }
+            else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
+            {
+                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+                next.clip = levelAudioManager.instance.VOBonusSpendIt;
+                next.PlayDelayed(6);
+            }
+        }
     }
 
     public char Rank()
@@ -486,9 +543,92 @@ public class gameManager : MonoBehaviour
 
     public void WinGame()
     {
+        // updating total score value
+        playerScript.playerTotalScore += playerScript.playerFloorScore;
+
+        playerScript.playerBonus += 50;
+
+        // updating total salvage for all levels
+        totalSalvagedData.text = playerScript.playerTotalScore.ToString(); 
+
+        // updating salvage cut value
+        int salvageCut = (int) (playerScript.playerTotalScore * 0.03);
+        salvageCutData.text = salvageCut.ToString();
+
+        // updating remaining bonus
+        remainingBonusData.text = playerScript.playerBonus.ToString();
+
+        // updating total payout
+        int totalPayout = salvageCut + playerScript.playerBonus;
+        totalPayoutData.text = totalPayout.ToString();
+
+        char rank = EndGameRank();
+
+        // updating final rank
+        finalRankData.text = rank.ToString();
+
+        switch(rank)
+        {
+            case 'S':
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithS);
+                break;
+
+            case 'A':
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithA);
+                break;
+
+            case 'B':
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithB);
+                break;
+
+            case 'C':
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithC);
+                break;
+
+            case 'D':
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithD);
+                break;
+
+            case 'F':
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithF);
+                break;
+        }
 
     }
 
+    public char EndGameRank()
+    {
+        float totalPossibleSalvage = 50654.0f;
+
+        int percentClear = (int)((playerScript.playerTotalScore / totalPossibleSalvage) * 100);
+
+        if (percentClear > 90)
+        {
+            return 'S';
+        }
+        else if (percentClear > 80 && percentClear <= 90)
+        {
+            return 'A';
+        }
+        else if (percentClear > 70 && percentClear <= 80)
+        {
+            return 'B';
+        }
+        else if (percentClear > 60 && percentClear <= 70)
+        {
+            return 'C';
+        }
+        else if (percentClear > 50 && percentClear <= 60)
+        {
+            return 'D';
+        }
+        else if (percentClear < 50)
+        {
+            return 'F';
+        }
+
+        else return 'Z';
+    }
 
 }
 
