@@ -17,12 +17,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] Camera playerCam;
-    
 
-    [Header("----- Player Stats -----")]
-    [Range(1, 100)][SerializeField] int HP;
-    [SerializeField] int HPMax;
-    [SerializeField] float playerSpeed;
+
+    [Header("----- Player Stats -----")
+    [Range(1, 100)][SerializeField] public int HP;
+    [SerializeField] public int HPMax;
+    [SerializeField] public float playerSpeed;
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(0.3f, 1.0f)][SerializeField] float walkingFootstepRate;
     [Range(0.2f, 1.0f)][SerializeField] float runningFootstepRate;
@@ -36,9 +36,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private float minimumMovement;
 
     [Header("----- Salvage Stats -----")]
-    
-    [SerializeField] int salvageRange;
-    [Range(0.1f, 1)][SerializeField] float salvageRate;
+
+    [SerializeField] public int salvageRange;
+    [Range(0.1f, 1)][SerializeField] public float salvageRate;
     bool isSalvaging;
     
 
@@ -47,19 +47,19 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] float animTransSpeed;
     
     [Header("----- Jetpack Stats -----")]
-    [Range(1, 8)][SerializeField] float thrustPower;
-    [Range(0, 1)][SerializeField] float fuelConsumptionRate;
-    [Range(0, 0.5f)][SerializeField] float fuelRefillRate;
+    [Range(1, 8)][SerializeField] public float thrustPower;
+    [Range(0, 1)][SerializeField] public float fuelConsumptionRate;
+    [Range(0, 0.5f)][SerializeField] public float fuelRefillRate;
     [Range(1, 100)][SerializeField] int timeToTurnOffFuelBar;
     bool isThrusting;
     float timeOfLastThrust;
 
     [Header("----- Stamina Stats -----")]
-    [Range(10, 20)][SerializeField] float sprintSpeed;
-    [Range(0, 1)][SerializeField] float staminaDrain;
-    [Range(0, 0.5f)][SerializeField] float stmainaRefillRate;
+    [Range(10, 20)][SerializeField] public float sprintSpeed;
+    [Range(0, 1)][SerializeField] public float staminaDrain;
+    [Range(0, 0.5f)][SerializeField] public float stmainaRefillRate;
     [Range(1, 100)][SerializeField] int timeToTurnOffStaminaBar;
-    [Range(5, 10)][SerializeField] float walkSpeed;
+    [Range(5, 10)][SerializeField] public float walkSpeed;
 
 
     public bool isSprinting;
