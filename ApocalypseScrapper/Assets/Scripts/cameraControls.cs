@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class cameraControls : MonoBehaviour
 {
-    [SerializeField] int sensHorizontal;
-    [SerializeField] int sensVertical;
+    [SerializeField] public int sensHorizontal;
+    [SerializeField] public int sensVertical;
 
     [SerializeField] int lockVertMin;
     [SerializeField] int lockVertMax;
