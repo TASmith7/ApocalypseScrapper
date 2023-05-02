@@ -28,6 +28,7 @@ public class gameManager : MonoBehaviour
     public GameObject ApocSplash;
     public GameObject checkpointMenu;
     public GameObject storeMenu;
+    public GameObject optionsMenu;
 
     [Header("----- HP Bar -----")]
     public Image HPBar;
@@ -89,6 +90,12 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI BonusSpendable;
     public int spendable;
 
+    [Header("----- Sensitivity Settings -----")]
+    public Slider horizontalSens;
+    public Slider verticalSens;
+    public TextMeshProUGUI horSensValue;
+    public TextMeshProUGUI vertSensValue;
+
 
     [Header("----- End Game Beam -----")]
     public GameObject endGameBeam;
@@ -128,6 +135,14 @@ public class gameManager : MonoBehaviour
         
         timeScaleOriginal = Time.timeScale;
         bossHealthBarParent.SetActive(false);
+
+        // setting our sensitivity sliders to equal the values set in our camera controller script
+        horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
+        verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
+
+        // setting the sensitivity labels equal the sliders current values
+        horSensValue.text = horizontalSens.value.ToString();
+        vertSensValue.text = verticalSens.value.ToString();
 
         if(currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
@@ -209,6 +224,13 @@ public class gameManager : MonoBehaviour
         if(Input.GetButtonDown("Skip") && levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
             levelAudioManager.instance.voiceOverAudioSource.Stop();
+        }
+
+        if(isPaused)
+        {
+            // changing labels to match the value of the slider
+            horSensValue.text = horizontalSens.value.ToString();
+            vertSensValue.text = verticalSens.value.ToString();
         }
 
     }
@@ -630,6 +652,40 @@ public class gameManager : MonoBehaviour
         else return 'Z';
     }
 
+    public void OpenOptionsMenu()
+    {
+        pauseMenu.SetActive(false);
+        optionsMenu.SetActive(true);
+    }
+
+    public void CloseOptionsMenu()
+    {
+        // changing our sens back to what it was before if we press back or cancel before we save settings
+        horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
+        verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
+
+        // updating sens labels
+        horSensValue.text = ((int) horizontalSens.value).ToString();
+        vertSensValue.text = ((int) verticalSens.value).ToString();
+
+        optionsMenu.SetActive(false);
+        pauseMenu.SetActive(true);
+    }
+
+    public void SaveSettingsOptionsMenu()
+    {
+        // saving our camera sensitivity when we press the save settings button
+        // the value we are actually setting here is the sensitivity multiplier in our camera controller script
+        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int) horizontalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int) verticalSens.value;
+
+        CloseOptionsMenu();
+    }
+     public void ViewControls()
+    {
+        optionsMenu.SetActive(false);
+        ControlsSplash.SetActive(true);
+    }
 }
 
 

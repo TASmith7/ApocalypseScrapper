@@ -16,7 +16,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
-    [SerializeField] Camera playerCam;
+    [SerializeField] public Camera playerCam;
 
 
     [Header("----- Player Stats -----")]
