@@ -208,7 +208,7 @@ public class gameManager : MonoBehaviour
         }
 
         // if we are hearing a voice over, cue incoming transmission text
-        if(levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        if (levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
             incomingTransmissionText.SetActive(true);
             skipTransmissionText.SetActive(true);
@@ -221,7 +221,7 @@ public class gameManager : MonoBehaviour
         }
 
         // if we press T while listening to a VO, stop the VO
-        if(Input.GetButtonDown("Skip") && levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        if (Input.GetButtonDown("Skip") && levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
             levelAudioManager.instance.voiceOverAudioSource.Stop();
         }
