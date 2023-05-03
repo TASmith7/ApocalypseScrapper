@@ -72,6 +72,11 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.CloseOptionsMenu();
     }
 
+    public void BackControls()
+    {
+        gameManager.instance.CloseControls();
+    }
+
     public void SaveOptions()
     {
         gameManager.instance.SaveSettingsOptionsMenu();

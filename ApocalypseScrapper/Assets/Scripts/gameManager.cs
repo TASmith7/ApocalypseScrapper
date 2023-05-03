@@ -25,6 +25,7 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject RSGSplash;
     public GameObject ControlsSplash;
+    public GameObject ControlsSplashFromOptions;
     public GameObject ApocSplash;
     public GameObject checkpointMenu;
     public GameObject storeMenu;
@@ -672,6 +673,12 @@ public class gameManager : MonoBehaviour
         pauseMenu.SetActive(true);
     }
 
+    public void CloseControls()
+    {
+        ControlsSplashFromOptions.SetActive(false);
+        optionsMenu.SetActive(true);
+    }
+
     public void SaveSettingsOptionsMenu()
     {
         // saving our camera sensitivity when we press the save settings button
@@ -684,7 +691,7 @@ public class gameManager : MonoBehaviour
      public void ViewControls()
     {
         optionsMenu.SetActive(false);
-        ControlsSplash.SetActive(true);
+        ControlsSplashFromOptions.SetActive(true);
     }
 }
 
