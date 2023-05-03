@@ -612,9 +612,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         // updating salvage score based on the objects salvage value assigned in inspector
         playerFloorScore += (int)objectToSalvage.GetComponent<salvageableObject>().salvageValue;
 
-        //Assigning drops based off SalvageableObject Script
-        objectToSalvage.GetComponent<salvageableObject>().AssignDrops();
-
         // destroying object
         Destroy(objectToSalvage);
 
