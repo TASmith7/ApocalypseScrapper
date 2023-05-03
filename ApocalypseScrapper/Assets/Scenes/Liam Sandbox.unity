@@ -775,6 +775,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1340719603, guid: c4a9e855c637847408b15d842672eb8b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae92ed038e0179a488a060b302f2f965, type: 2}
     - target: {fileID: 2211262572087584324, guid: c4a9e855c637847408b15d842672eb8b, type: 3}
       propertyPath: m_Name
       value: TractorBeamEndGameTrigger
@@ -789,7 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2211262572087584328, guid: c4a9e855c637847408b15d842672eb8b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.7
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 2211262572087584328, guid: c4a9e855c637847408b15d842672eb8b, type: 3}
       propertyPath: m_LocalPosition.z
