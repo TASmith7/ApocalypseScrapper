@@ -1944,22 +1944,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 661115329435723955, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.00039980095
-      objectReference: {fileID: 0}
-    - target: {fileID: 661115329435723955, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.1367185
-      objectReference: {fileID: 0}
-    - target: {fileID: 661115329435723955, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.69198763
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: beamEffect
-      value: 
-      objectReference: {fileID: 1121269755}
     - target: {fileID: 5333339247780454519, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2844,11 +2828,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1195415760139927943, guid: 43057a7f1b1cd47438b7b98fdf3fb6f2, type: 3}
   m_PrefabInstance: {fileID: 1077708072}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1121269755 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8445503375487653677, guid: 7323b96c76aaf9948930002a67fe15e6, type: 3}
-  m_PrefabInstance: {fileID: 8445503374452383958}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1140140744
 PrefabInstance:
