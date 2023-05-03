@@ -196,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661115329435723956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.137, z: 0.6752}
+  m_LocalPosition: {x: -0.00039980095, y: 0.1367185, z: 0.69198763}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2065,6 +2065,7 @@ MonoBehaviour:
   - {fileID: 1000013355911406, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
   - {fileID: 1000013355911406, guid: 532c8be46e6660e49a9e48ce60e82441, type: 3}
   - {fileID: 1962516439210982, guid: 3c657dedc43d33a4987fbf09e6363067, type: 3}
+  beamEffect: {fileID: 0}
   thrustPower: 8
   fuelConsumptionRate: 0.5
   fuelRefillRate: 0.2

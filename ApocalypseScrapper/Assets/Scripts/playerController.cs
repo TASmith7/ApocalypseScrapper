@@ -486,7 +486,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             {
                 isSalvaging = true;
                 beam = Instantiate(beamEffect, hit.point, Quaternion.identity);
-                Vector3 effectDir = hit.point - shootPos.transform.position;
+                Vector3 effectDir = hit.point - shootPos.transform.position ;
                 Quaternion rotation = Quaternion.LookRotation(effectDir);
                 beam.transform.rotation = rotation;
                 gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
