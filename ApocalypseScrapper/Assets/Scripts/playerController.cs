@@ -16,7 +16,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
-    [SerializeField] Camera playerCam;
+    [SerializeField] public Camera playerCam;
 
 
     [Header("----- Player Stats -----")]
@@ -45,6 +45,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [Header("----- Animation Stats -----")]
     [SerializeField] float animTransSpeed;
+    [SerializeField] GameObject[] bloodEffect;
+    [SerializeField] GameObject beamEffect;
     
     [Header("----- Jetpack Stats -----")]
     [Range(1, 8)][SerializeField] public float thrustPower;
@@ -107,7 +109,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] public int playerBonus;
 
     #endregion
-
+    
     private void Start()
     {
 
@@ -130,7 +132,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         // setting default y position for main camera
         defaultYPosForCam = playerCam.transform.localPosition.y;
     }
-
+    
+    
     void Update()
     {
 
@@ -178,7 +181,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         }
 
     }
-
+    
+ 
     void FixedUpdate()
     {
         RaycastHit hit;
@@ -412,7 +416,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 playerCam.transform.localPosition.z);
         }
     }
-
+    
     IEnumerator Shoot()
     {
         isShooting = true;
@@ -429,12 +433,26 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         bulletClone.transform.rotation = Camera.main.transform.rotation;
 
         //we use this raycast to return the position of where our raycast hits
-        //RaycastHit hit;
+        RaycastHit hit2;
 
         ////If the ray going from the middle of our screen hits something, "out" the position of where it hits in our 'hit' variable,
         ////and it will shoot the specified distance via our variable
-        //if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
-        //{
+        if (Physics.Raycast(shootPos.position, shootPos.forward, out hit2, shootDistance))
+        {
+            if (hit2.transform.CompareTag("Enemy"))
+            {
+                for (int i = 0; i < bloodEffect.Length; i++)
+                {
+                    int randoEffect = Random.Range(0, bloodEffect.Length);
+                    GameObject bloodClone = Instantiate(bloodEffect[randoEffect], hit2.point, Quaternion.identity);
+                    //Vector3 effectDir = hit2.point - transform.position;
+                    //Quaternion rotation = Quaternion.LookRotation(effectDir);
+                    //bloodClone.transform.rotation = rotation;
+                    Destroy(bloodClone, .3f);
+                }
+            }
+        }
+        #region Old Raycast Code
         //    //if the object we hit contains the IDamage interface
         //    IDamage damageable = hit.collider.GetComponent<IDamage>();
 
@@ -444,7 +462,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         //        //take damage from the damageable object
         //        damageable.TakeDamage(shootDamage);
         //    }
-        //}
+        #endregion
 
         //The yield return will wait for the specified amount of seconds
         //before moving on to the next line.It does NOT exit the method.
@@ -455,9 +473,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     IEnumerator Salvage()
     {
         RaycastHit hit;
+        GameObject beam = null;
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
+            
             // if the object we clicked on contains the ISalvageable interface
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
 
@@ -465,9 +485,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             if (salvageable != null && !hit.collider.CompareTag("Player"))
             {
                 isSalvaging = true;
-
+                beam = Instantiate(beamEffect, hit.point, Quaternion.identity);
+                Vector3 effectDir = hit.point - shootPos.transform.position ;
+                Quaternion rotation = Quaternion.LookRotation(effectDir);
+                beam.transform.rotation = rotation;
                 gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
-
+                
                 // if our salvaging audio isn't already playing
                 if (!playerAudioManager.instance.salvagingAudioSource.isPlaying)
                 {
@@ -477,9 +500,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
                 {
                     SalvageObject(hit.collider.gameObject);
+                    
                     gameManager.instance.salvagingObjectReticle.fillAmount = 0;
                     yield return new WaitForSeconds(0.01f);
                 }
+                
             }
             // else what we are looking at is not salvageable, so stop our salvaging audio and set isSalvaging bool to false
             else
@@ -487,15 +512,18 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 playerAudioManager.instance.salvagingAudioSource.Stop();
                 isSalvaging = false;
             }
-
+            
+            
         }
         else
         {
             isSalvaging = false;
         }
         yield return new WaitForSeconds(0.01f);
-
-
+        if(beam != null)
+        {
+           Destroy(beam,.1f);
+        }
     }
 
     public void TakeDamage(float amount)
@@ -612,6 +640,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         // updating salvage score based on the objects salvage value assigned in inspector
         playerFloorScore += (int)objectToSalvage.GetComponent<salvageableObject>().salvageValue;
 
+        //Assigning drops based off SalvageableObject Script
+        objectToSalvage.GetComponent<salvageableObject>().AssignDrops();
         // destroying object
         Destroy(objectToSalvage);
 

@@ -30,7 +30,6 @@ public class bulletPlayer : MonoBehaviour
                     // then take the specified amount of damage
                     damageable.TakeDamage(damage);
                 }
-
                 // destroying the bullet if it hits something
                 Destroy(gameObject);
             }

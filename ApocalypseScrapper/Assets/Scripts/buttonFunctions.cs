@@ -59,7 +59,32 @@ public class buttonFunctions : MonoBehaviour
     }
     public void Options()
     {
+        gameManager.instance.OpenOptionsMenu();
+    }
 
+    public void CancelOptions()
+    {
+        gameManager.instance.CloseOptionsMenu();
+    }
+
+    public void BackOptions()
+    {
+        gameManager.instance.CloseOptionsMenu();
+    }
+
+    public void BackControls()
+    {
+        gameManager.instance.CloseControls();
+    }
+
+    public void SaveOptions()
+    {
+        gameManager.instance.SaveSettingsOptionsMenu();
+    }
+
+    public void ViewControlsOptions()
+    {
+        gameManager.instance.ViewControls();
     }
     public void Exit()
     {
