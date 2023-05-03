@@ -46,6 +46,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Header("----- Animation Stats -----")]
     [SerializeField] float animTransSpeed;
     [SerializeField] GameObject[] bloodEffect;
+    [SerializeField] GameObject beamEffect;
     
     [Header("----- Jetpack Stats -----")]
     [Range(1, 8)][SerializeField] public float thrustPower;
@@ -472,9 +473,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     IEnumerator Salvage()
     {
         RaycastHit hit;
+        GameObject beam = null;
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
+            
             // if the object we clicked on contains the ISalvageable interface
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
 
@@ -482,9 +485,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             if (salvageable != null && !hit.collider.CompareTag("Player"))
             {
                 isSalvaging = true;
-
+                beam = Instantiate(beamEffect, hit.point, Quaternion.identity);
+                Vector3 effectDir = hit.point - shootPos.transform.position;
+                Quaternion rotation = Quaternion.LookRotation(effectDir);
+                beam.transform.rotation = rotation;
                 gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
-
+                
                 // if our salvaging audio isn't already playing
                 if (!playerAudioManager.instance.salvagingAudioSource.isPlaying)
                 {
@@ -494,9 +500,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
                 {
                     SalvageObject(hit.collider.gameObject);
+                    
                     gameManager.instance.salvagingObjectReticle.fillAmount = 0;
                     yield return new WaitForSeconds(0.01f);
                 }
+                
             }
             // else what we are looking at is not salvageable, so stop our salvaging audio and set isSalvaging bool to false
             else
@@ -504,15 +512,18 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 playerAudioManager.instance.salvagingAudioSource.Stop();
                 isSalvaging = false;
             }
-
+            
+            
         }
         else
         {
             isSalvaging = false;
         }
         yield return new WaitForSeconds(0.01f);
-
-
+        if(beam != null)
+        {
+           Destroy(beam,.1f);
+        }
     }
 
     public void TakeDamage(float amount)
@@ -631,7 +642,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         //Assigning drops based off SalvageableObject Script
         objectToSalvage.GetComponent<salvageableObject>().AssignDrops();
-
         // destroying object
         Destroy(objectToSalvage);
 
