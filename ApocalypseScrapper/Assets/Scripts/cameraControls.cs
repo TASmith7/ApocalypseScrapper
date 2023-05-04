@@ -7,17 +7,34 @@ public class cameraControls : MonoBehaviour
     [SerializeField] public int sensHorizontal;
     [SerializeField] public int sensVertical;
 
+    [SerializeField] GameObject player;
+
     [SerializeField] int lockVertMin;
     [SerializeField] int lockVertMax;
 
     [SerializeField] bool invertY;
 
+    [SerializeField] Camera cam;
+    public bool dynamicFOV;
+
+    float standardFOV;
+    float sprintFOV;
+
     float xRotation;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        // setting our original FOV stats
+        standardFOV = cam.fieldOfView;
+        sprintFOV = standardFOV + 20;
     }
     
     void Update()
@@ -36,8 +53,11 @@ public class cameraControls : MonoBehaviour
             xRotation -= mouseY;
         }
 
-       
-
+        if(dynamicFOV)
+        {
+            DynamicFOV();
+        }    
+        
         // Clamp camera rotation
         xRotation = Mathf.Clamp(xRotation, lockVertMin, lockVertMax);
 
@@ -46,5 +66,18 @@ public class cameraControls : MonoBehaviour
 
         // Rotate the player on the y axis
         transform.parent.Rotate(Vector3.up * mouseX);
+    }
+
+    public void DynamicFOV()
+    {
+        // if our player is holding shift, they are grounded, and we have stamina left change the FOV
+        if (Input.GetKey(KeyCode.LeftShift) && player.GetComponent<playerController>().controller.isGrounded && gameManager.instance.staminaFillBar.fillAmount > 0)
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, sprintFOV, 10f * Time.deltaTime);
+        }
+        else
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, standardFOV, 10f * Time.deltaTime);
+        }
     }
 }

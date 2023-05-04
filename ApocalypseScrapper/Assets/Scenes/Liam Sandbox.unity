@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 276bdf98b7db1234382a302193146540, type: 2}
+--- !u!20 &125005756 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 661115330689640375, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
+  m_PrefabInstance: {fileID: 2101320333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &143893112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -718,6 +723,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 661115330689640361, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 125005756}
+    - target: {fileID: 661115330689640361, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
+      propertyPath: dynamicFOV
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5333339247780454519, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
       propertyPath: m_RootOrder
       value: 2

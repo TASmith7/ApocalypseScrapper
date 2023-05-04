@@ -11,7 +11,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     #region Player variables
 
     [Header("----- Components -----")]
-    [SerializeField] CharacterController controller;
+    [SerializeField] public CharacterController controller;
     [SerializeField] Animator anim;
     //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
@@ -226,7 +226,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     }
 
     // might change this in the future to determine animation speed, but right now this works to tell if we are moving or not
-    bool IsMoving
+    public bool IsMoving
     {
         get
         {
