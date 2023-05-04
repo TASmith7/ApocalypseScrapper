@@ -44,7 +44,7 @@ public class crabAI : MonoBehaviour, IDamage
     [Range(1, 100)][SerializeField] int shootDistance;
     [SerializeField] int bulletSpeed;
     [SerializeField] GameObject bullet;
-    [SerializeField] GameObject drop;
+    [SerializeField] GameObject deathGoop;
     bool playerInRange;
     float angleToPlayer;
     float speed;
@@ -193,9 +193,10 @@ public class crabAI : MonoBehaviour, IDamage
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
-            if (drop)
+            // now blood drop effect
+            if (deathGoop)
             {
-                Instantiate(drop, transform.position, drop.transform.rotation);
+                Instantiate(deathGoop, transform.position, deathGoop.transform.rotation);
             }
 
             // cue death audio

@@ -1556,7 +1556,7 @@ MonoBehaviour:
   shootDistance: 5
   bulletSpeed: 50
   bullet: {fileID: 2765080052109346540, guid: a7eb135b0d26fac43a26663efb4460d9, type: 3}
-  drop: {fileID: 0}
+  deathGoop: {fileID: 1000010675638318, guid: d33f6e384aefbef4da4b4158248ec1a3, type: 3}
 --- !u!195 &3666913497194558673
 NavMeshAgent:
   m_ObjectHideFlags: 0
