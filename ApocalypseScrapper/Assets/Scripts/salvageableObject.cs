@@ -7,7 +7,6 @@ public class salvageableObject : MonoBehaviour, ISalvageable
 {
     [SerializeField] public float salvageValue;
     public float salvageTime;
-
     [Header("----- Component Drop Chances -----")]
     [Range(0.0f, 5.0f)][SerializeField] public float _dcBioMass;
     [Range(0.0f, 5.0f)][SerializeField] public float _dcIntactOrgan;
@@ -35,6 +34,4 @@ public class salvageableObject : MonoBehaviour, ISalvageable
     {
 
     }
-
-
 }
