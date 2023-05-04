@@ -96,6 +96,7 @@ public class gameManager : MonoBehaviour
     public Slider verticalSens;
     public TextMeshProUGUI horSensValue;
     public TextMeshProUGUI vertSensValue;
+    public Toggle dynamicFOVToggle;
 
 
     [Header("----- End Game Beam -----")]

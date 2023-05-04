@@ -15,7 +15,7 @@ public class cameraControls : MonoBehaviour
     [SerializeField] bool invertY;
 
     [SerializeField] Camera cam;
-    public bool dynamicFOV;
+    // public bool dynamicFOV;
 
     float standardFOV;
     float sprintFOV;
@@ -53,7 +53,7 @@ public class cameraControls : MonoBehaviour
             xRotation -= mouseY;
         }
 
-        if(dynamicFOV)
+        if(gameManager.instance.dynamicFOVToggle.isOn)
         {
             DynamicFOV();
         }    
