@@ -380,7 +380,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         }
 
-
         // ensuring our players y velocity take gravity into effect
         playerVelocity.y -= gravityValue * Time.deltaTime;
 
