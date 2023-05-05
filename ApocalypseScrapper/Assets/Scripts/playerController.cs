@@ -11,7 +11,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     #region Player variables
 
     [Header("----- Components -----")]
-    [SerializeField] public CharacterController controller;
+    [SerializeField] CharacterController controller;
     [SerializeField] Animator anim;
     //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
@@ -26,7 +26,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(0.3f, 1.0f)][SerializeField] float walkingFootstepRate;
     [Range(0.2f, 1.0f)][SerializeField] float runningFootstepRate;
-    [Range(0.5f, 1.0f)][SerializeField] float crouchingFootstepRate;
     private Vector3 playerVelocity;
     private Vector3 horizontalVelocity;
     private float horizontalSpeed;
@@ -63,19 +62,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(0, 0.5f)][SerializeField] public float stmainaRefillRate;
     [Range(1, 100)][SerializeField] int timeToTurnOffStaminaBar;
     [Range(5, 10)][SerializeField] public float walkSpeed;
+
+
     public bool isSprinting;
-
-    [Header("----- Crouch Stats -----")]
-    [SerializeField] private float crouchHeight;
-    [Range(0, 10)][SerializeField] public float crouchSpeed;
-    [SerializeField] private float standingHeight;
-    [SerializeField] private float timeToCrouch = 0.25f;
-    private Vector3 crouchingCenter = new Vector3(0, 0.7f, 0);
-    private Vector3 standingCenter = new Vector3(0, 0.5f, 0);
-    public bool isCrouching;
-    bool duringCrouchAnimation;
-
-
     float timeOfLastSprint;
     bool jetpackPowerDownAudioPlayed;
     bool outOfBreathAudioPlayed;
@@ -109,9 +98,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] float walkBobAmount;
     [SerializeField] float sprintBobSpeed;
     [SerializeField] float sprintBobAmount;
-    [SerializeField] float crouchBobSpeed;
-    [SerializeField] float crouchBobAmount;
-
     float defaultYPosForCam;
     float headBobTimer;
 
@@ -145,9 +131,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         // setting default y position for main camera
         defaultYPosForCam = playerCam.transform.localPosition.y;
-
-        standingHeight = controller.height;
-        crouchHeight = 0.3f;
     }
     
     
@@ -243,7 +226,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     }
 
     // might change this in the future to determine animation speed, but right now this works to tell if we are moving or not
-    public bool IsMoving
+    bool IsMoving
     {
         get
         {
@@ -276,16 +259,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         }
         if (groundedPlayer)
         {
-            if(isCrouching)
-            {
-                playerSpeed = crouchSpeed;
-            }
-            else
-            {
-                playerSpeed = walkSpeed;
-            }
+            playerSpeed = walkSpeed;
 
-            if (Input.GetButton("Sprint") && !isCrouching)
+            if (Input.GetButton("Sprint"))
             {
 
                 // turn on our stamina bar
@@ -332,11 +308,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 gameManager.instance.TurnOffStaminaUI();
             }
 
-            if(Input.GetButtonDown("Crouch") && !duringCrouchAnimation)
-            {
-                StartCoroutine(CrouchStand());
-            }
-
         }
 
 
@@ -347,10 +318,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         // calling the builtin move method on the player controller with frame rate independence
         controller.Move(playerSpeed * Time.deltaTime * move);
 
-        // can't fly when you're crouched
-        if (Input.GetButton("Jump") && !isCrouching)
+        if (Input.GetButton("Jump"))
         {
-
             playerSpeed = walkSpeed;
 
             // turn on our jetpack fuel bar
@@ -411,46 +380,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         }
 
+
         // ensuring our players y velocity take gravity into effect
         playerVelocity.y -= gravityValue * Time.deltaTime;
 
 
         controller.Move(playerVelocity * Time.deltaTime);
-    }
-
-    private IEnumerator CrouchStand()
-    {
-        // if crouching and underneath something
-        if(isCrouching && Physics.Raycast(playerCam.transform.position, Vector3.up, 1f))
-        {
-            yield break;
-        }
-
-        duringCrouchAnimation = true;
-
-        // caching values to know which height and center we should be using and moving to
-        float timeElapsed = 0f;
-        float targetHeight = isCrouching ? standingHeight : crouchHeight;
-        float currentHeight = controller.height;
-        Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter;
-        Vector3 currentCenter = controller.center;
-
-        while(timeElapsed < timeToCrouch)
-        {
-            controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
-            controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
-
-            timeElapsed += Time.deltaTime;
-
-            yield return null;
-        }
-
-        controller.height = targetHeight;
-        controller.center = targetCenter;
-
-        isCrouching = !isCrouching;
-
-        duringCrouchAnimation = false;
     }
 
     void Shielding()
@@ -475,9 +410,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         if (!controller.isGrounded) return;
         if(IsMoving)
         {
-            headBobTimer += Time.deltaTime * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobSpeed : isCrouching ? crouchBobSpeed : walkBobSpeed);
+            headBobTimer += Time.deltaTime * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobSpeed : walkBobSpeed);
             playerCam.transform.localPosition = new Vector3(playerCam.transform.localPosition.x,
-                defaultYPosForCam + Mathf.Sin(headBobTimer) * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobAmount : isCrouching ? crouchBobAmount : walkBobAmount), 
+                defaultYPosForCam + Mathf.Sin(headBobTimer) * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobAmount : walkBobAmount), 
                 playerCam.transform.localPosition.z);
         }
     }
@@ -889,11 +824,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             if(gameManager.instance.staminaFillBar.fillAmount > 0  && isSprinting)
             {
                 timeBetweenFootsteps = runningFootstepRate; 
-                playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length)]);
-            }
-            else if(isCrouching)
-            {
-                timeBetweenFootsteps = crouchingFootstepRate;
                 playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length)]);
             }
             else
