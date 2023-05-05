@@ -172,8 +172,7 @@ public class droneAI : MonoBehaviour, IDamage
                 // how far he is from destination
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
-                    FacePlayer();
-                    
+                    FacePlayer();                    
                 }
 
                 if (!isShooting)
@@ -242,41 +241,17 @@ public class droneAI : MonoBehaviour, IDamage
 
         StartCoroutine(FlashColor());
 
-        //if (HP <= 0)
-        //{
-        //    StopAllCoroutines();
-        //    // enemy will drop a GameOjbect after being killing
-        //    Instantiate(drop, transform.position, drop.transform.rotation);
-        //    //gameManager.instance.updatGameGoal(-1);
-        //    //die
-        //    anim.SetBool("Dead", true);
-        //    GetComponent<CapsuleCollider>().enabled = false;
-        //    agent.enabled = false;
-        //    Destroy(gameObject);
-        //}
-        //else
-        //{
-        //    anim.SetTrigger("Damage");
-        //    // when shot the enemy will turn towards the shooter
-        //    agent.SetDestination(gameManager.instance.player.transform.position);
-        //    agent.stoppingDistance = 0;
-        //    StartCoroutine(FlashColor());
-        //}
+
         if (HP <= 0)
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
-            if (drop)
-            {
-                Instantiate(drop, transform.position, drop.transform.rotation);
-            }
+
 
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
 
-            //yield return new WaitForSeconds(4);
-
-            Destroy(gameObject);
+            StartCoroutine(WaitaSec());
         }
         else
         {
@@ -300,7 +275,12 @@ public class droneAI : MonoBehaviour, IDamage
 
     IEnumerator WaitaSec()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2f);//1.98
+        if (drop)
+        {
+            Instantiate(drop, transform.position, drop.transform.rotation);
+        }
+        Destroy(gameObject);
     }
 
     // fixes Bug that enemy does not turn when not moving

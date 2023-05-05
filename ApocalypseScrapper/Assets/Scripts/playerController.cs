@@ -75,6 +75,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(0.1f, 5)][SerializeField] public float shootRate;
     [Range(1, 100)][SerializeField] public int shootDistance;
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject bulletFlash;
     [SerializeField] int bulletSpeed;
     public MeshRenderer gunMaterial;
     public MeshFilter gunModel;
@@ -425,7 +426,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         playerAudioManager.instance.gunAudioSource.Play();
 
         GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.identity);
-
+        GameObject flashClone = Instantiate(bulletFlash, shootPos.position, Quaternion.identity);
         // Set the bullet's velocity to this 
         bulletClone.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * bulletSpeed;
 
@@ -449,7 +450,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                     //Quaternion rotation = Quaternion.LookRotation(effectDir);
                     //bloodClone.transform.rotation = rotation;
                     Destroy(bloodClone, .3f);
+                    
                 }
+                Destroy(flashClone, .05f);
             }
         }
         #region Old Raycast Code
