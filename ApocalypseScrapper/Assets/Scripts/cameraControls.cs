@@ -71,7 +71,7 @@ public class cameraControls : MonoBehaviour
     public void DynamicFOV()
     {
         // if our player is holding shift, they are grounded, and we have stamina left change the FOV
-        if (Input.GetKey(KeyCode.LeftShift) && player.GetComponent<playerController>().controller.isGrounded && gameManager.instance.staminaFillBar.fillAmount > 0)
+        if (Input.GetKey(KeyCode.LeftShift) && player.GetComponent<playerController>().controller.isGrounded && !player.GetComponent<playerController>().isCrouching && gameManager.instance.staminaFillBar.fillAmount > 0)
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, sprintFOV, 10f * Time.deltaTime);
         }

@@ -12,9 +12,19 @@ public class weaponMovement : MonoBehaviour
     public Animator gunAnimator;
     public float sprintBobSpeed;
     public float walkBobSpeed;
+    public float crouchBobSpeed;
 
     [Header("----- Player Controller -----")]
     [SerializeField] CharacterController playerCont;
+    [SerializeField] GameObject player;
+    [SerializeField] playerController playerScript;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerCont = player.GetComponent<CharacterController>();
+        playerScript = player.GetComponent<playerController>();
+    }
 
     private void Update()
     {
@@ -32,9 +42,13 @@ public class weaponMovement : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, smooth * Time.deltaTime);
 
         // if we are sprinting, speed up the gun bob animation
-        if(Input.GetKey(KeyCode.LeftShift) && gameManager.instance.staminaFillBar.fillAmount > 0)
+        if(Input.GetKey(KeyCode.LeftShift) && gameManager.instance.staminaFillBar.fillAmount > 0 && !playerScript.isCrouching)
         {
             gunAnimator.speed = sprintBobSpeed;
+        }
+        else if(playerScript.isCrouching)
+        {
+            gunAnimator.speed = crouchBobSpeed;
         }
         // else set it back to walking speed
         else

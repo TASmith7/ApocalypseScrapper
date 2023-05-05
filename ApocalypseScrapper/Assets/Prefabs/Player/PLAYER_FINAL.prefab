@@ -193,7 +193,10 @@ MonoBehaviour:
   gunAnimator: {fileID: 661115328687326014}
   sprintBobSpeed: 2
   walkBobSpeed: 1
-  playerCont: {fileID: 5333339247771160563}
+  crouchBobSpeed: 0.65
+  playerCont: {fileID: 0}
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
 --- !u!95 &661115328687326014
 Animator:
   serializedVersion: 5
@@ -2029,7 +2032,6 @@ GameObject:
   - component: {fileID: 5333339247771160565}
   - component: {fileID: 5333339247771160564}
   - component: {fileID: 5333339247771160567}
-  - component: {fileID: 5333339247771160566}
   - component: {fileID: 5333339247771160563}
   m_Layer: 3
   m_Name: PLAYER_FINAL
@@ -2135,6 +2137,7 @@ MonoBehaviour:
   gravityValue: 50
   walkingFootstepRate: 0.5
   runningFootstepRate: 0.25
+  crouchingFootstepRate: 0.75
   salvageRange: 5
   salvageRate: 1
   animTransSpeed: 1
@@ -2154,6 +2157,11 @@ MonoBehaviour:
   timeToTurnOffStaminaBar: 5
   walkSpeed: 7
   isSprinting: 0
+  crouchHeight: 0
+  crouchSpeed: 3
+  standingHeight: 0
+  timeToCrouch: 0.25
+  isCrouching: 0
   gunList: []
   shootDamage: 1
   shootRate: 0.34
@@ -2173,6 +2181,8 @@ MonoBehaviour:
   walkBobAmount: 0.05
   sprintBobSpeed: 23
   sprintBobAmount: 0.08
+  crouchBobSpeed: 8
+  crouchBobAmount: 0.03
   totalLevelSalvage: 0
   playerFloorScore: 0
   playerTotalScore: 0
@@ -2198,20 +2208,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!136 &5333339247771160566
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5333339247780691351}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 0.9
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.47, z: 0}
 --- !u!143 &5333339247771160563
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2229,4 +2225,4 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 0.47, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
