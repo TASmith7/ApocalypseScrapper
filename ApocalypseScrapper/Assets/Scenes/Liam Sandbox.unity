@@ -520,6 +520,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0d135b74f70b6f4ea0c46082035ba7c, type: 3}
+--- !u!1001 &1262214193
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1400368641552917341, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400368641552917341, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.8450594
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400368641552917341, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400368641552917341, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 22.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400368641552917341, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400368641552917341, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400368641552917341, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400368641552917341, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400368641552917341, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400368641552917341, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400368641552917341, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680840266458157390, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+      propertyPath: m_Name
+      value: Drone Guard(Roam)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
 --- !u!1001 &1418618556
 PrefabInstance:
   m_ObjectHideFlags: 0

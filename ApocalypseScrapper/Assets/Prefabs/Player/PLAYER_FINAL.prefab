@@ -2164,11 +2164,11 @@ MonoBehaviour:
   gunModel: {fileID: 661115328687326001}
   selectedGun: 0
   salvDetector: 0
-  shielded: 1
-  shieldValue: 125
-  shieldMax: 200
-  shieldCD: 1
-  shieldRate: 50
+  shielded: 0
+  shieldValue: 0
+  shieldMax: 0
+  shieldCD: 5
+  shieldRate: 1
   walkBobSpeed: 12
   walkBobAmount: 0.05
   sprintBobSpeed: 23

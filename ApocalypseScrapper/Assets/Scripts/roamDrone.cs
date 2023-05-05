@@ -27,6 +27,13 @@ public class roamDrone : MonoBehaviour, IDamage
     [Range(10, 200)][SerializeField] float droneActive; //(active)
     public float droneRadius; //(radius)
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource droneAudSource;
+    [SerializeField] AudioClip hoverAudio;
+    [SerializeField] AudioClip shotAudio;
+    [SerializeField] AudioClip damageAudio;
+
+
     //[Header("----- Enemy Gun -----")]
 
     //Lecture three
@@ -95,6 +102,18 @@ public class roamDrone : MonoBehaviour, IDamage
             else if (agent.destination != gameManager.instance.player.transform.position)
             {
                 StartCoroutine(Roam());
+            }
+
+            // if audio source isn't playing and we are not paused, play hover audio
+            if (!droneAudSource.isPlaying)
+            {
+                droneAudSource.PlayOneShot(hoverAudio);
+            }
+
+            // if we pause, stop all drone audio
+            if (gameManager.instance.isPaused)
+            {
+                droneAudSource.Stop();
             }
 
         }
@@ -170,8 +189,10 @@ public class roamDrone : MonoBehaviour, IDamage
         Debug.Log("AI shot!");
         // to reference a bullet
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
-        // to give bullet a velocity                     this transform would need to be the camera (Camera.main.transform.forward) for player to shoot bullets
+        // to give bullet a velocity
+        // this transform would need to be the camera (Camera.main.transform.forward) for player to shoot bullets
         bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+        droneAudSource.PlayOneShot(shotAudio);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
@@ -200,6 +221,8 @@ public class roamDrone : MonoBehaviour, IDamage
     {
         HP -= (int)dmg;
         //rb.AddForce(playerDir * 5f, ForceMode.Impulse);
+
+        droneAudSource.PlayOneShot(damageAudio, 0.75f);
 
         if (agent.isActiveAndEnabled)
         {

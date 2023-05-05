@@ -122,6 +122,7 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        isPaused = false;
 
         // setting our current scene
         currentScene = SceneManager.GetActiveScene();
@@ -297,6 +298,7 @@ public class gameManager : MonoBehaviour
         activeMenu = winMenu;
         activeMenu.SetActive(true);
         PauseState();
+        isPaused = true;
         WinGame();
     }
 
@@ -435,6 +437,7 @@ public class gameManager : MonoBehaviour
     {
         levelAudioManager.instance.voiceOverAudioSource.Stop();
         PauseState();
+        isPaused = true;
         char rank = Rank();
         int clearPercent = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
         int bonus = Bonus(rank);
