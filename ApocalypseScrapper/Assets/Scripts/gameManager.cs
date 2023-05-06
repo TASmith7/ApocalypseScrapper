@@ -29,6 +29,7 @@ public class gameManager : MonoBehaviour
     public GameObject ApocSplash;
     public GameObject checkpointMenu;
     public GameObject storeMenu;
+    public GameObject playerStatsScreen;
     public GameObject optionsMenu;
 
     [Header("----- HP Bar -----")]
@@ -90,8 +91,21 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI BonusData;
     public TextMeshProUGUI BonusSpendable;
     public int spendable;
+    [Header("----- Player Stats Objects -----")]
+    public TextMeshProUGUI healthValue;
+    public TextMeshProUGUI maxHealthValue;
+    public TextMeshProUGUI shieldRechargeValue;
+    public TextMeshProUGUI shieldHealthValue;
+    public TextMeshProUGUI jetpackRechargeValue;
+    public TextMeshProUGUI jetpackConsumptionValue;
+    public TextMeshProUGUI DamageValue;
+    public TextMeshProUGUI rateOfFireValue;
+    public TextMeshProUGUI salvageSpreadValue;
+    public TextMeshProUGUI salvageRangeValue;
+    public TextMeshProUGUI salvageDetectorCondition;
 
-    [Header("----- Sensitivity Settings -----")]
+
+[Header("----- Sensitivity Settings -----")]
     public Slider horizontalSens;
     public Slider verticalSens;
     public TextMeshProUGUI horSensValue;
@@ -162,18 +176,18 @@ public class gameManager : MonoBehaviour
         totalScoreLabel.SetActive(false);
         playerBonusLabel.SetActive(false);
         floorScoreLabel.SetActive(false);
-
+        //activating splash screens 
         activeMenu = RSGSplash;
         RSGSplash.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         RSGSplash.SetActive(false);
         activeMenu = ApocSplash;
         ApocSplash.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         ApocSplash.SetActive(false);
         activeMenu = ControlsSplash;
         ControlsSplash.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         ControlsSplash.SetActive(false);
 
         activeMenu = null;
@@ -235,6 +249,7 @@ public class gameManager : MonoBehaviour
             horSensValue.text = horizontalSens.value.ToString();
             vertSensValue.text = verticalSens.value.ToString();
         }
+        
 
     }
     
@@ -696,6 +711,48 @@ public class gameManager : MonoBehaviour
     {
         optionsMenu.SetActive(false);
         ControlsSplashFromOptions.SetActive(true);
+    }
+    public void OpenPlayerStatsMenu()
+    {
+        storeMenu.SetActive(false);
+        playerStatsScreen.SetActive(true);
+        SetPlayerStats();
+    }
+    public void ClosePlayerStatsMenu()
+    { 
+        playerStatsScreen.SetActive(false);
+        storeMenu.SetActive(true);
+       
+    }
+    public void SetPlayerStats()
+    {
+        healthValue.text = playerScript.HP.ToString();
+        maxHealthValue.text = playerScript.HPMax.ToString();
+        if (playerScript.shielded)
+        {
+            shieldRechargeValue.text = playerScript.shieldRate.ToString();
+            shieldHealthValue.text = playerScript.shieldValue.ToString();
+        }
+        else
+        {
+            shieldRechargeValue.text = ("NULL");
+            shieldHealthValue.text = ("NULL");
+        }
+        jetpackRechargeValue.text=(playerScript.fuelRefillRate*100).ToString();
+        
+        jetpackConsumptionValue.text=(playerScript.fuelConsumptionRate*100).ToString();
+        DamageValue.text=playerScript.shootDamage.ToString();
+        rateOfFireValue.text=playerScript.shootRate.ToString();
+        salvageSpreadValue.text= playerScript.salvageSpread.ToString();
+        salvageRangeValue.text=playerScript.salvageRange.ToString();
+        if(playerScript.salvDetector)
+        {
+            salvageDetectorCondition.text = ("Active");
+        }
+        else
+        {
+            salvageDetectorCondition.text = ("Inactive");
+        }
     }
 }
 

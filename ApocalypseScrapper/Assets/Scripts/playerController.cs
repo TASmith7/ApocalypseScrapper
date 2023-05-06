@@ -40,6 +40,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [SerializeField] public int salvageRange;
     [Range(0.1f, 1)][SerializeField] public float salvageRate;
+    [Range(1, 40)][SerializeField] public float salvageSpread;
     bool isSalvaging;
     
 
