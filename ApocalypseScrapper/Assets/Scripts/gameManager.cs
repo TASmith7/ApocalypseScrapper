@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
 
 public class gameManager : MonoBehaviour
 {
@@ -103,9 +104,22 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI salvageSpreadValue;
     public TextMeshProUGUI salvageRangeValue;
     public TextMeshProUGUI salvageDetectorCondition;
-
-
-[Header("----- Sensitivity Settings -----")]
+    [Header("----- Player Inventory Objects -----")]
+    public GameObject InventroyParent;
+    public bool invOpen;
+    public Image Slot1;
+    public Image Slot2;
+    public Image Slot3;
+    public Image Slot4;
+    public Image Slot5;
+    public Image Slot6;
+    public Image Slot7;
+    public Image Slot8;
+    public Image Slot9;
+    public Image Slot10;
+    public Image Slot11;
+    public Image Slot12;
+    [Header("----- Sensitivity Settings -----")]
     public Slider horizontalSens;
     public Slider verticalSens;
     public TextMeshProUGUI horSensValue;
@@ -248,6 +262,16 @@ public class gameManager : MonoBehaviour
             // changing labels to match the value of the slider
             horSensValue.text = horizontalSens.value.ToString();
             vertSensValue.text = verticalSens.value.ToString();
+        }
+        if(Input.GetButton("Tab") && !invOpen)
+        {
+            invOpen = true;
+            TurnOnInventoryUI();
+        }
+        else if(Input.GetButton("Tab") && invOpen)
+        {
+            invOpen = false;
+            TurnOffInventoryUI();
         }
         
 
@@ -753,6 +777,17 @@ public class gameManager : MonoBehaviour
         {
             salvageDetectorCondition.text = ("Inactive");
         }
+        
+    }
+    public void TurnOnInventoryUI()
+    {
+        //activate the Inventory UI
+        InventroyParent.SetActive(true);
+    }
+    public void TurnOffInventoryUI()
+    {
+        //activate the Inventory UI
+        InventroyParent.SetActive(false) ;
     }
 }
 

@@ -764,18 +764,21 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     
     IEnumerator ReduceStaminaUI()
     {
-        // this bool will be helpful for future development of thrusting capabilities. It currently has no effective use
-        isSprinting = true;
+        if (gameManager.instance.player.transform.x > 0 || gameManager.instance.player.transform.z > 0)
+        {
+            // this bool will be helpful for future development of thrusting capabilities. It currently has no effective use
+            isSprinting = true;
 
-        // stopping the refill coroutine while sprinting
-        StopCoroutine(RefillStaminaUI());
+            // stopping the refill coroutine while sprinting
+            StopCoroutine(RefillStaminaUI());
 
-        // reducing the stamina bar
-        gameManager.instance.staminaFillBar.fillAmount -= staminaDrain * Time.deltaTime;
+            // reducing the stamina bar
+            gameManager.instance.staminaFillBar.fillAmount -= staminaDrain * Time.deltaTime;
 
-        yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.25f);
 
-        isSprinting = false;
+            isSprinting = false;
+        }
     }
 
     IEnumerator RefillStaminaUI()
