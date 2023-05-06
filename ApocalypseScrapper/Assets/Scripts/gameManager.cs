@@ -107,26 +107,29 @@ public class gameManager : MonoBehaviour
     [Header("----- Player Inventory Objects -----")]
     public GameObject InventroyParent;
     public bool invOpen;
-    public Image Slot1;
-    public Image Slot2;
-    public Image Slot3;
-    public Image Slot4;
-    public Image Slot5;
-    public Image Slot6;
-    public Image Slot7;
-    public Image Slot8;
-    public Image Slot9;
-    public Image Slot10;
-    public Image Slot11;
-    public Image Slot12;
+    public Image BioMass;
+    public Image IntactOrgan;
+    public Image ElectronicComponent;
+    public Image DataCore;
+    public Image DenseMetalPlate;
+    public Image HighTensileAlloy;
+    public Image GlassPane;
+    public Image HPLightDiode;
+    public Image ElectricMotor;
+    public Image CeramicPlate;
+    public Image GoldAlloy;
+    public Image ValuableLoot;
     [Header("----- Sensitivity Settings -----")]
     public Slider horizontalSens;
     public Slider verticalSens;
     public TextMeshProUGUI horSensValue;
     public TextMeshProUGUI vertSensValue;
     public Toggle dynamicFOVToggle;
-
-
+    [Header("----- Loading Screens -----")]
+    public GameObject lvl1;
+    public GameObject lvl2;
+    public GameObject lvl3;
+    public GameObject lvl4;
     [Header("----- End Game Beam -----")]
     public GameObject endGameBeam;
 
@@ -263,13 +266,21 @@ public class gameManager : MonoBehaviour
             horSensValue.text = horizontalSens.value.ToString();
             vertSensValue.text = verticalSens.value.ToString();
         }
-        if(Input.GetButton("Tab") && !invOpen)
+        if(Input.GetButtonDown("Tab") && !invOpen)
         {
             invOpen = true;
+            // turning back on salvage UI (all other UI is cued to turn back on elsewhere)
+            totalScoreLabel.SetActive(true);
+            playerBonusLabel.SetActive(true);
+            floorScoreLabel.SetActive(true);
             TurnOnInventoryUI();
         }
-        else if(Input.GetButton("Tab") && invOpen)
+        else if(Input.GetButtonDown("Tab") && invOpen)
         {
+            // turning back on salvage UI (all other UI is cued to turn back on elsewhere)
+            totalScoreLabel.SetActive(false);
+            playerBonusLabel.SetActive(false);
+            floorScoreLabel.SetActive(false);
             invOpen = false;
             TurnOffInventoryUI();
         }
@@ -586,18 +597,22 @@ public class gameManager : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "Lvl 1":
+                StartCoroutine(Lvl1LoadScreen());
                 SceneManager.LoadScene("Lvl 2");
                 break;
 
             case "Lvl 2":
+                StartCoroutine(Lvl2LoadScreen());
                 SceneManager.LoadScene("Lvl 3");
                 break;
 
             case "Lvl 3":
+                StartCoroutine(Lvl3LoadScreen());
                 SceneManager.LoadScene("Boss Lvl");
                 break;
 
             case "Boss Lvl":
+                StartCoroutine(Lvl4LoadScreen());
                 WinGame();
                 break;
 
@@ -606,7 +621,31 @@ public class gameManager : MonoBehaviour
                 break;
         }
     }
+    IEnumerator Lvl1LoadScreen()
+    {
+        lvl1.SetActive(true);
+        yield return new WaitForSeconds(5);
+        lvl1.SetActive(false);
 
+    }
+    IEnumerator Lvl2LoadScreen()
+    {
+        lvl2.SetActive(true);
+        yield return new WaitForSeconds(5);
+        lvl2.SetActive(false);
+    }
+    IEnumerator Lvl3LoadScreen()
+    {
+        lvl3.SetActive(true);
+        yield return new WaitForSeconds(5);
+        lvl3.SetActive(false);
+    }
+    IEnumerator Lvl4LoadScreen()
+    {
+        lvl4.SetActive(true);
+        yield return new WaitForSeconds(5);
+        lvl4.SetActive(false);
+    }
     public void WinGame()
     {
         // updating total score value
@@ -788,6 +827,68 @@ public class gameManager : MonoBehaviour
     {
         //activate the Inventory UI
         InventroyParent.SetActive(false) ;
+    }
+    public void UpdateInventory(Image itemImage,int amt)
+    {
+        int maxItemNum = 32;
+        Image component=itemImage;
+        if (amt < maxItemNum)
+        {
+            if (component = BioMass)
+            {
+                //not sure if these work until the components are set up
+                BioMass.sprite = itemImage.sprite;
+            }
+            else if (component = IntactOrgan)
+            {
+               IntactOrgan.sprite = itemImage.sprite;
+            }
+            else if (component = ElectronicComponent)
+            {
+                ElectronicComponent.sprite = itemImage.sprite;
+            }
+            else if (component = DataCore)
+            {
+                DataCore.sprite = itemImage.sprite;
+            }
+            else if (component = DenseMetalPlate)
+            {
+                DenseMetalPlate.sprite = itemImage.sprite;
+            }
+            else if (component = HighTensileAlloy)
+            {
+                HighTensileAlloy.sprite = itemImage.sprite;
+            }
+            else if (component = GlassPane)
+            {
+                GlassPane.sprite = itemImage.sprite;
+            }
+            else if (component = HPLightDiode)
+            {
+                HPLightDiode.sprite = itemImage.sprite;
+            }
+            else if (component = ElectricMotor)
+            {
+                ElectricMotor.sprite = itemImage.sprite;
+            }
+            else if (component = CeramicPlate)
+            {
+                CeramicPlate.sprite = itemImage.sprite;
+            }
+            else if (component = GoldAlloy)
+            {
+                GoldAlloy.sprite = itemImage.sprite;
+            }
+            else if (component = ValuableLoot)
+            {
+                ValuableLoot.sprite = itemImage.sprite;
+            }
+        }
+        else
+        {
+            //give the player salvage maybe
+        }
+
     }
 }
 

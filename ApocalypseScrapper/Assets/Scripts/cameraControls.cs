@@ -73,11 +73,18 @@ public class cameraControls : MonoBehaviour
         // if our player is holding shift, they are grounded, and we have stamina left change the FOV
         if (Input.GetKey(KeyCode.LeftShift) && player.GetComponent<playerController>().controller.isGrounded && !player.GetComponent<playerController>().isCrouching && gameManager.instance.staminaFillBar.fillAmount > 0)
         {
-            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, sprintFOV, 10f * Time.deltaTime);
+            if (gameManager.instance.playerScript.isSprinting)
+            {
+                cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, sprintFOV, 10f * Time.deltaTime);
+            }
         }
         else
         {
-            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, standardFOV, 10f * Time.deltaTime);
+            if (!gameManager.instance.playerScript.isSprinting)
+            {
+                cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, standardFOV, 10f * Time.deltaTime);
+            }
+                
         }
     }
 }

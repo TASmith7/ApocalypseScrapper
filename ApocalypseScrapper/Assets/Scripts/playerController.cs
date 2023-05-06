@@ -286,36 +286,37 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 playerSpeed = walkSpeed;
             }
 
-            if (Input.GetButton("Sprint") && !isCrouching)
+            if (Input.GetButton("Sprint") && !isCrouching&&IsMoving)
             {
+                
+                
+                    // turn on our stamina bar
+                    gameManager.instance.TurnOnStaminaUI();
 
-                // turn on our stamina bar
-                gameManager.instance.TurnOnStaminaUI();
-
-                // if we are not out of stamina
-                if (gameManager.instance.staminaFillBar.fillAmount > 0)
-                {
-                    // while player holds down shift, give velocity in the z direction a value
-                    playerSpeed = sprintSpeed;
-
-                    timeOfLastSprint = Time.fixedTime;
-
-                    outOfBreathAudioPlayed = false;
-                }
-                // else if we are out of stamina
-                else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
-                {
-                    // if not already playing our out of breath audio, and we haven't already played it once
-                    if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
+                    // if we are not out of stamina
+                    if (gameManager.instance.staminaFillBar.fillAmount > 0)
                     {
-                        playerAudioManager.instance.outOfBreathAudioSource.Play();
-                        outOfBreathAudioPlayed = true;
+                        // while player holds down shift, give velocity in the z direction a value
+                        playerSpeed = sprintSpeed;
+
+                        timeOfLastSprint = Time.fixedTime;
+
+                        outOfBreathAudioPlayed = false;
                     }
-                }
+                    // else if we are out of stamina
+                    else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
+                    {
+                        // if not already playing our out of breath audio, and we haven't already played it once
+                        if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
+                        {
+                            playerAudioManager.instance.outOfBreathAudioSource.Play();
+                            outOfBreathAudioPlayed = true;
+                        }
+                    }
 
-                // reducing the stamina bar while the player is pressing shift
-                StartCoroutine(ReduceStaminaUI());
-
+                    // reducing the stamina bar while the player is pressing shift
+                    StartCoroutine(ReduceStaminaUI());
+                
             }
 
 
@@ -764,9 +765,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     
     IEnumerator ReduceStaminaUI()
     {
-        if (gameManager.instance.player.transform.x > 0 || gameManager.instance.player.transform.z > 0)
-        {
-            // this bool will be helpful for future development of thrusting capabilities. It currently has no effective use
+        
             isSprinting = true;
 
             // stopping the refill coroutine while sprinting
@@ -777,8 +776,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
             yield return new WaitForSeconds(0.25f);
 
-            isSprinting = false;
-        }
+            
+        
     }
 
     IEnumerator RefillStaminaUI()
@@ -789,6 +788,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         {
             // refilling the stamina bar
             gameManager.instance.staminaFillBar.fillAmount += staminaDrain * Time.deltaTime;
+            isSprinting = false;
         }
     }
 
