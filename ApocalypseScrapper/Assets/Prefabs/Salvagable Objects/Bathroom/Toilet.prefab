@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4622713565080048}
   - component: {fileID: -5873145958679740868}
+  - component: {fileID: 960658089}
   m_Layer: 0
   m_Name: Toilet
   m_TagString: Untagged
@@ -24,9 +25,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098210806119866}
-  m_LocalRotation: {x: -0, y: 0.059654795, z: -0, w: 0.9982191}
+  m_LocalRotation: {x: 0, y: 0.059654795, z: 0, w: 0.9982191}
   m_LocalPosition: {x: 4.4217973, y: -0.18337536, z: -2.4396462}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4996480912709812}
@@ -34,7 +35,7 @@ Transform:
   - {fileID: 4535401736992872}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 6.84, z: 0}
 --- !u!114 &-5873145958679740868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,18 +50,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   salvageValue: 150
   salvageTime: 0
-  _dcBioMass: 0.07
-  _dcIntactOrgan: 0.11
-  _dcElectronicComponents: 0.08
-  _dcDataProcessingCore: 0.08
-  _dcDenseMetalPlate: 4.12
-  _dcHighTensileAlloyPlate: 4.42
-  _dcGlassPane: 0.16
-  _dcHighPoweredLightDiode: 0.2
-  _dcElectricMotor: 0.11
-  _dcCeramicPlate: 3.95
-  _dcGoldAlloy: 0.05
-  _dcValuableLoot: 0.05
+  _dcBioMass: 0
+  _rollBM: 0
+  _dcIntactOrgan: 0
+  _rollIO: 0
+  _dcElectronicComponents: 0
+  _rollEC: 0
+  _dcDataProcessingCore: 0
+  _rollDCP: 0
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 0
+  _rollHTAP: 0
+  _dcGlassPane: 0
+  _rollGP: 0
+  _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
+  _dcElectricMotor: 0
+  _rollEM: 0
+  _dcCeramicPlate: 70
+  _rollCP: 2
+  _dcGoldAlloy: 0
+  _rollGA: 0
+  _dcValuableLoot: 0
+  _rollVL: 0
+--- !u!65 &960658089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098210806119866}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.78, y: 2.75, z: 1}
+  m_Center: {x: -0.09, y: 1.3, z: 0}
 --- !u!1 &1548792856721960
 GameObject:
   m_ObjectHideFlags: 0

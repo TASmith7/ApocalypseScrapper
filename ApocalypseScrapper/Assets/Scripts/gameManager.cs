@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,13 +9,19 @@ using UnityEngine.UI;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
-    
+
+    [Header("----- Gamelog Vars -----")]
+    [SerializeField]List<string> gamelog = new List<string>();
+    public int maxMessages = 30;
+    public GameObject gamelogPanel;
+    public TextMeshProUGUI textObject;
 
     [Header("----- Player/Boss -----")]
     public GameObject player;
     public playerController playerScript;
     public GameObject playerSpawnPos;
     
+
     //public GameObject Boss;
     //public BossAI bossScript;
 
@@ -209,9 +217,15 @@ public class gameManager : MonoBehaviour
         playerBonusLabel.SetActive(false);
         floorScoreLabel.SetActive(false);
         //activating splash screens 
+        
         activeMenu = RSGSplash;
         RSGSplash.SetActive(true);
         yield return new WaitForSeconds(5);
+        if (!levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        {
+            // playing intro voice over
+            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
+        }
         RSGSplash.SetActive(false);
         activeMenu = ApocSplash;
         ApocSplash.SetActive(true);
@@ -221,14 +235,11 @@ public class gameManager : MonoBehaviour
         ControlsSplash.SetActive(true);
         yield return new WaitForSeconds(5);
         ControlsSplash.SetActive(false);
+        
 
         activeMenu = null;
 
-        if(!levelAudioManager.instance.voiceOverAudioSource.isPlaying)
-        {
-            // playing intro voice over
-            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
-        }
+        
 
         // turning back on salvage UI (all other UI is cued to turn back on elsewhere)
         totalScoreLabel.SetActive(true);
@@ -629,6 +640,7 @@ public class gameManager : MonoBehaviour
     {
 
         instance.playerScript.SavePlayerStats();
+        Inventory.Instance.InvSnapshot();
 
         switch (SceneManager.GetActiveScene().name)
         {
@@ -863,7 +875,7 @@ public class gameManager : MonoBehaviour
     //public void UpdateInventory(Image itemImage,int amt)
     //{
     //    Image component=itemImage;
-        
+
     //        if (component = BioMass)
     //        {
     //            //not sure if these work until the components are set up
@@ -913,9 +925,40 @@ public class gameManager : MonoBehaviour
     //        {
     //            ValuableLoot.sprite = itemImage.sprite;
     //        }
-        
+
 
     //}
+
+    #region Message Log functions and classes
+    [System.Serializable]
+    public class Message
+    {
+        public string text;
+        public TextMeshProUGUI textObject;
+    }
+
+    public void SendMessageToLog(string text)
+    {
+        if (gamelog.Count > maxMessages) 
+        {
+            //Destroy(gamelog[0].textObject.gameObject);
+            gamelog.Remove(gamelog[0]);
+        }
+
+
+        //Message newMessage = new Message();
+        //newMessage.text = text;
+
+        TextMeshProUGUI newText = Instantiate(textObject);
+
+        //newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
+
+        //newMessage.textObject.text = newMessage.text;
+        newText.text = text;
+
+        gamelog.Add(newText.text);
+    }
+    #endregion
 }
 
 

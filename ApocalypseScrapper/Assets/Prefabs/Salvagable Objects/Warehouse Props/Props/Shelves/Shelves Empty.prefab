@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 5552622703376891218}
   - component: {fileID: 2475237225310112948}
   - component: {fileID: 6816590129777657477}
-  - component: {fileID: 4515438191977166171}
-  - component: {fileID: 5440929036728292698}
   m_Layer: 0
   m_Name: Shelf Grate
   m_TagString: Untagged
@@ -85,32 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4515438191977166171
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188246073875827237}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.099257, y: 1.7434597, z: 0.10378766}
-  m_Center: {x: -3.0307577, y: -0.00069880486, z: 1.5404993}
---- !u!65 &5440929036728292698
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188246073875827237}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.099257, y: 1.7434597, z: 0.18199778}
-  m_Center: {x: -3.0307577, y: -0.00069880486, z: 3.5090225}
 --- !u!1 &2218359714841641024
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,9 +94,6 @@ GameObject:
   - component: {fileID: 1346723069785791283}
   - component: {fileID: 5881096784670759300}
   - component: {fileID: 6012261076398810688}
-  - component: {fileID: 5452055533192816562}
-  - component: {fileID: 5952673630022882868}
-  - component: {fileID: 8586418485575905693}
   m_Layer: 0
   m_Name: LP_shelf
   m_TagString: Untagged
@@ -197,58 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5452055533192816562
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2218359714841641024}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.6798439, z: 6.3690186}
-  m_Center: {x: -0.06, y: -0.00003492833, z: 3.162754}
---- !u!65 &5952673630022882868
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2218359714841641024}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.6798439, z: 6.3690186}
-  m_Center: {x: -7.26, y: -0.00003492833, z: 3.162754}
---- !u!114 &8586418485575905693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2218359714841641024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  salvageValue: 50
-  salvageTime: 0
-  _dcBioMass: 0
-  _dcIntactOrgan: 0
-  _dcElectronicComponents: 0
-  _dcDataProcessingCore: 0
-  _dcDenseMetalPlate: 0
-  _dcHighTensileAlloyPlate: 0
-  _dcGlassPane: 0
-  _dcHighPoweredLightDiode: 0
-  _dcElectricMotor: 0
-  _dcCeramicPlate: 0
-  _dcGoldAlloy: 0
-  _dcValuableLoot: 0
 --- !u!1 &6225358861170117921
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +175,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6935459031938432818}
+  - component: {fileID: 2054417190}
+  - component: {fileID: 2054417191}
+  - component: {fileID: 2054417192}
+  - component: {fileID: 2054417193}
+  - component: {fileID: 2054417194}
   m_Layer: 0
   m_Name: Shelves Empty
   m_TagString: Untagged
@@ -272,7 +194,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6225358861170117921}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -282,3 +204,93 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2054417190
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225358861170117921}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.13, y: 0.19, z: 1.79}
+  m_Center: {x: -3.03, y: 3.54, z: 0}
+--- !u!65 &2054417191
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225358861170117921}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.13, y: 0.19, z: 1.79}
+  m_Center: {x: -3.03, y: 1.52, z: 0}
+--- !u!65 &2054417192
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225358861170117921}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.23, y: 4.8, z: 1.79}
+  m_Center: {x: -6.06, y: 2.43, z: 0}
+--- !u!65 &2054417193
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225358861170117921}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.23, y: 4.8, z: 1.79}
+  m_Center: {x: -0.03, y: 2.43, z: 0}
+--- !u!114 &2054417194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225358861170117921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  salvageValue: 75
+  salvageTime: 0
+  _dcBioMass: 0
+  _rollBM: 0
+  _dcIntactOrgan: 0
+  _rollIO: 0
+  _dcElectronicComponents: 0
+  _rollEC: 0
+  _dcDataProcessingCore: 0
+  _rollDPC: 0
+  _dcDenseMetalPlate: 100
+  _rollDMP: 2
+  _dcHighTensileAlloyPlate: 0
+  _rollHTAP: 0
+  _dcGlassPane: 0
+  _rollGP: 0
+  _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
+  _dcElectricMotor: 0
+  _rollEM: 0
+  _dcCeramicPlate: 0
+  _rollCP: 0
+  _dcGoldAlloy: 0
+  _rollGA: 0
+  _dcValuableLoot: 0
+  _rollVL: 0

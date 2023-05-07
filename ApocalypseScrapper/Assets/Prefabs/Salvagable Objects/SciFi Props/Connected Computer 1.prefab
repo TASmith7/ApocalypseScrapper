@@ -11,13 +11,12 @@ GameObject:
   - component: {fileID: 4808658749834850}
   - component: {fileID: 33476794247511268}
   - component: {fileID: 23794393219424456}
-  - component: {fileID: 65393812460187360}
   m_Layer: 0
   m_Name: ComputerR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4808658749834850
 Transform:
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &65393812460187360
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251089756043920}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5000002, y: 1, z: 0.5000002}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1321880359123220
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +260,6 @@ GameObject:
   - component: {fileID: 4107395894540470}
   - component: {fileID: 33513658346440910}
   - component: {fileID: 23916218941320906}
-  - component: {fileID: 65743117496919502}
   m_Layer: 0
   m_Name: ComputerL
   m_TagString: Untagged
@@ -347,19 +332,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &65743117496919502
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712666671655104}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5000002, y: 1, z: 0.5000002}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1931886439230648
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,12 +342,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4195153059930162}
   - component: {fileID: -6672711525917547890}
+  - component: {fileID: 1055749882}
+  - component: {fileID: 1055749881}
   m_Layer: 0
   m_Name: Connected Computer 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4195153059930162
 Transform:
@@ -408,17 +382,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 1000
+  salvageValue: 2000
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
-  _dcElectronicComponents: 5
-  _dcDataProcessingCore: 5
-  _dcDenseMetalPlate: 3.28
-  _dcHighTensileAlloyPlate: 2.06
-  _dcGlassPane: 4.92
-  _dcHighPoweredLightDiode: 5
+  _rollIO: 0
+  _dcElectronicComponents: 100
+  _rollEC: 3
+  _dcDataProcessingCore: 100
+  _rollDPC: 2
+  _dcDenseMetalPlate: 0
+  _rollDMP: 0
+  _dcHighTensileAlloyPlate: 30
+  _rollHTAP: 1
+  _dcGlassPane: 0
+  _rollGP: 0
+  _dcHighPoweredLightDiode: 60
+  _rollHPLD: 1
   _dcElectricMotor: 0
-  _dcCeramicPlate: 5
-  _dcGoldAlloy: 5
-  _dcValuableLoot: 5
+  _rollEM: 0
+  _dcCeramicPlate: 0
+  _rollCP: 0
+  _dcGoldAlloy: 60
+  _rollGA: 1
+  _dcValuableLoot: 25
+  _rollVL: 1
+--- !u!54 &1055749882
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931886439230648}
+  serializedVersion: 2
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1055749881
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931886439230648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.52}
+  m_Center: {x: 0, y: 0.5, z: 0}

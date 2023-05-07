@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4408685249136634}
   - component: {fileID: 400650843395952637}
+  - component: {fileID: 1213566624}
   m_Layer: 0
   m_Name: Sink
   m_TagString: Untagged
@@ -190,9 +191,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070336316640508}
-  m_LocalRotation: {x: -0, y: -0.6645782, z: -0, w: 0.7472188}
+  m_LocalRotation: {x: 0, y: -0.6645786, z: 0, w: 0.74721843}
   m_LocalPosition: {x: 1.53, y: 2.45, z: 0.922}
-  m_LocalScale: {x: 2.7500007, y: 2.7499995, z: 2.7500005}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4255348292514390}
@@ -215,18 +216,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   salvageValue: 150
   salvageTime: 0
-  _dcBioMass: 0.07
-  _dcIntactOrgan: 0.11
-  _dcElectronicComponents: 0.08
-  _dcDataProcessingCore: 0.08
-  _dcDenseMetalPlate: 4.12
-  _dcHighTensileAlloyPlate: 4.42
-  _dcGlassPane: 0.16
-  _dcHighPoweredLightDiode: 0.2
-  _dcElectricMotor: 0.11
-  _dcCeramicPlate: 3.95
-  _dcGoldAlloy: 0.05
-  _dcValuableLoot: 0.05
+  _dcBioMass: 0
+  _rollBM: 0
+  _dcIntactOrgan: 0
+  _rollIO: 0
+  _dcElectronicComponents: 0
+  _rollEC: 0
+  _dcDataProcessingCore: 0
+  _rollDCP: 0
+  _dcDenseMetalPlate: 65
+  _rollDMP: 2
+  _dcHighTensileAlloyPlate: 15
+  _rollHTAP: 1
+  _dcGlassPane: 0
+  _rollGP: 0
+  _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
+  _dcElectricMotor: 0
+  _rollEM: 0
+  _dcCeramicPlate: 90
+  _rollCP: 1
+  _dcGoldAlloy: 0
+  _rollGA: 0
+  _dcValuableLoot: 0
+  _rollVL: 0
+--- !u!65 &1213566624
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070336316640508}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.56, y: 1.09, z: 0.54}
+  m_Center: {x: 0.12, y: -0.41, z: 0}
 --- !u!1 &1967176002269386
 GameObject:
   m_ObjectHideFlags: 0

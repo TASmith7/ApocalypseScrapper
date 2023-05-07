@@ -1,4 +1,3 @@
-using KevinCastejon.ConeMesh;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -40,13 +39,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Header("----- Salvage Stats -----")]
 
     [SerializeField] public int salvageRange;
-    [Range(0.1f, 1)][SerializeField] int salvageRadius;
     [Range(0.1f, 1)][SerializeField] public float salvageRate;
     [Range(1, 40)][SerializeField] public float salvageSpread;
     bool isSalvaging;
-    public GameObject salvageCone;
-    
-    public List<ISalvageable> salvagableItems;
+    public GameObject salvageSphere;
+
 
     
 
@@ -148,6 +145,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         jetpackPowerDownAudioPlayed = false;
         outOfBreathAudioPlayed = false;
         timeBetweenFootsteps = walkingFootstepRate;
+
         // setting default y position for main camera
         defaultYPosForCam = playerCam.transform.localPosition.y;
 
@@ -158,7 +156,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     
     void Update()
     {
-        
+
         horizontalVelocity = controller.velocity;
         horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
         horizontalSpeed = horizontalVelocity.magnitude;
@@ -720,6 +718,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         //Assigning drops based off SalvageableObject Script
         objectToSalvage.GetComponent<salvageableObject>().AssignDrops();
+
         // destroying object
         Destroy(objectToSalvage);
 
@@ -739,8 +738,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     public void RestartMission()
     {
-        
-
         SceneManager.LoadScene("Lvl 1");
     }
 

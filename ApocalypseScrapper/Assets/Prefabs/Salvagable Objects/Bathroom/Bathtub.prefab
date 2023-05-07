@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4539977021472082}
   - component: {fileID: 6646083374681699021}
+  - component: {fileID: 1987573588}
   m_Layer: 0
   m_Name: Bathtub
   m_TagString: Untagged
@@ -190,9 +191,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784596945529646}
-  m_LocalRotation: {x: -0, y: -0.17168085, z: -0, w: 0.98515266}
+  m_LocalRotation: {x: 0, y: -0.17167972, z: 0, w: 0.98515284}
   m_LocalPosition: {x: 5.19, y: 0.16, z: 1.72}
-  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4328940152184002}
@@ -215,18 +216,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   salvageValue: 250
   salvageTime: 0
-  _dcBioMass: 0.08
-  _dcIntactOrgan: 0.03
-  _dcElectronicComponents: 0.11
-  _dcDataProcessingCore: 0.05
-  _dcDenseMetalPlate: 4.32
-  _dcHighTensileAlloyPlate: 3.84
-  _dcGlassPane: 0.03
-  _dcHighPoweredLightDiode: 0.08
-  _dcElectricMotor: 0.03
-  _dcCeramicPlate: 3.79
-  _dcGoldAlloy: 0.09
-  _dcValuableLoot: 1.36
+  _dcBioMass: 0
+  _rollBM: 0
+  _dcIntactOrgan: 0
+  _rollIO: 0
+  _dcElectronicComponents: 0
+  _rollEC: 0
+  _dcDataProcessingCore: 0
+  _rollDCP: 0
+  _dcDenseMetalPlate: 50
+  _rollDMP: 2
+  _dcHighTensileAlloyPlate: 55
+  _rollHTAP: 3
+  _dcGlassPane: 0
+  _rollGP: 0
+  _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
+  _dcElectricMotor: 0
+  _rollEM: 0
+  _dcCeramicPlate: 0
+  _rollCP: 0
+  _dcGoldAlloy: 0
+  _rollGA: 0
+  _dcValuableLoot: 0
+  _rollVL: 0
+--- !u!65 &1987573588
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784596945529646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.46, y: 1.51, z: 3.1}
+  m_Center: {x: 0, y: 0.59, z: 0}
 --- !u!1 &1847114073889304
 GameObject:
   m_ObjectHideFlags: 0

@@ -110,17 +110,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 25
+  salvageValue: 50
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
-  _dcElectronicComponents: 5
-  _dcDataProcessingCore: 0.39
-  _dcDenseMetalPlate: 0.09
-  _dcHighTensileAlloyPlate: 0.39
-  _dcGlassPane: 0.23
-  _dcHighPoweredLightDiode: 0.17
-  _dcElectricMotor: 0.45
-  _dcCeramicPlate: 0.17
-  _dcGoldAlloy: 0.04
+  _rollIO: 0
+  _dcElectronicComponents: 100
+  _rollEC: 1
+  _dcDataProcessingCore: 0
+  _rollDPC: 0
+  _dcDenseMetalPlate: 0
+  _rollDMP: 0
+  _dcHighTensileAlloyPlate: 0
+  _rollHTAP: 0
+  _dcGlassPane: 0
+  _rollGP: 0
+  _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
+  _dcElectricMotor: 0
+  _rollEM: 0
+  _dcCeramicPlate: 0
+  _rollCP: 0
+  _dcGoldAlloy: 50
+  _rollGA: 1
   _dcValuableLoot: 0
+  _rollVL: 0
