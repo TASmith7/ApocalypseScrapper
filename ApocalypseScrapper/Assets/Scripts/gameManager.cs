@@ -191,9 +191,15 @@ public class gameManager : MonoBehaviour
         playerBonusLabel.SetActive(false);
         floorScoreLabel.SetActive(false);
         //activating splash screens 
+        
         activeMenu = RSGSplash;
         RSGSplash.SetActive(true);
         yield return new WaitForSeconds(5);
+        if (!levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        {
+            // playing intro voice over
+            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
+        }
         RSGSplash.SetActive(false);
         activeMenu = ApocSplash;
         ApocSplash.SetActive(true);
@@ -203,14 +209,11 @@ public class gameManager : MonoBehaviour
         ControlsSplash.SetActive(true);
         yield return new WaitForSeconds(5);
         ControlsSplash.SetActive(false);
+        
 
         activeMenu = null;
 
-        if(!levelAudioManager.instance.voiceOverAudioSource.isPlaying)
-        {
-            // playing intro voice over
-            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
-        }
+        
 
         // turning back on salvage UI (all other UI is cued to turn back on elsewhere)
         totalScoreLabel.SetActive(true);
@@ -589,6 +592,7 @@ public class gameManager : MonoBehaviour
     {
 
         instance.playerScript.SavePlayerStats();
+        Inventory.Instance.InvSnapshot();
 
         switch (SceneManager.GetActiveScene().name)
         {

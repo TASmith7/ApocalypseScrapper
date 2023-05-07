@@ -733,8 +733,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     public void RestartMission()
     {
-        
-
         SceneManager.LoadScene("Lvl 1");
     }
 
