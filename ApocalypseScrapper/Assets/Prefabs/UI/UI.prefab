@@ -14799,7 +14799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2138703055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18065,9 +18065,6 @@ MonoBehaviour:
   skipTransmissionText: {fileID: 1980018}
   FinalFloorScoreData: {fileID: 1804118337}
   FloorAvailData: {fileID: 284664924}
-  PerformanceData: {fileID: 0}
-  BonusData: {fileID: 0}
-  BonusSpendable: {fileID: 0}
   spendable: 0
   healthValue: {fileID: 5557729876270936298}
   maxHealthValue: {fileID: 4740565728403910941}
@@ -18100,9 +18097,9 @@ MonoBehaviour:
   vertSensValue: {fileID: 2113672705}
   dynamicFOVToggle: {fileID: 1468098850}
   lvl1: {fileID: 0}
-  lvl2: {fileID: 0}
-  lvl3: {fileID: 0}
-  lvl4: {fileID: 0}
+  lvl2: {fileID: 1991197141}
+  lvl3: {fileID: 1146954808}
+  lvl4: {fileID: 1921050333}
   endGameBeam: {fileID: 0}
   isPaused: 0
   currentScene:
@@ -27586,7 +27583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7135254382534082924
 RectTransform:
   m_ObjectHideFlags: 0
