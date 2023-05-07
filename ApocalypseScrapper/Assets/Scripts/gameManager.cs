@@ -11,9 +11,10 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
 
     [Header("----- Gamelog Vars -----")]
-    List<Message> gamelog = new List<Message>();
+    [SerializeField]List<string> gamelog = new List<string>();
     public int maxMessages = 30;
-    public GameObject gamelogPanel, textObject;
+    public GameObject gamelogPanel;
+    public TextMeshProUGUI textObject;
 
     [Header("----- Player/Boss -----")]
     public GameObject player;
@@ -896,27 +897,29 @@ public class gameManager : MonoBehaviour
     public class Message
     {
         public string text;
-        public Text textObject;
+        public TextMeshProUGUI textObject;
     }
 
     public void SendMessageToLog(string text)
     {
         if (gamelog.Count > maxMessages) 
         {
-            Destroy(gamelog[0].textObject.gameObject);
+            //Destroy(gamelog[0].textObject.gameObject);
             gamelog.Remove(gamelog[0]);
         }
 
 
-        Message newMessage = new Message();
-        newMessage.text = text;
+        //Message newMessage = new Message();
+        //newMessage.text = text;
 
-        GameObject newText = Instantiate(textObject, gamelogPanel.transform);
-        newMessage.textObject = newText.GetComponent<Text>();
+        TextMeshProUGUI newText = Instantiate(textObject);
 
-        newMessage.textObject.text = newMessage.text;
+        //newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
 
-        gamelog.Add(newMessage);
+        //newMessage.textObject.text = newMessage.text;
+        newText.text = text;
+
+        gamelog.Add(newText.text);
     }
     #endregion
 }
