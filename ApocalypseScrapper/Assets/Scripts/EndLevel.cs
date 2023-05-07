@@ -13,7 +13,7 @@ public class EndLevel : MonoBehaviour
             {
                 levelAudioManager.instance.voiceOverAudioSource.Stop();
             }
-
+           gameManager.instance.CueStore();
         }
         
     }
