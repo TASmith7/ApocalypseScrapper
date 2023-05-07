@@ -221,6 +221,22 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.spendable -= 650;
         }
     }
+    public void UpgradeSalvageRange()
+    {
+        if(gameManager.instance.spendable>=650)
+        {
+            gameManager.instance.playerScript.salvageRange += 1;
+            gameManager.instance.spendable -= 650;
+        }
+    }
+    public void UpgradeSalvageSpread()
+    {
+        if (gameManager.instance.spendable >= 350)
+        {
+            gameManager.instance.playerScript.salvageSpread += 0.1f;
+            gameManager.instance.spendable -= 350;
+        }
+    }
 
     public void FinishUpgrade()
     {

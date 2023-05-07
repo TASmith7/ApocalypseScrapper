@@ -1006,42 +1006,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 661115328687326015, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: playerCont
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 661115328687326015, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: crouchBobSpeed
-      value: 0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333339247771160563, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333339247771160563, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: m_Center.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: crouchSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: crouchBobSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: crouchBobAmount
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: crouchingFootstepRate
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333339247771160566, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5333339247780454519, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1090,8 +1054,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: PLAYER_FINAL
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5333339247771160566, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
 --- !u!1001 &2211262572266341987
 PrefabInstance:
