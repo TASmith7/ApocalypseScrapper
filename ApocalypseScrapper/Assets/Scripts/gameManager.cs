@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,7 +9,11 @@ using UnityEngine.UI;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
-    
+
+    [Header("----- Gamelog Vars -----")]
+    List<Message> gamelog = new List<Message>();
+    public int maxMessages = 30;
+    public GameObject gamelogPanel, textObject;
 
     [Header("----- Player/Boss -----")]
     public GameObject player;
@@ -831,7 +837,7 @@ public class gameManager : MonoBehaviour
     //public void UpdateInventory(Image itemImage,int amt)
     //{
     //    Image component=itemImage;
-        
+
     //        if (component = BioMass)
     //        {
     //            //not sure if these work until the components are set up
@@ -881,9 +887,38 @@ public class gameManager : MonoBehaviour
     //        {
     //            ValuableLoot.sprite = itemImage.sprite;
     //        }
-        
+
 
     //}
+
+    #region Message Log functions and classes
+    [System.Serializable]
+    public class Message
+    {
+        public string text;
+        public Text textObject;
+    }
+
+    public void SendMessageToLog(string text)
+    {
+        if (gamelog.Count > maxMessages) 
+        {
+            Destroy(gamelog[0].textObject.gameObject);
+            gamelog.Remove(gamelog[0]);
+        }
+
+
+        Message newMessage = new Message();
+        newMessage.text = text;
+
+        GameObject newText = Instantiate(textObject, gamelogPanel.transform);
+        newMessage.textObject = newText.GetComponent<Text>();
+
+        newMessage.textObject.text = newMessage.text;
+
+        gamelog.Add(newMessage);
+    }
+    #endregion
 }
 
 
