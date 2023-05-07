@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7611376033635651907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,7 +97,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4227903015918461508, guid: cf991b60bffe4d149b9b71463a44be9c, type: 3}
 --- !u!114 &5947895175559018975
@@ -115,14 +115,26 @@ MonoBehaviour:
   salvageValue: 50
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
+  _rollIO: 0
   _dcElectronicComponents: 0
+  _rollEC: 0
   _dcDataProcessingCore: 0
+  _rollDPC: 0
   _dcDenseMetalPlate: 0
+  _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
+  _rollHTAP: 0
   _dcGlassPane: 0
+  _rollGP: 0
   _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
   _dcElectricMotor: 0
+  _rollEM: 0
   _dcCeramicPlate: 0
+  _rollCP: 0
   _dcGoldAlloy: 0
+  _rollGA: 0
   _dcValuableLoot: 0
+  _rollVL: 0
