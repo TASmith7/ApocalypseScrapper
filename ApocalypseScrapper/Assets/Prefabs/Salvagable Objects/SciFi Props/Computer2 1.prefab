@@ -13,12 +13,13 @@ GameObject:
   - component: {fileID: 23790504386959712}
   - component: {fileID: 65962812951157856}
   - component: {fileID: 3287452869783651761}
+  - component: {fileID: 665650239}
   m_Layer: 0
   m_Name: Computer2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4505710698196264
 Transform:
@@ -110,17 +111,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 1000
+  salvageValue: 1200
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
-  _dcElectronicComponents: 5
-  _dcDataProcessingCore: 5
-  _dcDenseMetalPlate: 3.28
-  _dcHighTensileAlloyPlate: 2.06
-  _dcGlassPane: 4.92
-  _dcHighPoweredLightDiode: 5
+  _rollIO: 0
+  _dcElectronicComponents: 100
+  _rollEC: 2
+  _dcDataProcessingCore: 100
+  _rollDPC: 1
+  _dcDenseMetalPlate: 0
+  _rollDMP: 0
+  _dcHighTensileAlloyPlate: 20
+  _rollHTAP: 1
+  _dcGlassPane: 0
+  _rollGP: 0
+  _dcHighPoweredLightDiode: 50
+  _rollHPLD: 1
   _dcElectricMotor: 0
-  _dcCeramicPlate: 5
-  _dcGoldAlloy: 5
-  _dcValuableLoot: 5
+  _rollEM: 0
+  _dcCeramicPlate: 0
+  _rollCP: 0
+  _dcGoldAlloy: 50
+  _rollGA: 1
+  _dcValuableLoot: 25
+  _rollVL: 1
+--- !u!54 &665650239
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193185885239410}
+  serializedVersion: 2
+  m_Mass: 25
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

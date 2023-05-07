@@ -290,7 +290,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 playerSpeed = walkSpeed;
             }
 
-            if (Input.GetButton("Sprint") && !isCrouching&&IsMoving)
+            if (Input.GetButton("Sprint") && !isCrouching && IsMoving)
             {
                 
                 

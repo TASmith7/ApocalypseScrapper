@@ -11,13 +11,12 @@ GameObject:
   - component: {fileID: 7190971007007132592}
   - component: {fileID: 3073683301033749942}
   - component: {fileID: 5003994306644845655}
-  - component: {fileID: 6349583795020717161}
   m_Layer: 0
   m_Name: 'laptop screen '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7190971007007132592
 Transform:
@@ -85,20 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6349583795020717161
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3774468176048109390}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6575580949335262156, guid: cf991b60bffe4d149b9b71463a44be9c, type: 3}
 --- !u!1 &5490711652950048126
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,14 +95,16 @@ GameObject:
   - component: {fileID: 1381870202303233696}
   - component: {fileID: 5457461571921311690}
   - component: {fileID: 121627769216285458}
-  - component: {fileID: 2191981072704405485}
   - component: {fileID: -6451478129590973271}
+  - component: {fileID: 730202140}
+  - component: {fileID: 730202146}
+  - component: {fileID: 730202147}
   m_Layer: 0
   m_Name: 'lap top '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1381870202303233696
 Transform:
@@ -126,7 +113,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5490711652950048126}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -185,20 +172,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2191981072704405485
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5490711652950048126}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7514463263116530848, guid: cf991b60bffe4d149b9b71463a44be9c, type: 3}
 --- !u!114 &-6451478129590973271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,14 +187,68 @@ MonoBehaviour:
   salvageValue: 500
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
-  _dcElectronicComponents: 2.45
-  _dcDataProcessingCore: 0.85
-  _dcDenseMetalPlate: 0.25
+  _rollIO: 0
+  _dcElectronicComponents: 100
+  _rollEC: 2
+  _dcDataProcessingCore: 70
+  _rollDPC: 1
+  _dcDenseMetalPlate: 0
+  _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
-  _dcGlassPane: 2.86
-  _dcHighPoweredLightDiode: 5
+  _rollHTAP: 0
+  _dcGlassPane: 70
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 50
+  _rollHPLD: 3
   _dcElectricMotor: 0
+  _rollEM: 0
   _dcCeramicPlate: 0
-  _dcGoldAlloy: 5
-  _dcValuableLoot: 5
+  _rollCP: 0
+  _dcGoldAlloy: 25
+  _rollGA: 1
+  _dcValuableLoot: 10
+  _rollVL: 1
+--- !u!54 &730202140
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5490711652950048126}
+  serializedVersion: 2
+  m_Mass: 15
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &730202146
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5490711652950048126}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.42341405, y: 0.024133384, z: 0.30237007}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &730202147
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5490711652950048126}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.42341405, y: 0.31, z: 0.03}
+  m_Center: {x: 0.0009002313, y: 0.17, z: 0.15}
