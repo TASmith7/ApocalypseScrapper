@@ -5,22 +5,36 @@ using UnityEngine;
 
 public class salvageableObject : MonoBehaviour, ISalvageable
 {
+
     [SerializeField] public float salvageValue;
     public float salvageTime;
-    [Header("----- Component Drop Chances -----")]
-    [Range(0.0f, 5.0f)][SerializeField] public float _dcBioMass;
-    [Range(0.0f, 5.0f)][SerializeField] public float _dcIntactOrgan;
-    [Range(0.0f, 5.0f)][SerializeField] public float _dcElectronicComponents;
-    [Range(0.0f, 5.0f)][SerializeField] public float _dcDataProcessingCore;
-    [Range(0.0f, 5.0f)][SerializeField] public float _dcDenseMetalPlate;
-    [Range(0.0f, 5.0f)][SerializeField] public float _dcHighTensileAlloyPlate;
-    [Range(0.0f, 5.0f)][SerializeField] public float _dcGlassPane;
-    [Range(0.0f, 5.0f)][SerializeField] public float _dcHighPoweredLightDiode;
-    [Range(0.0f, 5.0f)][SerializeField] public float _dcElectricMotor;
-    [Range(0.0f, 5.0f)][SerializeField] public float _dcCeramicPlate;
-    [Range(0.0f, 5.0f)][SerializeField] public float _dcGoldAlloy;
-    [Range(0.0f, 5.0f)][SerializeField] public float _dcValuableLoot;
-
+    
+    [Header("----- Component Drop Chance % and # of Rolls-----")]
+    [Range(0, 100)][SerializeField] public int _dcBioMass;
+    [Range(0, 5)][SerializeField] public int _rollBM;
+    [Range(0, 100)][SerializeField] public int _dcIntactOrgan;
+    [Range(0, 5)][SerializeField] public int _rollIO;
+    [Range(0, 100)][SerializeField] public int _dcElectronicComponents;
+    [Range(0, 5)][SerializeField] public int _rollEC;
+    [Range(0, 100)][SerializeField] public int _dcDataProcessingCore;
+    [Range(0, 5)][SerializeField] public int _rollDCP;
+    [Range(0, 100)][SerializeField] public int _dcDenseMetalPlate;
+    [Range(0, 5)][SerializeField] public int _rollDMP;
+    [Range(0, 100)][SerializeField] public int _dcHighTensileAlloyPlate;
+    [Range(0, 5)][SerializeField] public int _rollHTAP;
+    [Range(0, 100)][SerializeField] public int _dcGlassPane;
+    [Range(0, 5)][SerializeField] public int _rollGP;
+    [Range(0, 100)][SerializeField] public int _dcHighPoweredLightDiode;
+    [Range(0, 5)][SerializeField] public int _rollHPLD;
+    [Range(0, 100)][SerializeField] public int _dcElectricMotor;
+    [Range(0, 5)][SerializeField] public int _rollEM;
+    [Range(0, 100)][SerializeField] public int _dcCeramicPlate;
+    [Range(0, 5)][SerializeField] public int _rollCP;
+    [Range(0, 100)][SerializeField] public int _dcGoldAlloy;
+    [Range(0, 5)][SerializeField] public int _rollGA;
+    [Range(0, 100)][SerializeField] public int _dcValuableLoot;
+    [Range(0, 5)][SerializeField] public int _rollVL;
+    
 
     void Start()
     { 
@@ -32,6 +46,6 @@ public class salvageableObject : MonoBehaviour, ISalvageable
 
     public void AssignDrops()
     {
-
+ 
     }
 }
