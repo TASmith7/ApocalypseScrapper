@@ -14,6 +14,7 @@ public class gameManager : MonoBehaviour
     public playerController playerScript;
     public GameObject playerSpawnPos;
     
+
     //public GameObject Boss;
     //public BossAI bossScript;
 
