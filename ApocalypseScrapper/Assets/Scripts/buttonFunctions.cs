@@ -114,6 +114,7 @@ public class buttonFunctions : MonoBehaviour
             else gameManager.instance.playerScript.HP += 25;
 
             gameManager.instance.spendable -= 75;
+            gameManager.instance.spent += 75;
         }
         
     }
@@ -130,6 +131,7 @@ public class buttonFunctions : MonoBehaviour
             else gameManager.instance.playerScript.HP += 100;
 
             gameManager.instance.spendable -= 200;
+            gameManager.instance.spent += 200;
         }
     }
     public void MaxHealth()
@@ -141,6 +143,7 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.HP += 25;
 
             gameManager.instance.spendable -= 150;
+            gameManager.instance.spent += 150;
         }
     }
 
@@ -154,6 +157,7 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.shieldValue += 25;
 
             gameManager.instance.spendable -= 200;
+            gameManager.instance.spent += 200;
         }
     }
 
@@ -165,6 +169,7 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.shieldCD -= 1;
 
             gameManager.instance.spendable -= 150;
+            gameManager.instance.spent += 150;
         }
     }
 
@@ -176,6 +181,7 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.shootDamage += 1;
 
             gameManager.instance.spendable -= 100;
+            gameManager.instance.spent += 100;
         }
     }
 
@@ -187,6 +193,7 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.shootRate += 0.33f;
 
             gameManager.instance.spendable -= 300;
+            gameManager.instance.spent += 300;
         }
     }
 
@@ -198,6 +205,7 @@ public class buttonFunctions : MonoBehaviour
 
 
             gameManager.instance.spendable -= 200;
+            gameManager.instance.spent += 200;
         }
     }
 
@@ -208,7 +216,8 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.fuelRefillRate += 0.1f;
 
             gameManager.instance.spendable -= 150;
-            
+            gameManager.instance.spent += 150;
+
         }
     }
 
@@ -219,25 +228,36 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.salvDetector = true;
 
             gameManager.instance.spendable -= 650;
+            gameManager.instance.spent += 650;
         }
     }
     public void UpgradeSalvageRange()
     {
-        if(gameManager.instance.spendable>=650)
+        if(gameManager.instance.spendable>=150)
         {
             gameManager.instance.playerScript.salvageRange += 1;
-            gameManager.instance.spendable -= 650;
+            gameManager.instance.spendable -= 150;
+            gameManager.instance.spent += 150;
         }
     }
     public void UpgradeSalvageSpread()
     {
-        if (gameManager.instance.spendable >= 350)
+        if (gameManager.instance.spendable >= 400)
         {
             gameManager.instance.playerScript.salvageSpread += 0.1f;
-            gameManager.instance.spendable -= 350;
+            gameManager.instance.spendable -= 400;
+            gameManager.instance.spent += 400;
         }
     }
-
+    public void UpgradeSalvageEfficiency()
+    {
+        if (gameManager.instance.spendable >=200)
+        {
+            gameManager.instance.playerScript.salvageRate += 0.1f;
+            gameManager.instance.spendable -= 200;
+            gameManager.instance.spent += 200;
+        }
+    }
     public void FinishUpgrade()
     {
         gameManager.instance.playerScript.playerTotalScore += gameManager.instance.playerScript.playerFloorScore;
@@ -245,9 +265,28 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.UnpauseState();
         gameManager.instance.NextLevel();
     }
+    public void UpgradeStaminaEfficiency()
+    {
+        if(gameManager.instance.spendable>=400)
+        {
+            gameManager.instance.playerScript.staminaDrain -= 0.2f;
+            gameManager.instance.spendable -= 400;
+            gameManager.instance.spent += 400;
+        }    
+    }
+    public void UpgradeStaminaRecharge()
+    {
+        if (gameManager.instance.spendable >= 400)
+        {
+            gameManager.instance.playerScript.staminaRefillRate += 0.2f;
+            gameManager.instance.spendable -= 400;
+            gameManager.instance.spent += 400;
+        }
+    }
+
     #endregion
 
-    
+
 }
 
 

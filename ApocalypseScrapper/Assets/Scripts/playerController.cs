@@ -48,7 +48,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     
     public List<ISalvageable> salvagableItems;
 
-
+    
 
     [Header("----- Animation Stats -----")]
     [SerializeField] float animTransSpeed;
@@ -66,7 +66,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Header("----- Stamina Stats -----")]
     [Range(10, 20)][SerializeField] public float sprintSpeed;
     [Range(0, 1)][SerializeField] public float staminaDrain;
-    [Range(0, 0.5f)][SerializeField] public float stmainaRefillRate;
+    [Range(0, 0.5f)][SerializeField] public float staminaRefillRate;
     [Range(1, 100)][SerializeField] int timeToTurnOffStaminaBar;
     [Range(5, 10)][SerializeField] public float walkSpeed;
     public bool isSprinting;
@@ -291,9 +291,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 playerSpeed = walkSpeed;
             }
 
-            if (Input.GetButton("Sprint") && !isCrouching&&IsMoving)
+            if (Input.GetButton("Sprint") && !isCrouching)
             {
-                
+                isSprinting = true;
                 
                     // turn on our stamina bar
                     gameManager.instance.TurnOnStaminaUI();
@@ -319,15 +319,21 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                         }
                     }
 
-                    // reducing the stamina bar while the player is pressing shift
+                // reducing the stamina bar while the player is pressing shift and moving
+                
+                
                     StartCoroutine(ReduceStaminaUI());
                 
             }
-
+            else
+            {
+                isSprinting = false;
+            }
 
             // refilling the stamina bar when the player is not pressing shift until it's full
             if (gameManager.instance.staminaFillBar.fillAmount < 1 && !isSprinting)
             {
+                isSprinting = false;
                 playerSpeed = walkSpeed;
                 StartCoroutine(RefillStaminaUI());
             }
@@ -549,7 +555,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
-            
+
             // if the object we clicked on contains the ISalvageable interface
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
 
@@ -558,11 +564,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             {
                 isSalvaging = true;
                 beam = Instantiate(beamEffect, hit.point, Quaternion.identity);
-                Vector3 effectDir = hit.point - shootPos.transform.position ;
+                Vector3 effectDir = hit.point - shootPos.transform.position;
                 Quaternion rotation = Quaternion.LookRotation(effectDir);
                 beam.transform.rotation = rotation;
                 gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
-                
+
                 // if our salvaging audio isn't already playing
                 if (!playerAudioManager.instance.salvagingAudioSource.isPlaying)
                 {
@@ -572,11 +578,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
                 {
                     SalvageObject(hit.collider.gameObject);
-                    
+
                     gameManager.instance.salvagingObjectReticle.fillAmount = 0;
                     yield return new WaitForSeconds(0.01f);
                 }
-                
+
             }
             // else what we are looking at is not salvageable, so stop our salvaging audio and set isSalvaging bool to false
             else
@@ -584,29 +590,20 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 playerAudioManager.instance.salvagingAudioSource.Stop();
                 isSalvaging = false;
             }
-            
-            
+
+
         }
         else
         {
             isSalvaging = false;
         }
         yield return new WaitForSeconds(0.01f);
-        if(beam != null)
+        if (beam != null)
         {
-           Destroy(beam,.1f);
+            Destroy(beam, .1f);
         }
     }
-    void Salvage(Vector3 center, float radius)
-    {
-        int maxColliders = 10;
-        Collider[] hitColliders = new Collider[maxColliders];
-        int numColliders = Physics.OverlapSphereNonAlloc(center, radius, hitColliders);
-        for (int i = 0; i < numColliders; i++)
-        {
-            hitColliders[i].SendMessage("AddDamage");
-        }
-    }
+
     public void TakeDamage(float amount)
     {
         if (shieldValue >= (int)amount)
@@ -780,7 +777,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     IEnumerator ReduceStaminaUI()
     {
         
-            isSprinting = true;
+            
 
             // stopping the refill coroutine while sprinting
             StopCoroutine(RefillStaminaUI());
@@ -790,7 +787,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
             yield return new WaitForSeconds(0.25f);
 
-        isSprinting = false;
+        
         
     }
 
@@ -802,7 +799,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         {
             // refilling the stamina bar
             gameManager.instance.staminaFillBar.fillAmount += staminaDrain * Time.deltaTime;
-            isSprinting = false;
+            
         }
     }
 
