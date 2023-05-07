@@ -27,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423445880175314}
-  m_LocalRotation: {x: -0.000000037748954, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.14, y: 0.01885843, z: -4.94}
-  m_LocalScale: {x: 0.7041441, y: 0.7041441, z: 0.7041441}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,17 +111,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 1001
+  salvageValue: 650
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
-  _dcElectronicComponents: 0.98
-  _dcDataProcessingCore: 5
-  _dcDenseMetalPlate: 5
-  _dcHighTensileAlloyPlate: 4.07
+  _rollIO: 0
+  _dcElectronicComponents: 0
+  _rollEC: 0
+  _dcDataProcessingCore: 0
+  _rollDCP: 0
+  _dcDenseMetalPlate: 70
+  _rollDMP: 3
+  _dcHighTensileAlloyPlate: 15
+  _rollHTAP: 1
   _dcGlassPane: 0
-  _dcHighPoweredLightDiode: 1.88
+  _rollGP: 0
+  _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
   _dcElectricMotor: 0
+  _rollEM: 0
   _dcCeramicPlate: 0
+  _rollCP: 0
   _dcGoldAlloy: 0
-  _dcValuableLoot: 0
+  _rollGA: 0
+  _dcValuableLoot: 5
+  _rollVL: 1

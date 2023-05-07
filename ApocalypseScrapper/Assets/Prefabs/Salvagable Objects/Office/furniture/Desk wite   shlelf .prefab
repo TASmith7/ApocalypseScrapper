@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 7161551275798824810}
   - component: {fileID: 2387744396055179301}
   - component: {fileID: 2463883971862517702}
+  - component: {fileID: 298830745}
+  - component: {fileID: 298830746}
+  - component: {fileID: 298830747}
   m_Layer: 0
   m_Name: 'Desk wite   shlelf '
   m_TagString: Untagged
@@ -27,9 +30,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6231127974572986528}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6036454022833325814}
@@ -116,17 +119,68 @@ MonoBehaviour:
   salvageValue: 150
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
+  _rollIO: 0
   _dcElectronicComponents: 0
+  _rollEC: 0
   _dcDataProcessingCore: 0
+  _rollDCP: 0
   _dcDenseMetalPlate: 0
+  _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
+  _rollHTAP: 0
   _dcGlassPane: 0
+  _rollGP: 0
   _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
   _dcElectricMotor: 0
+  _rollEM: 0
   _dcCeramicPlate: 0
+  _rollCP: 0
   _dcGoldAlloy: 0
+  _rollGA: 0
   _dcValuableLoot: 0
+  _rollVL: 0
+--- !u!65 &298830745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6231127974572986528}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6543531, y: 0.48, z: 0.06}
+  m_Center: {x: 0.000000059604645, y: 0.63, z: 0.38}
+--- !u!65 &298830746
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6231127974572986528}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06, y: 0.48, z: 0.56}
+  m_Center: {x: -0.83, y: 0.63, z: 0.11}
+--- !u!65 &298830747
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6231127974572986528}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06, y: 0.48, z: 0.56}
+  m_Center: {x: 0.86, y: 0.63, z: 0.11}
 --- !u!1 &7661754864874109692
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +192,6 @@ GameObject:
   - component: {fileID: 6036454022833325814}
   - component: {fileID: 3020274214853071186}
   - component: {fileID: 5925456511748025225}
-  - component: {fileID: 1958356515434905890}
   m_Layer: 0
   m_Name: 'privacy screen light '
   m_TagString: Untagged
@@ -211,17 +264,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1958356515434905890
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7661754864874109692}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3253646387492179210, guid: cf991b60bffe4d149b9b71463a44be9c, type: 3}
