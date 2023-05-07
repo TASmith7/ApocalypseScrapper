@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696143711905344}
-  m_LocalRotation: {x: -0.00000003774895, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.7305915, y: 0.006457021, z: 0.4994483}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -114,14 +114,26 @@ MonoBehaviour:
   salvageValue: 250
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
-  _dcElectronicComponents: 2.75
-  _dcDataProcessingCore: 1.42
-  _dcDenseMetalPlate: 4.15
-  _dcHighTensileAlloyPlate: 5
+  _rollIO: 0
+  _dcElectronicComponents: 75
+  _rollEC: 3
+  _dcDataProcessingCore: 15
+  _rollDCP: 1
+  _dcDenseMetalPlate: 30
+  _rollDMP: 3
+  _dcHighTensileAlloyPlate: 65
+  _rollHTAP: 1
   _dcGlassPane: 0
-  _dcHighPoweredLightDiode: 3.14
-  _dcElectricMotor: 4.91
+  _rollGP: 0
+  _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
+  _dcElectricMotor: 70
+  _rollEM: 2
   _dcCeramicPlate: 0
-  _dcGoldAlloy: 2.55
-  _dcValuableLoot: 1.66
+  _rollCP: 0
+  _dcGoldAlloy: 0
+  _rollGA: 0
+  _dcValuableLoot: 0
+  _rollVL: 0

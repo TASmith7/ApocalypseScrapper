@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
   - component: {fileID: -8565033807889741159}
+  - component: {fileID: 716399212}
   m_Layer: 0
   m_Name: Forklift
   m_TagString: Untagged
@@ -96,17 +97,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 2001
+  salvageValue: 1500
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
-  _dcElectronicComponents: 3.24
-  _dcDataProcessingCore: 4.06
-  _dcDenseMetalPlate: 2.82
-  _dcHighTensileAlloyPlate: 1.94
-  _dcGlassPane: 4.69
-  _dcHighPoweredLightDiode: 2.81
-  _dcElectricMotor: 3.33
-  _dcCeramicPlate: 1.91
-  _dcGoldAlloy: 3.26
-  _dcValuableLoot: 1.81
+  _rollIO: 0
+  _dcElectronicComponents: 60
+  _rollEC: 2
+  _dcDataProcessingCore: 30
+  _rollDCP: 1
+  _dcDenseMetalPlate: 75
+  _rollDMP: 2
+  _dcHighTensileAlloyPlate: 35
+  _rollHTAP: 2
+  _dcGlassPane: 0
+  _rollGP: 0
+  _dcHighPoweredLightDiode: 15
+  _rollHPLD: 1
+  _dcElectricMotor: 65
+  _rollEM: 3
+  _dcCeramicPlate: 0
+  _rollCP: 0
+  _dcGoldAlloy: 15
+  _rollGA: 1
+  _dcValuableLoot: 5
+  _rollVL: 1
+--- !u!64 &716399212
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 221b2ed885a94fd4295d078e3bab9299, type: 3}
