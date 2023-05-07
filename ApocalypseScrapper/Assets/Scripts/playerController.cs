@@ -42,7 +42,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(0.1f, 1)][SerializeField] public float salvageRate;
     [Range(1, 40)][SerializeField] public float salvageSpread;
     bool isSalvaging;
-    
+    public GameObject salvageSphere;
+
 
 
     [Header("----- Animation Stats -----")]
@@ -206,9 +207,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         RaycastHit hit;
 
         lastPosition = transform.position;
-
+        
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
+
             // if the object we are looking at is salvageable
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
 

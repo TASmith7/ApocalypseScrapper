@@ -114,8 +114,8 @@ public class buttonFunctions : MonoBehaviour
             else gameManager.instance.playerScript.HP += 25;
 
             gameManager.instance.spendable -= 75;
-            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
         }
+        
     }
 
     public void LargeHeal()
@@ -130,7 +130,6 @@ public class buttonFunctions : MonoBehaviour
             else gameManager.instance.playerScript.HP += 100;
 
             gameManager.instance.spendable -= 200;
-            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
         }
     }
     public void MaxHealth()
@@ -142,7 +141,6 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.HP += 25;
 
             gameManager.instance.spendable -= 150;
-            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
         }
     }
 
@@ -156,7 +154,6 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.shieldValue += 25;
 
             gameManager.instance.spendable -= 200;
-            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
         }
     }
 
@@ -168,7 +165,6 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.shieldCD -= 1;
 
             gameManager.instance.spendable -= 150;
-            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
         }
     }
 
@@ -180,7 +176,6 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.shootDamage += 1;
 
             gameManager.instance.spendable -= 100;
-            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
         }
     }
 
@@ -192,7 +187,6 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.shootRate += 0.33f;
 
             gameManager.instance.spendable -= 300;
-            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
         }
     }
 
@@ -204,7 +198,6 @@ public class buttonFunctions : MonoBehaviour
 
 
             gameManager.instance.spendable -= 200;
-            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
         }
     }
 
@@ -215,7 +208,7 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.fuelRefillRate += 0.1f;
 
             gameManager.instance.spendable -= 150;
-            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
+            
         }
     }
 
@@ -226,7 +219,6 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.salvDetector = true;
 
             gameManager.instance.spendable -= 650;
-            gameManager.instance.BonusSpendable.text = gameManager.instance.spendable.ToString();
         }
     }
 

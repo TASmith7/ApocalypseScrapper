@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using JetBrains.Annotations;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
@@ -88,9 +86,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Store Objects -----")]
     public TextMeshProUGUI FinalFloorScoreData;
     public TextMeshProUGUI FloorAvailData;
-    public TextMeshProUGUI PerformanceData;
-    public TextMeshProUGUI BonusData;
-    public TextMeshProUGUI BonusSpendable;
+    
     public int spendable;
     [Header("----- Player Stats Objects -----")]
     public TextMeshProUGUI healthValue;
@@ -269,20 +265,16 @@ public class gameManager : MonoBehaviour
         if(Input.GetButtonDown("Tab") && !invOpen)
         {
             invOpen = true;
-            // turning back on salvage UI (all other UI is cued to turn back on elsewhere)
-            totalScoreLabel.SetActive(true);
-            playerBonusLabel.SetActive(true);
-            floorScoreLabel.SetActive(true);
-            TurnOnInventoryUI();
+           
+            
+            CueStore();
         }
         else if(Input.GetButtonDown("Tab") && invOpen)
         {
-            // turning back on salvage UI (all other UI is cued to turn back on elsewhere)
-            totalScoreLabel.SetActive(false);
-            playerBonusLabel.SetActive(false);
-            floorScoreLabel.SetActive(false);
+            
+           
             invOpen = false;
-            TurnOffInventoryUI();
+            UnCueStore();
         }
         
 
@@ -493,10 +485,7 @@ public class gameManager : MonoBehaviour
         int bonus = Bonus(rank);
         FinalFloorScoreData.text = playerScript.playerFloorScore.ToString();
         FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
-        PerformanceData.text = "RANK " + rank + " FOR " + clearPercent + "% OF AVAILABLE SCRAP LOCATED"; 
-        BonusData.text = bonus.ToString();
-        spendable = bonus + playerScript.playerBonus;
-        BonusSpendable.text = spendable.ToString();
+        
 
         activeMenu = storeMenu;
         activeMenu.SetActive(true);
@@ -536,7 +525,13 @@ public class gameManager : MonoBehaviour
             }
         }
     }
-
+    public void UnCueStore()
+    {
+        levelAudioManager.instance.voiceOverAudioSource.Stop();
+        storeMenu.SetActive(false);
+        UnpauseState();
+        isPaused = false;
+    }
     public char Rank()
     {
         int percentClear = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
@@ -597,22 +592,22 @@ public class gameManager : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "Lvl 1":
-                StartCoroutine(Lvl1LoadScreen());
+                StartCoroutine(Lvl2LoadScreen());
                 SceneManager.LoadScene("Lvl 2");
                 break;
 
             case "Lvl 2":
-                StartCoroutine(Lvl2LoadScreen());
+                StartCoroutine(Lvl3LoadScreen());
                 SceneManager.LoadScene("Lvl 3");
                 break;
 
             case "Lvl 3":
-                StartCoroutine(Lvl3LoadScreen());
+                StartCoroutine(Lvl4LoadScreen());
                 SceneManager.LoadScene("Boss Lvl");
                 break;
 
             case "Boss Lvl":
-                StartCoroutine(Lvl4LoadScreen());
+                
                 WinGame();
                 break;
 
@@ -798,8 +793,8 @@ public class gameManager : MonoBehaviour
         }
         else
         {
-            shieldRechargeValue.text = ("NULL");
-            shieldHealthValue.text = ("NULL");
+            shieldRechargeValue.text = ("Shield Not Found");
+            shieldHealthValue.text = ("Shield Not Found");
         }
         jetpackRechargeValue.text=(playerScript.fuelRefillRate*100).ToString();
         
@@ -828,68 +823,62 @@ public class gameManager : MonoBehaviour
         //activate the Inventory UI
         InventroyParent.SetActive(false) ;
     }
-    public void UpdateInventory(Image itemImage,int amt)
-    {
-        int maxItemNum = 32;
-        Image component=itemImage;
-        if (amt < maxItemNum)
-        {
-            if (component = BioMass)
-            {
-                //not sure if these work until the components are set up
-                BioMass.sprite = itemImage.sprite;
-            }
-            else if (component = IntactOrgan)
-            {
-               IntactOrgan.sprite = itemImage.sprite;
-            }
-            else if (component = ElectronicComponent)
-            {
-                ElectronicComponent.sprite = itemImage.sprite;
-            }
-            else if (component = DataCore)
-            {
-                DataCore.sprite = itemImage.sprite;
-            }
-            else if (component = DenseMetalPlate)
-            {
-                DenseMetalPlate.sprite = itemImage.sprite;
-            }
-            else if (component = HighTensileAlloy)
-            {
-                HighTensileAlloy.sprite = itemImage.sprite;
-            }
-            else if (component = GlassPane)
-            {
-                GlassPane.sprite = itemImage.sprite;
-            }
-            else if (component = HPLightDiode)
-            {
-                HPLightDiode.sprite = itemImage.sprite;
-            }
-            else if (component = ElectricMotor)
-            {
-                ElectricMotor.sprite = itemImage.sprite;
-            }
-            else if (component = CeramicPlate)
-            {
-                CeramicPlate.sprite = itemImage.sprite;
-            }
-            else if (component = GoldAlloy)
-            {
-                GoldAlloy.sprite = itemImage.sprite;
-            }
-            else if (component = ValuableLoot)
-            {
-                ValuableLoot.sprite = itemImage.sprite;
-            }
-        }
-        else
-        {
-            //give the player salvage maybe
-        }
+    //public void UpdateInventory(Image itemImage,int amt)
+    //{
+    //    Image component=itemImage;
+        
+    //        if (component = BioMass)
+    //        {
+    //            //not sure if these work until the components are set up
+    //            BioMass.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = IntactOrgan)
+    //        {
+    //           IntactOrgan.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = ElectronicComponent)
+    //        {
+    //            ElectronicComponent.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = DataCore)
+    //        {
+    //            DataCore.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = DenseMetalPlate)
+    //        {
+    //            DenseMetalPlate.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = HighTensileAlloy)
+    //        {
+    //            HighTensileAlloy.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = GlassPane)
+    //        {
+    //            GlassPane.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = HPLightDiode)
+    //        {
+    //            HPLightDiode.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = ElectricMotor)
+    //        {
+    //            ElectricMotor.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = CeramicPlate)
+    //        {
+    //            CeramicPlate.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = GoldAlloy)
+    //        {
+    //            GoldAlloy.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = ValuableLoot)
+    //        {
+    //            ValuableLoot.sprite = itemImage.sprite;
+    //        }
+        
 
-    }
+    //}
 }
 
 
