@@ -40,8 +40,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [SerializeField] public int salvageRange;
     [Range(0.1f, 1)][SerializeField] public float salvageRate;
+    [Range(1, 40)][SerializeField] public float salvageSpread;
     bool isSalvaging;
-    
+    public GameObject salvageSphere;
+
 
 
     [Header("----- Animation Stats -----")]
@@ -205,9 +207,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         RaycastHit hit;
 
         lastPosition = transform.position;
-
+        
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
+
             // if the object we are looking at is salvageable
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
 
@@ -285,36 +288,37 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 playerSpeed = walkSpeed;
             }
 
-            if (Input.GetButton("Sprint") && !isCrouching)
+            if (Input.GetButton("Sprint") && !isCrouching&&IsMoving)
             {
+                
+                
+                    // turn on our stamina bar
+                    gameManager.instance.TurnOnStaminaUI();
 
-                // turn on our stamina bar
-                gameManager.instance.TurnOnStaminaUI();
-
-                // if we are not out of stamina
-                if (gameManager.instance.staminaFillBar.fillAmount > 0)
-                {
-                    // while player holds down shift, give velocity in the z direction a value
-                    playerSpeed = sprintSpeed;
-
-                    timeOfLastSprint = Time.fixedTime;
-
-                    outOfBreathAudioPlayed = false;
-                }
-                // else if we are out of stamina
-                else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
-                {
-                    // if not already playing our out of breath audio, and we haven't already played it once
-                    if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
+                    // if we are not out of stamina
+                    if (gameManager.instance.staminaFillBar.fillAmount > 0)
                     {
-                        playerAudioManager.instance.outOfBreathAudioSource.Play();
-                        outOfBreathAudioPlayed = true;
+                        // while player holds down shift, give velocity in the z direction a value
+                        playerSpeed = sprintSpeed;
+
+                        timeOfLastSprint = Time.fixedTime;
+
+                        outOfBreathAudioPlayed = false;
                     }
-                }
+                    // else if we are out of stamina
+                    else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
+                    {
+                        // if not already playing our out of breath audio, and we haven't already played it once
+                        if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
+                        {
+                            playerAudioManager.instance.outOfBreathAudioSource.Play();
+                            outOfBreathAudioPlayed = true;
+                        }
+                    }
 
-                // reducing the stamina bar while the player is pressing shift
-                StartCoroutine(ReduceStaminaUI());
-
+                    // reducing the stamina bar while the player is pressing shift
+                    StartCoroutine(ReduceStaminaUI());
+                
             }
 
 
@@ -763,18 +767,19 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     
     IEnumerator ReduceStaminaUI()
     {
-        // this bool will be helpful for future development of thrusting capabilities. It currently has no effective use
-        isSprinting = true;
+        
+            isSprinting = true;
 
-        // stopping the refill coroutine while sprinting
-        StopCoroutine(RefillStaminaUI());
+            // stopping the refill coroutine while sprinting
+            StopCoroutine(RefillStaminaUI());
 
-        // reducing the stamina bar
-        gameManager.instance.staminaFillBar.fillAmount -= staminaDrain * Time.deltaTime;
+            // reducing the stamina bar
+            gameManager.instance.staminaFillBar.fillAmount -= staminaDrain * Time.deltaTime;
 
-        yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.25f);
 
-        isSprinting = false;
+            
+        
     }
 
     IEnumerator RefillStaminaUI()
@@ -785,6 +790,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         {
             // refilling the stamina bar
             gameManager.instance.staminaFillBar.fillAmount += staminaDrain * Time.deltaTime;
+            isSprinting = false;
         }
     }
 

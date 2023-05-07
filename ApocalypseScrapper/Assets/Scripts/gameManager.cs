@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
@@ -29,6 +28,7 @@ public class gameManager : MonoBehaviour
     public GameObject ApocSplash;
     public GameObject checkpointMenu;
     public GameObject storeMenu;
+    public GameObject playerStatsScreen;
     public GameObject optionsMenu;
 
     [Header("----- HP Bar -----")]
@@ -86,19 +86,46 @@ public class gameManager : MonoBehaviour
     [Header("----- Store Objects -----")]
     public TextMeshProUGUI FinalFloorScoreData;
     public TextMeshProUGUI FloorAvailData;
-    public TextMeshProUGUI PerformanceData;
-    public TextMeshProUGUI BonusData;
-    public TextMeshProUGUI BonusSpendable;
+    
     public int spendable;
-
+    [Header("----- Player Stats Objects -----")]
+    public TextMeshProUGUI healthValue;
+    public TextMeshProUGUI maxHealthValue;
+    public TextMeshProUGUI shieldRechargeValue;
+    public TextMeshProUGUI shieldHealthValue;
+    public TextMeshProUGUI jetpackRechargeValue;
+    public TextMeshProUGUI jetpackConsumptionValue;
+    public TextMeshProUGUI DamageValue;
+    public TextMeshProUGUI rateOfFireValue;
+    public TextMeshProUGUI salvageSpreadValue;
+    public TextMeshProUGUI salvageRangeValue;
+    public TextMeshProUGUI salvageDetectorCondition;
+    [Header("----- Player Inventory Objects -----")]
+    public GameObject InventroyParent;
+    public bool invOpen;
+    public Image BioMass;
+    public Image IntactOrgan;
+    public Image ElectronicComponent;
+    public Image DataCore;
+    public Image DenseMetalPlate;
+    public Image HighTensileAlloy;
+    public Image GlassPane;
+    public Image HPLightDiode;
+    public Image ElectricMotor;
+    public Image CeramicPlate;
+    public Image GoldAlloy;
+    public Image ValuableLoot;
     [Header("----- Sensitivity Settings -----")]
     public Slider horizontalSens;
     public Slider verticalSens;
     public TextMeshProUGUI horSensValue;
     public TextMeshProUGUI vertSensValue;
     public Toggle dynamicFOVToggle;
-
-
+    [Header("----- Loading Screens -----")]
+    public GameObject lvl1;
+    public GameObject lvl2;
+    public GameObject lvl3;
+    public GameObject lvl4;
     [Header("----- End Game Beam -----")]
     public GameObject endGameBeam;
 
@@ -162,18 +189,18 @@ public class gameManager : MonoBehaviour
         totalScoreLabel.SetActive(false);
         playerBonusLabel.SetActive(false);
         floorScoreLabel.SetActive(false);
-
+        //activating splash screens 
         activeMenu = RSGSplash;
         RSGSplash.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         RSGSplash.SetActive(false);
         activeMenu = ApocSplash;
         ApocSplash.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         ApocSplash.SetActive(false);
         activeMenu = ControlsSplash;
         ControlsSplash.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         ControlsSplash.SetActive(false);
 
         activeMenu = null;
@@ -235,6 +262,21 @@ public class gameManager : MonoBehaviour
             horSensValue.text = horizontalSens.value.ToString();
             vertSensValue.text = verticalSens.value.ToString();
         }
+        if(Input.GetButtonDown("Tab") && !invOpen)
+        {
+            invOpen = true;
+           
+            
+            CueStore();
+        }
+        else if(Input.GetButtonDown("Tab") && invOpen)
+        {
+            
+           
+            invOpen = false;
+            UnCueStore();
+        }
+        
 
     }
     
@@ -443,10 +485,7 @@ public class gameManager : MonoBehaviour
         int bonus = Bonus(rank);
         FinalFloorScoreData.text = playerScript.playerFloorScore.ToString();
         FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
-        PerformanceData.text = "RANK " + rank + " FOR " + clearPercent + "% OF AVAILABLE SCRAP LOCATED"; 
-        BonusData.text = bonus.ToString();
-        spendable = bonus + playerScript.playerBonus;
-        BonusSpendable.text = spendable.ToString();
+        
 
         activeMenu = storeMenu;
         activeMenu.SetActive(true);
@@ -486,7 +525,13 @@ public class gameManager : MonoBehaviour
             }
         }
     }
-
+    public void UnCueStore()
+    {
+        levelAudioManager.instance.voiceOverAudioSource.Stop();
+        storeMenu.SetActive(false);
+        UnpauseState();
+        isPaused = false;
+    }
     public char Rank()
     {
         int percentClear = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
@@ -547,18 +592,22 @@ public class gameManager : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "Lvl 1":
+                StartCoroutine(Lvl2LoadScreen());
                 SceneManager.LoadScene("Lvl 2");
                 break;
 
             case "Lvl 2":
+                StartCoroutine(Lvl3LoadScreen());
                 SceneManager.LoadScene("Lvl 3");
                 break;
 
             case "Lvl 3":
+                StartCoroutine(Lvl4LoadScreen());
                 SceneManager.LoadScene("Boss Lvl");
                 break;
 
             case "Boss Lvl":
+                
                 WinGame();
                 break;
 
@@ -567,7 +616,31 @@ public class gameManager : MonoBehaviour
                 break;
         }
     }
+    IEnumerator Lvl1LoadScreen()
+    {
+        lvl1.SetActive(true);
+        yield return new WaitForSeconds(5);
+        lvl1.SetActive(false);
 
+    }
+    IEnumerator Lvl2LoadScreen()
+    {
+        lvl2.SetActive(true);
+        yield return new WaitForSeconds(5);
+        lvl2.SetActive(false);
+    }
+    IEnumerator Lvl3LoadScreen()
+    {
+        lvl3.SetActive(true);
+        yield return new WaitForSeconds(5);
+        lvl3.SetActive(false);
+    }
+    IEnumerator Lvl4LoadScreen()
+    {
+        lvl4.SetActive(true);
+        yield return new WaitForSeconds(5);
+        lvl4.SetActive(false);
+    }
     public void WinGame()
     {
         // updating total score value
@@ -697,6 +770,115 @@ public class gameManager : MonoBehaviour
         optionsMenu.SetActive(false);
         ControlsSplashFromOptions.SetActive(true);
     }
+    public void OpenPlayerStatsMenu()
+    {
+        storeMenu.SetActive(false);
+        playerStatsScreen.SetActive(true);
+        SetPlayerStats();
+    }
+    public void ClosePlayerStatsMenu()
+    { 
+        playerStatsScreen.SetActive(false);
+        storeMenu.SetActive(true);
+       
+    }
+    public void SetPlayerStats()
+    {
+        healthValue.text = playerScript.HP.ToString();
+        maxHealthValue.text = playerScript.HPMax.ToString();
+        if (playerScript.shielded)
+        {
+            shieldRechargeValue.text = playerScript.shieldRate.ToString();
+            shieldHealthValue.text = playerScript.shieldValue.ToString();
+        }
+        else
+        {
+            shieldRechargeValue.text = ("Shield Not Found");
+            shieldHealthValue.text = ("Shield Not Found");
+        }
+        jetpackRechargeValue.text=(playerScript.fuelRefillRate*100).ToString();
+        
+        jetpackConsumptionValue.text=(playerScript.fuelConsumptionRate*100).ToString();
+        DamageValue.text=playerScript.shootDamage.ToString();
+        rateOfFireValue.text=playerScript.shootRate.ToString();
+        salvageSpreadValue.text= playerScript.salvageSpread.ToString();
+        salvageRangeValue.text=playerScript.salvageRange.ToString();
+        if(playerScript.salvDetector)
+        {
+            salvageDetectorCondition.text = ("Active");
+        }
+        else
+        {
+            salvageDetectorCondition.text = ("Inactive");
+        }
+        
+    }
+    public void TurnOnInventoryUI()
+    {
+        //activate the Inventory UI
+        InventroyParent.SetActive(true);
+    }
+    public void TurnOffInventoryUI()
+    {
+        //activate the Inventory UI
+        InventroyParent.SetActive(false) ;
+    }
+    //public void UpdateInventory(Image itemImage,int amt)
+    //{
+    //    Image component=itemImage;
+        
+    //        if (component = BioMass)
+    //        {
+    //            //not sure if these work until the components are set up
+    //            BioMass.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = IntactOrgan)
+    //        {
+    //           IntactOrgan.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = ElectronicComponent)
+    //        {
+    //            ElectronicComponent.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = DataCore)
+    //        {
+    //            DataCore.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = DenseMetalPlate)
+    //        {
+    //            DenseMetalPlate.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = HighTensileAlloy)
+    //        {
+    //            HighTensileAlloy.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = GlassPane)
+    //        {
+    //            GlassPane.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = HPLightDiode)
+    //        {
+    //            HPLightDiode.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = ElectricMotor)
+    //        {
+    //            ElectricMotor.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = CeramicPlate)
+    //        {
+    //            CeramicPlate.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = GoldAlloy)
+    //        {
+    //            GoldAlloy.sprite = itemImage.sprite;
+    //        }
+    //        else if (component = ValuableLoot)
+    //        {
+    //            ValuableLoot.sprite = itemImage.sprite;
+    //        }
+        
+
+    //}
 }
 
 
