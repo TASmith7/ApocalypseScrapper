@@ -10,7 +10,7 @@ public class globalSceneControl : MonoBehaviour
     #region Mission Start player stats. 
     // <summary>
     //To be used of player restarts mission. Hardcoded for demo, but designed to
-    //be0 updated at end of mission or when buying permanent upgrades at hub.
+    //be updated at end of mission or when buying permanent upgrades at hub.
     // </summary>
     public int   _MSHP = 100;
     public int   _MSHPMax = 100;
@@ -78,7 +78,8 @@ public class globalSceneControl : MonoBehaviour
             Instance = this;
         }
         else if (Instance != this) 
-            { Destroy(gameObject); }
+            { Destroy(gameObject); 
+        }
 
         
 
@@ -111,7 +112,7 @@ public class globalSceneControl : MonoBehaviour
 
             playerTotalScore = _MSplayerTotalScore;
             playerBonus = _MSplayerBonus;
-
+            
         }
     }
 }

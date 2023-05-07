@@ -202,4 +202,6 @@ public class salvageableObject : MonoBehaviour, ISalvageable
             //msg
         }
     }
+
+
 }
