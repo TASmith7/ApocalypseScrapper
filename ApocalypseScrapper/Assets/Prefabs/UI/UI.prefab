@@ -25954,6 +25954,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e06fe75ba871e40b38b1d9aa1a3589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamelog: []
+  maxMessages: 30
+  gamelogPanel: {fileID: 0}
+  textObject: {fileID: 0}
   player: {fileID: 0}
   playerScript: {fileID: 0}
   playerSpawnPos: {fileID: 0}
@@ -26020,7 +26024,7 @@ MonoBehaviour:
   staminaRegenValue: {fileID: 2479166017118533892}
   staminaDrainValue: {fileID: 3091902889518510957}
   InventroyParent: {fileID: 7720902380946418910}
-  invShown: {fileID: 2290949914049694368}
+  invShown: {fileID: 1143475057}
   storeOpen: 0
   BioMass: {fileID: 232722077959644577}
   IntactOrgan: {fileID: 3369048007732266246}
@@ -26034,6 +26038,18 @@ MonoBehaviour:
   CeramicPlate: {fileID: 7881413915492895735}
   GoldAlloy: {fileID: 49494249403079332}
   ValuableLoot: {fileID: 4178349266084483057}
+  BioMassAmt: {fileID: 0}
+  IntactOrganAmt: {fileID: 0}
+  ElectricCompAmt: {fileID: 0}
+  DataCoreAmt: {fileID: 0}
+  DenseMetalPlateAmt: {fileID: 0}
+  HighTensileAlloyAmt: {fileID: 0}
+  GlassPaneAmt: {fileID: 0}
+  HPLDAmt: {fileID: 0}
+  ElectricMotorAmt: {fileID: 0}
+  CeramicPlateAmt: {fileID: 0}
+  GoldAlloyAmt: {fileID: 0}
+  ValuableLootAmt: {fileID: 0}
   horizontalSens: {fileID: 1940736355}
   verticalSens: {fileID: 1357723654}
   horSensValue: {fileID: 1474895991}
