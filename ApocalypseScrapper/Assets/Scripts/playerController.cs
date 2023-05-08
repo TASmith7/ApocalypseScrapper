@@ -51,6 +51,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] float animTransSpeed;
     [SerializeField] GameObject[] bloodEffect;
     [SerializeField] GameObject beamEffect;
+    [SerializeField] GameObject muzzleFlash;
     
     [Header("----- Jetpack Stats -----")]
     [Range(1, 8)][SerializeField] public float thrustPower;
@@ -509,7 +510,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         playerAudioManager.instance.gunAudioSource.Play();
 
         GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.identity);
-
+        GameObject flashClone = Instantiate(muzzleFlash, shootPos.position, Quaternion.identity);
         // Set the bullet's velocity to this 
         bulletClone.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * bulletSpeed;
 
@@ -535,7 +536,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                     //Quaternion rotation = Quaternion.LookRotation(effectDir);
                     //bloodClone.transform.rotation = rotation;
                     Destroy(bloodClone, .3f);
-                }
+                }                
             }
         }
         #region Old Raycast Code
@@ -549,7 +550,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         //        damageable.TakeDamage(shootDamage);
         //    }
         #endregion
-
+        Destroy(flashClone, .05f);
         //The yield return will wait for the specified amount of seconds
         //before moving on to the next line.It does NOT exit the method.
         yield return new WaitForSeconds(shootRate);
