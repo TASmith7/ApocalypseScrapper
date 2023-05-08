@@ -153,6 +153,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI musicVolumeValue;
     public Toggle dynamicFOVToggle;
     public Toggle voiceoversToggle;
+    public Toggle subtitlesToggle;
 
 
     [Header("----- Loading Screens -----")]
