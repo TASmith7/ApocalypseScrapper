@@ -207,6 +207,8 @@ GameObject:
   - component: {fileID: 661115328687326014}
   - component: {fileID: 2041960472}
   - component: {fileID: 2041960466}
+  - component: {fileID: 6534971313618473687}
+  - component: {fileID: 8228191777047513972}
   m_Layer: 10
   m_Name: SciFiGunLightBlue
   m_TagString: Player
@@ -351,6 +353,33 @@ CapsuleCollider:
   m_Direction: 2
   m_Center: {x: 0.06, y: 0, z: -0.04}
 --- !u!114 &2041960466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661115328687326004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae9064a00aac2b54b99645035bd480dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScript: {fileID: 5333339247771160564}
+--- !u!136 &6534971313618473687
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661115328687326004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1.03
+  m_Direction: 2
+  m_Center: {x: 0.06, y: 0, z: -0.04}
+--- !u!114 &8228191777047513972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2329,7 +2358,7 @@ MonoBehaviour:
   shootRate: 0.34
   shootDistance: 100
   bullet: {fileID: 2765080052109346540, guid: 7c147af25d7a04043aba8b70539ba3b0, type: 3}
-  bulletSpeed: 50
+  bulletSpeed: 75
   gunMaterial: {fileID: 661115328687326002}
   gunModel: {fileID: 661115328687326001}
   playerGun: {fileID: 661115328687326004}
