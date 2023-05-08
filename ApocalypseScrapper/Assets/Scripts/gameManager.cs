@@ -175,8 +175,25 @@ public class gameManager : MonoBehaviour
         bossHealthBarParent.SetActive(false);
 
         // setting our sensitivity sliders to equal the values set in our camera controller script
-        horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
-        verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
+        //horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
+        //verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
+
+        // setting our sensitivity to be the value saved in player prefs on open IF the keys exist (they only won't exist if the player doesn't adjust sensitivity)
+        if (PlayerPrefs.HasKey("HorizontalSensitivity") && PlayerPrefs.HasKey("VerticalSensitivity"))
+        {
+            horizontalSens.value = PlayerPrefs.GetInt("HorizontalSensitivity");
+            verticalSens.value = PlayerPrefs.GetInt("VerticalSensitivity");
+        }
+        // if the keys do not exist in player prefs, give the sensitivity a default value
+        else
+        {
+            horizontalSens.value = 300;
+            verticalSens.value = 300;
+            Debug.Log("Player prefs sensitivity keys do not exist");
+        }
+
+        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int) horizontalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int) verticalSens.value;
 
         // setting the sensitivity labels equal the sliders current values
         horSensValue.text = horizontalSens.value.ToString();
@@ -774,6 +791,9 @@ public class gameManager : MonoBehaviour
         // the value we are actually setting here is the sensitivity multiplier in our camera controller script
         playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int) horizontalSens.value;
         playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int) verticalSens.value;
+
+        PlayerPrefs.SetInt("HorizontalSensitivity", (int)horizontalSens.value);
+        PlayerPrefs.SetInt("VerticalSensitivity", (int)verticalSens.value);
 
         CloseOptionsMenu();
     }
