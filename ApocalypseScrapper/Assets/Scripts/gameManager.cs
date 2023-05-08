@@ -94,8 +94,10 @@ public class gameManager : MonoBehaviour
     [Header("----- Store Objects -----")]
     public TextMeshProUGUI FinalFloorScoreData;
     public TextMeshProUGUI FloorAvailData;
+    public TextMeshProUGUI SpentScrap;
     
     public int spendable;
+    public int spent;
     [Header("----- Player Stats Objects -----")]
     public TextMeshProUGUI healthValue;
     public TextMeshProUGUI maxHealthValue;
@@ -108,9 +110,13 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI salvageSpreadValue;
     public TextMeshProUGUI salvageRangeValue;
     public TextMeshProUGUI salvageDetectorCondition;
+    public TextMeshProUGUI staminaRegenValue;
+    public TextMeshProUGUI staminaDrainValue;
     [Header("----- Player Inventory Objects -----")]
     public GameObject InventroyParent;
-    public bool invOpen;
+    
+    public Toggle invShown;
+    public bool storeOpen;
     public Image BioMass;
     public Image IntactOrgan;
     public Image ElectronicComponent;
@@ -123,6 +129,19 @@ public class gameManager : MonoBehaviour
     public Image CeramicPlate;
     public Image GoldAlloy;
     public Image ValuableLoot;
+    public TextMeshProUGUI BioMassAmt;
+    public TextMeshProUGUI IntactOrganAmt;
+    public TextMeshProUGUI ElectricCompAmt;
+    public TextMeshProUGUI DataCoreAmt;
+    public TextMeshProUGUI DenseMetalPlateAmt;
+    public TextMeshProUGUI HighTensileAlloyAmt;
+    public TextMeshProUGUI GlassPaneAmt;
+    public TextMeshProUGUI HPLDAmt;
+    public TextMeshProUGUI ElectricMotorAmt;
+    public TextMeshProUGUI CeramicPlateAmt;
+    public TextMeshProUGUI GoldAlloyAmt;
+    public TextMeshProUGUI ValuableLootAmt;
+
     [Header("----- Sensitivity Settings -----")]
     public Slider horizontalSens;
     public Slider verticalSens;
@@ -130,7 +149,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI vertSensValue;
     public Toggle dynamicFOVToggle;
     [Header("----- Loading Screens -----")]
-    public GameObject lvl1;
+    
     public GameObject lvl2;
     public GameObject lvl3;
     public GameObject lvl4;
@@ -175,8 +194,25 @@ public class gameManager : MonoBehaviour
         bossHealthBarParent.SetActive(false);
 
         // setting our sensitivity sliders to equal the values set in our camera controller script
-        horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
-        verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
+        //horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
+        //verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
+
+        // setting our sensitivity to be the value saved in player prefs on open IF the keys exist (they only won't exist if the player doesn't adjust sensitivity)
+        if (PlayerPrefs.HasKey("HorizontalSensitivity") && PlayerPrefs.HasKey("VerticalSensitivity"))
+        {
+            horizontalSens.value = PlayerPrefs.GetInt("HorizontalSensitivity");
+            verticalSens.value = PlayerPrefs.GetInt("VerticalSensitivity");
+        }
+        // if the keys do not exist in player prefs, give the sensitivity a default value
+        else
+        {
+            horizontalSens.value = 300;
+            verticalSens.value = 300;
+            Debug.Log("Player prefs sensitivity keys do not exist");
+        }
+
+        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int) horizontalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int) verticalSens.value;
 
         // setting the sensitivity labels equal the sliders current values
         horSensValue.text = horizontalSens.value.ToString();
@@ -273,22 +309,43 @@ public class gameManager : MonoBehaviour
             horSensValue.text = horizontalSens.value.ToString();
             vertSensValue.text = verticalSens.value.ToString();
         }
-        if(Input.GetButtonDown("Tab") && !invOpen)
+        if(Input.GetButtonDown("Tab") && !storeOpen)
         {
-            invOpen = true;
+            storeOpen = true;
            
             
-            CueStore();
+            CueCrafting();
+            
         }
-        else if(Input.GetButtonDown("Tab") && invOpen)
+        else if(Input.GetButtonDown("Tab") && storeOpen)
         {
             
            
-            invOpen = false;
-            UnCueStore();
+            storeOpen = false;
+            CloseCrafting();
         }
-        
+        if (invShown.isOn&&storeOpen)
+            {
+                TurnOnInventoryUI();
+            }
+            else
+            {
+                TurnOffInventoryUI();
+            }
 
+    }
+    public void CueCrafting()
+    {
+        levelAudioManager.instance.voiceOverAudioSource.Stop();
+        PauseState();
+        isPaused = true;
+        
+        FinalFloorScoreData.text = playerScript.playerFloorScore.ToString();
+        FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
+
+
+        activeMenu = storeMenu;
+        activeMenu.SetActive(true);
     }
     
     public void PauseState()
@@ -485,9 +542,10 @@ public class gameManager : MonoBehaviour
 
        
     }
-
+    
     public void CueStore()
     {
+        
         levelAudioManager.instance.voiceOverAudioSource.Stop();
         PauseState();
         isPaused = true;
@@ -536,7 +594,7 @@ public class gameManager : MonoBehaviour
             }
         }
     }
-    public void UnCueStore()
+    public void CloseCrafting()
     {
         levelAudioManager.instance.voiceOverAudioSource.Stop();
         storeMenu.SetActive(false);
@@ -628,13 +686,7 @@ public class gameManager : MonoBehaviour
                 break;
         }
     }
-    IEnumerator Lvl1LoadScreen()
-    {
-        lvl1.SetActive(true);
-        yield return new WaitForSeconds(5);
-        lvl1.SetActive(false);
-
-    }
+    
     IEnumerator Lvl2LoadScreen()
     {
         lvl2.SetActive(true);
@@ -775,6 +827,9 @@ public class gameManager : MonoBehaviour
         playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int) horizontalSens.value;
         playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int) verticalSens.value;
 
+        PlayerPrefs.SetInt("HorizontalSensitivity", (int)horizontalSens.value);
+        PlayerPrefs.SetInt("VerticalSensitivity", (int)verticalSens.value);
+
         CloseOptionsMenu();
     }
      public void ViewControls()
@@ -823,6 +878,8 @@ public class gameManager : MonoBehaviour
         {
             salvageDetectorCondition.text = ("Inactive");
         }
+        staminaDrainValue.text=(playerScript.staminaDrain*100).ToString();
+        staminaRegenValue.text=(playerScript.staminaRefillRate*100).ToString();
         
     }
     public void TurnOnInventoryUI()
