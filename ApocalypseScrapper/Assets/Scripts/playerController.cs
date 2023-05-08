@@ -95,6 +95,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public int selectedGun;
     bool isShooting;
 
+    weaponMovement weaponMovementScript;
+    [SerializeField] Animator gunAnimator;
+
 
     [Header("-----Upgrades-----")]
     [SerializeField] public bool salvDetector;
@@ -151,6 +154,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         standingHeight = controller.height;
         crouchHeight = 0.3f;
+
+
+        // gunAnimator = weaponMovementScript.GetComponent<Animator>();
+
     }
     
     
@@ -505,6 +512,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         // Set the bullet's velocity to this 
         bulletClone.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * bulletSpeed;
+
+        gunAnimator.Play("WeaponRecoil");
 
         // Set the rotation of the bullet to match the direction the player is looking
         bulletClone.transform.rotation = Camera.main.transform.rotation;
