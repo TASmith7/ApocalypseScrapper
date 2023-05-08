@@ -11,16 +11,16 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
 
     [Header("----- Gamelog Vars -----")]
-    [SerializeField]List<string> gamelog = new List<string>();
+    [SerializeField] List<string> gamelog = new List<string>();
     public int maxMessages = 30;
     public GameObject gamelogPanel;
-    public TextMeshProUGUI textObject;
+    public GameObject textObject;
 
     [Header("----- Player/Boss -----")]
     public GameObject player;
     public playerController playerScript;
     public GameObject playerSpawnPos;
-    
+
 
     //public GameObject Boss;
     //public BossAI bossScript;
@@ -36,6 +36,7 @@ public class gameManager : MonoBehaviour
     public GameObject ApocSplash;
     public GameObject checkpointMenu;
     public GameObject storeMenu;
+    public GameObject craftingMenu;
     public GameObject playerStatsScreen;
     public GameObject optionsMenu;
 
@@ -95,7 +96,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI FinalFloorScoreData;
     public TextMeshProUGUI FloorAvailData;
     public TextMeshProUGUI SpentScrap;
-    
+
     public int spendable;
     public int spent;
     [Header("----- Player Stats Objects -----")]
@@ -114,7 +115,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI staminaDrainValue;
     [Header("----- Player Inventory Objects -----")]
     public GameObject InventroyParent;
-    
+    public Inventory inventoryScript;
     public Toggle invShown;
     public bool storeOpen;
     public Image BioMass;
@@ -149,7 +150,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI vertSensValue;
     public Toggle dynamicFOVToggle;
     [Header("----- Loading Screens -----")]
-    
+
     public GameObject lvl2;
     public GameObject lvl3;
     public GameObject lvl4;
@@ -189,7 +190,7 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        
+
         timeScaleOriginal = Time.timeScale;
         bossHealthBarParent.SetActive(false);
 
@@ -237,9 +238,7 @@ public class gameManager : MonoBehaviour
         horSensValue.text = horizontalSens.value.ToString();
         vertSensValue.text = verticalSens.value.ToString();
 
-        
-
-        if(currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
             endGameBeam.SetActive(false);
         }
@@ -255,7 +254,7 @@ public class gameManager : MonoBehaviour
         playerBonusLabel.SetActive(false);
         floorScoreLabel.SetActive(false);
         //activating splash screens 
-        
+
         activeMenu = RSGSplash;
         RSGSplash.SetActive(true);
         yield return new WaitForSeconds(5);
@@ -273,11 +272,11 @@ public class gameManager : MonoBehaviour
         ControlsSplash.SetActive(true);
         yield return new WaitForSeconds(5);
         ControlsSplash.SetActive(false);
-        
+
 
         activeMenu = null;
 
-        
+
 
         // turning back on salvage UI (all other UI is cued to turn back on elsewhere)
         totalScoreLabel.SetActive(true);
@@ -287,6 +286,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             levelAudioManager.instance.pauseMenuAudioSource.Play();
@@ -324,35 +324,37 @@ public class gameManager : MonoBehaviour
             levelAudioManager.instance.voiceOverAudioSource.Stop();
         }
 
-        if(isPaused)
+        if (isPaused)
         {
             // changing labels to match the value of the slider
             horSensValue.text = horizontalSens.value.ToString();
             vertSensValue.text = verticalSens.value.ToString();
         }
-        if(Input.GetButtonDown("Tab") && !storeOpen)
+        if (Input.GetButtonDown("Tab") && !storeOpen)
         {
             storeOpen = true;
-           
-            
+
+
             CueCrafting();
-            
+
         }
-        else if(Input.GetButtonDown("Tab") && storeOpen)
+        else if (Input.GetButtonDown("Tab") && storeOpen)
         {
-            
-           
+
+
             storeOpen = false;
             CloseCrafting();
         }
-        if (invShown.isOn&&storeOpen)
-            {
-                TurnOnInventoryUI();
-            }
-            else
-            {
-                TurnOffInventoryUI();
-            }
+        if (invShown.isOn && storeOpen)
+        {
+            
+            TurnOnInventoryUI();
+            
+        }
+        else
+        {
+            TurnOffInventoryUI();
+        }
 
     }
     public void CueCrafting()
@@ -360,15 +362,15 @@ public class gameManager : MonoBehaviour
         levelAudioManager.instance.voiceOverAudioSource.Stop();
         PauseState();
         isPaused = true;
-        
+
         FinalFloorScoreData.text = playerScript.playerFloorScore.ToString();
         FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
 
 
-        activeMenu = storeMenu;
+        activeMenu = craftingMenu;
         activeMenu.SetActive(true);
     }
-    
+
     public void PauseState()
     {
         Time.timeScale = 0;
@@ -381,19 +383,19 @@ public class gameManager : MonoBehaviour
         playerAudioManager.instance.PauseAllAudio();
         levelAudioManager.instance.PauseAllAudio();
 
-        if(currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
             gameManager.instance.endGameBeam.GetComponent<AudioSource>().Stop();
         }
 
         // if we are playing a voice over, pause when in pause state and set flag to true
-        if(levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        if (levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
             levelAudioManager.instance.voiceOverAudioSource.Pause();
             voWasPlaying = true;
         }
         // else set flag to false
-        else 
+        else
         {
             voWasPlaying = false;
         }
@@ -417,14 +419,14 @@ public class gameManager : MonoBehaviour
         levelAudioManager.instance.UnpauseAllAudio();
 
         // if we were playing a vo when we paused, resume that vo
-        if(voWasPlaying)
+        if (voWasPlaying)
         {
             levelAudioManager.instance.voiceOverAudioSource.UnPause();
         }
     }
 
     public void UpdateGameGoal()
-    { 
+    {
         // PlayerWins();
         activeMenu = winMenu;
         activeMenu.SetActive(true);
@@ -442,7 +444,7 @@ public class gameManager : MonoBehaviour
 
         levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOPlayerDead);
         activeMenu = loseMenu;
-        activeMenu.SetActive(true); 
+        activeMenu.SetActive(true);
     }
 
     public void TurnOffJetpackUI()
@@ -503,21 +505,21 @@ public class gameManager : MonoBehaviour
             salvageCollected.text = score.ToString() + " of " + playerScript.totalLevelSalvage;
         }
         else salvageCollected.text = score.ToString();
-        
-        
+
+
         amtSalvaged = score;
     }
     public void PlayerWins()
     {
         string pText = SetGradeText(playerGrade);
         scoreText.text = pText;
-        salvageCollected.text=amtSalvaged.ToString();
-        if(amtSalvaged>4501)
+        salvageCollected.text = amtSalvaged.ToString();
+        if (amtSalvaged > 4501)
         {
-            
+
             playerGrade = 'S';
         }
-        else if(amtSalvaged > 4001 && amtSalvaged <= 4500)
+        else if (amtSalvaged > 4001 && amtSalvaged <= 4500)
         {
             playerGrade = 'A';
         }
@@ -541,7 +543,7 @@ public class gameManager : MonoBehaviour
         grade.text = playerGrade.ToString();
 
     }
-    public  string SetGradeText(char grade)
+    public string SetGradeText(char grade)
     {
         switch (grade)
         {
@@ -561,12 +563,12 @@ public class gameManager : MonoBehaviour
                 return "Negative salvage. You owe us.";
         }
 
-       
+
     }
-    
+
     public void CueStore()
     {
-        
+
         levelAudioManager.instance.voiceOverAudioSource.Stop();
         PauseState();
         isPaused = true;
@@ -575,7 +577,7 @@ public class gameManager : MonoBehaviour
         int bonus = Bonus(rank);
         FinalFloorScoreData.text = playerScript.playerFloorScore.ToString();
         FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
-        
+
 
         activeMenu = storeMenu;
         activeMenu.SetActive(true);
@@ -618,7 +620,7 @@ public class gameManager : MonoBehaviour
     public void CloseCrafting()
     {
         levelAudioManager.instance.voiceOverAudioSource.Stop();
-        storeMenu.SetActive(false);
+        craftingMenu.SetActive(false);
         UnpauseState();
         isPaused = false;
     }
@@ -698,7 +700,7 @@ public class gameManager : MonoBehaviour
                 break;
 
             case "Boss Lvl":
-                
+
                 WinGame();
                 break;
 
@@ -707,7 +709,7 @@ public class gameManager : MonoBehaviour
                 break;
         }
     }
-    
+
     IEnumerator Lvl2LoadScreen()
     {
         lvl2.SetActive(true);
@@ -734,10 +736,10 @@ public class gameManager : MonoBehaviour
         playerScript.playerBonus += 50;
 
         // updating total salvage for all levels
-        totalSalvagedData.text = playerScript.playerTotalScore.ToString(); 
+        totalSalvagedData.text = playerScript.playerTotalScore.ToString();
 
         // updating salvage cut value
-        int salvageCut = (int) (playerScript.playerTotalScore * 0.03);
+        int salvageCut = (int)(playerScript.playerTotalScore * 0.03);
         salvageCutData.text = salvageCut.ToString();
 
         // updating remaining bonus
@@ -752,7 +754,7 @@ public class gameManager : MonoBehaviour
         // updating final rank
         finalRankData.text = rank.ToString();
 
-        switch(rank)
+        switch (rank)
         {
             case 'S':
                 levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithS);
@@ -828,8 +830,8 @@ public class gameManager : MonoBehaviour
         verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
 
         // updating sens labels
-        horSensValue.text = ((int) horizontalSens.value).ToString();
-        vertSensValue.text = ((int) verticalSens.value).ToString();
+        horSensValue.text = ((int)horizontalSens.value).ToString();
+        vertSensValue.text = ((int)verticalSens.value).ToString();
 
         // if we close our options menu, reassign our dynamic FOV toggle based on what is currently in player prefs
         if(PlayerPrefs.GetInt("DynamicFOV") == 1)
@@ -855,8 +857,8 @@ public class gameManager : MonoBehaviour
     {
         // saving our camera sensitivity when we press the save settings button
         // the value we are actually setting here is the sensitivity multiplier in our camera controller script
-        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int) horizontalSens.value;
-        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int) verticalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
 
         PlayerPrefs.SetInt("HorizontalSensitivity", (int)horizontalSens.value);
         PlayerPrefs.SetInt("VerticalSensitivity", (int)verticalSens.value);
@@ -876,22 +878,22 @@ public class gameManager : MonoBehaviour
 
         CloseOptionsMenu();
     }
-     public void ViewControls()
+    public void ViewControls()
     {
         optionsMenu.SetActive(false);
         ControlsSplashFromOptions.SetActive(true);
     }
     public void OpenPlayerStatsMenu()
     {
-        storeMenu.SetActive(false);
+        craftingMenu.SetActive(false);
         playerStatsScreen.SetActive(true);
         SetPlayerStats();
     }
     public void ClosePlayerStatsMenu()
-    { 
+    {
         playerStatsScreen.SetActive(false);
-        storeMenu.SetActive(true);
-       
+        craftingMenu.SetActive(true);
+
     }
     public void SetPlayerStats()
     {
@@ -907,14 +909,14 @@ public class gameManager : MonoBehaviour
             shieldRechargeValue.text = ("Shield Not Found");
             shieldHealthValue.text = ("Shield Not Found");
         }
-        jetpackRechargeValue.text=(playerScript.fuelRefillRate*100).ToString();
-        
-        jetpackConsumptionValue.text=(playerScript.fuelConsumptionRate*100).ToString();
-        DamageValue.text=playerScript.shootDamage.ToString();
-        rateOfFireValue.text=playerScript.shootRate.ToString();
-        salvageSpreadValue.text= playerScript.salvageSpread.ToString();
-        salvageRangeValue.text=playerScript.salvageRange.ToString();
-        if(playerScript.salvDetector)
+        jetpackRechargeValue.text = (playerScript.fuelRefillRate * 100).ToString();
+
+        jetpackConsumptionValue.text = (playerScript.fuelConsumptionRate * 100).ToString();
+        DamageValue.text = playerScript.shootDamage.ToString();
+        rateOfFireValue.text = playerScript.shootRate.ToString();
+        salvageSpreadValue.text = playerScript.salvageSpread.ToString();
+        salvageRangeValue.text = playerScript.salvageRange.ToString();
+        if (playerScript.salvDetector)
         {
             salvageDetectorCondition.text = ("Active");
         }
@@ -922,9 +924,9 @@ public class gameManager : MonoBehaviour
         {
             salvageDetectorCondition.text = ("Inactive");
         }
-        staminaDrainValue.text=(playerScript.staminaDrain*100).ToString();
-        staminaRegenValue.text=(playerScript.staminaRefillRate*100).ToString();
-        
+        staminaDrainValue.text = (playerScript.staminaDrain * 100).ToString();
+        staminaRegenValue.text = (playerScript.staminaRefillRate * 100).ToString();
+
     }
     public void TurnOnInventoryUI()
     {
@@ -934,64 +936,24 @@ public class gameManager : MonoBehaviour
     public void TurnOffInventoryUI()
     {
         //activate the Inventory UI
-        InventroyParent.SetActive(false) ;
+        InventroyParent.SetActive(false);
     }
-    //public void UpdateInventory(Image itemImage,int amt)
-    //{
-    //    Image component=itemImage;
+    public void UpdateInventory()
+    {
+        BioMassAmt.text=inventoryScript._iBioMass.ToString();
+        IntactOrganAmt.text=inventoryScript._iIntactOrgan.ToString();
+        ElectricCompAmt.text=inventoryScript._iElectronicComponents.ToString();
+        DataCoreAmt.text=inventoryScript._iDataProcessingCore.ToString();
+        DenseMetalPlateAmt.text=inventoryScript._iDenseMetalPlate.ToString();
+        HighTensileAlloyAmt.text=inventoryScript._iHighTensileAlloyPlate.ToString();
+        ValuableLootAmt.text = inventoryScript._iValuableLoot.ToString();
+        GlassPaneAmt.text = inventoryScript._iGlassPane.ToString();
+        HPLDAmt.text = inventoryScript._iHighPoweredLightDiode.ToString();
+        ElectricMotorAmt.text = inventoryScript._iElectricMotor.ToString();
+        CeramicPlateAmt.text = inventoryScript._iCeramicPlate.ToString();
+        GoldAlloyAmt.text = inventoryScript._iGoldAlloy.ToString();
 
-    //        if (component = BioMass)
-    //        {
-    //            //not sure if these work until the components are set up
-    //            BioMass.sprite = itemImage.sprite;
-    //        }
-    //        else if (component = IntactOrgan)
-    //        {
-    //           IntactOrgan.sprite = itemImage.sprite;
-    //        }
-    //        else if (component = ElectronicComponent)
-    //        {
-    //            ElectronicComponent.sprite = itemImage.sprite;
-    //        }
-    //        else if (component = DataCore)
-    //        {
-    //            DataCore.sprite = itemImage.sprite;
-    //        }
-    //        else if (component = DenseMetalPlate)
-    //        {
-    //            DenseMetalPlate.sprite = itemImage.sprite;
-    //        }
-    //        else if (component = HighTensileAlloy)
-    //        {
-    //            HighTensileAlloy.sprite = itemImage.sprite;
-    //        }
-    //        else if (component = GlassPane)
-    //        {
-    //            GlassPane.sprite = itemImage.sprite;
-    //        }
-    //        else if (component = HPLightDiode)
-    //        {
-    //            HPLightDiode.sprite = itemImage.sprite;
-    //        }
-    //        else if (component = ElectricMotor)
-    //        {
-    //            ElectricMotor.sprite = itemImage.sprite;
-    //        }
-    //        else if (component = CeramicPlate)
-    //        {
-    //            CeramicPlate.sprite = itemImage.sprite;
-    //        }
-    //        else if (component = GoldAlloy)
-    //        {
-    //            GoldAlloy.sprite = itemImage.sprite;
-    //        }
-    //        else if (component = ValuableLoot)
-    //        {
-    //            ValuableLoot.sprite = itemImage.sprite;
-    //        }
-
-
-    //}
+    }
 
     #region Message Log functions and classes
     [System.Serializable]
@@ -1003,7 +965,7 @@ public class gameManager : MonoBehaviour
 
     public void SendMessageToLog(string text)
     {
-        if (gamelog.Count > maxMessages) 
+        if (gamelog.Count > maxMessages)
         {
             //Destroy(gamelog[0].textObject.gameObject);
             gamelog.Remove(gamelog[0]);
@@ -1013,14 +975,14 @@ public class gameManager : MonoBehaviour
         //Message newMessage = new Message();
         //newMessage.text = text;
 
-        TextMeshProUGUI newText = Instantiate(textObject);
+        GameObject newText = Instantiate(textObject, gamelogPanel.transform);
 
-        //newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
+        newText.GetComponent<TextMeshProUGUI>().text = text;
 
         //newMessage.textObject.text = newMessage.text;
-        newText.text = text;
+        
 
-        gamelog.Add(newText.text);
+        gamelog.Add(newText.GetComponent<TextMeshProUGUI>().text);
     }
     #endregion
 }
