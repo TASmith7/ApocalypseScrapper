@@ -14,7 +14,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] List<string> gamelog = new List<string>();
     public int maxMessages = 30;
     public GameObject gamelogPanel;
-    public TextMeshProUGUI textObject;
+    public GameObject textObject;
 
     [Header("----- Player/Boss -----")]
     public GameObject player;
@@ -195,8 +195,25 @@ public class gameManager : MonoBehaviour
         bossHealthBarParent.SetActive(false);
 
         // setting our sensitivity sliders to equal the values set in our camera controller script
-        horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
-        verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
+        //horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
+        //verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
+
+        // setting our sensitivity to be the value saved in player prefs on open IF the keys exist (they only won't exist if the player doesn't adjust sensitivity)
+        if (PlayerPrefs.HasKey("HorizontalSensitivity") && PlayerPrefs.HasKey("VerticalSensitivity"))
+        {
+            horizontalSens.value = PlayerPrefs.GetInt("HorizontalSensitivity");
+            verticalSens.value = PlayerPrefs.GetInt("VerticalSensitivity");
+        }
+        // if the keys do not exist in player prefs, give the sensitivity a default value
+        else
+        {
+            horizontalSens.value = 300;
+            verticalSens.value = 300;
+            Debug.Log("Player prefs sensitivity keys do not exist");
+        }
+
+        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int) horizontalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int) verticalSens.value;
 
         // setting the sensitivity labels equal the sliders current values
         horSensValue.text = horizontalSens.value.ToString();
@@ -814,6 +831,9 @@ public class gameManager : MonoBehaviour
         playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
         playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
 
+        PlayerPrefs.SetInt("HorizontalSensitivity", (int)horizontalSens.value);
+        PlayerPrefs.SetInt("VerticalSensitivity", (int)verticalSens.value);
+
         CloseOptionsMenu();
     }
     public void ViewControls()
@@ -903,7 +923,7 @@ public class gameManager : MonoBehaviour
 
     public void SendMessageToLog(string text)
     {
-        if (gamelog.Count > maxMessages) 
+        if (gamelog.Count > maxMessages)
         {
             //Destroy(gamelog[0].textObject.gameObject);
             gamelog.Remove(gamelog[0]);
@@ -913,14 +933,14 @@ public class gameManager : MonoBehaviour
         //Message newMessage = new Message();
         //newMessage.text = text;
 
-        TextMeshProUGUI newText = Instantiate(textObject);
+        GameObject newText = Instantiate(textObject, gamelogPanel.transform);
 
-        //newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
+        newText.GetComponent<TextMeshProUGUI>().text = text;
 
         //newMessage.textObject.text = newMessage.text;
-        newText.text = text;
+        
 
-        gamelog.Add(newText.text);
+        gamelog.Add(newText.GetComponent<TextMeshProUGUI>().text);
     }
     #endregion
 }
