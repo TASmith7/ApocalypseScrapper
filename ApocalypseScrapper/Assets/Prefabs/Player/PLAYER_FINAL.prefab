@@ -205,9 +205,11 @@ GameObject:
   - component: {fileID: 661115328687326000}
   - component: {fileID: 661115328687326015}
   - component: {fileID: 661115328687326014}
+  - component: {fileID: 2041960472}
+  - component: {fileID: 2041960466}
   m_Layer: 10
   m_Name: SciFiGunLightBlue
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,6 +336,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &2041960472
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661115328687326004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1.03
+  m_Direction: 2
+  m_Center: {x: 0.06, y: 0, z: -0.04}
+--- !u!114 &2041960466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661115328687326004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae9064a00aac2b54b99645035bd480dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScript: {fileID: 5333339247771160564}
 --- !u!1 &661115329407767795
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,6 +2226,8 @@ MonoBehaviour:
   footstepAudioSource: {fileID: 0}
   takeDamageAudioSource: {fileID: 0}
   shieldBreakAudioSource: {fileID: 0}
+  meleeSwingAudioSource: {fileID: 0}
+  meleeGruntAudioSource: {fileID: 0}
   jetpackThrustAudio: {fileID: 8300000, guid: 24f20a94ef175c340823e0a07918e522, type: 3}
   gunShotAudio: {fileID: 8300000, guid: d5bc61ff5074df74082c4cde0b6fd037, type: 3}
   salvagingAudio: {fileID: 8300000, guid: 183b19c0308d08e408ae94e4975ddc8a, type: 3}
@@ -2215,6 +2246,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3cdfde2afe12a8b40b1f3780dc5f71b9, type: 3}
   - {fileID: 8300000, guid: e60af8099e12c1043b900e49df15ebb8, type: 3}
   shieldBreakAudio: {fileID: 8300000, guid: dc10b13c5d073074b9254932ec396d7c, type: 3}
+  meleeSwingAudio:
+  - {fileID: 8300000, guid: ca8dd6283a9b6784cb21a17c9877e1a2, type: 3}
+  - {fileID: 8300000, guid: 997d8fb8857b1ed499dd5f3a79bcf858, type: 3}
+  - {fileID: 8300000, guid: 7766b4dc1f85115459ce6d548406e548, type: 3}
+  meleeGruntAudio:
+  - {fileID: 8300000, guid: 543f95f2025b4334e8cefc92995113ac, type: 3}
+  - {fileID: 8300000, guid: f7cbfd1c5e663414aa49fbe9588a288a, type: 3}
+  - {fileID: 8300000, guid: 35d767100207ea647afedaaf1520733e, type: 3}
+  - {fileID: 8300000, guid: 900e2acfe25a638489a321b2538d0fe5, type: 3}
+  - {fileID: 8300000, guid: ecd5a42b43925ec46ac5f0c73a0b7bfe, type: 3}
+  - {fileID: 8300000, guid: e65dc91baaa6aa34e9e27e946abf3720, type: 3}
   jetpackThrustVolume: 0.298
   gunAudioVolume: 0.66
   salvagingAudioVolume: 1
@@ -2290,7 +2332,13 @@ MonoBehaviour:
   bulletSpeed: 50
   gunMaterial: {fileID: 661115328687326002}
   gunModel: {fileID: 661115328687326001}
+  playerGun: {fileID: 661115328687326004}
+  playerGunMeleeCollider: {fileID: 0}
   selectedGun: 0
+  isMeleeing: 0
+  canMelee: 1
+  meleeResetTime: 0.25
+  meleeDamage: 1
   gunAnimator: {fileID: 661115328687326014}
   salvDetector: 0
   shielded: 0
