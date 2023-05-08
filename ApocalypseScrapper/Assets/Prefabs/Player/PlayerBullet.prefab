@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   timer: 3
+  trailRenderer: {fileID: 2765080052109346547}
 --- !u!135 &2765080052109346546
 SphereCollider:
   m_ObjectHideFlags: 0

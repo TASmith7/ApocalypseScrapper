@@ -6,12 +6,36 @@ public class bulletPlayer : MonoBehaviour
 {
     [SerializeField] int damage;
     [SerializeField] float timer;
+    [SerializeField] TrailRenderer trailRenderer;
 
     void Start()
     {
         //pulling damage from playerController, which should have proper damge w/ upgrades
         damage = gameManager.instance.player.GetComponent<playerController>().shootDamage;
         // destroying our bullet after a specified amount of time
+        if(damage < 3)
+        {
+
+            trailRenderer.startColor = Color.white;
+            trailRenderer.endColor = Color.white;
+
+        }
+        else if(damage >= 3 && damage < 5)
+        {
+            trailRenderer.startColor = Color.red;
+            trailRenderer.endColor = Color.blue;
+        }
+        else if(damage >= 5 && damage < 10)
+        {
+            trailRenderer.startColor = Color.yellow;
+            trailRenderer.endColor = Color.green;
+        }
+        else if(damage >= 10)
+        {
+            trailRenderer.startColor = Color.cyan;
+            trailRenderer.endColor = Color.blue;
+        }
+
         Destroy(gameObject, timer);
     }
 
