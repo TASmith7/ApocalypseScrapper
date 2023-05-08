@@ -73,7 +73,7 @@ public class levelAudioManager : MonoBehaviour
         pauseMenuAudioSource.clip = pauseMenuAudio;
 
         // setting each audio sources components
-        musicAudioSource.volume = musicVolume;
+        musicAudioSource.volume = gameManager.instance.musicVolume.value / 100;
         musicAudioSource.pitch = musicPitch;
         musicAudioSource.playOnAwake = true;
         musicAudioSource.loop = true;

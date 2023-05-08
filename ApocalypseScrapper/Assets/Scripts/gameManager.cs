@@ -147,10 +147,13 @@ public class gameManager : MonoBehaviour
     [Header("----- Options Settings -----")]
     public Slider horizontalSens;
     public Slider verticalSens;
+    public Slider musicVolume;
     public TextMeshProUGUI horSensValue;
     public TextMeshProUGUI vertSensValue;
+    public TextMeshProUGUI musicVolumeValue;
     public Toggle dynamicFOVToggle;
     public Toggle voiceoversToggle;
+    public Toggle subtitlesToggle;
 
 
     [Header("----- Loading Screens -----")]
@@ -216,8 +219,16 @@ public class gameManager : MonoBehaviour
             Debug.Log("Player prefs sensitivity keys do not exist");
         }
 
+        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
+
+        // setting the sensitivity labels equal the sliders current values
+        horSensValue.text = horizontalSens.value.ToString();
+        vertSensValue.text = verticalSens.value.ToString();
+
+
         // if our player prefs has the dynamic FOV key
-        if(PlayerPrefs.HasKey("DynamicFOV"))
+        if (PlayerPrefs.HasKey("DynamicFOV"))
         {
             // if our key is currently set to 1 (on) in player prefs, turn dynamic FOV on
             if(PlayerPrefs.GetInt("DynamicFOV") == 1)
@@ -235,12 +246,6 @@ public class gameManager : MonoBehaviour
             dynamicFOVToggle.isOn = true;
         }
 
-        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int) horizontalSens.value;
-        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int) verticalSens.value;
-
-        // setting the sensitivity labels equal the sliders current values
-        horSensValue.text = horizontalSens.value.ToString();
-        vertSensValue.text = verticalSens.value.ToString();
 
         // if our player prefs has the voice overs key
         if (PlayerPrefs.HasKey("UseVoiceovers"))
@@ -260,6 +265,20 @@ public class gameManager : MonoBehaviour
         {
             voiceoversToggle.isOn = true;
         }
+
+        // if player prefs has the volume key
+        if(PlayerPrefs.HasKey("MusicVolume"))
+        {
+            musicVolume.value = PlayerPrefs.GetFloat("MusicVolume");
+        }
+        // else set music volume to default value
+        else
+        {
+            musicVolume.value = 65;
+        }
+        
+        musicVolumeValue.text = musicVolume.value.ToString();
+        // initial volume value for music is assigned in level audio manager
 
         if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
@@ -306,6 +325,12 @@ public class gameManager : MonoBehaviour
         playerBonusLabel.SetActive(true);
         floorScoreLabel.SetActive(true);
     }
+
+    private void Start()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -349,9 +374,10 @@ public class gameManager : MonoBehaviour
 
         if (isPaused)
         {
-            // changing labels to match the value of the slider
+            // changing labels to match the value of the slider while they slide it up and down
             horSensValue.text = horizontalSens.value.ToString();
             vertSensValue.text = verticalSens.value.ToString();
+            musicVolumeValue.text = musicVolume.value.ToString();
         }
         if (Input.GetButtonDown("Tab") && !storeOpen)
         {
@@ -904,6 +930,17 @@ public class gameManager : MonoBehaviour
             voiceoversToggle.isOn = false;
         }
 
+        if(PlayerPrefs.HasKey("MusicVolume"))
+        {
+            musicVolume.value = PlayerPrefs.GetFloat("MusicVolume");
+        }
+        else
+        {
+            musicVolume.value = 65;
+        }
+
+        musicVolumeValue.text = musicVolume.value.ToString();
+
         optionsMenu.SetActive(false);
         pauseMenu.SetActive(true);
     }
@@ -923,6 +960,8 @@ public class gameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("HorizontalSensitivity", (int)horizontalSens.value);
         PlayerPrefs.SetInt("VerticalSensitivity", (int)verticalSens.value);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume.value);
+        levelAudioManager.instance.musicAudioSource.volume = musicVolume.value / 100;
 
         // if our dynamic fov is selected, set the key value to 1
         if (dynamicFOVToggle.isOn)
@@ -945,8 +984,6 @@ public class gameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("UseVoiceovers", 0);
         }
-
-        Debug.Log("Voiceovers Value: " + PlayerPrefs.GetInt("UseVoiceovers").ToString());
 
         CloseOptionsMenu();
     }
