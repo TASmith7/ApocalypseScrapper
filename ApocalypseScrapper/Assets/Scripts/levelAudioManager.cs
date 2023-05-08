@@ -93,17 +93,32 @@ public class levelAudioManager : MonoBehaviour
         else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 2"))
         {
             musicAudioSource.clip = lvl2MusicAudio;
-            voiceOverAudioSource.PlayOneShot(VOLvl2Intro);
+
+            // if our voice over toggle is on
+            if (gameManager.instance.voiceoversToggle.isOn)
+            {
+                voiceOverAudioSource.PlayOneShot(VOLvl2Intro);
+            }
         }
         else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 3"))
         {
             musicAudioSource.clip = lvl3MusicAudio;
-            voiceOverAudioSource.PlayOneShot(VOLvl3Intro);
+
+            // if our voice over toggle is on
+            if (gameManager.instance.voiceoversToggle.isOn)
+            {
+                voiceOverAudioSource.PlayOneShot(VOLvl3Intro);
+            }
         }
         else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
             musicAudioSource.clip = bossLvlMusicAudio;
-            voiceOverAudioSource.PlayOneShot(VOBossLvlIntro);
+
+            // if our voice over toggle is on
+            if (gameManager.instance.voiceoversToggle.isOn)
+            {
+                voiceOverAudioSource.PlayOneShot(VOBossLvlIntro);
+            }
         }
 
         // playing sounds that should play on awake - for some reason they don't play unless I call their play method
