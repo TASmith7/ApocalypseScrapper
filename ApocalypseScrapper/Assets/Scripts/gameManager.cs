@@ -11,10 +11,13 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
 
     [Header("----- Gamelog Vars -----")]
-    [SerializeField] List<string> gamelog = new List<string>();
+    [SerializeField] List<Message> gamelog = new List<Message>();
     public int maxMessages = 30;
+    public GameObject gamelogMain;
     public GameObject gamelogPanel;
     public GameObject textObject;
+    float timeOfLastMessage;
+    float timeToClearGamelog = 5;
 
     [Header("----- Player/Boss -----")]
     public GameObject player;
@@ -354,6 +357,16 @@ public class gameManager : MonoBehaviour
         else
         {
             TurnOffInventoryUI();
+        }
+
+        if(Time.fixedTime - timeOfLastMessage >= timeToClearGamelog)
+        {
+            gamelogMain.SetActive(false);
+            for (int i = 0; i < gamelog.Count; i++)
+            {
+                Destroy(gamelog[i].textObject.gameObject);
+            }
+            gamelog.Clear();
         }
 
     }
@@ -965,24 +978,28 @@ public class gameManager : MonoBehaviour
 
     public void SendMessageToLog(string text)
     {
+        gamelogMain.SetActive(true);
         if (gamelog.Count > maxMessages)
         {
-            //Destroy(gamelog[0].textObject.gameObject);
+            Destroy(gamelog[0].textObject.gameObject);
             gamelog.Remove(gamelog[0]);
         }
 
 
-        //Message newMessage = new Message();
-        //newMessage.text = text;
+        Message newMessage = new Message();
+
+        newMessage.text = text;
 
         GameObject newText = Instantiate(textObject, gamelogPanel.transform);
 
-        newText.GetComponent<TextMeshProUGUI>().text = text;
+        //newText.GetComponent<TextMeshProUGUI>().text = text;
+        newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
 
-        //newMessage.textObject.text = newMessage.text;
+        newMessage.textObject.text = newMessage.text;
         
 
-        gamelog.Add(newText.GetComponent<TextMeshProUGUI>().text);
+        gamelog.Add(newMessage);
+        timeOfLastMessage = Time.fixedTime;
     }
     #endregion
 }
