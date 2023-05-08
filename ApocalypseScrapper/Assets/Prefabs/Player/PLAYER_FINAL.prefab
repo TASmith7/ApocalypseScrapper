@@ -219,8 +219,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661115328687326004}
-  m_LocalRotation: {x: 0.04218882, y: 0.09292687, z: 0.0027182559, w: 0.99477506}
-  m_LocalPosition: {x: 0.068, y: 0.003, z: 0.281}
+  m_LocalRotation: {x: 0.042188816, y: 0.09292687, z: 0.0027182566, w: 0.994775}
+  m_LocalPosition: {x: 0.06800011, y: 0.002999974, z: 0.28100026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2282,6 +2282,7 @@ MonoBehaviour:
   timeToCrouch: 0.25
   isCrouching: 0
   gunList: []
+  playerGun: {fileID: 0}
   shootDamage: 1
   shootRate: 0.34
   shootDistance: 100
@@ -2306,6 +2307,8 @@ MonoBehaviour:
   playerFloorScore: 0
   playerTotalScore: 0
   playerBonus: 0
+  defaultWeaponPos: {fileID: 0}
+  ADSWeaponPos: {fileID: 0}
 --- !u!95 &5333339247771160567
 Animator:
   serializedVersion: 5
