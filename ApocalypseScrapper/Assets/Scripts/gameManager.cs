@@ -115,7 +115,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI staminaDrainValue;
     [Header("----- Player Inventory Objects -----")]
     public GameObject InventroyParent;
-    public Inventory inventoryScript;
+    
     public Toggle invShown;
     public bool storeOpen;
     public Image BioMass;
@@ -286,7 +286,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateInventory();
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             levelAudioManager.instance.pauseMenuAudioSource.Play();
@@ -363,8 +363,8 @@ public class gameManager : MonoBehaviour
         PauseState();
         isPaused = true;
 
-        FinalFloorScoreData.text = playerScript.playerFloorScore.ToString();
-        FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
+        
+        
 
 
         activeMenu = craftingMenu;
@@ -940,18 +940,18 @@ public class gameManager : MonoBehaviour
     }
     public void UpdateInventory()
     {
-        BioMassAmt.text=inventoryScript._iBioMass.ToString();
-        IntactOrganAmt.text=inventoryScript._iIntactOrgan.ToString();
-        ElectricCompAmt.text=inventoryScript._iElectronicComponents.ToString();
-        DataCoreAmt.text=inventoryScript._iDataProcessingCore.ToString();
-        DenseMetalPlateAmt.text=inventoryScript._iDenseMetalPlate.ToString();
-        HighTensileAlloyAmt.text=inventoryScript._iHighTensileAlloyPlate.ToString();
-        ValuableLootAmt.text = inventoryScript._iValuableLoot.ToString();
-        GlassPaneAmt.text = inventoryScript._iGlassPane.ToString();
-        HPLDAmt.text = inventoryScript._iHighPoweredLightDiode.ToString();
-        ElectricMotorAmt.text = inventoryScript._iElectricMotor.ToString();
-        CeramicPlateAmt.text = inventoryScript._iCeramicPlate.ToString();
-        GoldAlloyAmt.text = inventoryScript._iGoldAlloy.ToString();
+        BioMassAmt.text=Inventory.Instance._iBioMass.ToString();
+        IntactOrganAmt.text= Inventory.Instance._iIntactOrgan.ToString();
+        ElectricCompAmt.text= Inventory.Instance._iElectronicComponents.ToString();
+        DataCoreAmt.text= Inventory.Instance._iDataProcessingCore.ToString();
+        DenseMetalPlateAmt.text=Inventory.Instance._iDenseMetalPlate.ToString();
+        HighTensileAlloyAmt.text=Inventory.Instance._iHighTensileAlloyPlate.ToString();
+        ValuableLootAmt.text = Inventory.Instance._iValuableLoot.ToString();
+        GlassPaneAmt.text = Inventory.Instance._iGlassPane.ToString();
+        HPLDAmt.text = Inventory.Instance._iHighPoweredLightDiode.ToString();
+        ElectricMotorAmt.text = Inventory.Instance._iElectricMotor.ToString();
+        CeramicPlateAmt.text = Inventory.Instance._iCeramicPlate.ToString();
+        GoldAlloyAmt.text = Inventory.Instance._iGoldAlloy.ToString();
 
     }
 
