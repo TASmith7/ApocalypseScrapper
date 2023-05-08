@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33515329221899942}
   - component: {fileID: 23023318256495540}
   - component: {fileID: 255958411388162918}
+  - component: {fileID: 1160653739}
   m_Layer: 0
   m_Name: ToiletBrush
   m_TagString: Untagged
@@ -26,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903581721539626}
-  m_LocalRotation: {x: -0.23777165, y: -0.6659314, z: -0.6659314, w: 0.23777162}
+  m_LocalRotation: {x: -0.23776965, y: -0.6659321, z: -0.6659321, w: 0.23776965}
   m_LocalPosition: {x: 3.3555558, y: -0.245, z: -0.8285694}
-  m_LocalScale: {x: 8.250008, y: 8.250004, z: 8.250004}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,17 +97,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 0
+  salvageValue: 10
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
+  _rollIO: 0
   _dcElectronicComponents: 0
+  _rollEC: 0
   _dcDataProcessingCore: 0
+  _rollDCP: 0
   _dcDenseMetalPlate: 0
+  _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
+  _rollHTAP: 0
   _dcGlassPane: 0
+  _rollGP: 0
   _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
   _dcElectricMotor: 0
+  _rollEM: 0
   _dcCeramicPlate: 0
+  _rollCP: 0
   _dcGoldAlloy: 0
+  _rollGA: 0
   _dcValuableLoot: 0
+  _rollVL: 0
+--- !u!64 &1160653739
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903581721539626}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 6c7c92f6cdb5791458afbe957d8345a8, type: 3}

@@ -40,9 +40,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [SerializeField] public int salvageRange;
     [Range(0.1f, 1)][SerializeField] public float salvageRate;
+    [Range(1, 40)][SerializeField] public float salvageSpread;
     bool isSalvaging;
-    
+    public GameObject salvageSphere;
 
+
+    
 
     [Header("----- Animation Stats -----")]
     [SerializeField] float animTransSpeed;
@@ -60,7 +63,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Header("----- Stamina Stats -----")]
     [Range(10, 20)][SerializeField] public float sprintSpeed;
     [Range(0, 1)][SerializeField] public float staminaDrain;
-    [Range(0, 0.5f)][SerializeField] public float stmainaRefillRate;
+    [Range(0, 0.5f)][SerializeField] public float staminaRefillRate;
     [Range(1, 100)][SerializeField] int timeToTurnOffStaminaBar;
     [Range(5, 10)][SerializeField] public float walkSpeed;
     public bool isSprinting;
@@ -91,6 +94,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public MeshFilter gunModel;
     public int selectedGun;
     bool isShooting;
+
+    weaponMovement weaponMovementScript;
+    [SerializeField] Animator gunAnimator;
 
 
     [Header("-----Upgrades-----")]
@@ -148,6 +154,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         standingHeight = controller.height;
         crouchHeight = 0.3f;
+
+
+        // gunAnimator = weaponMovementScript.GetComponent<Animator>();
+
     }
     
     
@@ -205,9 +215,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         RaycastHit hit;
 
         lastPosition = transform.position;
-
+        
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
+
             // if the object we are looking at is salvageable
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
 
@@ -287,40 +298,47 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
             if (Input.GetButton("Sprint") && !isCrouching)
             {
+                isSprinting = true;
+                
+                    // turn on our stamina bar
+                    gameManager.instance.TurnOnStaminaUI();
 
-                // turn on our stamina bar
-                gameManager.instance.TurnOnStaminaUI();
-
-                // if we are not out of stamina
-                if (gameManager.instance.staminaFillBar.fillAmount > 0)
-                {
-                    // while player holds down shift, give velocity in the z direction a value
-                    playerSpeed = sprintSpeed;
-
-                    timeOfLastSprint = Time.fixedTime;
-
-                    outOfBreathAudioPlayed = false;
-                }
-                // else if we are out of stamina
-                else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
-                {
-                    // if not already playing our out of breath audio, and we haven't already played it once
-                    if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
+                    // if we are not out of stamina
+                    if (gameManager.instance.staminaFillBar.fillAmount > 0)
                     {
-                        playerAudioManager.instance.outOfBreathAudioSource.Play();
-                        outOfBreathAudioPlayed = true;
+                        // while player holds down shift, give velocity in the z direction a value
+                        playerSpeed = sprintSpeed;
+
+                        timeOfLastSprint = Time.fixedTime;
+
+                        outOfBreathAudioPlayed = false;
                     }
-                }
+                    // else if we are out of stamina
+                    else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
+                    {
+                        // if not already playing our out of breath audio, and we haven't already played it once
+                        if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
+                        {
+                            playerAudioManager.instance.outOfBreathAudioSource.Play();
+                            outOfBreathAudioPlayed = true;
+                        }
+                    }
 
-                // reducing the stamina bar while the player is pressing shift
-                StartCoroutine(ReduceStaminaUI());
-
+                // reducing the stamina bar while the player is pressing shift and moving
+                
+                
+                    StartCoroutine(ReduceStaminaUI());
+                
             }
-
+            else
+            {
+                isSprinting = false;
+            }
 
             // refilling the stamina bar when the player is not pressing shift until it's full
             if (gameManager.instance.staminaFillBar.fillAmount < 1 && !isSprinting)
             {
+                isSprinting = false;
                 playerSpeed = walkSpeed;
                 StartCoroutine(RefillStaminaUI());
             }
@@ -418,6 +436,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
+
     private IEnumerator CrouchStand()
     {
         // if crouching and underneath something
@@ -494,6 +513,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         // Set the bullet's velocity to this 
         bulletClone.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * bulletSpeed;
 
+        gunAnimator.Play("WeaponRecoil");
+
         // Set the rotation of the bullet to match the direction the player is looking
         bulletClone.transform.rotation = Camera.main.transform.rotation;
 
@@ -542,7 +563,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
-            
+
             // if the object we clicked on contains the ISalvageable interface
             ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
 
@@ -551,11 +572,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             {
                 isSalvaging = true;
                 beam = Instantiate(beamEffect, hit.point, Quaternion.identity);
-                Vector3 effectDir = hit.point - shootPos.transform.position ;
+                Vector3 effectDir = hit.point - shootPos.transform.position;
                 Quaternion rotation = Quaternion.LookRotation(effectDir);
                 beam.transform.rotation = rotation;
                 gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
-                
+
                 // if our salvaging audio isn't already playing
                 if (!playerAudioManager.instance.salvagingAudioSource.isPlaying)
                 {
@@ -565,11 +586,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
                 {
                     SalvageObject(hit.collider.gameObject);
-                    
+
                     gameManager.instance.salvagingObjectReticle.fillAmount = 0;
                     yield return new WaitForSeconds(0.01f);
                 }
-                
+
             }
             // else what we are looking at is not salvageable, so stop our salvaging audio and set isSalvaging bool to false
             else
@@ -577,17 +598,17 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 playerAudioManager.instance.salvagingAudioSource.Stop();
                 isSalvaging = false;
             }
-            
-            
+
+
         }
         else
         {
             isSalvaging = false;
         }
         yield return new WaitForSeconds(0.01f);
-        if(beam != null)
+        if (beam != null)
         {
-           Destroy(beam,.1f);
+            Destroy(beam, .1f);
         }
     }
 
@@ -707,6 +728,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         //Assigning drops based off SalvageableObject Script
         objectToSalvage.GetComponent<salvageableObject>().AssignDrops();
+
         // destroying object
         Destroy(objectToSalvage);
 
@@ -726,8 +748,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     public void RestartMission()
     {
-        
-
         SceneManager.LoadScene("Lvl 1");
     }
 
@@ -763,18 +783,19 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     
     IEnumerator ReduceStaminaUI()
     {
-        // this bool will be helpful for future development of thrusting capabilities. It currently has no effective use
-        isSprinting = true;
+        
+            
 
-        // stopping the refill coroutine while sprinting
-        StopCoroutine(RefillStaminaUI());
+            // stopping the refill coroutine while sprinting
+            StopCoroutine(RefillStaminaUI());
 
-        // reducing the stamina bar
-        gameManager.instance.staminaFillBar.fillAmount -= staminaDrain * Time.deltaTime;
+            // reducing the stamina bar
+            gameManager.instance.staminaFillBar.fillAmount -= staminaDrain * Time.deltaTime;
 
-        yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.25f);
 
-        isSprinting = false;
+        
+        
     }
 
     IEnumerator RefillStaminaUI()
@@ -785,6 +806,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         {
             // refilling the stamina bar
             gameManager.instance.staminaFillBar.fillAmount += staminaDrain * Time.deltaTime;
+            
         }
     }
 

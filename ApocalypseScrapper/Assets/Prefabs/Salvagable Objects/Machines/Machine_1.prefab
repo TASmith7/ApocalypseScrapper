@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658855296451982}
-  m_LocalRotation: {x: -0.00000003774895, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.6822472, y: 0.04580808, z: -4.8525505}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -96,7 +96,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f7096417ffd00cf4596a2755f59291ad, type: 3}
 --- !u!114 &2712036031470659234
@@ -114,14 +114,26 @@ MonoBehaviour:
   salvageValue: 400
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
-  _dcElectronicComponents: 4.07
-  _dcDataProcessingCore: 1.74
-  _dcDenseMetalPlate: 4.25
-  _dcHighTensileAlloyPlate: 3.41
+  _rollIO: 0
+  _dcElectronicComponents: 50
+  _rollEC: 3
+  _dcDataProcessingCore: 40
+  _rollDCP: 2
+  _dcDenseMetalPlate: 65
+  _rollDMP: 3
+  _dcHighTensileAlloyPlate: 80
+  _rollHTAP: 1
   _dcGlassPane: 0
-  _dcHighPoweredLightDiode: 1.62
-  _dcElectricMotor: 3.47
+  _rollGP: 0
+  _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
+  _dcElectricMotor: 25
+  _rollEM: 1
   _dcCeramicPlate: 0
-  _dcGoldAlloy: 1.67
-  _dcValuableLoot: 0.87
+  _rollCP: 0
+  _dcGoldAlloy: 0
+  _rollGA: 0
+  _dcValuableLoot: 0
+  _rollVL: 0

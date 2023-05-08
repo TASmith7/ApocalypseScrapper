@@ -1,20 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
-    
+
+    [Header("----- Gamelog Vars -----")]
+    [SerializeField] List<string> gamelog = new List<string>();
+    public int maxMessages = 30;
+    public GameObject gamelogPanel;
+    public GameObject textObject;
 
     [Header("----- Player/Boss -----")]
     public GameObject player;
     public playerController playerScript;
     public GameObject playerSpawnPos;
-    
+
+
     //public GameObject Boss;
     //public BossAI bossScript;
 
@@ -29,6 +36,8 @@ public class gameManager : MonoBehaviour
     public GameObject ApocSplash;
     public GameObject checkpointMenu;
     public GameObject storeMenu;
+    public GameObject craftingMenu;
+    public GameObject playerStatsScreen;
     public GameObject optionsMenu;
 
     [Header("----- HP Bar -----")]
@@ -86,10 +95,54 @@ public class gameManager : MonoBehaviour
     [Header("----- Store Objects -----")]
     public TextMeshProUGUI FinalFloorScoreData;
     public TextMeshProUGUI FloorAvailData;
-    public TextMeshProUGUI PerformanceData;
-    public TextMeshProUGUI BonusData;
-    public TextMeshProUGUI BonusSpendable;
+    public TextMeshProUGUI SpentScrap;
+    public GameObject DeclinedPurchasePopUp;
+
     public int spendable;
+    public int spent;
+    [Header("----- Player Stats Objects -----")]
+    public TextMeshProUGUI healthValue;
+    public TextMeshProUGUI maxHealthValue;
+    public TextMeshProUGUI shieldRechargeValue;
+    public TextMeshProUGUI shieldHealthValue;
+    public TextMeshProUGUI jetpackRechargeValue;
+    public TextMeshProUGUI jetpackConsumptionValue;
+    public TextMeshProUGUI DamageValue;
+    public TextMeshProUGUI rateOfFireValue;
+    public TextMeshProUGUI salvageSpreadValue;
+    public TextMeshProUGUI salvageRangeValue;
+    public TextMeshProUGUI salvageDetectorCondition;
+    public TextMeshProUGUI staminaRegenValue;
+    public TextMeshProUGUI staminaDrainValue;
+    [Header("----- Player Inventory Objects -----")]
+    public GameObject InventroyParent;
+    
+    public Toggle invShown;
+    public bool storeOpen;
+    public Image BioMass;
+    public Image IntactOrgan;
+    public Image ElectronicComponent;
+    public Image DataCore;
+    public Image DenseMetalPlate;
+    public Image HighTensileAlloy;
+    public Image GlassPane;
+    public Image HPLightDiode;
+    public Image ElectricMotor;
+    public Image CeramicPlate;
+    public Image GoldAlloy;
+    public Image ValuableLoot;
+    public TextMeshProUGUI BioMassAmt;
+    public TextMeshProUGUI IntactOrganAmt;
+    public TextMeshProUGUI ElectricCompAmt;
+    public TextMeshProUGUI DataCoreAmt;
+    public TextMeshProUGUI DenseMetalPlateAmt;
+    public TextMeshProUGUI HighTensileAlloyAmt;
+    public TextMeshProUGUI GlassPaneAmt;
+    public TextMeshProUGUI HPLDAmt;
+    public TextMeshProUGUI ElectricMotorAmt;
+    public TextMeshProUGUI CeramicPlateAmt;
+    public TextMeshProUGUI GoldAlloyAmt;
+    public TextMeshProUGUI ValuableLootAmt;
 
     [Header("----- Sensitivity Settings -----")]
     public Slider horizontalSens;
@@ -97,8 +150,11 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI horSensValue;
     public TextMeshProUGUI vertSensValue;
     public Toggle dynamicFOVToggle;
+    [Header("----- Loading Screens -----")]
 
-
+    public GameObject lvl2;
+    public GameObject lvl3;
+    public GameObject lvl4;
     [Header("----- End Game Beam -----")]
     public GameObject endGameBeam;
 
@@ -135,19 +191,55 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        
+
         timeScaleOriginal = Time.timeScale;
         bossHealthBarParent.SetActive(false);
 
         // setting our sensitivity sliders to equal the values set in our camera controller script
-        horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
-        verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
+        //horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
+        //verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
+
+        // setting our sensitivity to be the value saved in player prefs on open IF the keys exist (they only won't exist if the player doesn't adjust sensitivity)
+        if (PlayerPrefs.HasKey("HorizontalSensitivity") && PlayerPrefs.HasKey("VerticalSensitivity"))
+        {
+            horizontalSens.value = PlayerPrefs.GetInt("HorizontalSensitivity");
+            verticalSens.value = PlayerPrefs.GetInt("VerticalSensitivity");
+        }
+        // if the keys do not exist in player prefs, give the sensitivity a default value
+        else
+        {
+            horizontalSens.value = 300;
+            verticalSens.value = 300;
+            Debug.Log("Player prefs sensitivity keys do not exist");
+        }
+
+        // if our player prefs has the dynamic FOV key
+        if(PlayerPrefs.HasKey("DynamicFOV"))
+        {
+            // if our key is currently set to 1 (on) in player prefs, turn dynamic FOV on
+            if(PlayerPrefs.GetInt("DynamicFOV") == 1)
+            {
+                dynamicFOVToggle.isOn = true;
+            }
+            // else if our key is currently set to 0 (off) in player prefabs, turn dynamic FOV off
+            else if (PlayerPrefs.GetInt("DynamicFOV") == 0)
+            {
+                dynamicFOVToggle.isOn= false;
+            }
+        }
+        else
+        {
+            dynamicFOVToggle.isOn = true;
+        }
+
+        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int) horizontalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int) verticalSens.value;
 
         // setting the sensitivity labels equal the sliders current values
         horSensValue.text = horizontalSens.value.ToString();
         vertSensValue.text = verticalSens.value.ToString();
 
-        if(currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
             endGameBeam.SetActive(false);
         }
@@ -162,27 +254,30 @@ public class gameManager : MonoBehaviour
         totalScoreLabel.SetActive(false);
         playerBonusLabel.SetActive(false);
         floorScoreLabel.SetActive(false);
+        //activating splash screens 
 
         activeMenu = RSGSplash;
         RSGSplash.SetActive(true);
-        yield return new WaitForSeconds(3);
-        RSGSplash.SetActive(false);
-        activeMenu = ApocSplash;
-        ApocSplash.SetActive(true);
-        yield return new WaitForSeconds(3);
-        ApocSplash.SetActive(false);
-        activeMenu = ControlsSplash;
-        ControlsSplash.SetActive(true);
-        yield return new WaitForSeconds(3);
-        ControlsSplash.SetActive(false);
-
-        activeMenu = null;
-
-        if(!levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        yield return new WaitForSeconds(5);
+        if (!levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
             // playing intro voice over
             levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
         }
+        RSGSplash.SetActive(false);
+        activeMenu = ApocSplash;
+        ApocSplash.SetActive(true);
+        yield return new WaitForSeconds(5);
+        ApocSplash.SetActive(false);
+        activeMenu = ControlsSplash;
+        ControlsSplash.SetActive(true);
+        yield return new WaitForSeconds(5);
+        ControlsSplash.SetActive(false);
+
+
+        activeMenu = null;
+
+
 
         // turning back on salvage UI (all other UI is cued to turn back on elsewhere)
         totalScoreLabel.SetActive(true);
@@ -192,6 +287,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateInventory();
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             levelAudioManager.instance.pauseMenuAudioSource.Play();
@@ -229,15 +325,53 @@ public class gameManager : MonoBehaviour
             levelAudioManager.instance.voiceOverAudioSource.Stop();
         }
 
-        if(isPaused)
+        if (isPaused)
         {
             // changing labels to match the value of the slider
             horSensValue.text = horizontalSens.value.ToString();
             vertSensValue.text = verticalSens.value.ToString();
         }
+        if (Input.GetButtonDown("Tab") && !storeOpen)
+        {
+            storeOpen = true;
+
+
+            CueCrafting();
+
+        }
+        else if (Input.GetButtonDown("Tab") && storeOpen)
+        {
+
+
+            storeOpen = false;
+            CloseCrafting();
+        }
+        if (invShown.isOn && storeOpen)
+        {
+            
+            TurnOnInventoryUI();
+            
+        }
+        else
+        {
+            TurnOffInventoryUI();
+        }
 
     }
-    
+    public void CueCrafting()
+    {
+        levelAudioManager.instance.voiceOverAudioSource.Stop();
+        PauseState();
+        isPaused = true;
+
+        
+        
+
+
+        activeMenu = craftingMenu;
+        activeMenu.SetActive(true);
+    }
+
     public void PauseState()
     {
         Time.timeScale = 0;
@@ -250,19 +384,19 @@ public class gameManager : MonoBehaviour
         playerAudioManager.instance.PauseAllAudio();
         levelAudioManager.instance.PauseAllAudio();
 
-        if(currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
             gameManager.instance.endGameBeam.GetComponent<AudioSource>().Stop();
         }
 
         // if we are playing a voice over, pause when in pause state and set flag to true
-        if(levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        if (levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
             levelAudioManager.instance.voiceOverAudioSource.Pause();
             voWasPlaying = true;
         }
         // else set flag to false
-        else 
+        else
         {
             voWasPlaying = false;
         }
@@ -286,14 +420,14 @@ public class gameManager : MonoBehaviour
         levelAudioManager.instance.UnpauseAllAudio();
 
         // if we were playing a vo when we paused, resume that vo
-        if(voWasPlaying)
+        if (voWasPlaying)
         {
             levelAudioManager.instance.voiceOverAudioSource.UnPause();
         }
     }
 
     public void UpdateGameGoal()
-    { 
+    {
         // PlayerWins();
         activeMenu = winMenu;
         activeMenu.SetActive(true);
@@ -311,7 +445,7 @@ public class gameManager : MonoBehaviour
 
         levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOPlayerDead);
         activeMenu = loseMenu;
-        activeMenu.SetActive(true); 
+        activeMenu.SetActive(true);
     }
 
     public void TurnOffJetpackUI()
@@ -372,21 +506,21 @@ public class gameManager : MonoBehaviour
             salvageCollected.text = score.ToString() + " of " + playerScript.totalLevelSalvage;
         }
         else salvageCollected.text = score.ToString();
-        
-        
+
+
         amtSalvaged = score;
     }
     public void PlayerWins()
     {
         string pText = SetGradeText(playerGrade);
         scoreText.text = pText;
-        salvageCollected.text=amtSalvaged.ToString();
-        if(amtSalvaged>4501)
+        salvageCollected.text = amtSalvaged.ToString();
+        if (amtSalvaged > 4501)
         {
-            
+
             playerGrade = 'S';
         }
-        else if(amtSalvaged > 4001 && amtSalvaged <= 4500)
+        else if (amtSalvaged > 4001 && amtSalvaged <= 4500)
         {
             playerGrade = 'A';
         }
@@ -410,7 +544,7 @@ public class gameManager : MonoBehaviour
         grade.text = playerGrade.ToString();
 
     }
-    public  string SetGradeText(char grade)
+    public string SetGradeText(char grade)
     {
         switch (grade)
         {
@@ -430,11 +564,12 @@ public class gameManager : MonoBehaviour
                 return "Negative salvage. You owe us.";
         }
 
-       
+
     }
 
     public void CueStore()
     {
+
         levelAudioManager.instance.voiceOverAudioSource.Stop();
         PauseState();
         isPaused = true;
@@ -443,10 +578,7 @@ public class gameManager : MonoBehaviour
         int bonus = Bonus(rank);
         FinalFloorScoreData.text = playerScript.playerFloorScore.ToString();
         FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
-        PerformanceData.text = "RANK " + rank + " FOR " + clearPercent + "% OF AVAILABLE SCRAP LOCATED"; 
-        BonusData.text = bonus.ToString();
-        spendable = bonus + playerScript.playerBonus;
-        BonusSpendable.text = spendable.ToString();
+
 
         activeMenu = storeMenu;
         activeMenu.SetActive(true);
@@ -486,7 +618,13 @@ public class gameManager : MonoBehaviour
             }
         }
     }
-
+    public void CloseCrafting()
+    {
+        levelAudioManager.instance.voiceOverAudioSource.Stop();
+        craftingMenu.SetActive(false);
+        UnpauseState();
+        isPaused = false;
+    }
     public char Rank()
     {
         int percentClear = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
@@ -543,22 +681,27 @@ public class gameManager : MonoBehaviour
     {
 
         instance.playerScript.SavePlayerStats();
+        Inventory.Instance.InvSnapshot();
 
         switch (SceneManager.GetActiveScene().name)
         {
             case "Lvl 1":
+                StartCoroutine(Lvl2LoadScreen());
                 SceneManager.LoadScene("Lvl 2");
                 break;
 
             case "Lvl 2":
+                StartCoroutine(Lvl3LoadScreen());
                 SceneManager.LoadScene("Lvl 3");
                 break;
 
             case "Lvl 3":
+                StartCoroutine(Lvl4LoadScreen());
                 SceneManager.LoadScene("Boss Lvl");
                 break;
 
             case "Boss Lvl":
+
                 WinGame();
                 break;
 
@@ -568,6 +711,24 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    IEnumerator Lvl2LoadScreen()
+    {
+        lvl2.SetActive(true);
+        yield return new WaitForSeconds(5);
+        lvl2.SetActive(false);
+    }
+    IEnumerator Lvl3LoadScreen()
+    {
+        lvl3.SetActive(true);
+        yield return new WaitForSeconds(5);
+        lvl3.SetActive(false);
+    }
+    IEnumerator Lvl4LoadScreen()
+    {
+        lvl4.SetActive(true);
+        yield return new WaitForSeconds(5);
+        lvl4.SetActive(false);
+    }
     public void WinGame()
     {
         // updating total score value
@@ -576,10 +737,10 @@ public class gameManager : MonoBehaviour
         playerScript.playerBonus += 50;
 
         // updating total salvage for all levels
-        totalSalvagedData.text = playerScript.playerTotalScore.ToString(); 
+        totalSalvagedData.text = playerScript.playerTotalScore.ToString();
 
         // updating salvage cut value
-        int salvageCut = (int) (playerScript.playerTotalScore * 0.03);
+        int salvageCut = (int)(playerScript.playerTotalScore * 0.03);
         salvageCutData.text = salvageCut.ToString();
 
         // updating remaining bonus
@@ -594,7 +755,7 @@ public class gameManager : MonoBehaviour
         // updating final rank
         finalRankData.text = rank.ToString();
 
-        switch(rank)
+        switch (rank)
         {
             case 'S':
                 levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithS);
@@ -670,8 +831,18 @@ public class gameManager : MonoBehaviour
         verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
 
         // updating sens labels
-        horSensValue.text = ((int) horizontalSens.value).ToString();
-        vertSensValue.text = ((int) verticalSens.value).ToString();
+        horSensValue.text = ((int)horizontalSens.value).ToString();
+        vertSensValue.text = ((int)verticalSens.value).ToString();
+
+        // if we close our options menu, reassign our dynamic FOV toggle based on what is currently in player prefs
+        if(PlayerPrefs.GetInt("DynamicFOV") == 1)
+        {
+            dynamicFOVToggle.isOn = true;
+        }
+        else
+        {
+            dynamicFOVToggle.isOn = false;
+        }
 
         optionsMenu.SetActive(false);
         pauseMenu.SetActive(true);
@@ -687,16 +858,134 @@ public class gameManager : MonoBehaviour
     {
         // saving our camera sensitivity when we press the save settings button
         // the value we are actually setting here is the sensitivity multiplier in our camera controller script
-        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int) horizontalSens.value;
-        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int) verticalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
+
+        PlayerPrefs.SetInt("HorizontalSensitivity", (int)horizontalSens.value);
+        PlayerPrefs.SetInt("VerticalSensitivity", (int)verticalSens.value);
+
+        // if our dynamic fov is selected, set the key value to 1
+        if (dynamicFOVToggle.isOn)
+        {
+            PlayerPrefs.SetInt("DynamicFOV", 1);
+        }
+        // else set it to 0
+        else
+        {
+            PlayerPrefs.SetInt("DynamicFOV", 0);
+        }
+
+        Debug.Log(PlayerPrefs.GetInt("DynamicFOV").ToString());
 
         CloseOptionsMenu();
     }
-     public void ViewControls()
+    public void ViewControls()
     {
         optionsMenu.SetActive(false);
         ControlsSplashFromOptions.SetActive(true);
     }
+    public void OpenPlayerStatsMenu()
+    {
+        craftingMenu.SetActive(false);
+        playerStatsScreen.SetActive(true);
+        SetPlayerStats();
+    }
+    public void ClosePlayerStatsMenu()
+    {
+        playerStatsScreen.SetActive(false);
+        craftingMenu.SetActive(true);
+
+    }
+    public void SetPlayerStats()
+    {
+        healthValue.text = playerScript.HP.ToString();
+        maxHealthValue.text = playerScript.HPMax.ToString();
+        if (playerScript.shielded)
+        {
+            shieldRechargeValue.text = playerScript.shieldRate.ToString();
+            shieldHealthValue.text = playerScript.shieldValue.ToString();
+        }
+        else
+        {
+            shieldRechargeValue.text = ("Shield Not Found");
+            shieldHealthValue.text = ("Shield Not Found");
+        }
+        jetpackRechargeValue.text = (playerScript.fuelRefillRate * 100).ToString();
+
+        jetpackConsumptionValue.text = (playerScript.fuelConsumptionRate * 100).ToString();
+        DamageValue.text = playerScript.shootDamage.ToString();
+        rateOfFireValue.text = playerScript.shootRate.ToString();
+        salvageSpreadValue.text = playerScript.salvageSpread.ToString();
+        salvageRangeValue.text = playerScript.salvageRange.ToString();
+        if (playerScript.salvDetector)
+        {
+            salvageDetectorCondition.text = ("Active");
+        }
+        else
+        {
+            salvageDetectorCondition.text = ("Inactive");
+        }
+        staminaDrainValue.text = (playerScript.staminaDrain * 100).ToString();
+        staminaRegenValue.text = (playerScript.staminaRefillRate * 100).ToString();
+
+    }
+    public void TurnOnInventoryUI()
+    {
+        //activate the Inventory UI
+        InventroyParent.SetActive(true);
+    }
+    public void TurnOffInventoryUI()
+    {
+        //activate the Inventory UI
+        InventroyParent.SetActive(false);
+    }
+    public void UpdateInventory()
+    {
+        BioMassAmt.text=Inventory.Instance._iBioMass.ToString();
+        IntactOrganAmt.text= Inventory.Instance._iIntactOrgan.ToString();
+        ElectricCompAmt.text= Inventory.Instance._iElectronicComponents.ToString();
+        DataCoreAmt.text= Inventory.Instance._iDataProcessingCore.ToString();
+        DenseMetalPlateAmt.text=Inventory.Instance._iDenseMetalPlate.ToString();
+        HighTensileAlloyAmt.text=Inventory.Instance._iHighTensileAlloyPlate.ToString();
+        ValuableLootAmt.text = Inventory.Instance._iValuableLoot.ToString();
+        GlassPaneAmt.text = Inventory.Instance._iGlassPane.ToString();
+        HPLDAmt.text = Inventory.Instance._iHighPoweredLightDiode.ToString();
+        ElectricMotorAmt.text = Inventory.Instance._iElectricMotor.ToString();
+        CeramicPlateAmt.text = Inventory.Instance._iCeramicPlate.ToString();
+        GoldAlloyAmt.text = Inventory.Instance._iGoldAlloy.ToString();
+
+    }
+
+    #region Message Log functions and classes
+    [System.Serializable]
+    public class Message
+    {
+        public string text;
+        public TextMeshProUGUI textObject;
+    }
+
+    public void SendMessageToLog(string text)
+    {
+        if (gamelog.Count > maxMessages)
+        {
+            //Destroy(gamelog[0].textObject.gameObject);
+            gamelog.Remove(gamelog[0]);
+        }
+
+
+        //Message newMessage = new Message();
+        //newMessage.text = text;
+
+        GameObject newText = Instantiate(textObject, gamelogPanel.transform);
+
+        newText.GetComponent<TextMeshProUGUI>().text = text;
+
+        //newMessage.textObject.text = newMessage.text;
+        
+
+        gamelog.Add(newText.GetComponent<TextMeshProUGUI>().text);
+    }
+    #endregion
 }
 
 

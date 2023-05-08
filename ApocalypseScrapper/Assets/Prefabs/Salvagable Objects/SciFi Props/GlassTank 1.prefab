@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33610267079099544}
   - component: {fileID: 23227395604240536}
   - component: {fileID: 3534326168592898585}
+  - component: {fileID: 1152112503}
   m_Layer: 0
   m_Name: GlassTank 1
   m_TagString: Untagged
@@ -30,8 +31,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4601939191812328}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98,63 +98,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 2000
+  salvageValue: 750
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
-  _dcElectronicComponents: 5
-  _dcDataProcessingCore: 5
-  _dcDenseMetalPlate: 5
-  _dcHighTensileAlloyPlate: 5
-  _dcGlassPane: 5
-  _dcHighPoweredLightDiode: 5
-  _dcElectricMotor: 0.26
-  _dcCeramicPlate: 5
-  _dcGoldAlloy: 5
+  _rollIO: 0
+  _dcElectronicComponents: 100
+  _rollEC: 1
+  _dcDataProcessingCore: 0
+  _rollDPC: 0
+  _dcDenseMetalPlate: 75
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 100
+  _rollHTAP: 1
+  _dcGlassPane: 100
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 75
+  _rollHPLD: 2
+  _dcElectricMotor: 0
+  _rollEM: 0
+  _dcCeramicPlate: 0
+  _rollCP: 0
+  _dcGoldAlloy: 100
+  _rollGA: 1
   _dcValuableLoot: 5
---- !u!1 &1874928956802572
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4601939191812328}
-  - component: {fileID: 64550876165246560}
-  m_Layer: 0
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &4601939191812328
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874928956802572}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2.4, z: 2}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4302838756563234}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &64550876165246560
+  _rollVL: 1
+--- !u!64 &1152112503
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874928956802572}
+  m_GameObject: {fileID: 1589909508595142}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 90cfe52fcdceef84eb79642595ab04ad, type: 3}
+  m_Mesh: {fileID: 4300002, guid: fb6989b4255414a4aab2d30dc686555b, type: 3}

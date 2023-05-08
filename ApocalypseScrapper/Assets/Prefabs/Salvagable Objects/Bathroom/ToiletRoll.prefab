@@ -12,12 +12,14 @@ GameObject:
   - component: {fileID: 33251319451296800}
   - component: {fileID: 23813229106258600}
   - component: {fileID: -5034850558839837762}
+  - component: {fileID: 331054836}
+  - component: {fileID: 331054835}
   m_Layer: 0
   m_Name: ToiletRoll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4597191570734880
 Transform:
@@ -26,9 +28,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1165387385290174}
-  m_LocalRotation: {x: -0.7071068, y: -0.00000001545431, z: 0.000000015454315, w: 0.70710677}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.633, y: 0.011, z: 1.36}
-  m_LocalScale: {x: 2.5115044, y: 2.7599995, z: 2.7599995}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,14 +101,56 @@ MonoBehaviour:
   salvageValue: 5
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
+  _rollIO: 0
   _dcElectronicComponents: 0
+  _rollEC: 0
   _dcDataProcessingCore: 0
+  _rollDCP: 0
   _dcDenseMetalPlate: 0
+  _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
+  _rollHTAP: 0
   _dcGlassPane: 0
+  _rollGP: 0
   _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
   _dcElectricMotor: 0
+  _rollEM: 0
   _dcCeramicPlate: 0
+  _rollCP: 0
   _dcGoldAlloy: 0
+  _rollGA: 0
   _dcValuableLoot: 0
+  _rollVL: 0
+--- !u!54 &331054836
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165387385290174}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &331054835
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165387385290174}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: d3b45504293888a4aaa594423fa1e273, type: 3}

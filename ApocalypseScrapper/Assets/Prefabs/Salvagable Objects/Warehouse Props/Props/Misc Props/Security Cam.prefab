@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5067119862230683890}
   - component: {fileID: 1544329784318618635}
   - component: {fileID: 3095370750867877331}
+  - component: {fileID: 104300198}
   m_Layer: 0
   m_Name: Security Cam
   m_TagString: Untagged
@@ -96,17 +97,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 500
+  salvageValue: 450
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
-  _dcElectronicComponents: 4.92
-  _dcDataProcessingCore: 4.75
-  _dcDenseMetalPlate: 3.91
-  _dcHighTensileAlloyPlate: 3.85
-  _dcGlassPane: 2.76
-  _dcHighPoweredLightDiode: 5
-  _dcElectricMotor: 2.6
-  _dcCeramicPlate: 2.38
-  _dcGoldAlloy: 3.77
-  _dcValuableLoot: 3.34
+  _rollIO: 0
+  _dcElectronicComponents: 100
+  _rollEC: 1
+  _dcDataProcessingCore: 51
+  _rollDPC: 1
+  _dcDenseMetalPlate: 0
+  _rollDMP: 0
+  _dcHighTensileAlloyPlate: 50
+  _rollHTAP: 1
+  _dcGlassPane: 0
+  _rollGP: 0
+  _dcHighPoweredLightDiode: 0
+  _rollHPLD: 0
+  _dcElectricMotor: 30
+  _rollEM: 1
+  _dcCeramicPlate: 0
+  _rollCP: 0
+  _dcGoldAlloy: 25
+  _rollGA: 1
+  _dcValuableLoot: 10
+  _rollVL: 1
+--- !u!64 &104300198
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959928407717566679}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b242581fc7fd82a45b00226894da6bfb, type: 3}

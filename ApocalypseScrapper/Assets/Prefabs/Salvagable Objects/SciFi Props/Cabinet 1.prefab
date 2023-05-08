@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4070689717903370}
   - component: {fileID: 33876195731728132}
   - component: {fileID: 23053479950776814}
-  - component: {fileID: 65495337165069996}
   m_Layer: 0
   m_Name: CabinetDoorL
   m_TagString: Untagged
@@ -63,7 +62,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f4e72ec38b17cc8498f092c44b63a388, type: 2}
-  - {fileID: 2100000, guid: d7690624bc7631642bcdfe5db289baa5, type: 2}
+  - {fileID: 2100000, guid: 5be32af07c7de814eb0f3dc7f2f66642, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &65495337165069996
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372496970572798}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.80000013, y: 2, z: 0.123423696}
-  m_Center: {x: 0.4, y: 1, z: -0.06171149}
 --- !u!1 &1481343056491324
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +111,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481343056491324}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -134,7 +120,7 @@ Transform:
   - {fileID: 4202601765115560}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33273509688985502
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -196,8 +182,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6000003, y: 2, z: 0.7000005}
-  m_Center: {x: -0.00000017881393, y: 1, z: -0.35000002}
+  m_Size: {x: 1.6000003, y: 2, z: 0.79265046}
+  m_Center: {x: -0.00000017881393, y: 1, z: -0.396325}
 --- !u!114 &-3937580968849355190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,20 +196,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salvageValue: 2500
+  salvageValue: 400
   salvageTime: 0
   _dcBioMass: 0
+  _rollBM: 0
   _dcIntactOrgan: 0
-  _dcElectronicComponents: 4.92
-  _dcDataProcessingCore: 2.52
-  _dcDenseMetalPlate: 2.76
-  _dcHighTensileAlloyPlate: 1.78
-  _dcGlassPane: 2.96
-  _dcHighPoweredLightDiode: 2.49
-  _dcElectricMotor: 1.29
-  _dcCeramicPlate: 1.18
-  _dcGoldAlloy: 1.62
-  _dcValuableLoot: 3.26
+  _rollIO: 0
+  _dcElectronicComponents: 0
+  _rollEC: 0
+  _dcDataProcessingCore: 0
+  _rollDPC: 0
+  _dcDenseMetalPlate: 50
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 20
+  _rollHTAP: 2
+  _dcGlassPane: 100
+  _rollGP: 2
+  _dcHighPoweredLightDiode: 25
+  _rollHPLD: 1
+  _dcElectricMotor: 0
+  _rollEM: 0
+  _dcCeramicPlate: 0
+  _rollCP: 0
+  _dcGoldAlloy: 0
+  _rollGA: 0
+  _dcValuableLoot: 0
+  _rollVL: 0
 --- !u!1 &1912358930782112
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +233,6 @@ GameObject:
   - component: {fileID: 4202601765115560}
   - component: {fileID: 33755007444367362}
   - component: {fileID: 23743251069383914}
-  - component: {fileID: 65070400609889826}
   m_Layer: 0
   m_Name: CabinetDoorR
   m_TagString: Untagged
@@ -309,16 +306,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &65070400609889826
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912358930782112}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.80000013, y: 2, z: 0.123423696}
-  m_Center: {x: -0.4, y: 1, z: -0.06171149}
