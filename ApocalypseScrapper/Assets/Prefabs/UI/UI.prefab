@@ -17329,9 +17329,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 6144132855196739081}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -18354,6 +18354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e06fe75ba871e40b38b1d9aa1a3589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamelog: []
   maxMessages: 30
   gamelogPanel: {fileID: 192091237658349716}
   textObject: {fileID: 386277387660092446, guid: b5ad10bb3941b924cbd840602c9d098f, type: 3}
