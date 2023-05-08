@@ -211,12 +211,33 @@ public class gameManager : MonoBehaviour
             Debug.Log("Player prefs sensitivity keys do not exist");
         }
 
+        // if our player prefs has the dynamic FOV key
+        if(PlayerPrefs.HasKey("DynamicFOV"))
+        {
+            // if our key is currently set to 1 (on) in player prefs, turn dynamic FOV on
+            if(PlayerPrefs.GetInt("DynamicFOV") == 1)
+            {
+                dynamicFOVToggle.isOn = true;
+            }
+            // else if our key is currently set to 0 (off) in player prefabs, turn dynamic FOV off
+            else if (PlayerPrefs.GetInt("DynamicFOV") == 0)
+            {
+                dynamicFOVToggle.isOn= false;
+            }
+        }
+        else
+        {
+            dynamicFOVToggle.isOn = true;
+        }
+
         playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int) horizontalSens.value;
         playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int) verticalSens.value;
 
         // setting the sensitivity labels equal the sliders current values
         horSensValue.text = horizontalSens.value.ToString();
         vertSensValue.text = verticalSens.value.ToString();
+
+        
 
         if(currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
@@ -810,6 +831,16 @@ public class gameManager : MonoBehaviour
         horSensValue.text = ((int) horizontalSens.value).ToString();
         vertSensValue.text = ((int) verticalSens.value).ToString();
 
+        // if we close our options menu, reassign our dynamic FOV toggle based on what is currently in player prefs
+        if(PlayerPrefs.GetInt("DynamicFOV") == 1)
+        {
+            dynamicFOVToggle.isOn = true;
+        }
+        else
+        {
+            dynamicFOVToggle.isOn = false;
+        }
+
         optionsMenu.SetActive(false);
         pauseMenu.SetActive(true);
     }
@@ -829,6 +860,19 @@ public class gameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("HorizontalSensitivity", (int)horizontalSens.value);
         PlayerPrefs.SetInt("VerticalSensitivity", (int)verticalSens.value);
+
+        // if our dynamic fov is selected, set the key value to 1
+        if (dynamicFOVToggle.isOn)
+        {
+            PlayerPrefs.SetInt("DynamicFOV", 1);
+        }
+        // else set it to 0
+        else
+        {
+            PlayerPrefs.SetInt("DynamicFOV", 0);
+        }
+
+        Debug.Log(PlayerPrefs.GetInt("DynamicFOV").ToString());
 
         CloseOptionsMenu();
     }
