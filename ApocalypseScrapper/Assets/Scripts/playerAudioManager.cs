@@ -18,6 +18,8 @@ public class playerAudioManager : MonoBehaviour
     public AudioSource footstepAudioSource;
     public AudioSource takeDamageAudioSource;
     public AudioSource shieldBreakAudioSource;
+    public AudioSource meleeSwingAudioSource;
+    public AudioSource meleeGruntAudioSource;
 
     // audio clips (the actual sound)
     [Header("----- Clips -----")]
@@ -30,6 +32,8 @@ public class playerAudioManager : MonoBehaviour
     public AudioClip[] footstepAudio;
     public AudioClip[] takeDamageAudio;
     public AudioClip shieldBreakAudio;
+    public AudioClip[] meleeSwingAudio;
+    public AudioClip[] meleeGruntAudio;
 
     [Header("----- Volume -----")]
     [Range(0f, 1.0f)][SerializeField] float jetpackThrustVolume;
@@ -68,6 +72,8 @@ public class playerAudioManager : MonoBehaviour
         footstepAudioSource = gameObject.AddComponent<AudioSource>();
         takeDamageAudioSource = gameObject.AddComponent<AudioSource>();
         shieldBreakAudioSource = gameObject.AddComponent<AudioSource>();
+        meleeSwingAudioSource = gameObject.AddComponent<AudioSource>();
+        meleeGruntAudioSource = gameObject.AddComponent<AudioSource>();
 
 
 

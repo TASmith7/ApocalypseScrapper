@@ -93,8 +93,15 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] int bulletSpeed;
     public MeshRenderer gunMaterial;
     public MeshFilter gunModel;
+    public GameObject playerGun;
+    public CapsuleCollider playerGunMeleeCollider;
     public int selectedGun;
     bool isShooting;
+    public bool isMeleeing = false;
+    public bool canMelee = true;
+    public float meleeResetTime;
+    public float meleeDamage;
+
 
     weaponMovement weaponMovementScript;
     [SerializeField] Animator gunAnimator;
@@ -156,6 +163,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         standingHeight = controller.height;
         crouchHeight = 0.3f;
 
+        playerGunMeleeCollider = playerGun.GetComponent<CapsuleCollider>();
+        playerGunMeleeCollider.enabled = false;
+
 
         // gunAnimator = weaponMovementScript.GetComponent<Animator>();
 
@@ -188,6 +198,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
             if (Input.GetButton("Shoot") && !isShooting)
                 StartCoroutine(Shoot());
+
+            if(Input.GetKeyDown(KeyCode.E) && !isShooting)
+            {
+                Melee();
+            }
 
             if (!isSalvaging && Input.GetButton("Salvage"))
             {
@@ -437,7 +452,39 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
+    private void Melee()
+    {
+        // if not currently meleeing and can melee
+        if(!isMeleeing && canMelee)
+        {
+            // enable the guns melee collider and set flags to true
+            playerGunMeleeCollider.enabled = true;
+            isMeleeing = true;
+            canMelee = false;
+            
+            // play melee animation
+            gunAnimator.SetTrigger("Melee");
 
+            // play melee audio
+            playerAudioManager.instance.meleeSwingAudioSource.PlayOneShot(playerAudioManager.instance.meleeSwingAudio[Random.Range(0, playerAudioManager.instance.meleeSwingAudio.Length)], 0.5f);
+            playerAudioManager.instance.meleeGruntAudioSource.PlayOneShot(playerAudioManager.instance.meleeGruntAudio[Random.Range(0, playerAudioManager.instance.meleeGruntAudio.Length)]);
+        }
+
+        // reset my melee time using coroutine
+        StartCoroutine(ResetMeleeTime());
+    }
+
+    private IEnumerator ResetMeleeTime()
+    {
+        // this line delays melees by a specified amount of seconds
+        yield return new WaitForSeconds(meleeResetTime);
+        gunAnimator.SetTrigger("Stop Meleeing");
+
+        // reset flags and turn off the guns melee collider
+        isMeleeing = false;
+        playerGunMeleeCollider.enabled = false;
+        canMelee = true;
+    }
     private IEnumerator CrouchStand()
     {
         // if crouching and underneath something

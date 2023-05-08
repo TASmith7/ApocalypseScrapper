@@ -42,7 +42,7 @@ public class weaponMovement : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, smooth * Time.deltaTime);
 
         // if we are sprinting, speed up the gun bob animation
-        if(Input.GetKey(KeyCode.LeftShift) && gameManager.instance.staminaFillBar.fillAmount > 0 && !playerScript.isCrouching)
+        if (Input.GetKey(KeyCode.LeftShift) && gameManager.instance.staminaFillBar.fillAmount > 0 && !playerScript.isCrouching)
         {
             gunAnimator.speed = sprintBobSpeed;
         }
@@ -57,19 +57,19 @@ public class weaponMovement : MonoBehaviour
         }
 
         // if we are pressing W, start bobbing gun
-        if(Input.GetKey(KeyCode.W) && playerCont.isGrounded)
+        if(Input.GetKey(KeyCode.W) && playerCont.isGrounded && !playerScript.isMeleeing)
         {
             gunAnimator.SetTrigger("Bob");
             gunAnimator.ResetTrigger("Stop Bobbing");
         }
         // else if we are pressing S, start bobbing gun
-        else if (Input.GetKey(KeyCode.S) && playerCont.isGrounded)
+        else if (Input.GetKey(KeyCode.S) && playerCont.isGrounded && !playerScript.isMeleeing)
         {
             gunAnimator.SetTrigger("Bob");
             gunAnimator.ResetTrigger("Stop Bobbing");
         }
         // if we stop moving forwards or backwards, stop bobbing gun
-        else
+        else if (!playerScript.isMeleeing)
         {
             gunAnimator.SetTrigger("Stop Bobbing");
             gunAnimator.ResetTrigger("Bob");
