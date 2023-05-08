@@ -96,6 +96,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI FinalFloorScoreData;
     public TextMeshProUGUI FloorAvailData;
     public TextMeshProUGUI SpentScrap;
+    public GameObject DeclinedPurchasePopUp;
 
     public int spendable;
     public int spent;
