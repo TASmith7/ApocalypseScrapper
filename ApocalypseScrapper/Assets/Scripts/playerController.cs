@@ -509,7 +509,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         {
             controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
             controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
-            Debug.Log(controller.center);
+           // Debug.Log(controller.center);
 
             timeElapsed += Time.deltaTime;
 

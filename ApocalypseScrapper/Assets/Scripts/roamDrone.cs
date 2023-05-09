@@ -186,7 +186,7 @@ public class roamDrone : MonoBehaviour, IDamage
 
         isShooting = true;
         //anim.SetTrigger("Shoot");
-        Debug.Log("AI shot!");
+        //Debug.Log("AI shot!");
         // to reference a bullet
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
         // to give bullet a velocity
