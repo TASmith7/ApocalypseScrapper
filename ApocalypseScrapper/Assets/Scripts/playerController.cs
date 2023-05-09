@@ -12,7 +12,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [Header("----- Components -----")]
     [SerializeField] public CharacterController controller;
-    [SerializeField] Animator anim;
+    // [SerializeField] Animator anim;
     //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
@@ -182,7 +182,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         if (gameManager.instance.activeMenu == null)
         {
-            anim.SetFloat("Speed", Input.GetAxis("Vertical"));
+            // anim.SetFloat("Speed", Input.GetAxis("Vertical"));
             //float vel = rb.velocity.normalized.magnitude;
 
             //if (vel >= 0 && vel <= 1)
@@ -509,7 +509,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         {
             controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
             controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
-           // Debug.Log(controller.center);
 
             timeElapsed += Time.deltaTime;
 
