@@ -185,6 +185,7 @@ public class gameManager : MonoBehaviour
     public float timeScaleOriginal;
     public Scene currentScene;
     bool voWasPlaying;
+    bool npcWasTalking;
 
     AudioClip currentVOPlaying;
 
@@ -445,6 +446,11 @@ public class gameManager : MonoBehaviour
         playerAudioManager.instance.PauseAllAudio();
         levelAudioManager.instance.PauseAllAudio();
 
+        if (currentScene == SceneManager.GetSceneByName("Lvl 2") && npcAudioManager.instance != null)
+        {
+            npcAudioManager.instance.PauseAllAudio();
+        }
+
         if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
             gameManager.instance.endGameBeam.GetComponent<AudioSource>().Stop();
@@ -460,6 +466,19 @@ public class gameManager : MonoBehaviour
         else
         {
             voWasPlaying = false;
+        }
+
+        if (currentScene == SceneManager.GetSceneByName("Lvl 2") && npcAudioManager.instance != null)
+        {
+            if (npcAudioManager.instance.npcVoiceAudioSource.isPlaying)
+            {
+                npcAudioManager.instance.npcVoiceAudioSource.Pause();
+                npcWasTalking = true;
+            }
+        }
+        else
+        {
+            npcWasTalking = false;
         }
 
     }
@@ -484,6 +503,11 @@ public class gameManager : MonoBehaviour
         if (voWasPlaying && voiceoversToggle.isOn)
         {
             levelAudioManager.instance.voiceOverAudioSource.UnPause();
+        }
+
+        if(currentScene == SceneManager.GetSceneByName("Lvl 2") && npcWasTalking && npcAudioManager.instance != null)
+        {
+            npcAudioManager.instance.npcVoiceAudioSource.UnPause();
         }
     }
 

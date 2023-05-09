@@ -1643,8 +1643,10 @@ GameObject:
   m_Component:
   - component: {fileID: 400096}
   - component: {fileID: 9500000}
-  - component: {fileID: 11400000}
-  - component: {fileID: 11400002}
+  - component: {fileID: 1581841892}
+  - component: {fileID: 1581841893}
+  - component: {fileID: 1581841894}
+  - component: {fileID: 114217009}
   m_Layer: 0
   m_Name: Sci-Fi_Soldier
   m_TagString: Untagged
@@ -1661,7 +1663,7 @@ Transform:
   m_GameObject: {fileID: 100096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 400094}
@@ -1679,8 +1681,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100096}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b6c33e1d6632025468fb37a04e312606, type: 3}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 643ed0b36735f2d45bf947886e3a631c, type: 3}
+  m_Controller: {fileID: 9100000, guid: 56e360afe2ecb5c418bde4c4fd00dafe, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1691,7 +1693,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &11400000
+--- !u!135 &1581841892
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100096}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 7.15
+  m_Center: {x: 0, y: 0.43, z: 0}
+--- !u!114 &1581841893
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1700,10 +1715,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 100096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a85c5e349cb17df4b85883ea088c2f95, type: 3}
+  m_Script: {fileID: 11500000, guid: cc93a90b756e96a4abacb40581b62655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400002
+  stomachPos: {fileID: 400094}
+  player: {fileID: 0}
+  agent: {fileID: 114217009}
+  exitDestination: {fileID: 0}
+  isTrapped: 0
+  playerInRange: 0
+  rescueCoroutineStarted: 0
+  isStanding: 0
+  isExiting: 0
+  reachedExit: 0
+  rescuedAudioStarted: 0
+  rescueLinesAreFinished: 0
+  timeBetweenHelpMeLines: 10
+  playerFaceSpeed: 3
+  timeBetweenFootsteps: 0.35
+--- !u!114 &1581841894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1712,17 +1742,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 100096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9aa840a3854ebd47b920d1a5c7d693f, type: 3}
+  m_Script: {fileID: 11500000, guid: d4a686f31c654e740bbc53f7761ab970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightGunBone: {fileID: 400018}
-  leftGunBone: {fileID: 400050}
-  arsenal:
-  - name: Empty
-    rightGun: {fileID: 0}
-    leftGun: {fileID: 0}
-    controller: {fileID: 9100000, guid: e4d38f097ea35254fb4b833d568bb089, type: 2}
-  - name: Rifle
-    rightGun: {fileID: 100000, guid: d992a232642f7574b80a75c2ca4b4cb8, type: 3}
-    leftGun: {fileID: 0}
-    controller: {fileID: 9100000, guid: dffbd9326394a8d47a87a1e2aec70a59, type: 2}
+  npcVoiceAudioSource: {fileID: 0}
+  npcFootstepAudioSource: {fileID: 0}
+  npcHelpMeLines:
+  - {fileID: 8300000, guid: 3c15a546f65d67741966281eb705f698, type: 3}
+  - {fileID: 8300000, guid: 04d56b2d3f5ef5849bbe83f1d2d89b3e, type: 3}
+  - {fileID: 8300000, guid: 065db783cb31b7141843871930e56a77, type: 3}
+  - {fileID: 8300000, guid: fe696591fa865874ba44e4ea9889b11c, type: 3}
+  - {fileID: 8300000, guid: 10ab007c5c3114e419e8f7d85cf16538, type: 3}
+  - {fileID: 8300000, guid: f54579e6d01844e469db88ed6579be1e, type: 3}
+  npcRescuedLines: {fileID: 8300000, guid: a6d4fb7d34ebe1f48bd607d2b7e9c178, type: 3}
+  npcFootstepAudio:
+  - {fileID: 8300000, guid: 9c219ce9bb193f94da913f67c9055019, type: 3}
+  - {fileID: 8300000, guid: bac4c32a01aba7741a349d1ed39ea49a, type: 3}
+  - {fileID: 8300000, guid: 05d8c6148b644384bacb11ae8bfd084e, type: 3}
+  - {fileID: 8300000, guid: 8bce001d95a538a4796293c44149d887, type: 3}
+  - {fileID: 8300000, guid: b3a33c0ccd14ab44bac58a4e1990a2a6, type: 3}
+  - {fileID: 8300000, guid: 9e4f77e0167b6a849822d927248d1a3d, type: 3}
+  npcVoiceAudioSpatialBlend: 1
+  npcVoiceAudioVolume: 0.9
+  npcFootstepSpatialBlend: 1
+  npcFootstepVolume: 0.8
+--- !u!195 &114217009
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100096}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
