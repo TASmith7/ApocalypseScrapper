@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23216470717092254}
   - component: {fileID: 64604388006729888}
   - component: {fileID: 3166824177131087694}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Machine_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   _dcElectronicComponents: 75
   _rollEC: 3
   _dcDataProcessingCore: 15
-  _rollDCP: 1
+  _rollDPC: 0
   _dcDenseMetalPlate: 30
   _rollDMP: 3
   _dcHighTensileAlloyPlate: 65

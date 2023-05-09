@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4801680175351250}
   - component: {fileID: 33518698625709164}
   - component: {fileID: 23437180641034558}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4870380773365206}
   - component: {fileID: 33950504094558730}
   - component: {fileID: 23312352357374876}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4525056128309606}
   - component: {fileID: 33033344875633106}
   - component: {fileID: 23181803472770508}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CoverLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 4423027049421696}
   - component: {fileID: 33720979475117408}
   - component: {fileID: 23736781993707110}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 23960319063785468}
   - component: {fileID: 5986823261564340770}
   - component: {fileID: 196990440}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GarbageCart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ MonoBehaviour:
   _dcElectronicComponents: 0
   _rollEC: 0
   _dcDataProcessingCore: 0
-  _rollDCP: 0
+  _rollDPC: 0
   _dcDenseMetalPlate: 35
   _rollDMP: 1
   _dcHighTensileAlloyPlate: 20
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 4151948906481530}
   - component: {fileID: 33098403694665206}
   - component: {fileID: 23157605486536898}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wheel4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 4394695702940646}
   - component: {fileID: 33572889621107648}
   - component: {fileID: 23434350406627692}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CoverRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

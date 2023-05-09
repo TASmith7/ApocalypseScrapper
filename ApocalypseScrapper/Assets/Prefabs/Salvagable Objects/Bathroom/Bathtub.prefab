@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4783034272523284}
   - component: {fileID: 33216792101490538}
   - component: {fileID: 23650247862575794}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: _Bathtub_CraneRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4483519891509442}
   - component: {fileID: 33836106546710014}
   - component: {fileID: 23132743543472936}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: _Bathtub_CraneLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4539977021472082}
   - component: {fileID: 6646083374681699021}
   - component: {fileID: 1987573588}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bathtub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ MonoBehaviour:
   _dcElectronicComponents: 0
   _rollEC: 0
   _dcDataProcessingCore: 0
-  _rollDCP: 0
+  _rollDPC: 0
   _dcDenseMetalPlate: 50
   _rollDMP: 2
   _dcHighTensileAlloyPlate: 55
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 4328940152184002}
   - component: {fileID: 33596049281018560}
   - component: {fileID: 23036645444772860}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: _Bathtub_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}

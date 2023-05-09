@@ -638,7 +638,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1023
+    m_Bits: 5119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -800,17 +800,19 @@ MonoBehaviour:
   shootPos: {fileID: 661115329435723955}
   headPos: {fileID: 1314660212}
   playerCam: {fileID: 661115330689640375}
+  salvageLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   HP: 100
   HPMax: 100
-  playerSpeed: 10
+  playerSpeed: 7
   gravityValue: 50
   walkingFootstepRate: 0.5
   runningFootstepRate: 0.25
   crouchingFootstepRate: 0.75
-  salvageRange: 5
-  salvageRate: 1
-  salvageSpread: 0
-  salvageSphere: {fileID: 0}
+  salvageRange: 10
+  salvageRate: 0.75
+  salvageSpread: 0.01
   animTransSpeed: 1
   bloodEffect:
   - {fileID: 1834194341294532, guid: d5f26854a8904624c8073139cd2eb346, type: 3}
@@ -868,6 +870,8 @@ MonoBehaviour:
   playerFloorScore: 0
   playerTotalScore: 0
   playerBonus: 0
+  hazardPay: 0
+  questPay: 0
 --- !u!143 &5333339247771160563
 CharacterController:
   m_ObjectHideFlags: 0

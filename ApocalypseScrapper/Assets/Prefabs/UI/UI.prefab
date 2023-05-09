@@ -8155,7 +8155,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Crafting Menu
+  m_text: Augmentation Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: db11462ed90d625479b330b1486e2b62, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: db11462ed90d625479b330b1486e2b62, type: 2}
@@ -9379,9 +9379,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use Collected Scrap to buy temporary upgrades and augmentations. Total
-    Scrap Collected from the level unlocks a specific % of total collected scrap
-    to be used. unused scrap will be transferred to the Hub for permanent upgrades
+  m_text: The W.A.C provides this augmentation/upgrade store for you while on-site.
+    This menu can be used to purchase temporary augmentations and upgrades to aid
+    you while deployed. All  un-used scrap will be divided up to pay debts. Your
+    cut will be given to you at extraction
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: db11462ed90d625479b330b1486e2b62, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: db11462ed90d625479b330b1486e2b62, type: 2}
@@ -9408,8 +9409,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
-  m_fontSizeBase: 34
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -19898,8 +19899,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.106613, y: 81.35716}
-  m_SizeDelta: {x: -425.2573, y: -303.4184}
+  m_AnchoredPosition: {x: -2.8933868, y: 84.5309}
+  m_SizeDelta: {x: -438.1739, y: -309.7658}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1896245737
 CanvasRenderer:

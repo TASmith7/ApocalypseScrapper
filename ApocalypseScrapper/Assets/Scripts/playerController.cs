@@ -17,7 +17,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] public Camera playerCam;
-
+    public LayerMask salvageLayer;
 
     [Header("----- Player Stats -----")]
     [Range(1, 100)][SerializeField] public int HP;
@@ -40,16 +40,16 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [SerializeField] public int salvageRange;
     [Range(0.1f, 1)][SerializeField] public float salvageRate;
-    [Range(1, 40)][SerializeField] public float salvageSpread;
+    [Range(0.01f, 1)][SerializeField] public float salvageSpread;
     bool isSalvaging;
-    public GameObject salvageSphere;
+    
 
     [Header("----- Animation Stats -----")]
     [SerializeField] float animTransSpeed;
     [SerializeField] GameObject[] bloodEffect;
     [SerializeField] GameObject beamEffect;
     [SerializeField] GameObject muzzleFlash;
-    
+
     [Header("----- Jetpack Stats -----")]
     [Range(1, 8)][SerializeField] public float thrustPower;
     [Range(0, 1)][SerializeField] public float fuelConsumptionRate;
@@ -113,7 +113,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] public bool shielded;
     [SerializeField] public int shieldValue;
     [SerializeField] public int shieldMax;
-    [SerializeField] public int shieldCD; 
+    [SerializeField] public int shieldCD;
     [SerializeField] public int shieldRate;
     bool shieldOnCD;
     bool isShieldRegen;
@@ -140,7 +140,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] public int questPay;
 
     #endregion
-    
+
     private void Start()
     {
 
@@ -149,13 +149,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             SetPlayerStats();
         else DefaultPlayerStats();
         playerSpeed = walkSpeed;
-        
+
         PlayerUIUpdate();
         playerFloorScore = 0;
-        
+
         SpawnPlayer();
         StartCoroutine(FindTotalLevelSalvage());
-        
+
         jetpackPowerDownAudioPlayed = false;
         outOfBreathAudioPlayed = false;
         timeBetweenFootsteps = walkingFootstepRate;
@@ -173,8 +173,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         // gunAnimator = weaponMovementScript.GetComponent<Animator>();
 
     }
-    
-    
+
+
     void Update()
     {
 
@@ -204,7 +204,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             if (Input.GetButton("Shoot") && !isShooting)
                 StartCoroutine(Shoot());
 
-            if(Input.GetKeyDown(KeyCode.E) && !isShooting)
+            if (Input.GetKeyDown(KeyCode.E) && !isShooting)
             {
                 Melee();
             }
@@ -229,14 +229,14 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         }
 
     }
-    
- 
+
+
     void FixedUpdate()
     {
         RaycastHit hit;
 
         lastPosition = transform.position;
-        
+
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
         {
 
@@ -289,7 +289,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     bool AllowWeaponSway()
     {
-        if(IsMoving && controller.isGrounded)
+        if (IsMoving && controller.isGrounded)
         {
             return true;
         }
@@ -308,7 +308,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         }
         if (groundedPlayer)
         {
-            if(isCrouching)
+            if (isCrouching)
             {
                 playerSpeed = crouchSpeed;
             }
@@ -319,8 +319,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
             if (Input.GetButton("Sprint") && !isCrouching)
             {
-                 // turn on our stamina bar
-                 gameManager.instance.TurnOnStaminaUI();
+                // turn on our stamina bar
+                gameManager.instance.TurnOnStaminaUI();
 
                 // if we are not out of stamina
                 if (gameManager.instance.staminaFillBar.fillAmount > 0)
@@ -345,10 +345,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 }
 
                 // reducing the stamina bar while the player is pressing shift and moving
-                
-                
-                    StartCoroutine(ReduceStaminaUI());
-                
+
+
+                StartCoroutine(ReduceStaminaUI());
+
             }
             else
             {
@@ -370,7 +370,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 gameManager.instance.TurnOffStaminaUI();
             }
 
-            if(Input.GetButtonDown("Crouch") && !duringCrouchAnimation)
+            if (Input.GetButtonDown("Crouch") && !duringCrouchAnimation)
             {
                 StartCoroutine(CrouchStand());
             }
@@ -459,13 +459,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private void Melee()
     {
         // if not currently meleeing and can melee
-        if(!isMeleeing && canMelee)
+        if (!isMeleeing && canMelee)
         {
             // enable the guns melee collider and set flags to true
             playerGunMeleeCollider.enabled = true;
             isMeleeing = true;
             canMelee = false;
-            
+
             // play melee animation
             gunAnimator.SetTrigger("Melee");
 
@@ -492,7 +492,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private IEnumerator CrouchStand()
     {
         // if crouching and underneath something
-        if(isCrouching && Physics.Raycast(playerCam.transform.position, Vector3.up, 1f))
+        if (isCrouching && Physics.Raycast(playerCam.transform.position, Vector3.up, 1f))
         {
             yield break;
         }
@@ -529,7 +529,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             {
                 playerAudioManager.instance.playerSlideAudioSource.PlayOneShot(playerAudioManager.instance.playerSlideAudio, 0.65f);
             }
-            
+
             while (timeElapsed < slideTimeLength)
             {
                 isSprinting = false;
@@ -551,7 +551,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     void Shielding()
     {
-        
+
         if (shielded)
         {
             gameManager.instance.TurnOnShieldUI();
@@ -569,15 +569,15 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     void CueHeadBobMovement()
     {
         if (!controller.isGrounded) return;
-        if(IsMoving && !isSliding)
+        if (IsMoving && !isSliding)
         {
             headBobTimer += Time.deltaTime * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobSpeed : isCrouching ? crouchBobSpeed : walkBobSpeed);
             playerCam.transform.localPosition = new Vector3(playerCam.transform.localPosition.x,
-                defaultYPosForCam + Mathf.Sin(headBobTimer) * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobAmount : isCrouching ? crouchBobAmount : walkBobAmount), 
+                defaultYPosForCam + Mathf.Sin(headBobTimer) * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobAmount : isCrouching ? crouchBobAmount : walkBobAmount),
                 playerCam.transform.localPosition.z);
         }
     }
-    
+
     IEnumerator Shoot()
     {
         isShooting = true;
@@ -612,7 +612,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                     //Quaternion rotation = Quaternion.LookRotation(effectDir);
                     //bloodClone.transform.rotation = rotation;
                     Destroy(bloodClone, .3f);
-                }                
+                }
             }
         }
         #region Old Raycast Code
@@ -635,24 +635,25 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     IEnumerator Salvage()
     {
-        RaycastHit hit;
+        RaycastHit[] hits;
+        hits=Physics.SphereCastAll(shootPos.position, salvageSpread, transform.forward, salvageRange,salvageLayer);
         GameObject beam = null;
-
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
+        for (int i = 0; i < hits.Length; i++)
         {
-
+            //Do something with the hit information
+            
             // if the object we clicked on contains the ISalvageable interface
-            ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
+            ISalvageable salvageable = hits[i].collider.GetComponent<ISalvageable>();
 
             // if the object is salvageable
-            if (salvageable != null && !hit.collider.CompareTag("Player"))
+            if (salvageable != null && !hits[i].collider.CompareTag("Player"))
             {
                 isSalvaging = true;
-                beam = Instantiate(beamEffect, hit.point, Quaternion.identity);
-                Vector3 effectDir = hit.point - shootPos.transform.position;
+                beam = Instantiate(beamEffect, hits[i].point, Quaternion.identity);
+                Vector3 effectDir = hits[i].point - shootPos.transform.position;
                 Quaternion rotation = Quaternion.LookRotation(effectDir);
                 beam.transform.rotation = rotation;
-                gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
+                gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hits[i].collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
 
                 // if our salvaging audio isn't already playing
                 if (!playerAudioManager.instance.salvagingAudioSource.isPlaying)
@@ -662,7 +663,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
                 if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
                 {
-                    SalvageObject(hit.collider.gameObject);
+                    SalvageObject(hits[i].collider.gameObject);
 
                     gameManager.instance.salvagingObjectReticle.fillAmount = 0;
                     yield return new WaitForSeconds(0.01f);
@@ -678,16 +679,67 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
 
         }
-        else
-        {
-            isSalvaging = false;
-        }
         yield return new WaitForSeconds(0.01f);
         if (beam != null)
         {
             Destroy(beam, .1f);
         }
+        //RaycastHit hit;
+        //GameObject beam = null;
+
+        //if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
+        //{
+
+        //    // if the object we clicked on contains the ISalvageable interface
+        //    ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
+
+        //    // if the object is salvageable
+        //    if (salvageable != null && !hit.collider.CompareTag("Player"))
+        //    {
+        //        isSalvaging = true;
+        //        beam = Instantiate(beamEffect, hit.point, Quaternion.identity);
+        //        Vector3 effectDir = hit.point - shootPos.transform.position;
+        //        Quaternion rotation = Quaternion.LookRotation(effectDir);
+        //        beam.transform.rotation = rotation;
+        //        gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
+
+        //        // if our salvaging audio isn't already playing
+        //        if (!playerAudioManager.instance.salvagingAudioSource.isPlaying)
+        //        {
+        //            playerAudioManager.instance.salvagingAudioSource.Play();
+        //        }
+
+        //        if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
+        //        {
+        //            SalvageObject(hit.collider.gameObject);
+
+        //            gameManager.instance.salvagingObjectReticle.fillAmount = 0;
+        //            yield return new WaitForSeconds(0.01f);
+        //        }
+
+        //    }
+        //    // else what we are looking at is not salvageable, so stop our salvaging audio and set isSalvaging bool to false
+        //    else
+        //    {
+        //        playerAudioManager.instance.salvagingAudioSource.Stop();
+        //        isSalvaging = false;
+        //    }
+
+
+        //}
+        //else
+        //{
+        //    isSalvaging = false;
+        //}
+        //yield return new WaitForSeconds(0.01f);
+        //if (beam != null)
+        //{
+        //    Destroy(beam, .1f);
+        //}
     }
+
+
+
 
     public void TakeDamage(float amount)
     {

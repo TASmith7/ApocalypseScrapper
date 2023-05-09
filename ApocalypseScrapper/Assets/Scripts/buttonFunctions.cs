@@ -306,15 +306,16 @@ public class buttonFunctions : MonoBehaviour
     }
     public void UpgradeSalvageSpread()
     {
-        //if (gameManager.instance.spendable >= 400)
-        //{
-        //    gameManager.instance.playerScript.salvageSpread += 0.1f;
-        //    gameManager.instance.spendable -= 400;
-        //    gameManager.instance.spent += 400;
-        //}else
-        //{
-            //StartCoroutine(DeclinedPurchase());
-       // }
+        if (gameManager.instance.amtSalvaged >= 400)
+        {
+            gameManager.instance.playerScript.salvageSpread += .1f;
+            gameManager.instance.amtSalvaged -= 400;
+            gameManager.instance.spent += 400;
+        }
+        else
+        {
+            StartCoroutine(DeclinedPurchase());
+        }
     }
     public void UpgradeSalvageEfficiency()
     {
@@ -375,7 +376,7 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.DeclinedPurchasePopUp.SetActive(true);
         Debug.Log("Declined True");
         Debug.Log("WFS Started");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         Debug.Log("WFS Over");
         gameManager.instance.DeclinedPurchasePopUp.SetActive(false);
         Debug.Log("Declined False");

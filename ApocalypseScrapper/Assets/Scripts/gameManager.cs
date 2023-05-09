@@ -395,7 +395,7 @@ public class gameManager : MonoBehaviour
             vertSensValue.text = verticalSens.value.ToString();
             musicVolumeValue.text = musicVolume.value.ToString();
         }
-        if (Input.GetButtonDown("Tab") && !craftingOpen)
+        if (Input.GetButtonDown("Tab") && !craftingOpen && activeMenu == null)
         {
             craftingOpen = true;
 
@@ -403,7 +403,7 @@ public class gameManager : MonoBehaviour
             CueCrafting();
 
         }
-        else if (Input.GetButtonDown("Tab") && craftingOpen)
+        else if (Input.GetButtonDown("Tab") && craftingOpen && activeMenu == craftingMenu)
         {
 
 

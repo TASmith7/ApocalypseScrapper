@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5034850558839837762}
   - component: {fileID: 331054836}
   - component: {fileID: 331054835}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ToiletRoll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   _dcElectronicComponents: 0
   _rollEC: 0
   _dcDataProcessingCore: 0
-  _rollDCP: 0
+  _rollDPC: 0
   _dcDenseMetalPlate: 0
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0

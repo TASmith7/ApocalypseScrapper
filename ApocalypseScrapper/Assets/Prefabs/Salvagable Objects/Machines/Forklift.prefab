@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: -8565033807889741159}
   - component: {fileID: 716399212}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Forklift
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
   _dcElectronicComponents: 60
   _rollEC: 2
   _dcDataProcessingCore: 30
-  _rollDCP: 1
+  _rollDPC: 0
   _dcDenseMetalPlate: 75
   _rollDMP: 2
   _dcHighTensileAlloyPlate: 35
