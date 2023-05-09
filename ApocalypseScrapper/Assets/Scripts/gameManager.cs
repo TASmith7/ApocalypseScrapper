@@ -92,14 +92,21 @@ public class gameManager : MonoBehaviour
     public GameObject incomingTransmissionText;
     public GameObject skipTransmissionText;
 
-    [Header("----- Store Objects -----")]
-    public TextMeshProUGUI FinalFloorScoreData;
+    [Header("----- Crafting Objects -----")]
+    
     public TextMeshProUGUI FloorAvailData;
+    public TextMeshProUGUI LevelScrapCollected;
     public TextMeshProUGUI SpentScrap;
     public GameObject DeclinedPurchasePopUp;
-
-    public int spendable;
+    
     public int spent;
+    [Header("----- Store Objects -----")]
+    public TextMeshProUGUI FloorAvailDataStore;
+    //public TextMeshProUGUI LevelScrapCollectedStore;
+    //public TextMeshProUGUI SpentScrapStore;
+    //public GameObject DeclinedPurchasePopUpStore;
+    //public TextMeshProUGUI FinalFloorScoreDataStore;
+    
     [Header("----- Player Stats Objects -----")]
     public TextMeshProUGUI healthValue;
     public TextMeshProUGUI maxHealthValue;
@@ -118,7 +125,7 @@ public class gameManager : MonoBehaviour
     public GameObject InventroyParent;
     
     public Toggle invShown;
-    public bool storeOpen;
+    public bool craftingOpen;
     public Image BioMass;
     public Image IntactOrgan;
     public Image ElectronicComponent;
@@ -169,7 +176,7 @@ public class gameManager : MonoBehaviour
     //public int enemiesRemaining;
 
     public bool isPaused;
-    float timeScaleOriginal;
+    public float timeScaleOriginal;
     public Scene currentScene;
     bool voWasPlaying;
 
@@ -288,6 +295,11 @@ public class gameManager : MonoBehaviour
     void Update()
     {
         UpdateInventory();
+        
+        
+        
+            
+        
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             levelAudioManager.instance.pauseMenuAudioSource.Play();
@@ -331,22 +343,22 @@ public class gameManager : MonoBehaviour
             horSensValue.text = horizontalSens.value.ToString();
             vertSensValue.text = verticalSens.value.ToString();
         }
-        if (Input.GetButtonDown("Tab") && !storeOpen)
+        if (Input.GetButtonDown("Tab") && !craftingOpen)
         {
-            storeOpen = true;
+            craftingOpen = true;
 
 
             CueCrafting();
 
         }
-        else if (Input.GetButtonDown("Tab") && storeOpen)
+        else if (Input.GetButtonDown("Tab") && craftingOpen)
         {
 
 
-            storeOpen = false;
+            craftingOpen = false;
             CloseCrafting();
         }
-        if (invShown.isOn && storeOpen)
+        if (invShown.isOn && craftingOpen)
         {
             
             TurnOnInventoryUI();
@@ -504,6 +516,7 @@ public class gameManager : MonoBehaviour
         if (playerScript.salvDetector == true)
         {
             salvageCollected.text = score.ToString() + " of " + playerScript.totalLevelSalvage;
+            
         }
         else salvageCollected.text = score.ToString();
 
@@ -567,57 +580,57 @@ public class gameManager : MonoBehaviour
 
     }
 
-    public void CueStore()
-    {
+    //public void CueStore()
+    //{
 
-        levelAudioManager.instance.voiceOverAudioSource.Stop();
-        PauseState();
-        isPaused = true;
-        char rank = Rank();
-        int clearPercent = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
-        int bonus = Bonus(rank);
-        FinalFloorScoreData.text = playerScript.playerFloorScore.ToString();
-        FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
+    //    levelAudioManager.instance.voiceOverAudioSource.Stop();
+    //    PauseState();
+    //    isPaused = true;
+    //    char rank = Rank();
+    //    int clearPercent = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
+    //    int bonus = Bonus(rank);
+    //    FinalFloorScoreData.text = playerScript.playerFloorScore.ToString();
+    //    FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
 
 
-        activeMenu = storeMenu;
-        activeMenu.SetActive(true);
+    //    activeMenu = storeMenu;
+    //    activeMenu.SetActive(true);
 
-        if (rank == 'F')
-        {
-            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
+    //    if (rank == 'F')
+    //    {
+    //        levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
 
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
-            {
-                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
-                next.clip = levelAudioManager.instance.VOStoreTutorial;
-                next.PlayDelayed(13);
-            }
-            else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
-            {
-                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
-                next.clip = levelAudioManager.instance.VOBonusSpendIt;
-                next.PlayDelayed(13);
-            }
-        }
-        else
-        {
-            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
+    //        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+    //        {
+    //            AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+    //            next.clip = levelAudioManager.instance.VOStoreTutorial;
+    //            next.PlayDelayed(13);
+    //        }
+    //        else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
+    //        {
+    //            AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+    //            next.clip = levelAudioManager.instance.VOBonusSpendIt;
+    //            next.PlayDelayed(13);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
 
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
-            {
-                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
-                next.clip = levelAudioManager.instance.VOStoreTutorial;
-                next.PlayDelayed(6);
-            }
-            else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
-            {
-                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
-                next.clip = levelAudioManager.instance.VOBonusSpendIt;
-                next.PlayDelayed(6);
-            }
-        }
-    }
+    //        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+    //        {
+    //            AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+    //            next.clip = levelAudioManager.instance.VOStoreTutorial;
+    //            next.PlayDelayed(6);
+    //        }
+    //        else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
+    //        {
+    //            AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+    //            next.clip = levelAudioManager.instance.VOBonusSpendIt;
+    //            next.PlayDelayed(6);
+    //        }
+    //    }
+    //}
     public void CloseCrafting()
     {
         levelAudioManager.instance.voiceOverAudioSource.Stop();
@@ -925,8 +938,8 @@ public class gameManager : MonoBehaviour
         {
             salvageDetectorCondition.text = ("Inactive");
         }
-        staminaDrainValue.text = (playerScript.staminaDrain * 100).ToString();
-        staminaRegenValue.text = (playerScript.staminaRefillRate * 100).ToString();
+        staminaDrainValue.text = ((int)playerScript.staminaDrain * 100).ToString();
+        staminaRegenValue.text = ((int)playerScript.staminaRefillRate * 100).ToString();
 
     }
     public void TurnOnInventoryUI()
@@ -941,6 +954,16 @@ public class gameManager : MonoBehaviour
     }
     public void UpdateInventory()
     {
+        LevelScrapCollected.text = amtSalvaged.ToString();
+        if (gameManager.instance.playerScript.salvDetector)
+        {
+            FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
+        }
+        else
+        {
+            FloorAvailData.text = "Need Salv Detector";
+        }
+        SpentScrap.text = spent.ToString();
         BioMassAmt.text=Inventory.Instance._iBioMass.ToString();
         IntactOrganAmt.text= Inventory.Instance._iIntactOrgan.ToString();
         ElectricCompAmt.text= Inventory.Instance._iElectronicComponents.ToString();
@@ -982,10 +1005,11 @@ public class gameManager : MonoBehaviour
 
         //newMessage.textObject.text = newMessage.text;
         
-
+        
         gamelog.Add(newText.GetComponent<TextMeshProUGUI>().text);
     }
     #endregion
+    
 }
 
 

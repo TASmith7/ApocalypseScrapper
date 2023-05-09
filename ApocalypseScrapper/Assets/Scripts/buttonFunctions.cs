@@ -22,12 +22,7 @@ public class buttonFunctions : MonoBehaviour
 
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float buttonClickPitch;
-    IEnumerator DeclinedPurchase()
-    {
-        gameManager.instance.DeclinedPurchasePopUp.SetActive(true);
-        yield return new WaitForSeconds(3);
-        gameManager.instance.DeclinedPurchasePopUp.SetActive(false);
-    }
+    
     private void Start()
     {
         buttonHoverAudioSource = gameObject.AddComponent<AudioSource>();
@@ -111,7 +106,7 @@ public class buttonFunctions : MonoBehaviour
     #region Store Menu Buttons
     public void SmallHeal()
     {
-        if (gameManager.instance.spendable >= 75 && Inventory.Instance._iBioMass >= 1 && gameManager.instance.playerScript.HP != gameManager.instance.playerScript.HPMax)
+        if (gameManager.instance.amtSalvaged >= 75 && Inventory.Instance._iBioMass >= 1 && gameManager.instance.playerScript.HP != gameManager.instance.playerScript.HPMax)
         {
 
             if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP <= 25)
@@ -120,7 +115,7 @@ public class buttonFunctions : MonoBehaviour
             }
             else gameManager.instance.playerScript.HP += 25;
 
-            gameManager.instance.spendable -= 75;
+            gameManager.instance.amtSalvaged -= 75;
             gameManager.instance.spent += 75;
             Inventory.Instance.RemBM(1);
         }
@@ -133,7 +128,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void LargeHeal()
     {
-        if (gameManager.instance.spendable >= 200 && Inventory.Instance._iIntactOrgan>= 2 &&gameManager.instance.playerScript.HP != gameManager.instance.playerScript.HPMax)
+        if (gameManager.instance.playerScript.playerFloorScore >= 200 && Inventory.Instance._iIntactOrgan>= 2 &&gameManager.instance.playerScript.HP != gameManager.instance.playerScript.HPMax)
         {
 
             if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP <= 100)
@@ -142,7 +137,7 @@ public class buttonFunctions : MonoBehaviour
             }
             else gameManager.instance.playerScript.HP += 100;
 
-            gameManager.instance.spendable -= 200;
+            gameManager.instance.amtSalvaged -= 200;
             gameManager.instance.spent += 200;
              Inventory.Instance.RemIO(2);
         }
@@ -153,13 +148,13 @@ public class buttonFunctions : MonoBehaviour
     }
     public void MaxHealth()
     {
-        if (gameManager.instance.spendable >= 150&& Inventory.Instance._iBioMass>=1&&Inventory.Instance._iIntactOrgan>=2)
+        if (gameManager.instance.amtSalvaged >= 150&& Inventory.Instance._iBioMass>=1&&Inventory.Instance._iIntactOrgan>=2)
         {
 
             gameManager.instance.playerScript.HPMax += 25;
             gameManager.instance.playerScript.HP += 25;
 
-            gameManager.instance.spendable -= 150;
+            gameManager.instance.amtSalvaged -= 150;
             gameManager.instance.spent += 150;
             Inventory.Instance.RemBM(1);
             Inventory.Instance.RemIO(2);
@@ -172,14 +167,14 @@ public class buttonFunctions : MonoBehaviour
 
     public void GetShield()
     {
-        if (gameManager.instance.spendable >= 200&& Inventory.Instance._iHighPoweredLightDiode>=2)
-        {
+        if (gameManager.instance.amtSalvaged >= 200&& Inventory.Instance._iHighPoweredLightDiode>=2)
+        {   
 
             gameManager.instance.playerScript.shielded = true;
             gameManager.instance.playerScript.shieldMax += 25;
             gameManager.instance.playerScript.shieldValue += 25;
 
-            gameManager.instance.spendable -= 200;
+            gameManager.instance.amtSalvaged -= 200;
             gameManager.instance.spent += 200;
             Inventory.Instance.RemHPLD(2);
         }
@@ -191,12 +186,12 @@ public class buttonFunctions : MonoBehaviour
 
     public void ModShield()
     {
-        if (gameManager.instance.spendable >= 150 &&Inventory.Instance._iElectronicComponents>=2&&Inventory.Instance._sDataProcessingCore>=4&& gameManager.instance.playerScript.shielded == true)
+        if (gameManager.instance.amtSalvaged >= 150 &&Inventory.Instance._iElectronicComponents>=2&&Inventory.Instance._sDataProcessingCore>=4&& gameManager.instance.playerScript.shielded == true)
         {
             gameManager.instance.playerScript.shieldRate += 1;
             gameManager.instance.playerScript.shieldCD -= 1;
 
-            gameManager.instance.spendable -= 150;
+            gameManager.instance.amtSalvaged -= 150;
             gameManager.instance.spent += 150;
             Inventory.Instance.RemEC(2);
             Inventory.Instance.RemDPC(4);
@@ -209,12 +204,12 @@ public class buttonFunctions : MonoBehaviour
 
     public void PlusWeapDmg()
     {
-        if (gameManager.instance.spendable >= 100 && Inventory.Instance._iElectronicComponents >= 2)
+        if (gameManager.instance.amtSalvaged >= 100 && Inventory.Instance._iElectronicComponents >= 2)
         {
 
             gameManager.instance.playerScript.shootDamage += 1;
 
-            gameManager.instance.spendable -= 100;
+            gameManager.instance.amtSalvaged -= 100;
             gameManager.instance.spent += 100;
             Inventory.Instance.RemEC(2);
         }
@@ -226,12 +221,12 @@ public class buttonFunctions : MonoBehaviour
 
     public void OverchargeWeapDmg()
     {
-        if (gameManager.instance.spendable >= 300 && Inventory.Instance._iElectricMotor >= 1 && Inventory.Instance._iDataProcessingCore >= 1)
+        if (gameManager.instance.amtSalvaged >= 300 && Inventory.Instance._iElectricMotor >= 1 && Inventory.Instance._iDataProcessingCore >= 1)
         {
             gameManager.instance.playerScript.shootDamage += 5;
             gameManager.instance.playerScript.shootRate += 0.33f;
 
-            gameManager.instance.spendable -= 300;
+            gameManager.instance.amtSalvaged -= 300;
             gameManager.instance.spent += 300;
             Inventory.Instance.RemEC(1);
             Inventory.Instance.RemDPC(1);
@@ -244,12 +239,12 @@ public class buttonFunctions : MonoBehaviour
 
     public void JPFuel()
     {
-        if (gameManager.instance.spendable >= 200 && Inventory.Instance._iHighPoweredLightDiode >= 1 && Inventory.Instance._iGoldAlloy >= 2)
+        if (gameManager.instance.amtSalvaged >= 200 && Inventory.Instance._iHighPoweredLightDiode >= 1 && Inventory.Instance._iGoldAlloy >= 2)
         {
             gameManager.instance.playerScript.fuelConsumptionRate -= 0.1f;
 
 
-            gameManager.instance.spendable -= 200;
+            gameManager.instance.amtSalvaged -= 200;
             gameManager.instance.spent += 200;
             Inventory.Instance.RemHPLD(1);
             Inventory.Instance.RemGA(2);
@@ -262,11 +257,11 @@ public class buttonFunctions : MonoBehaviour
 
     public void JPRecharge()
     {
-        if (gameManager.instance.spendable >= 150&&Inventory.Instance._iHighTensileAlloyPlate>=1&& Inventory.Instance._iGlassPane>=2)
+        if (gameManager.instance.amtSalvaged >= 150&&Inventory.Instance._iHighTensileAlloyPlate>=1&& Inventory.Instance._iGlassPane>=2)
         {
             gameManager.instance.playerScript.fuelRefillRate += 0.1f;
 
-            gameManager.instance.spendable -= 150;
+            gameManager.instance.amtSalvaged -= 150;
             gameManager.instance.spent += 150;
             Inventory.Instance.RemHTAP(1);
             Inventory.Instance.RemGP(2);
@@ -280,11 +275,11 @@ public class buttonFunctions : MonoBehaviour
 
     public void GetDetector()
     {
-        if (gameManager.instance.spendable >= 650&&Inventory.Instance._iElectricMotor>=3&& Inventory.Instance._iDataProcessingCore>=4)
+        if (gameManager.instance.amtSalvaged >= 650&&Inventory.Instance._iElectricMotor>=3&& Inventory.Instance._iDataProcessingCore>=4)
         {
             gameManager.instance.playerScript.salvDetector = true;
 
-            gameManager.instance.spendable -= 650;
+            gameManager.instance.amtSalvaged -= 650;
             gameManager.instance.spent += 650;
             Inventory.Instance.RemEM(3);
             Inventory.Instance.RemDPC(4);
@@ -297,10 +292,10 @@ public class buttonFunctions : MonoBehaviour
     }
     public void UpgradeSalvageRange()
     {
-        if(gameManager.instance.spendable>=150&& Inventory.Instance._iElectricMotor>=2)
+        if(gameManager.instance.amtSalvaged >=150&& Inventory.Instance._iElectricMotor>=2)
         {
             gameManager.instance.playerScript.salvageRange += 1;
-            gameManager.instance.spendable -= 150;
+            gameManager.instance.amtSalvaged -= 150;
             gameManager.instance.spent += 150;
             Inventory.Instance.RemEM(2);
         }
@@ -323,10 +318,10 @@ public class buttonFunctions : MonoBehaviour
     }
     public void UpgradeSalvageEfficiency()
     {
-        if (gameManager.instance.spendable >=200&&Inventory.Instance._iDataProcessingCore>=2&&Inventory.Instance._iElectronicComponents>=2)
+        if (gameManager.instance.amtSalvaged >=200&&Inventory.Instance._iDataProcessingCore>=2&&Inventory.Instance._iElectronicComponents>=2)
         {
             gameManager.instance.playerScript.salvageRate += 0.1f;
-            gameManager.instance.spendable -= 200;
+            gameManager.instance.amtSalvaged -= 200;
             gameManager.instance.spent += 200;
         }
         else
@@ -336,17 +331,17 @@ public class buttonFunctions : MonoBehaviour
     }
     public void FinishUpgrade()
     {
-        gameManager.instance.playerScript.playerTotalScore += gameManager.instance.playerScript.playerFloorScore;
-        gameManager.instance.playerScript.playerBonus += gameManager.instance.spendable;
+        gameManager.instance.playerScript.playerTotalScore += gameManager.instance.amtSalvaged;
+        gameManager.instance.playerScript.playerBonus += gameManager.instance.amtSalvaged;
         gameManager.instance.UnpauseState();
         gameManager.instance.NextLevel();
     }
     public void UpgradeStaminaEfficiency()
     {
-        if(gameManager.instance.spendable>=400&&Inventory.Instance._iElectricMotor>=2&&Inventory.Instance._iElectronicComponents>=2)
+        if(gameManager.instance.amtSalvaged >=400&&Inventory.Instance._iElectricMotor>=2&&Inventory.Instance._iElectronicComponents>=2)
         {
             gameManager.instance.playerScript.staminaDrain -= 0.2f;
-            gameManager.instance.spendable -= 400;
+            gameManager.instance.amtSalvaged -= 400;
             gameManager.instance.spent += 400;
             Inventory.Instance.RemEM(2);
             Inventory.Instance.RemEC(2);
@@ -358,10 +353,10 @@ public class buttonFunctions : MonoBehaviour
     }
     public void UpgradeStaminaRecharge()
     {
-        if (gameManager.instance.spendable >= 400&&Inventory.Instance._iCeramicPlate>=2&&Inventory.Instance._iElectricMotor>=2)
+        if (gameManager.instance.amtSalvaged >= 400&&Inventory.Instance._iCeramicPlate>=2&&Inventory.Instance._iElectricMotor>=2)
         {
             gameManager.instance.playerScript.staminaRefillRate += 0.2f;
-            gameManager.instance.spendable -= 400;
+            gameManager.instance.amtSalvaged -= 400;
             gameManager.instance.spent += 400;
             Inventory.Instance.RemCP(2);
             Inventory.Instance.RemEC(2);
@@ -374,7 +369,19 @@ public class buttonFunctions : MonoBehaviour
 
     #endregion
 
+    IEnumerator DeclinedPurchase()
+    {
+        Time.timeScale = gameManager.instance.timeScaleOriginal;
+        gameManager.instance.DeclinedPurchasePopUp.SetActive(true);
+        Debug.Log("Declined True");
+        Debug.Log("WFS Started");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS Over");
+        gameManager.instance.DeclinedPurchasePopUp.SetActive(false);
+        Debug.Log("Declined False");
+        Time.timeScale = 0;
 
+    }
 }
 
 
