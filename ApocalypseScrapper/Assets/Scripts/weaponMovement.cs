@@ -57,13 +57,13 @@ public class weaponMovement : MonoBehaviour
         }
 
         // if we are pressing W, start bobbing gun
-        if(Input.GetKey(KeyCode.W) && playerCont.isGrounded && !playerScript.isMeleeing)
+        if(Input.GetKey(KeyCode.W) && playerCont.isGrounded && !playerScript.isMeleeing && !playerScript.isSliding)
         {
             gunAnimator.SetTrigger("Bob");
             gunAnimator.ResetTrigger("Stop Bobbing");
         }
         // else if we are pressing S, start bobbing gun
-        else if (Input.GetKey(KeyCode.S) && playerCont.isGrounded && !playerScript.isMeleeing)
+        else if (Input.GetKey(KeyCode.S) && playerCont.isGrounded && !playerScript.isMeleeing && !playerScript.isSliding)
         {
             gunAnimator.SetTrigger("Bob");
             gunAnimator.ResetTrigger("Stop Bobbing");

@@ -2257,6 +2257,7 @@ MonoBehaviour:
   shieldBreakAudioSource: {fileID: 0}
   meleeSwingAudioSource: {fileID: 0}
   meleeGruntAudioSource: {fileID: 0}
+  playerSlideAudioSource: {fileID: 0}
   jetpackThrustAudio: {fileID: 8300000, guid: 24f20a94ef175c340823e0a07918e522, type: 3}
   gunShotAudio: {fileID: 8300000, guid: d5bc61ff5074df74082c4cde0b6fd037, type: 3}
   salvagingAudio: {fileID: 8300000, guid: 183b19c0308d08e408ae94e4975ddc8a, type: 3}
@@ -2286,6 +2287,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 900e2acfe25a638489a321b2538d0fe5, type: 3}
   - {fileID: 8300000, guid: ecd5a42b43925ec46ac5f0c73a0b7bfe, type: 3}
   - {fileID: 8300000, guid: e65dc91baaa6aa34e9e27e946abf3720, type: 3}
+  playerSlideAudio: {fileID: 8300000, guid: e27bf93023c46174289d62abf96f9811, type: 3}
   jetpackThrustVolume: 0.298
   gunAudioVolume: 0.66
   salvagingAudioVolume: 1
@@ -2348,6 +2350,8 @@ MonoBehaviour:
   timeToTurnOffStaminaBar: 5
   walkSpeed: 7
   isSprinting: 0
+  slideTimeLength: 0.6
+  isSliding: 0
   crouchHeight: 0
   crouchSpeed: 3
   standingHeight: 0

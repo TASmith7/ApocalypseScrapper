@@ -44,9 +44,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     bool isSalvaging;
     public GameObject salvageSphere;
 
-
-    
-
     [Header("----- Animation Stats -----")]
     [SerializeField] float animTransSpeed;
     [SerializeField] GameObject[] bloodEffect;
@@ -68,6 +65,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(1, 100)][SerializeField] int timeToTurnOffStaminaBar;
     [Range(5, 10)][SerializeField] public float walkSpeed;
     public bool isSprinting;
+
+    [Header("----- Slide Stats -----")]
+    [Range(0.5f, 2)] public float slideTimeLength;
+    public bool isSliding;
 
     [Header("----- Crouch Stats -----")]
     [SerializeField] private float crouchHeight;
@@ -193,8 +194,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             Movement();
             Shielding();
             CueHeadBobMovement();
-            CueFootstepAudio();
-
+            if (!isSliding)
+            {
+                CueFootstepAudio();
+            }
 
             if (Input.GetButton("Shoot") && !isShooting)
                 StartCoroutine(Shoot());
@@ -314,31 +317,30 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
             if (Input.GetButton("Sprint") && !isCrouching)
             {
-                isSprinting = true;
-                
-                    // turn on our stamina bar
-                    gameManager.instance.TurnOnStaminaUI();
+                 // turn on our stamina bar
+                 gameManager.instance.TurnOnStaminaUI();
 
-                    // if we are not out of stamina
-                    if (gameManager.instance.staminaFillBar.fillAmount > 0)
+                // if we are not out of stamina
+                if (gameManager.instance.staminaFillBar.fillAmount > 0)
+                {
+                    isSprinting = true;
+                    // while player holds down shift, give velocity in the z direction a value
+                    playerSpeed = sprintSpeed;
+
+                    timeOfLastSprint = Time.fixedTime;
+
+                    outOfBreathAudioPlayed = false;
+                }
+                // else if we are out of stamina
+                else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
+                {
+                    // if not already playing our out of breath audio, and we haven't already played it once
+                    if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
                     {
-                        // while player holds down shift, give velocity in the z direction a value
-                        playerSpeed = sprintSpeed;
-
-                        timeOfLastSprint = Time.fixedTime;
-
-                        outOfBreathAudioPlayed = false;
+                        playerAudioManager.instance.outOfBreathAudioSource.Play();
+                        outOfBreathAudioPlayed = true;
                     }
-                    // else if we are out of stamina
-                    else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
-                    {
-                        // if not already playing our out of breath audio, and we haven't already played it once
-                        if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
-                        {
-                            playerAudioManager.instance.outOfBreathAudioSource.Play();
-                            outOfBreathAudioPlayed = true;
-                        }
-                    }
+                }
 
                 // reducing the stamina bar while the player is pressing shift and moving
                 
@@ -502,10 +504,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter;
         Vector3 currentCenter = controller.center;
 
-        while(timeElapsed < timeToCrouch)
+
+        while (timeElapsed < timeToCrouch)
         {
             controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
             controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
+            Debug.Log(controller.center);
 
             timeElapsed += Time.deltaTime;
 
@@ -514,6 +518,30 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         controller.height = targetHeight;
         controller.center = targetCenter;
+
+        if (isSprinting && !isCrouching && IsMoving)
+        {
+            isSliding = true;
+
+            // play sliding audio
+            if (!playerAudioManager.instance.playerSlideAudioSource.isPlaying)
+            {
+                playerAudioManager.instance.playerSlideAudioSource.PlayOneShot(playerAudioManager.instance.playerSlideAudio, 0.65f);
+            }
+            
+            while (timeElapsed < slideTimeLength)
+            {
+                isSprinting = false;
+                transform.position += Vector3.Lerp(transform.localPosition, transform.forward / 20, 7);
+
+                timeElapsed += Time.deltaTime;
+
+                yield return null;
+            }
+
+        }
+
+        isSliding = false;
 
         isCrouching = !isCrouching;
 
@@ -540,7 +568,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     void CueHeadBobMovement()
     {
         if (!controller.isGrounded) return;
-        if(IsMoving)
+        if(IsMoving && !isSliding)
         {
             headBobTimer += Time.deltaTime * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobSpeed : isCrouching ? crouchBobSpeed : walkBobSpeed);
             playerCam.transform.localPosition = new Vector3(playerCam.transform.localPosition.x,
@@ -955,18 +983,17 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         // once we reach 
         if (timeBetweenFootsteps <= 0)
         {
-            
-            if(gameManager.instance.staminaFillBar.fillAmount > 0  && isSprinting)
+            if(gameManager.instance.staminaFillBar.fillAmount > 0  && isSprinting && !isSliding)
             {
                 timeBetweenFootsteps = runningFootstepRate; 
                 playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length)]);
             }
-            else if(isCrouching)
+            else if(isCrouching && !isSliding)
             {
                 timeBetweenFootsteps = crouchingFootstepRate;
                 playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length)]);
             }
-            else
+            else if(!isSliding)
             {
                 timeBetweenFootsteps = walkingFootstepRate;
                 playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length)]);
