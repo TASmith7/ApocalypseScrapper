@@ -13,11 +13,13 @@ public class SpitSphere : MonoBehaviour
     public void Start()
     {
         Destroy(gameObject, timer);
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        
+        if (other.CompareTag("Player"))
         {
             IDamage damageable = other.GetComponent<IDamage>();
 

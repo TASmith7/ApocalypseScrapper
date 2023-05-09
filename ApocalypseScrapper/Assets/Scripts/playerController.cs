@@ -136,6 +136,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] public int playerFloorScore;
     [SerializeField] public int playerTotalScore;
     [SerializeField] public int playerBonus;
+    [SerializeField] public int hazardPay;
+    [SerializeField] public int questPay;
 
     #endregion
     

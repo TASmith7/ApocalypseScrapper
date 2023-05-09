@@ -163,6 +163,9 @@ public class gameManager : MonoBehaviour
     public Toggle subtitlesToggle;
 
 
+    [Header("----- End Game Beam -----")]
+    public TextMeshProUGUI hazardPayData;
+    public TextMeshProUGUI QuestCompletionPayData;
     [Header("----- Loading Screens -----")]
 
     public GameObject lvl2;
@@ -764,83 +767,143 @@ public class gameManager : MonoBehaviour
         else return 'Z';
     }
 
-    public int Bonus(char rank)
-    {
-        switch (rank)
-        {
-            case 'S':
-                return 1000;
-            case 'A':
-                return 800;
-            case 'B':
-                return 600;
-            case 'C':
-                return 400;
-            case 'D':
-                return 200;
-            case 'F':
-                return 0;
-            default: return 0;
-        }
-    }
+    //public int Bonus(char rank)
+    //{
+    //    switch (rank)
+    //    {
+    //        case 'S':
+    //            return 1000;
+    //        case 'A':
+    //            return 800;
+    //        case 'B':
+    //            return 600;
+    //        case 'C':
+    //            return 400;
+    //        case 'D':
+    //            return 200;
+    //        case 'F':
+    //            return 0;
+    //        default: return 0;
+    //    }
+    //}
 
     public void NextLevel()
     {
-
+        
         instance.playerScript.SavePlayerStats();
         Inventory.Instance.InvSnapshot();
-
-        switch (SceneManager.GetActiveScene().name)
+        if(SceneManager.GetActiveScene().name=="Lvl 1")
         {
-            case "Lvl 1":
-                StartCoroutine(Lvl2LoadScreen());
-                SceneManager.LoadScene("Lvl 2");
-                break;
-
-            case "Lvl 2":
-                StartCoroutine(Lvl3LoadScreen());
-                SceneManager.LoadScene("Lvl 3");
-                break;
-
-            case "Lvl 3":
-                StartCoroutine(Lvl4LoadScreen());
-                SceneManager.LoadScene("Boss Lvl");
-                break;
-
-            case "Boss Lvl":
-
-                WinGame();
-                break;
-
-            default:
-                Debug.Log("Level failed to load");
-                break;
+            StartCoroutine(Lvl2LoadScreen());
+            
         }
+        else if(SceneManager.GetActiveScene().name == "Lvl 2")
+        {
+            StartCoroutine(Lvl3LoadScreen());
+            
+        }
+        else if(SceneManager.GetActiveScene().name==("Lvl 3"))
+        {
+            StartCoroutine(Lvl4LoadScreen());
+        }
+        else if(SceneManager.GetActiveScene().name=="Boss Lvl")
+        {
+            WinGame();
+        }
+        else
+        {
+            Debug.Log("Level failed to load");
+        }    
+
+        //    switch (SceneManager.GetActiveScene().name)
+        //    {
+        //        case "Lvl 1":
+        //            StartCoroutine(Lvl2LoadScreen());
+        //            SceneManager.LoadScene("Lvl 2");
+        //            break;
+
+        //        case "Lvl 2":
+        //            StartCoroutine(Lvl3LoadScreen());
+        //            SceneManager.LoadScene("Lvl 3");
+        //            break;
+
+        //        case "Lvl 3":
+        //            StartCoroutine(Lvl4LoadScreen());
+        //            SceneManager.LoadScene("Boss Lvl");
+        //            break;
+
+        //        case "Boss Lvl":
+
+        //            WinGame();
+        //            break;
+
+        //        default:
+        //            Debug.Log("Level failed to load");
+        //            break;
+        //    }
     }
 
-    IEnumerator Lvl2LoadScreen()
+        IEnumerator Lvl2LoadScreen()
     {
+        Time.timeScale = gameManager.instance.timeScaleOriginal;
         lvl2.SetActive(true);
-        yield return new WaitForSeconds(5);
+        Debug.Log("WFS Started");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 1 Done");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 2 Done");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 3 Done");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 4 Done");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 5 Done");
         lvl2.SetActive(false);
+        SceneManager.LoadScene("Lvl 2");
     }
     IEnumerator Lvl3LoadScreen()
     {
+        Time.timeScale = gameManager.instance.timeScaleOriginal;
         lvl3.SetActive(true);
-        yield return new WaitForSeconds(5);
+        Debug.Log("WFS Started");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 1 Done");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 2 Done");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 3 Done");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 4 Done");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 5 Done");
+
         lvl3.SetActive(false);
+        SceneManager.LoadScene("Lvl 3");
     }
     IEnumerator Lvl4LoadScreen()
     {
+        Time.timeScale = gameManager.instance.timeScaleOriginal;
         lvl4.SetActive(true);
-        yield return new WaitForSeconds(5);
+        Debug.Log("WFS Started");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 1 Done");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 2 Done");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 3 Done");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 4 Done");
+        yield return new WaitForSeconds(1);
+        Debug.Log("WFS 5 Done");
         lvl4.SetActive(false);
+        SceneManager.LoadScene("Boss Lvl");
     }
     public void WinGame()
     {
         // updating total score value
         playerScript.playerTotalScore += playerScript.playerFloorScore;
-
+        hazardPayData.text=playerScript.hazardPay.ToString();
+        QuestCompletionPayData.text=playerScript.questPay.ToString();
         playerScript.playerBonus += 50;
 
         // updating total salvage for all levels
@@ -855,6 +918,8 @@ public class gameManager : MonoBehaviour
 
         // updating total payout
         int totalPayout = salvageCut + playerScript.playerBonus;
+        totalPayout += playerScript.hazardPay+
+                       playerScript.questPay;
         totalPayoutData.text = totalPayout.ToString();
 
         char rank = EndGameRank();
