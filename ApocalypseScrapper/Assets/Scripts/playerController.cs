@@ -44,13 +44,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     bool isSalvaging;
     public GameObject salvageSphere;
 
-
-    
-
     [Header("----- Animation Stats -----")]
     [SerializeField] float animTransSpeed;
     [SerializeField] GameObject[] bloodEffect;
     [SerializeField] GameObject beamEffect;
+    [SerializeField] GameObject muzzleFlash;
     
     [Header("----- Jetpack Stats -----")]
     [Range(1, 8)][SerializeField] public float thrustPower;
@@ -67,6 +65,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Range(1, 100)][SerializeField] int timeToTurnOffStaminaBar;
     [Range(5, 10)][SerializeField] public float walkSpeed;
     public bool isSprinting;
+
+    [Header("----- Slide Stats -----")]
+    [Range(0.5f, 2)] public float slideTimeLength;
+    public bool isSliding;
 
     [Header("----- Crouch Stats -----")]
     [SerializeField] private float crouchHeight;
@@ -92,8 +94,18 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] int bulletSpeed;
     public MeshRenderer gunMaterial;
     public MeshFilter gunModel;
+    public GameObject playerGun;
+    public CapsuleCollider playerGunMeleeCollider;
     public int selectedGun;
     bool isShooting;
+    public bool isMeleeing = false;
+    public bool canMelee = true;
+    public float meleeResetTime;
+    public float meleeDamage;
+
+
+    weaponMovement weaponMovementScript;
+    [SerializeField] Animator gunAnimator;
 
 
     [Header("-----Upgrades-----")]
@@ -151,6 +163,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         standingHeight = controller.height;
         crouchHeight = 0.3f;
+
+        playerGunMeleeCollider = playerGun.GetComponent<CapsuleCollider>();
+        playerGunMeleeCollider.enabled = false;
+
+
+        // gunAnimator = weaponMovementScript.GetComponent<Animator>();
+
     }
     
     
@@ -175,11 +194,18 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             Movement();
             Shielding();
             CueHeadBobMovement();
-            CueFootstepAudio();
-
+            if (!isSliding)
+            {
+                CueFootstepAudio();
+            }
 
             if (Input.GetButton("Shoot") && !isShooting)
                 StartCoroutine(Shoot());
+
+            if(Input.GetKeyDown(KeyCode.E) && !isShooting)
+            {
+                Melee();
+            }
 
             if (!isSalvaging && Input.GetButton("Salvage"))
             {
@@ -291,31 +317,30 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
             if (Input.GetButton("Sprint") && !isCrouching)
             {
-                isSprinting = true;
-                
-                    // turn on our stamina bar
-                    gameManager.instance.TurnOnStaminaUI();
+                 // turn on our stamina bar
+                 gameManager.instance.TurnOnStaminaUI();
 
-                    // if we are not out of stamina
-                    if (gameManager.instance.staminaFillBar.fillAmount > 0)
+                // if we are not out of stamina
+                if (gameManager.instance.staminaFillBar.fillAmount > 0)
+                {
+                    isSprinting = true;
+                    // while player holds down shift, give velocity in the z direction a value
+                    playerSpeed = sprintSpeed;
+
+                    timeOfLastSprint = Time.fixedTime;
+
+                    outOfBreathAudioPlayed = false;
+                }
+                // else if we are out of stamina
+                else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
+                {
+                    // if not already playing our out of breath audio, and we haven't already played it once
+                    if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
                     {
-                        // while player holds down shift, give velocity in the z direction a value
-                        playerSpeed = sprintSpeed;
-
-                        timeOfLastSprint = Time.fixedTime;
-
-                        outOfBreathAudioPlayed = false;
+                        playerAudioManager.instance.outOfBreathAudioSource.Play();
+                        outOfBreathAudioPlayed = true;
                     }
-                    // else if we are out of stamina
-                    else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
-                    {
-                        // if not already playing our out of breath audio, and we haven't already played it once
-                        if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
-                        {
-                            playerAudioManager.instance.outOfBreathAudioSource.Play();
-                            outOfBreathAudioPlayed = true;
-                        }
-                    }
+                }
 
                 // reducing the stamina bar while the player is pressing shift and moving
                 
@@ -429,7 +454,39 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
+    private void Melee()
+    {
+        // if not currently meleeing and can melee
+        if(!isMeleeing && canMelee)
+        {
+            // enable the guns melee collider and set flags to true
+            playerGunMeleeCollider.enabled = true;
+            isMeleeing = true;
+            canMelee = false;
+            
+            // play melee animation
+            gunAnimator.SetTrigger("Melee");
 
+            // play melee audio
+            playerAudioManager.instance.meleeSwingAudioSource.PlayOneShot(playerAudioManager.instance.meleeSwingAudio[Random.Range(0, playerAudioManager.instance.meleeSwingAudio.Length)], 0.5f);
+            playerAudioManager.instance.meleeGruntAudioSource.PlayOneShot(playerAudioManager.instance.meleeGruntAudio[Random.Range(0, playerAudioManager.instance.meleeGruntAudio.Length)]);
+        }
+
+        // reset my melee time using coroutine
+        StartCoroutine(ResetMeleeTime());
+    }
+
+    private IEnumerator ResetMeleeTime()
+    {
+        // this line delays melees by a specified amount of seconds
+        yield return new WaitForSeconds(meleeResetTime);
+        gunAnimator.SetTrigger("Stop Meleeing");
+
+        // reset flags and turn off the guns melee collider
+        isMeleeing = false;
+        playerGunMeleeCollider.enabled = false;
+        canMelee = true;
+    }
     private IEnumerator CrouchStand()
     {
         // if crouching and underneath something
@@ -447,10 +504,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter;
         Vector3 currentCenter = controller.center;
 
-        while(timeElapsed < timeToCrouch)
+
+        while (timeElapsed < timeToCrouch)
         {
             controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
             controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
+            Debug.Log(controller.center);
 
             timeElapsed += Time.deltaTime;
 
@@ -459,6 +518,30 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         controller.height = targetHeight;
         controller.center = targetCenter;
+
+        if (isSprinting && !isCrouching && IsMoving)
+        {
+            isSliding = true;
+
+            // play sliding audio
+            if (!playerAudioManager.instance.playerSlideAudioSource.isPlaying)
+            {
+                playerAudioManager.instance.playerSlideAudioSource.PlayOneShot(playerAudioManager.instance.playerSlideAudio, 0.65f);
+            }
+            
+            while (timeElapsed < slideTimeLength)
+            {
+                isSprinting = false;
+                transform.position += Vector3.Lerp(transform.localPosition, transform.forward / 20, 7);
+
+                timeElapsed += Time.deltaTime;
+
+                yield return null;
+            }
+
+        }
+
+        isSliding = false;
 
         isCrouching = !isCrouching;
 
@@ -485,7 +568,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     void CueHeadBobMovement()
     {
         if (!controller.isGrounded) return;
-        if(IsMoving)
+        if(IsMoving && !isSliding)
         {
             headBobTimer += Time.deltaTime * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobSpeed : isCrouching ? crouchBobSpeed : walkBobSpeed);
             playerCam.transform.localPosition = new Vector3(playerCam.transform.localPosition.x,
@@ -502,9 +585,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         playerAudioManager.instance.gunAudioSource.Play();
 
         GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.identity);
-
+        GameObject flashClone = Instantiate(muzzleFlash, shootPos.position, Quaternion.identity);
         // Set the bullet's velocity to this 
         bulletClone.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * bulletSpeed;
+
+        gunAnimator.Play("WeaponRecoil");
 
         // Set the rotation of the bullet to match the direction the player is looking
         bulletClone.transform.rotation = Camera.main.transform.rotation;
@@ -526,7 +611,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                     //Quaternion rotation = Quaternion.LookRotation(effectDir);
                     //bloodClone.transform.rotation = rotation;
                     Destroy(bloodClone, .3f);
-                }
+                }                
             }
         }
         #region Old Raycast Code
@@ -540,7 +625,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         //        damageable.TakeDamage(shootDamage);
         //    }
         #endregion
-
+        Destroy(flashClone, .05f);
         //The yield return will wait for the specified amount of seconds
         //before moving on to the next line.It does NOT exit the method.
         yield return new WaitForSeconds(shootRate);
@@ -898,18 +983,17 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         // once we reach 
         if (timeBetweenFootsteps <= 0)
         {
-            
-            if(gameManager.instance.staminaFillBar.fillAmount > 0  && isSprinting)
+            if(gameManager.instance.staminaFillBar.fillAmount > 0  && isSprinting && !isSliding)
             {
                 timeBetweenFootsteps = runningFootstepRate; 
                 playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length)]);
             }
-            else if(isCrouching)
+            else if(isCrouching && !isSliding)
             {
                 timeBetweenFootsteps = crouchingFootstepRate;
                 playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length)]);
             }
-            else
+            else if(!isSliding)
             {
                 timeBetweenFootsteps = walkingFootstepRate;
                 playerAudioManager.instance.footstepAudioSource.PlayOneShot(playerAudioManager.instance.footstepAudio[Random.Range(0, playerAudioManager.instance.footstepAudio.Length)]);

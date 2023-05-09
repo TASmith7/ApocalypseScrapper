@@ -151,12 +151,18 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI GoldAlloyAmt;
     public TextMeshProUGUI ValuableLootAmt;
 
-    [Header("----- Sensitivity Settings -----")]
+    [Header("----- Options Settings -----")]
     public Slider horizontalSens;
     public Slider verticalSens;
+    public Slider musicVolume;
     public TextMeshProUGUI horSensValue;
     public TextMeshProUGUI vertSensValue;
+    public TextMeshProUGUI musicVolumeValue;
     public Toggle dynamicFOVToggle;
+    public Toggle voiceoversToggle;
+    public Toggle subtitlesToggle;
+
+
     [Header("----- Loading Screens -----")]
 
     public GameObject lvl2;
@@ -220,8 +226,16 @@ public class gameManager : MonoBehaviour
             Debug.Log("Player prefs sensitivity keys do not exist");
         }
 
+        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
+
+        // setting the sensitivity labels equal the sliders current values
+        horSensValue.text = horizontalSens.value.ToString();
+        vertSensValue.text = verticalSens.value.ToString();
+
+
         // if our player prefs has the dynamic FOV key
-        if(PlayerPrefs.HasKey("DynamicFOV"))
+        if (PlayerPrefs.HasKey("DynamicFOV"))
         {
             // if our key is currently set to 1 (on) in player prefs, turn dynamic FOV on
             if(PlayerPrefs.GetInt("DynamicFOV") == 1)
@@ -239,12 +253,39 @@ public class gameManager : MonoBehaviour
             dynamicFOVToggle.isOn = true;
         }
 
-        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int) horizontalSens.value;
-        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int) verticalSens.value;
 
-        // setting the sensitivity labels equal the sliders current values
-        horSensValue.text = horizontalSens.value.ToString();
-        vertSensValue.text = verticalSens.value.ToString();
+        // if our player prefs has the voice overs key
+        if (PlayerPrefs.HasKey("UseVoiceovers"))
+        {
+            // if our key is currently set to 1 (on) in player prefs, turn voice overs on
+            if (PlayerPrefs.GetInt("UseVoiceovers") == 1)
+            {
+                voiceoversToggle.isOn = true;
+            }
+            // else if our key is currently set to 0 (off) in player prefabs, turn voice overs off
+            else if (PlayerPrefs.GetInt("UseVoiceovers") == 0)
+            {
+                voiceoversToggle.isOn = false;
+            }
+        }
+        else
+        {
+            voiceoversToggle.isOn = true;
+        }
+
+        // if player prefs has the volume key
+        if(PlayerPrefs.HasKey("MusicVolume"))
+        {
+            musicVolume.value = PlayerPrefs.GetFloat("MusicVolume");
+        }
+        // else set music volume to default value
+        else
+        {
+            musicVolume.value = 65;
+        }
+        
+        musicVolumeValue.text = musicVolume.value.ToString();
+        // initial volume value for music is assigned in level audio manager
 
         if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
@@ -266,7 +307,7 @@ public class gameManager : MonoBehaviour
         activeMenu = RSGSplash;
         RSGSplash.SetActive(true);
         yield return new WaitForSeconds(5);
-        if (!levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+        if (!levelAudioManager.instance.voiceOverAudioSource.isPlaying && voiceoversToggle.isOn)
         {
             // playing intro voice over
             levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
@@ -291,6 +332,12 @@ public class gameManager : MonoBehaviour
         playerBonusLabel.SetActive(true);
         floorScoreLabel.SetActive(true);
     }
+
+    private void Start()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -339,9 +386,10 @@ public class gameManager : MonoBehaviour
 
         if (isPaused)
         {
-            // changing labels to match the value of the slider
+            // changing labels to match the value of the slider while they slide it up and down
             horSensValue.text = horizontalSens.value.ToString();
             vertSensValue.text = verticalSens.value.ToString();
+            musicVolumeValue.text = musicVolume.value.ToString();
         }
         if (Input.GetButtonDown("Tab") && !craftingOpen)
         {
@@ -372,7 +420,8 @@ public class gameManager : MonoBehaviour
     }
     public void CueCrafting()
     {
-        levelAudioManager.instance.voiceOverAudioSource.Stop();
+        // we don't need the below line as calling pause state method pauses the vo that was playing already
+        // levelAudioManager.instance.voiceOverAudioSource.Stop();
         PauseState();
         isPaused = true;
 
@@ -432,7 +481,7 @@ public class gameManager : MonoBehaviour
         levelAudioManager.instance.UnpauseAllAudio();
 
         // if we were playing a vo when we paused, resume that vo
-        if (voWasPlaying)
+        if (voWasPlaying && voiceoversToggle.isOn)
         {
             levelAudioManager.instance.voiceOverAudioSource.UnPause();
         }
@@ -455,7 +504,11 @@ public class gameManager : MonoBehaviour
         // stop any voice over audio that might already be playing
         levelAudioManager.instance.voiceOverAudioSource.Stop();
 
-        levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOPlayerDead);
+        if(voiceoversToggle.isOn)
+        {
+            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOPlayerDead);
+        }
+
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
     }
@@ -599,41 +652,63 @@ public class gameManager : MonoBehaviour
     //    if (rank == 'F')
     //    {
     //        levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
+        if (rank == 'F')
+        {
+            if(voiceoversToggle.isOn)
+            {
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
+            }
 
-    //        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
-    //        {
-    //            AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
-    //            next.clip = levelAudioManager.instance.VOStoreTutorial;
-    //            next.PlayDelayed(13);
-    //        }
-    //        else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
-    //        {
-    //            AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
-    //            next.clip = levelAudioManager.instance.VOBonusSpendIt;
-    //            next.PlayDelayed(13);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+            {
+                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+                next.clip = levelAudioManager.instance.VOStoreTutorial;
+                if (voiceoversToggle.isOn)
+                {
+                    next.PlayDelayed(13);
+                }
+            }
+            else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
+            {
+                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+                next.clip = levelAudioManager.instance.VOBonusSpendIt;
 
-    //        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
-    //        {
-    //            AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
-    //            next.clip = levelAudioManager.instance.VOStoreTutorial;
-    //            next.PlayDelayed(6);
-    //        }
-    //        else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
-    //        {
-    //            AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
-    //            next.clip = levelAudioManager.instance.VOBonusSpendIt;
-    //            next.PlayDelayed(6);
-    //        }
-    //    }
-    //}
+                if (voiceoversToggle.isOn)
+                {
+                    next.PlayDelayed(13);
+                }
+            }
+        }
+        else
+        {
+            if (voiceoversToggle.isOn)
+            {
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
+            }
+
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+            {
+                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+                next.clip = levelAudioManager.instance.VOStoreTutorial;
+                if (voiceoversToggle.isOn)
+                {
+                    next.PlayDelayed(6);
+                }
+            }
+            else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
+            {
+                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+                next.clip = levelAudioManager.instance.VOBonusSpendIt;
+                if (voiceoversToggle.isOn)
+                {
+                    next.PlayDelayed(6);
+                }
+            }
+        }
+    }
     public void CloseCrafting()
     {
-        levelAudioManager.instance.voiceOverAudioSource.Stop();
+        // levelAudioManager.instance.voiceOverAudioSource.Stop();
         craftingMenu.SetActive(false);
         UnpauseState();
         isPaused = false;
@@ -768,31 +843,35 @@ public class gameManager : MonoBehaviour
         // updating final rank
         finalRankData.text = rank.ToString();
 
-        switch (rank)
+        // this switch is only to determine the voice over, so if our toggle is off we don't need to go through any of this
+        if (voiceoversToggle.isOn)
         {
-            case 'S':
-                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithS);
-                break;
+            switch (rank)
+            {
+                case 'S':
+                    levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithS);
+                    break;
 
-            case 'A':
-                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithA);
-                break;
+                case 'A':
+                    levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithA);
+                    break;
 
-            case 'B':
-                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithB);
-                break;
+                case 'B':
+                    levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithB);
+                    break;
 
-            case 'C':
-                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithC);
-                break;
+                case 'C':
+                    levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithC);
+                    break;
 
-            case 'D':
-                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithD);
-                break;
+                case 'D':
+                    levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithD);
+                    break;
 
-            case 'F':
-                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithF);
-                break;
+                case 'F':
+                    levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithF);
+                    break;
+            }
         }
 
     }
@@ -847,7 +926,7 @@ public class gameManager : MonoBehaviour
         horSensValue.text = ((int)horizontalSens.value).ToString();
         vertSensValue.text = ((int)verticalSens.value).ToString();
 
-        // if we close our options menu, reassign our dynamic FOV toggle based on what is currently in player prefs
+        // if we close our options menu without pressing save, reassign our dynamic FOV toggle based on what is currently in player prefs
         if(PlayerPrefs.GetInt("DynamicFOV") == 1)
         {
             dynamicFOVToggle.isOn = true;
@@ -856,6 +935,27 @@ public class gameManager : MonoBehaviour
         {
             dynamicFOVToggle.isOn = false;
         }
+
+        // if we close our options menu without pressing save, reassign our dynamic FOV toggle based on what is currently in player prefs
+        if (PlayerPrefs.GetInt("UseVoiceovers") == 1)
+        {
+            voiceoversToggle.isOn = true;
+        }
+        else
+        {
+            voiceoversToggle.isOn = false;
+        }
+
+        if(PlayerPrefs.HasKey("MusicVolume"))
+        {
+            musicVolume.value = PlayerPrefs.GetFloat("MusicVolume");
+        }
+        else
+        {
+            musicVolume.value = 65;
+        }
+
+        musicVolumeValue.text = musicVolume.value.ToString();
 
         optionsMenu.SetActive(false);
         pauseMenu.SetActive(true);
@@ -876,6 +976,8 @@ public class gameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("HorizontalSensitivity", (int)horizontalSens.value);
         PlayerPrefs.SetInt("VerticalSensitivity", (int)verticalSens.value);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume.value);
+        levelAudioManager.instance.musicAudioSource.volume = musicVolume.value / 100;
 
         // if our dynamic fov is selected, set the key value to 1
         if (dynamicFOVToggle.isOn)
@@ -888,7 +990,16 @@ public class gameManager : MonoBehaviour
             PlayerPrefs.SetInt("DynamicFOV", 0);
         }
 
-        Debug.Log(PlayerPrefs.GetInt("DynamicFOV").ToString());
+        // if our use voiceovers is selected, set the key value to 1
+        if(voiceoversToggle.isOn)
+        {
+            PlayerPrefs.SetInt("UseVoiceovers", 1);
+        }
+        // else set it to 0
+        else
+        {
+            PlayerPrefs.SetInt("UseVoiceovers", 0);
+        }
 
         CloseOptionsMenu();
     }
