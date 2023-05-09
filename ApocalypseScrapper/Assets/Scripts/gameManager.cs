@@ -646,66 +646,61 @@ public class gameManager : MonoBehaviour
     //    FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
 
 
-    //    activeMenu = storeMenu;
-    //    activeMenu.SetActive(true);
-
+    
     //    if (rank == 'F')
     //    {
-    //        levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
-        if (rank == 'F')
-        {
-            if(voiceoversToggle.isOn)
-            {
-                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
-            }
+    //        if(voiceoversToggle.isOn)
+    //        {
+    //            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
+    //        }
 
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
-            {
-                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
-                next.clip = levelAudioManager.instance.VOStoreTutorial;
-                if (voiceoversToggle.isOn)
-                {
-                    next.PlayDelayed(13);
-                }
-            }
-            else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
-            {
-                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
-                next.clip = levelAudioManager.instance.VOBonusSpendIt;
+    //        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+    //        {
+    //            AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+    //            next.clip = levelAudioManager.instance.VOStoreTutorial;
+    //            if (voiceoversToggle.isOn)
+    //            {
+    //                next.PlayDelayed(13);
+    //            }
+    //        }
+    //        else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
+    //        {
+    //            AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+    //            next.clip = levelAudioManager.instance.VOBonusSpendIt;
 
-                if (voiceoversToggle.isOn)
-                {
-                    next.PlayDelayed(13);
-                }
-            }
-        }
-        else
-        {
-            if (voiceoversToggle.isOn)
-            {
-                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
-            }
+    //            if (voiceoversToggle.isOn)
+    //            {
+    //                next.PlayDelayed(13);
+    //            }
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (voiceoversToggle.isOn)
+    //        {
+    //            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
+    //        }
 
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
-            {
-                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
-                next.clip = levelAudioManager.instance.VOStoreTutorial;
-                if (voiceoversToggle.isOn)
-                {
-                    next.PlayDelayed(6);
-                }
-            }
-            else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
-            {
-                AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
-                next.clip = levelAudioManager.instance.VOBonusSpendIt;
-                if (voiceoversToggle.isOn)
-                {
-                    next.PlayDelayed(6);
-                }
-            }
-        }
-    }
+    //        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+    //        {
+    //            AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+    //            next.clip = levelAudioManager.instance.VOStoreTutorial;
+    //            if (voiceoversToggle.isOn)
+    //            {
+    //                next.PlayDelayed(6);
+    //            }
+    //        }
+    //        else if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Lvl 1"))
+    //        {
+    //            AudioSource next = levelAudioManager.instance.voiceOverAudioSource;
+    //            next.clip = levelAudioManager.instance.VOBonusSpendIt;
+    //            if (voiceoversToggle.isOn)
+    //            {
+    //                next.PlayDelayed(6);
+    //            }
+    //        }
+    //    }
+    //}
     public void CloseCrafting()
     {
         // levelAudioManager.instance.voiceOverAudioSource.Stop();
