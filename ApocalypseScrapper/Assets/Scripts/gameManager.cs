@@ -176,7 +176,12 @@ public class gameManager : MonoBehaviour
 
     [Header("----- Player Death Overlay -----")]
     public GameObject playerDeathOverlay;
+    public GameObject blackOverlayForDeathParent;
     public Image blackOverlayForDeath;
+
+    [Header("----- Subtitles -----")]
+    public GameObject subtitleParentObject;
+    public TextMeshProUGUI subtitleText;
 
     //public GameObject salvagingObjectParent;
 
@@ -187,6 +192,8 @@ public class gameManager : MonoBehaviour
     //[Header("-----Rat Stuff-----")]
     //public GameObject rat;
     //public int enemiesRemaining;
+
+
 
     public bool isPaused;
     public float timeScaleOriginal;
@@ -200,6 +207,7 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         isPaused = false;
+        blackOverlayForDeathParent.SetActive(false);
 
         // setting our current scene
         currentScene = SceneManager.GetActiveScene();
@@ -319,6 +327,12 @@ public class gameManager : MonoBehaviour
         {
             // playing intro voice over
             levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
+
+            // if our subtitle toggle is on
+            if (gameManager.instance.subtitlesToggle.isOn)
+            {
+                StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.lvl1IntroVoiceLines));
+            }
         }
         RSGSplash.SetActive(false);
         activeMenu = ApocSplash;
@@ -530,6 +544,7 @@ public class gameManager : MonoBehaviour
 
     public void PlayerDead()
     {
+        blackOverlayForDeathParent.SetActive(true);
         playerScript.isDead = true;
         playerDeathOverlay.SetActive(true);
         // stop any voice over audio that might already be playing
@@ -1231,6 +1246,22 @@ public class gameManager : MonoBehaviour
         gamelog.Add(newText.GetComponent<TextMeshProUGUI>().text);
     }
     #endregion
+
+    public IEnumerator StartSubtitles(subtitleManager.VoiceLine[] subtitleSelection)
+    {
+        yield return new WaitForSeconds(0.7f);
+
+        subtitleParentObject.SetActive(true);
+
+        foreach(var voiceLine in subtitleSelection)
+        {
+            subtitleText.text = voiceLine.text;
+
+            yield return new WaitForSeconds(voiceLine.time);
+        }
+
+        subtitleParentObject.SetActive(false);
+    }
     
 }
 
