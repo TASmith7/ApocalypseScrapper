@@ -13,6 +13,7 @@ public class levelAudioManager : MonoBehaviour
     public AudioSource whiteNoiseAudioSource;
     public AudioSource pauseMenuAudioSource;
     public AudioSource voiceOverAudioSource;
+    public AudioSource elevatorAudioSource;
 
     // audio clips (the actual sound)
     [Header("----- Clips -----")]
@@ -39,6 +40,8 @@ public class levelAudioManager : MonoBehaviour
     public AudioClip VONextLevel;
     public AudioClip VOBonusSpendIt;
     public AudioClip VOStoreTutorial;
+    public AudioClip elevatorUp;
+    public AudioClip elevatorStop;
 
 
     [Header("----- Volume -----")]
@@ -46,6 +49,7 @@ public class levelAudioManager : MonoBehaviour
     [Range(0f, 1.0f)][SerializeField] float whiteNoiseVolume;
     [Range(0f, 1.0f)][SerializeField] float pauseMenuVolume;
     [Range(0f, 1.0f)][SerializeField] float voiceOverVolume;
+    [Range(0f, 1.0f)][SerializeField] float elevatorVolume;
 
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float musicPitch;
@@ -68,7 +72,12 @@ public class levelAudioManager : MonoBehaviour
         whiteNoiseAudioSource = gameObject.AddComponent<AudioSource>();
         pauseMenuAudioSource = gameObject.AddComponent<AudioSource>();
         voiceOverAudioSource = gameObject.AddComponent<AudioSource>();
-
+        if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 1"))
+        {
+            elevatorAudioSource = gameObject.AddComponent<AudioSource>();
+            elevatorAudioSource.volume = elevatorVolume;
+        }
+        
         // assigning each audio sources clip (the actual sound that it makes)
         whiteNoiseAudioSource.clip = whiteNoiseAudio;
         pauseMenuAudioSource.clip = pauseMenuAudio;

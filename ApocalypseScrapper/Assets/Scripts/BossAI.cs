@@ -263,6 +263,11 @@ public class BossAI : MonoBehaviour, IDamage
             if(!hasPlayedEndGameAudio)
             {
                 levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOKillBoss);
+
+                if(gameManager.instance.subtitlesToggle.isOn)
+                {
+                    StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.killBossVoiceLines));
+                }
                 hasPlayedEndGameAudio = true;
             }
 
