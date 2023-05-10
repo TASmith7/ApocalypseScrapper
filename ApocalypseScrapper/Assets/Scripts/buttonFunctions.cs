@@ -372,15 +372,15 @@ public class buttonFunctions : MonoBehaviour
 
     IEnumerator DeclinedPurchase()
     {
-        Time.timeScale = gameManager.instance.timeScaleOriginal;
+       
         gameManager.instance.DeclinedPurchasePopUp.SetActive(true);
         Debug.Log("Declined True");
         Debug.Log("WFS Started");
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSecondsRealtime(2);
         Debug.Log("WFS Over");
         gameManager.instance.DeclinedPurchasePopUp.SetActive(false);
         Debug.Log("Declined False");
-        Time.timeScale = 0;
+       
 
     }
 }

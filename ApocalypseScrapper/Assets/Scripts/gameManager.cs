@@ -867,11 +867,12 @@ public class gameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        
+        PauseState();
         instance.playerScript.SavePlayerStats();
         Inventory.Instance.InvSnapshot();
         if(SceneManager.GetActiveScene().name=="Lvl 1")
         {
+            //start coroutine to load next level and show loading screen for 5 seconds
             StartCoroutine(Lvl2LoadScreen());
             
         }
@@ -882,7 +883,7 @@ public class gameManager : MonoBehaviour
         }
         else if(SceneManager.GetActiveScene().name==("Lvl 3"))
         {
-            StartCoroutine(Lvl4LoadScreen());
+            StartCoroutine(BossLvlLoadScreen());
         }
         else if(SceneManager.GetActiveScene().name=="Boss Lvl")
         {
@@ -923,55 +924,34 @@ public class gameManager : MonoBehaviour
 
         IEnumerator Lvl2LoadScreen()
     {
-        Time.timeScale = gameManager.instance.timeScaleOriginal;
+        
         lvl2.SetActive(true);
         Debug.Log("WFS Started");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 1 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 2 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 3 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 4 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 5 Done");
+        yield return new WaitForSecondsRealtime(5);
+        
+        Debug.Log("WFS Done");
         lvl2.SetActive(false);
         SceneManager.LoadScene("Lvl 2");
     }
     IEnumerator Lvl3LoadScreen()
     {
-        Time.timeScale = gameManager.instance.timeScaleOriginal;
+        
         lvl3.SetActive(true);
         Debug.Log("WFS Started");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 1 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 2 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 3 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 4 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 5 Done");
+        yield return new WaitForSecondsRealtime(5);
+        
+        Debug.Log("WFS Done");
 
         lvl3.SetActive(false);
         SceneManager.LoadScene("Lvl 3");
     }
-    IEnumerator Lvl4LoadScreen()
+    IEnumerator BossLvlLoadScreen()
     {
-        Time.timeScale = gameManager.instance.timeScaleOriginal;
+        
         lvl4.SetActive(true);
         Debug.Log("WFS Started");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 1 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 2 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 3 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 4 Done");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(5);
+        
         Debug.Log("WFS 5 Done");
         lvl4.SetActive(false);
         SceneManager.LoadScene("Boss Lvl");

@@ -929,7 +929,7 @@ SpriteRenderer:
   m_Size: {x: 0.4, y: 0.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8900562455022253971
@@ -1011,26 +1011,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
+  _dcElectronicComponents: 58
+  _rollEC: 1
   _dcDataProcessingCore: 0
-  _rollDPC: 0
+  _rollDPC: 1
   _dcDenseMetalPlate: 0
   _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
+  _dcHighTensileAlloyPlate: 42
+  _rollHTAP: 1
   _dcGlassPane: 0
   _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
+  _dcHighPoweredLightDiode: 20
+  _rollHPLD: 1
+  _dcElectricMotor: 27
+  _rollEM: 1
   _dcCeramicPlate: 0
   _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcGoldAlloy: 6
+  _rollGA: 1
+  _dcValuableLoot: 7
+  _rollVL: 1
 --- !u!65 &8900562455022253976
 BoxCollider:
   m_ObjectHideFlags: 0
