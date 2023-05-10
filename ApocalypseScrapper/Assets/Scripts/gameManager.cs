@@ -1,3 +1,4 @@
+using OpenCover.Framework.Model;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -187,6 +188,11 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI subtitleText;
     public subtitleManager.VoiceLine[] currentVoiceLine;
 
+    [Header("----- Intro Script Vars -----")]
+    public bool introVOPlaying;
+    public bool skipped;
+    public GameObject eleDoor;
+
     //public GameObject salvagingObjectParent;
 
 
@@ -347,12 +353,18 @@ public class gameManager : MonoBehaviour
         {
             // playing intro voice over
             levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
-
+            introVOPlaying = true;
+                
             // if our subtitle toggle is on
             if (gameManager.instance.subtitlesToggle.isOn)
             {
                 StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.lvl1IntroVoiceLines));
             }
+        }
+        if (!levelAudioManager.instance.elevatorAudioSource.isPlaying)
+        {
+            levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorUp);
+            StartCoroutine(StopElevatorWait());
         }
         RSGSplash.SetActive(false);
         activeMenu = ApocSplash;
@@ -423,6 +435,16 @@ public class gameManager : MonoBehaviour
         // if we press T while listening to a VO, stop the VO
         if (Input.GetButtonDown("Skip") && levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
+            if (introVOPlaying == true)
+            {
+                Debug.Log("Entered skip to elvator stop");
+                introVOPlaying = false;
+                skipped = true;
+                levelAudioManager.instance.elevatorAudioSource.Stop();
+                levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorStop);
+                eleDoor.SetActive(false);
+
+            }
             levelAudioManager.instance.voiceOverAudioSource.Stop();
             subtitleParentObject.SetActive(false);
         }
@@ -470,6 +492,21 @@ public class gameManager : MonoBehaviour
             gamelog.Clear();
         }
 
+    }
+
+    IEnumerator StopElevatorWait()
+    {
+        yield return new WaitForSeconds(levelAudioManager.instance.VOIntro.length);
+        
+        if (!skipped)
+        {
+            Debug.Log("Entering 'not skipped' elevator block removal");
+            introVOPlaying = false;
+            levelAudioManager.instance.elevatorAudioSource.Stop();
+            levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorStop);
+            yield return new WaitForSeconds(5);
+            eleDoor.SetActive(false);
+        }
     }
     public void CueCrafting()
     {
