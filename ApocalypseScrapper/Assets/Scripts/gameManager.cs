@@ -174,6 +174,10 @@ public class gameManager : MonoBehaviour
     [Header("----- End Game Beam -----")]
     public GameObject endGameBeam;
 
+    [Header("----- Player Death Overlay -----")]
+    public GameObject playerDeathOverlay;
+    public Image blackOverlayForDeath;
+
     //public GameObject salvagingObjectParent;
 
 
@@ -526,15 +530,38 @@ public class gameManager : MonoBehaviour
 
     public void PlayerDead()
     {
-        PauseState();
-
+        playerScript.isDead = true;
+        playerDeathOverlay.SetActive(true);
         // stop any voice over audio that might already be playing
         levelAudioManager.instance.voiceOverAudioSource.Stop();
 
-        if(voiceoversToggle.isOn)
+        // stop music
+        levelAudioManager.instance.musicAudioSource.Stop();
+
+        StartCoroutine(FadeImage());
+
+        if (voiceoversToggle.isOn)
         {
             levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOPlayerDead);
         }
+
+        StartCoroutine(PlayerDeadMenuDelay());
+    }
+
+    IEnumerator FadeImage()
+    {
+        for (float i = 0; i <= 5; i += Time.deltaTime)
+        {
+            // set color with i as alpha
+            blackOverlayForDeath.color = new Color(0, 0, 0, i/5);
+            yield return null;
+        }
+    }
+
+    IEnumerator PlayerDeadMenuDelay()
+    {
+        yield return new WaitForSeconds(levelAudioManager.instance.VOPlayerDead.length); 
+        PauseState();
 
         activeMenu = loseMenu;
         activeMenu.SetActive(true);

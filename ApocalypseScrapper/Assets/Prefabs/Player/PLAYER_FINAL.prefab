@@ -768,6 +768,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ecd5a42b43925ec46ac5f0c73a0b7bfe, type: 3}
   - {fileID: 8300000, guid: e65dc91baaa6aa34e9e27e946abf3720, type: 3}
   playerSlideAudio: {fileID: 8300000, guid: e27bf93023c46174289d62abf96f9811, type: 3}
+  playerDeathAudio: {fileID: 8300000, guid: b4ac80eae1bf06a4080d48afba7a7b33, type: 3}
   jetpackThrustVolume: 0.298
   gunAudioVolume: 0.66
   salvagingAudioVolume: 1
@@ -810,6 +811,7 @@ MonoBehaviour:
   walkingFootstepRate: 0.5
   runningFootstepRate: 0.25
   crouchingFootstepRate: 0.75
+  isDead: 0
   salvageRange: 10
   salvageRate: 0.75
   salvageSpread: 0.01

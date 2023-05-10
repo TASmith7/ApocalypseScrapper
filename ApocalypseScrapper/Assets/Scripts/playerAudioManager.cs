@@ -36,6 +36,7 @@ public class playerAudioManager : MonoBehaviour
     public AudioClip[] meleeSwingAudio;
     public AudioClip[] meleeGruntAudio;
     public AudioClip playerSlideAudio;
+    public AudioClip playerDeathAudio;
 
     [Header("----- Volume -----")]
     [Range(0f, 1.0f)][SerializeField] float jetpackThrustVolume;

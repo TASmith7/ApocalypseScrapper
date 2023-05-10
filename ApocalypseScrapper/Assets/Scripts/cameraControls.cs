@@ -19,6 +19,7 @@ public class cameraControls : MonoBehaviour
 
     float standardFOV;
     float sprintFOV;
+    
 
     float xRotation;
 

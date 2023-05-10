@@ -118,13 +118,16 @@ public class crabAI : MonoBehaviour, IDamage
     }
     IEnumerator shoot()
     {
-        isShooting = true;
-        GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
-        crabAudioSource.PlayOneShot(biteAudioClip[UnityEngine.Random.Range(0, biteAudioClip.Length)]);
-        bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
-        anim.SetTrigger("Shoot");
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
+        if (!gameManager.instance.playerScript.isDead)
+        {
+            isShooting = true;
+            GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
+            crabAudioSource.PlayOneShot(biteAudioClip[UnityEngine.Random.Range(0, biteAudioClip.Length)]);
+            bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+            anim.SetTrigger("Shoot");
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
     }
     void OnTriggerEnter(Collider other)
     {

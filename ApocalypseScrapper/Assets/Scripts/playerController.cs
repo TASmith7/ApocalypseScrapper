@@ -13,7 +13,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Header("----- Components -----")]
     [SerializeField] public CharacterController controller;
     // [SerializeField] Animator anim;
-    //[SerializeField] Rigidbody rb;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] public Camera playerCam;
@@ -31,6 +30,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private Vector3 horizontalVelocity;
     private float horizontalSpeed;
     private bool groundedPlayer;
+    public bool isDead;
     Vector3 move;
     Vector3 lastPosition;
     private float timeBetweenFootsteps;
@@ -84,6 +84,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     float timeOfLastSprint;
     bool jetpackPowerDownAudioPlayed;
     bool outOfBreathAudioPlayed;
+    bool deathCued;
 
     [Header("----- Gun Stats -----")]
     public List<GunStats> gunList = new List<GunStats>();
@@ -144,7 +145,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private void Start()
     {
 
-
         if (gameManager.instance.currentScene != SceneManager.GetSceneByName("Lvl 1"))
             SetPlayerStats();
         else DefaultPlayerStats();
@@ -169,6 +169,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         playerGunMeleeCollider = playerGun.GetComponent<CapsuleCollider>();
         playerGunMeleeCollider.enabled = false;
 
+        weaponMovementScript = playerGun.GetComponent<weaponMovement>();
 
         // gunAnimator = weaponMovementScript.GetComponent<Animator>();
 
@@ -193,9 +194,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             //    
             //}
             //SelectGun();
-            Movement();
+            if(!isDead)
+            {
+                Movement();
+            }
             Shielding();
             CueHeadBobMovement();
+
             if (!isSliding)
             {
                 CueFootstepAudio();
@@ -224,6 +229,28 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             else
             {
                 isSalvaging = false;
+            }
+
+            // if we die
+            if(isDead && !deathCued)
+            {
+                deathCued = true;
+
+                // disable all forms of movement
+                controller.enabled = false;
+                gunAnimator.enabled = false;
+                weaponMovementScript.enabled = false;
+                playerCam.GetComponent<cameraControls>().enabled = false;
+
+                // add a rigid body and a box collider to the player and apply a force to the rigid body to assimilate being pushed/shot down
+                Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+                BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
+                boxCollider.size = new Vector3(0.5f, 1.5f, 0.6f);
+                boxCollider.center = new Vector3(0, 1.1f, 0);
+
+                rb.AddForce(gameObject.transform.right * 7, ForceMode.Impulse);
+
+                playerAudioManager.instance.outOfBreathAudioSource.PlayOneShot(playerAudioManager.instance.playerDeathAudio, 1);
             }
 
         }
@@ -569,6 +596,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     void CueHeadBobMovement()
     {
         if (!controller.isGrounded) return;
+        if (isDead) return;
         if (IsMoving && !isSliding)
         {
             headBobTimer += Time.deltaTime * (gameManager.instance.staminaFillBar.fillAmount > 0 && isSprinting ? sprintBobSpeed : isCrouching ? crouchBobSpeed : walkBobSpeed);
@@ -780,7 +808,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         tookDamage = Time.time;
         PlayerUIUpdate();
 
-        if(!playerAudioManager.instance.takeDamageAudioSource.isPlaying)
+        if(!playerAudioManager.instance.takeDamageAudioSource.isPlaying && HP > 0)
         {
             playerAudioManager.instance.takeDamageAudioSource.PlayOneShot(playerAudioManager.instance.takeDamageAudio[Random.Range
                 (0, playerAudioManager.instance.takeDamageAudio.Length)], playerAudioManager.instance.takeDamageAudioVolume);
@@ -788,6 +816,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         if (HP <= 0)
         {
+            playerAudioManager.instance.footstepAudioSource.Stop();
             gameManager.instance.PlayerDead();
         }
     }
@@ -1029,6 +1058,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         // if we are not on the ground or not moving, return
         if (!controller.isGrounded) return;
         if (!IsMoving) return;
+        if (isDead) return;
 
         // reducing the time between footsteps each frame
         timeBetweenFootsteps -= Time.deltaTime;

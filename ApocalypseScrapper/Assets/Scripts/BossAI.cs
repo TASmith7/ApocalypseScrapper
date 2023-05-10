@@ -149,22 +149,28 @@ public class BossAI : MonoBehaviour, IDamage
     }
     IEnumerator Bite()
     {
-        anim.SetTrigger("Shoot");
-        isBiting = true;
-        GameObject biteClone = Instantiate(bite, bitePos.position, bite.transform.rotation);
-        biteClone.GetComponent<Rigidbody>().velocity = transform.forward * biteSpeed;
-        bossAudioSource.PlayOneShot(bossBite[UnityEngine.Random.Range(0, bossBite.Length)], 0.6f);
-        yield return new WaitForSeconds(biteRate);
-        isBiting = false;
+        if (!gameManager.instance.playerScript.isDead)
+        {
+            anim.SetTrigger("Shoot");
+            isBiting = true;
+            GameObject biteClone = Instantiate(bite, bitePos.position, bite.transform.rotation);
+            biteClone.GetComponent<Rigidbody>().velocity = transform.forward * biteSpeed;
+            bossAudioSource.PlayOneShot(bossBite[UnityEngine.Random.Range(0, bossBite.Length)], 0.6f);
+            yield return new WaitForSeconds(biteRate);
+            isBiting = false;
+        }
     }
     IEnumerator Spit()
     {
-        isSpitting = true;
-        GameObject spitClone = Instantiate(spit, spitPos.position, spit.transform.rotation);
-        spitClone.GetComponent<Rigidbody>().velocity = new Vector3(transform.forward.x,transform.forward.y+.5f,transform.forward.z) * spitSpeed;
-        bossAudioSource.PlayOneShot(bossSpit);
-        yield return new WaitForSeconds(spitRate);
-        isSpitting = false;
+        if (!gameManager.instance.playerScript.isDead)
+        {
+            isSpitting = true;
+            GameObject spitClone = Instantiate(spit, spitPos.position, spit.transform.rotation);
+            spitClone.GetComponent<Rigidbody>().velocity = new Vector3(transform.forward.x, transform.forward.y + .5f, transform.forward.z) * spitSpeed;
+            bossAudioSource.PlayOneShot(bossSpit);
+            yield return new WaitForSeconds(spitRate);
+            isSpitting = false;
+        }
 
     }
     void OnTriggerEnter(Collider other)
