@@ -11,10 +11,13 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
 
     [Header("----- Gamelog Vars -----")]
-    [SerializeField] List<string> gamelog = new List<string>();
+    [SerializeField] List<Message> gamelog = new List<Message>();
     public int maxMessages = 30;
+    public GameObject gamelogMain;
     public GameObject gamelogPanel;
     public GameObject textObject;
+    float timeOfLastMessage;
+    float timeToClearGamelog = 5;
 
     [Header("----- Player/Boss -----")]
     public GameObject player;
@@ -182,6 +185,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Subtitles -----")]
     public GameObject subtitleParentObject;
     public TextMeshProUGUI subtitleText;
+    public subtitleManager.VoiceLine[] currentVoiceLine;
 
     //public GameObject salvagingObjectParent;
 
@@ -303,6 +307,22 @@ public class gameManager : MonoBehaviour
         musicVolumeValue.text = musicVolume.value.ToString();
         // initial volume value for music is assigned in level audio manager
 
+        if (PlayerPrefs.HasKey("Subtitles"))
+        {
+            if (PlayerPrefs.GetInt("Subtitles") == 1)
+            {
+                subtitlesToggle.isOn = true;
+            }
+            else if(PlayerPrefs.GetInt("Subtitles") == 0)
+            {
+                subtitlesToggle.isOn = false;
+            }
+        }
+        else
+        {
+            subtitlesToggle.isOn = true;
+        }
+
         if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
             endGameBeam.SetActive(false);
@@ -404,6 +424,12 @@ public class gameManager : MonoBehaviour
         if (Input.GetButtonDown("Skip") && levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
             levelAudioManager.instance.voiceOverAudioSource.Stop();
+
+            if(currentVoiceLine == subtitleManager.instance.lvl2IntroVoiceLines)
+            {
+                StopCoroutine(StartSubtitles(subtitleManager.instance.lvl2IntroVoiceLines));
+            }
+            // subtitleParentObject.SetActive(false);
         }
 
         if (isPaused)
@@ -437,6 +463,16 @@ public class gameManager : MonoBehaviour
         else
         {
             TurnOffInventoryUI();
+        }
+
+        if(Time.fixedTime - timeOfLastMessage >= timeToClearGamelog)
+        {
+            gamelogMain.SetActive(false);
+            for (int i = 0; i < gamelog.Count; i++)
+            {
+                Destroy(gamelog[i].textObject.gameObject);
+            }
+            gamelog.Clear();
         }
 
     }
@@ -1081,6 +1117,15 @@ public class gameManager : MonoBehaviour
             musicVolume.value = 65;
         }
 
+        if(PlayerPrefs.GetInt("Subtitles") == 1)
+        {
+            subtitlesToggle.isOn = true;
+        }
+        else
+        {
+            subtitlesToggle.isOn = false;
+        }
+
         musicVolumeValue.text = musicVolume.value.ToString();
 
         optionsMenu.SetActive(false);
@@ -1117,7 +1162,7 @@ public class gameManager : MonoBehaviour
         }
 
         // if our use voiceovers is selected, set the key value to 1
-        if(voiceoversToggle.isOn)
+        if (voiceoversToggle.isOn)
         {
             PlayerPrefs.SetInt("UseVoiceovers", 1);
         }
@@ -1125,6 +1170,17 @@ public class gameManager : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("UseVoiceovers", 0);
+        }
+
+        // if our subtitles is selected, set the key value to 1
+        if (subtitlesToggle.isOn)
+        {
+            PlayerPrefs.SetInt("Subtitles", 1);
+        }
+        // else set it to 0
+        else
+        {
+            PlayerPrefs.SetInt("Subtitles", 0);
         }
 
         CloseOptionsMenu();
@@ -1226,24 +1282,28 @@ public class gameManager : MonoBehaviour
 
     public void SendMessageToLog(string text)
     {
+        gamelogMain.SetActive(true);
         if (gamelog.Count > maxMessages)
         {
-            //Destroy(gamelog[0].textObject.gameObject);
+            Destroy(gamelog[0].textObject.gameObject);
             gamelog.Remove(gamelog[0]);
         }
 
 
-        //Message newMessage = new Message();
-        //newMessage.text = text;
+        Message newMessage = new Message();
+
+        newMessage.text = text;
 
         GameObject newText = Instantiate(textObject, gamelogPanel.transform);
 
-        newText.GetComponent<TextMeshProUGUI>().text = text;
+        //newText.GetComponent<TextMeshProUGUI>().text = text;
+        newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
 
-        //newMessage.textObject.text = newMessage.text;
+        newMessage.textObject.text = newMessage.text;
         
-        
-        gamelog.Add(newText.GetComponent<TextMeshProUGUI>().text);
+
+        gamelog.Add(newMessage);
+        timeOfLastMessage = Time.fixedTime;
     }
     #endregion
 
