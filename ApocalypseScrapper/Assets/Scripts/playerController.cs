@@ -677,7 +677,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             if (salvageable != null && !hits[i].collider.CompareTag("Player"))
             {
                 isSalvaging = true;
-                beam = Instantiate(beamEffect, shootPos.transform.forward, Quaternion.identity);
+                beam = Instantiate(beamEffect, hits[i].point, Quaternion.identity);
                 Vector3 effectDir = hits[i].point - shootPos.transform.position;
                 Quaternion rotation = Quaternion.LookRotation(effectDir);
                 beam.transform.rotation = rotation;
@@ -710,7 +710,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         yield return new WaitForSeconds(1f);
         if (beam != null)
         {
-            Destroy(beam, .1f);
+            Destroy(beam, .01f);
         }
         //RaycastHit hit;
         //GameObject beam = null;
@@ -916,6 +916,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         salvageRate = globalSceneControl.Instance._MSsalvageRate;
         salvageRange = globalSceneControl.Instance._MSsalvageRange;
+        salvageSpread= globalSceneControl.Instance._MSsalvageSpread;
         thrustPower = globalSceneControl.Instance._MSthrustPower;
         fuelConsumptionRate = globalSceneControl.Instance._MSfuelConsumptionRate;
         fuelRefillRate = globalSceneControl.Instance._MSfuelRefillRate;
