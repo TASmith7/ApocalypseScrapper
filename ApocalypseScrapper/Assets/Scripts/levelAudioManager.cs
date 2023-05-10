@@ -102,6 +102,7 @@ public class levelAudioManager : MonoBehaviour
                 // if our subtitle toggle is on
                 if (gameManager.instance.subtitlesToggle.isOn)
                 {
+                    gameManager.instance.currentVoiceLine = subtitleManager.instance.lvl2IntroVoiceLines;
                     StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.lvl2IntroVoiceLines));
                 }
             }
