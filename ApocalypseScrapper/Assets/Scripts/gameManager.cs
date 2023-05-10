@@ -97,12 +97,12 @@ public class gameManager : MonoBehaviour
     public GameObject skipTransmissionText;
 
     [Header("----- Crafting Objects -----")]
-    
+
     public TextMeshProUGUI FloorAvailData;
     public TextMeshProUGUI LevelScrapCollected;
     public TextMeshProUGUI SpentScrap;
     public GameObject DeclinedPurchasePopUp;
-    
+
     public int spent;
     [Header("----- Store Objects -----")]
     public TextMeshProUGUI FloorAvailDataStore;
@@ -110,7 +110,7 @@ public class gameManager : MonoBehaviour
     //public TextMeshProUGUI SpentScrapStore;
     //public GameObject DeclinedPurchasePopUpStore;
     //public TextMeshProUGUI FinalFloorScoreDataStore;
-    
+
     [Header("----- Player Stats Objects -----")]
     public TextMeshProUGUI healthValue;
     public TextMeshProUGUI maxHealthValue;
@@ -127,7 +127,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI staminaDrainValue;
     [Header("----- Player Inventory Objects -----")]
     public GameObject InventroyParent;
-    
+
     public Toggle invShown;
     public bool craftingOpen;
     public Image BioMass;
@@ -264,14 +264,14 @@ public class gameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("DynamicFOV"))
         {
             // if our key is currently set to 1 (on) in player prefs, turn dynamic FOV on
-            if(PlayerPrefs.GetInt("DynamicFOV") == 1)
+            if (PlayerPrefs.GetInt("DynamicFOV") == 1)
             {
                 dynamicFOVToggle.isOn = true;
             }
             // else if our key is currently set to 0 (off) in player prefabs, turn dynamic FOV off
             else if (PlayerPrefs.GetInt("DynamicFOV") == 0)
             {
-                dynamicFOVToggle.isOn= false;
+                dynamicFOVToggle.isOn = false;
             }
         }
         else
@@ -300,7 +300,7 @@ public class gameManager : MonoBehaviour
         }
 
         // if player prefs has the volume key
-        if(PlayerPrefs.HasKey("MusicVolume"))
+        if (PlayerPrefs.HasKey("MusicVolume"))
         {
             musicVolume.value = PlayerPrefs.GetFloat("MusicVolume");
         }
@@ -309,7 +309,7 @@ public class gameManager : MonoBehaviour
         {
             musicVolume.value = 65;
         }
-        
+
         musicVolumeValue.text = musicVolume.value.ToString();
         // initial volume value for music is assigned in level audio manager
 
@@ -319,7 +319,7 @@ public class gameManager : MonoBehaviour
             {
                 subtitlesToggle.isOn = true;
             }
-            else if(PlayerPrefs.GetInt("Subtitles") == 0)
+            else if (PlayerPrefs.GetInt("Subtitles") == 0)
             {
                 subtitlesToggle.isOn = false;
             }
@@ -356,7 +356,7 @@ public class gameManager : MonoBehaviour
             introVOPlaying = true;
                 
             // if our subtitle toggle is on
-            if (gameManager.instance.subtitlesToggle.isOn)
+            if (subtitlesToggle.isOn)
             {
                 StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.lvl1IntroVoiceLines));
             }
@@ -389,18 +389,18 @@ public class gameManager : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateInventory();
-        
-        
-        
-            
-        
+
+
+
+
+
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             levelAudioManager.instance.pauseMenuAudioSource.Play();
@@ -473,16 +473,16 @@ public class gameManager : MonoBehaviour
         }
         if (invShown.isOn && craftingOpen)
         {
-            
+
             TurnOnInventoryUI();
-            
+
         }
         else
         {
             TurnOffInventoryUI();
         }
 
-        if(Time.fixedTime - timeOfLastMessage >= timeToClearGamelog)
+        if (Time.fixedTime - timeOfLastMessage >= timeToClearGamelog)
         {
             gamelogMain.SetActive(false);
             for (int i = 0; i < gamelog.Count; i++)
@@ -515,8 +515,8 @@ public class gameManager : MonoBehaviour
         PauseState();
         isPaused = true;
 
-        
-        
+
+
 
 
         activeMenu = craftingMenu;
@@ -594,7 +594,7 @@ public class gameManager : MonoBehaviour
             levelAudioManager.instance.voiceOverAudioSource.UnPause();
         }
 
-        if(currentScene == SceneManager.GetSceneByName("Lvl 2") && npcWasTalking && npcAudioManager.instance != null)
+        if (currentScene == SceneManager.GetSceneByName("Lvl 2") && npcWasTalking && npcAudioManager.instance != null)
         {
             npcAudioManager.instance.npcVoiceAudioSource.UnPause();
         }
@@ -627,7 +627,7 @@ public class gameManager : MonoBehaviour
         {
             levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOPlayerDead);
 
-            if(subtitlesToggle.isOn)
+            if (subtitlesToggle.isOn)
             {
                 StartCoroutine(StartSubtitles(subtitleManager.instance.playerDeathVoiceLines));
             }
@@ -641,14 +641,14 @@ public class gameManager : MonoBehaviour
         for (float i = 0; i <= 5; i += Time.deltaTime)
         {
             // set color with i as alpha
-            blackOverlayForDeath.color = new Color(0, 0, 0, i/5);
+            blackOverlayForDeath.color = new Color(0, 0, 0, i / 5);
             yield return null;
         }
     }
 
     IEnumerator PlayerDeadMenuDelay()
     {
-        yield return new WaitForSeconds(levelAudioManager.instance.VOPlayerDead.length); 
+        yield return new WaitForSeconds(levelAudioManager.instance.VOPlayerDead.length);
         PauseState();
 
         activeMenu = loseMenu;
@@ -711,7 +711,7 @@ public class gameManager : MonoBehaviour
         if (playerScript.salvDetector == true)
         {
             salvageCollected.text = score.ToString() + " of " + playerScript.totalLevelSalvage;
-            
+
         }
         else salvageCollected.text = score.ToString();
 
@@ -788,7 +788,7 @@ public class gameManager : MonoBehaviour
     //    FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
 
 
-    
+
     //    if (rank == 'F')
     //    {
     //        if(voiceoversToggle.isOn)
@@ -904,31 +904,31 @@ public class gameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        
+
         instance.playerScript.SavePlayerStats();
         Inventory.Instance.InvSnapshot();
-        if(SceneManager.GetActiveScene().name=="Lvl 1")
+        if (SceneManager.GetActiveScene().name == "Lvl 1")
         {
             StartCoroutine(Lvl2LoadScreen());
-            
+
         }
-        else if(SceneManager.GetActiveScene().name == "Lvl 2")
+        else if (SceneManager.GetActiveScene().name == "Lvl 2")
         {
             StartCoroutine(Lvl3LoadScreen());
-            
+
         }
-        else if(SceneManager.GetActiveScene().name==("Lvl 3"))
+        else if (SceneManager.GetActiveScene().name == ("Lvl 3"))
         {
             StartCoroutine(Lvl4LoadScreen());
         }
-        else if(SceneManager.GetActiveScene().name=="Boss Lvl")
+        else if (SceneManager.GetActiveScene().name == "Boss Lvl")
         {
             WinGame();
         }
         else
         {
             Debug.Log("Level failed to load");
-        }    
+        }
 
         //    switch (SceneManager.GetActiveScene().name)
         //    {
@@ -958,7 +958,7 @@ public class gameManager : MonoBehaviour
         //    }
     }
 
-        IEnumerator Lvl2LoadScreen()
+    IEnumerator Lvl2LoadScreen()
     {
         Time.timeScale = gameManager.instance.timeScaleOriginal;
         lvl2.SetActive(true);
@@ -1017,8 +1017,8 @@ public class gameManager : MonoBehaviour
     {
         // updating total score value
         playerScript.playerTotalScore += playerScript.playerFloorScore;
-        hazardPayData.text=playerScript.hazardPay.ToString();
-        QuestCompletionPayData.text=playerScript.questPay.ToString();
+        hazardPayData.text = playerScript.hazardPay.ToString();
+        QuestCompletionPayData.text = playerScript.questPay.ToString();
         playerScript.playerBonus += 50;
 
         // updating total salvage for all levels
@@ -1033,7 +1033,7 @@ public class gameManager : MonoBehaviour
 
         // updating total payout
         int totalPayout = salvageCut + playerScript.playerBonus;
-        totalPayout += playerScript.hazardPay+
+        totalPayout += playerScript.hazardPay +
                        playerScript.questPay;
         totalPayoutData.text = totalPayout.ToString();
 
@@ -1049,26 +1049,62 @@ public class gameManager : MonoBehaviour
             {
                 case 'S':
                     levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithS);
+
+                    if (subtitlesToggle.isOn)
+                    {
+                        StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.finishWithSRankVoiceLines));
+                    }
+
                     break;
 
                 case 'A':
                     levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithA);
+
+                    if (subtitlesToggle.isOn)
+                    {
+                        StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.finishWithARankVoiceLines));
+                    }
+
                     break;
 
                 case 'B':
                     levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithB);
+
+                    if (subtitlesToggle.isOn)
+                    {
+                        StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.finishWithBRankVoiceLines));
+                    }
+
                     break;
 
                 case 'C':
                     levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithC);
+
+                    if (subtitlesToggle.isOn)
+                    {
+                        StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.finishWithCRankVoiceLines));
+                    }
+
                     break;
 
                 case 'D':
                     levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithD);
+
+                    if (subtitlesToggle.isOn)
+                    {
+                        StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.finishWithDRankVoiceLines));
+                    }
+
                     break;
 
                 case 'F':
                     levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFinishWithF);
+
+                    if (subtitlesToggle.isOn)
+                    {
+                        StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.finishWithFRankVoiceLines));
+                    }
+
                     break;
             }
         }
@@ -1126,7 +1162,7 @@ public class gameManager : MonoBehaviour
         vertSensValue.text = ((int)verticalSens.value).ToString();
 
         // if we close our options menu without pressing save, reassign our dynamic FOV toggle based on what is currently in player prefs
-        if(PlayerPrefs.GetInt("DynamicFOV") == 1)
+        if (PlayerPrefs.GetInt("DynamicFOV") == 1)
         {
             dynamicFOVToggle.isOn = true;
         }
@@ -1145,7 +1181,7 @@ public class gameManager : MonoBehaviour
             voiceoversToggle.isOn = false;
         }
 
-        if(PlayerPrefs.HasKey("MusicVolume"))
+        if (PlayerPrefs.HasKey("MusicVolume"))
         {
             musicVolume.value = PlayerPrefs.GetFloat("MusicVolume");
         }
@@ -1154,7 +1190,7 @@ public class gameManager : MonoBehaviour
             musicVolume.value = 65;
         }
 
-        if(PlayerPrefs.GetInt("Subtitles") == 1)
+        if (PlayerPrefs.GetInt("Subtitles") == 1)
         {
             subtitlesToggle.isOn = true;
         }
@@ -1294,12 +1330,12 @@ public class gameManager : MonoBehaviour
             FloorAvailData.text = "Need Salv Detector";
         }
         SpentScrap.text = spent.ToString();
-        BioMassAmt.text=Inventory.Instance._iBioMass.ToString();
-        IntactOrganAmt.text= Inventory.Instance._iIntactOrgan.ToString();
-        ElectricCompAmt.text= Inventory.Instance._iElectronicComponents.ToString();
-        DataCoreAmt.text= Inventory.Instance._iDataProcessingCore.ToString();
-        DenseMetalPlateAmt.text=Inventory.Instance._iDenseMetalPlate.ToString();
-        HighTensileAlloyAmt.text=Inventory.Instance._iHighTensileAlloyPlate.ToString();
+        BioMassAmt.text = Inventory.Instance._iBioMass.ToString();
+        IntactOrganAmt.text = Inventory.Instance._iIntactOrgan.ToString();
+        ElectricCompAmt.text = Inventory.Instance._iElectronicComponents.ToString();
+        DataCoreAmt.text = Inventory.Instance._iDataProcessingCore.ToString();
+        DenseMetalPlateAmt.text = Inventory.Instance._iDenseMetalPlate.ToString();
+        HighTensileAlloyAmt.text = Inventory.Instance._iHighTensileAlloyPlate.ToString();
         ValuableLootAmt.text = Inventory.Instance._iValuableLoot.ToString();
         GlassPaneAmt.text = Inventory.Instance._iGlassPane.ToString();
         HPLDAmt.text = Inventory.Instance._iHighPoweredLightDiode.ToString();
@@ -1337,7 +1373,7 @@ public class gameManager : MonoBehaviour
         newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
 
         newMessage.textObject.text = newMessage.text;
-        
+
 
         gamelog.Add(newMessage);
         timeOfLastMessage = Time.fixedTime;
@@ -1350,7 +1386,7 @@ public class gameManager : MonoBehaviour
 
         subtitleParentObject.SetActive(true);
 
-        foreach(var voiceLine in subtitleSelection)
+        foreach (var voiceLine in subtitleSelection)
         {
             subtitleText.text = voiceLine.text;
 
@@ -1359,7 +1395,22 @@ public class gameManager : MonoBehaviour
 
         subtitleParentObject.SetActive(false);
     }
-    
+
+    public IEnumerator StartSubtitlesInPausedState(subtitleManager.VoiceLine[] subtitleSelection)
+    {
+        yield return new WaitForSecondsRealtime(0.6f);
+
+        subtitleParentObject.SetActive(true);
+
+        foreach (var voiceLine in subtitleSelection)
+        {
+            subtitleText.text = voiceLine.text;
+
+            yield return new WaitForSecondsRealtime(voiceLine.time);
+        }
+
+        subtitleParentObject.SetActive(false);
+    }
 }
 
 

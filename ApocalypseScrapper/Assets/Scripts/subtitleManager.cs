@@ -26,15 +26,12 @@ public class subtitleManager : MonoBehaviour
     public VoiceLine[] lvl3IntroVoiceLines;
     public VoiceLine[] bossLvlIntroVoiceLines;
     public VoiceLine[] playerDeathVoiceLines;
+    public VoiceLine[] killBossVoiceLines;
+    public VoiceLine[] finishWithSRankVoiceLines;
+    public VoiceLine[] finishWithARankVoiceLines;
+    public VoiceLine[] finishWithBRankVoiceLines;
+    public VoiceLine[] finishWithCRankVoiceLines;
+    public VoiceLine[] finishWithDRankVoiceLines;
+    public VoiceLine[] finishWithFRankVoiceLines;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
