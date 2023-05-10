@@ -306,9 +306,9 @@ public class buttonFunctions : MonoBehaviour
     }
     public void UpgradeSalvageSpread()
     {
-        if (gameManager.instance.amtSalvaged >= 400)
+        if (gameManager.instance.amtSalvaged >= 1000&&Inventory.Instance._iElectricMotor>=4&&Inventory.Instance._iDataProcessingCore>=8)
         {
-            gameManager.instance.playerScript.salvageSpread += .1f;
+            gameManager.instance.playerScript.salvageSpread += .03f;
             gameManager.instance.amtSalvaged -= 400;
             gameManager.instance.spent += 400;
         }

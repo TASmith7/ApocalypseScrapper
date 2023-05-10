@@ -636,7 +636,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     IEnumerator Salvage()
     {
         RaycastHit[] hits;
-        hits=Physics.SphereCastAll(shootPos.position, salvageSpread, transform.forward, salvageRange,salvageLayer);
+        hits = Physics.SphereCastAll(shootPos.position, salvageSpread, shootPos.transform.forward, salvageRange, salvageLayer) ;
         GameObject beam = null;
         for (int i = 0; i < hits.Length; i++)
         {
@@ -649,7 +649,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             if (salvageable != null && !hits[i].collider.CompareTag("Player"))
             {
                 isSalvaging = true;
-                beam = Instantiate(beamEffect, hits[i].point, Quaternion.identity);
+                beam = Instantiate(beamEffect, shootPos.transform.forward, Quaternion.identity);
                 Vector3 effectDir = hits[i].point - shootPos.transform.position;
                 Quaternion rotation = Quaternion.LookRotation(effectDir);
                 beam.transform.rotation = rotation;
@@ -679,7 +679,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
 
         }
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(1f);
         if (beam != null)
         {
             Destroy(beam, .1f);
