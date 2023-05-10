@@ -49,7 +49,8 @@ public class levelAudioManager : MonoBehaviour
 
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float musicPitch;
-    
+
+
     private void Awake()
     {
         if (instance == null)
@@ -148,7 +149,7 @@ public class levelAudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+  
     }
 
     public void PauseAllAudio()

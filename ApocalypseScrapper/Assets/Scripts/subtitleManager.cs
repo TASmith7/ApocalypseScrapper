@@ -25,6 +25,7 @@ public class subtitleManager : MonoBehaviour
     public VoiceLine[] lvl2IntroVoiceLines;
     public VoiceLine[] lvl3IntroVoiceLines;
     public VoiceLine[] bossLvlIntroVoiceLines;
+    public VoiceLine[] playerDeathVoiceLines;
 
     // Start is called before the first frame update
     void Start()

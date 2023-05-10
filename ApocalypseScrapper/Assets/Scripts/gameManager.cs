@@ -307,6 +307,22 @@ public class gameManager : MonoBehaviour
         musicVolumeValue.text = musicVolume.value.ToString();
         // initial volume value for music is assigned in level audio manager
 
+        if (PlayerPrefs.HasKey("Subtitles"))
+        {
+            if (PlayerPrefs.GetInt("Subtitles") == 1)
+            {
+                subtitlesToggle.isOn = true;
+            }
+            else if(PlayerPrefs.GetInt("Subtitles") == 0)
+            {
+                subtitlesToggle.isOn = false;
+            }
+        }
+        else
+        {
+            subtitlesToggle.isOn = true;
+        }
+
         if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
         {
             endGameBeam.SetActive(false);
@@ -573,6 +589,11 @@ public class gameManager : MonoBehaviour
         if (voiceoversToggle.isOn)
         {
             levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOPlayerDead);
+
+            if(subtitlesToggle.isOn)
+            {
+                StartCoroutine(StartSubtitles(subtitleManager.instance.playerDeathVoiceLines));
+            }
         }
 
         StartCoroutine(PlayerDeadMenuDelay());
@@ -1096,6 +1117,15 @@ public class gameManager : MonoBehaviour
             musicVolume.value = 65;
         }
 
+        if(PlayerPrefs.GetInt("Subtitles") == 1)
+        {
+            subtitlesToggle.isOn = true;
+        }
+        else
+        {
+            subtitlesToggle.isOn = false;
+        }
+
         musicVolumeValue.text = musicVolume.value.ToString();
 
         optionsMenu.SetActive(false);
@@ -1132,7 +1162,7 @@ public class gameManager : MonoBehaviour
         }
 
         // if our use voiceovers is selected, set the key value to 1
-        if(voiceoversToggle.isOn)
+        if (voiceoversToggle.isOn)
         {
             PlayerPrefs.SetInt("UseVoiceovers", 1);
         }
@@ -1140,6 +1170,17 @@ public class gameManager : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("UseVoiceovers", 0);
+        }
+
+        // if our subtitles is selected, set the key value to 1
+        if (subtitlesToggle.isOn)
+        {
+            PlayerPrefs.SetInt("Subtitles", 1);
+        }
+        // else set it to 0
+        else
+        {
+            PlayerPrefs.SetInt("Subtitles", 0);
         }
 
         CloseOptionsMenu();
@@ -1268,7 +1309,7 @@ public class gameManager : MonoBehaviour
 
     public IEnumerator StartSubtitles(subtitleManager.VoiceLine[] subtitleSelection)
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.6f);
 
         subtitleParentObject.SetActive(true);
 
