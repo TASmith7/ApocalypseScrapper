@@ -20557,7 +20557,7 @@ MonoBehaviour:
     time: 0.9
   lvl2IntroVoiceLines:
   - text: 'Alright, Youngblood, this next floor is quite a bit larger than  '
-    time: 2.9
+    time: 2.4
   - text: 'the factory floor you''re coming from, but its spaces are much  '
     time: 3.1
   - text: 'more compact. Control rooms, lounges, bathrooms and more  '
@@ -27142,7 +27142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5851663669515934153
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28370,6 +28370,7 @@ MonoBehaviour:
   blackOverlayForDeath: {fileID: 1859445829}
   subtitleParentObject: {fileID: 536241391}
   subtitleText: {fileID: 2037846345}
+  currentVoiceLine: []
   isPaused: 0
   timeScaleOriginal: 0
   currentScene:

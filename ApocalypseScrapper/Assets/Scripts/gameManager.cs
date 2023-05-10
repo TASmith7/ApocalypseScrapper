@@ -424,12 +424,7 @@ public class gameManager : MonoBehaviour
         if (Input.GetButtonDown("Skip") && levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
             levelAudioManager.instance.voiceOverAudioSource.Stop();
-
-            if(currentVoiceLine == subtitleManager.instance.lvl2IntroVoiceLines)
-            {
-                StopCoroutine(StartSubtitles(subtitleManager.instance.lvl2IntroVoiceLines));
-            }
-            // subtitleParentObject.SetActive(false);
+            subtitleParentObject.SetActive(false);
         }
 
         if (isPaused)

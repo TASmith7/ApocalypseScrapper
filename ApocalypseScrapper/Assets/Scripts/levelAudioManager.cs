@@ -49,7 +49,8 @@ public class levelAudioManager : MonoBehaviour
 
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float musicPitch;
-    
+
+
     private void Awake()
     {
         if (instance == null)
@@ -102,7 +103,6 @@ public class levelAudioManager : MonoBehaviour
                 // if our subtitle toggle is on
                 if (gameManager.instance.subtitlesToggle.isOn)
                 {
-                    gameManager.instance.currentVoiceLine = subtitleManager.instance.lvl2IntroVoiceLines;
                     StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.lvl2IntroVoiceLines));
                 }
             }
@@ -149,7 +149,7 @@ public class levelAudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+  
     }
 
     public void PauseAllAudio()
