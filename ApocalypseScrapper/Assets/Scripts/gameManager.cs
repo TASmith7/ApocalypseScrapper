@@ -182,6 +182,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Subtitles -----")]
     public GameObject subtitleParentObject;
     public TextMeshProUGUI subtitleText;
+    public subtitleManager.VoiceLine[] currentVoiceLine;
 
     //public GameObject salvagingObjectParent;
 
@@ -404,6 +405,7 @@ public class gameManager : MonoBehaviour
         if (Input.GetButtonDown("Skip") && levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
             levelAudioManager.instance.voiceOverAudioSource.Stop();
+            subtitleParentObject.SetActive(false);
         }
 
         if (isPaused)
