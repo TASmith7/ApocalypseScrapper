@@ -98,6 +98,12 @@ public class levelAudioManager : MonoBehaviour
             if (gameManager.instance.voiceoversToggle.isOn)
             {
                 voiceOverAudioSource.PlayOneShot(VOLvl2Intro);
+
+                // if our subtitle toggle is on
+                if (gameManager.instance.subtitlesToggle.isOn)
+                {
+                    StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.lvl2IntroVoiceLines));
+                }
             }
         }
         else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 3"))
@@ -108,6 +114,12 @@ public class levelAudioManager : MonoBehaviour
             if (gameManager.instance.voiceoversToggle.isOn)
             {
                 voiceOverAudioSource.PlayOneShot(VOLvl3Intro);
+
+                // if our subtitle toggle is on
+                if (gameManager.instance.subtitlesToggle.isOn)
+                {
+                    StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.lvl3IntroVoiceLines));
+                }
             }
         }
         else if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Boss Lvl"))
@@ -118,6 +130,12 @@ public class levelAudioManager : MonoBehaviour
             if (gameManager.instance.voiceoversToggle.isOn)
             {
                 voiceOverAudioSource.PlayOneShot(VOBossLvlIntro);
+
+                // if our subtitle toggle is on
+                if (gameManager.instance.subtitlesToggle.isOn)
+                {
+                    StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.bossLvlIntroVoiceLines));
+                }
             }
         }
 
