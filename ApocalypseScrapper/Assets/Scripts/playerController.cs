@@ -663,73 +663,25 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     IEnumerator Salvage()
     {
-        RaycastHit[] hits;
-        hits = Physics.SphereCastAll(shootPos.position, salvageSpread, shootPos.transform.forward, salvageRange, salvageLayer) ;
-        GameObject beam = null;
-        for (int i = 0; i < hits.Length; i++)
-        {
-            //Do something with the hit information
-            
-            // if the object we clicked on contains the ISalvageable interface
-            ISalvageable salvageable = hits[i].collider.GetComponent<ISalvageable>();
-
-            // if the object is salvageable
-            if (salvageable != null && !hits[i].collider.CompareTag("Player"))
-            {
-                isSalvaging = true;
-                beam = Instantiate(beamEffect, hits[i].point, Quaternion.identity);
-                Vector3 effectDir = hits[i].point - shootPos.transform.position;
-                Quaternion rotation = Quaternion.LookRotation(effectDir);
-                beam.transform.rotation = rotation;
-                gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hits[i].collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
-
-                // if our salvaging audio isn't already playing
-                if (!playerAudioManager.instance.salvagingAudioSource.isPlaying)
-                {
-                    playerAudioManager.instance.salvagingAudioSource.Play();
-                }
-
-                if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
-                {
-                    SalvageObject(hits[i].collider.gameObject);
-
-                    gameManager.instance.salvagingObjectReticle.fillAmount = 0;
-                    yield return new WaitForSeconds(0.01f);
-                }
-
-            }
-            // else what we are looking at is not salvageable, so stop our salvaging audio and set isSalvaging bool to false
-            else
-            {
-                playerAudioManager.instance.salvagingAudioSource.Stop();
-                isSalvaging = false;
-            }
-
-
-        }
-        yield return new WaitForSeconds(1f);
-        if (beam != null)
-        {
-            Destroy(beam, .01f);
-        }
-        //RaycastHit hit;
+        //RaycastHit[] hits;
+        //hits = Physics.SphereCastAll(shootPos.position, salvageSpread, shootPos.transform.forward, salvageRange, salvageLayer) ;
         //GameObject beam = null;
-
-        //if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
+        //for (int i = 0; i < hits.Length; i++)
         //{
+        //    //Do something with the hit information
 
         //    // if the object we clicked on contains the ISalvageable interface
-        //    ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
+        //    ISalvageable salvageable = hits[i].collider.GetComponent<ISalvageable>();
 
         //    // if the object is salvageable
-        //    if (salvageable != null && !hit.collider.CompareTag("Player"))
+        //    if (salvageable != null && !hits[i].collider.CompareTag("Player"))
         //    {
         //        isSalvaging = true;
-        //        beam = Instantiate(beamEffect, hit.point, Quaternion.identity);
-        //        Vector3 effectDir = hit.point - shootPos.transform.position;
+        //        beam = Instantiate(beamEffect, hits[i].point, Quaternion.identity);
+        //        Vector3 effectDir = hits[i].point - shootPos.transform.position;
         //        Quaternion rotation = Quaternion.LookRotation(effectDir);
         //        beam.transform.rotation = rotation;
-        //        gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
+        //        gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hits[i].collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
 
         //        // if our salvaging audio isn't already playing
         //        if (!playerAudioManager.instance.salvagingAudioSource.isPlaying)
@@ -739,7 +691,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         //        if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
         //        {
-        //            SalvageObject(hit.collider.gameObject);
+        //            SalvageObject(hits[i].collider.gameObject);
 
         //            gameManager.instance.salvagingObjectReticle.fillAmount = 0;
         //            yield return new WaitForSeconds(0.01f);
@@ -755,15 +707,63 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
 
         //}
-        //else
-        //{
-        //    isSalvaging = false;
-        //}
-        //yield return new WaitForSeconds(0.01f);
+        //yield return new WaitForSeconds(1f);
         //if (beam != null)
         //{
-        //    Destroy(beam, .1f);
+        //    Destroy(beam, .01f);
         //}
+        RaycastHit hit;
+        GameObject beam = null;
+
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, salvageRange))
+        {
+
+            // if the object we clicked on contains the ISalvageable interface
+            ISalvageable salvageable = hit.collider.GetComponent<ISalvageable>();
+
+            // if the object is salvageable
+            if (salvageable != null && !hit.collider.CompareTag("Player"))
+            {
+                isSalvaging = true;
+                beam = Instantiate(beamEffect, hit.point, Quaternion.identity);
+                Vector3 effectDir = hit.point - shootPos.transform.position;
+                Quaternion rotation = Quaternion.LookRotation(effectDir);
+                beam.transform.rotation = rotation;
+                gameManager.instance.salvagingObjectReticle.fillAmount += 1.0f / (salvageRate * hit.collider.GetComponent<salvageableObject>().salvageTime) * Time.deltaTime;
+
+                // if our salvaging audio isn't already playing
+                if (!playerAudioManager.instance.salvagingAudioSource.isPlaying)
+                {
+                    playerAudioManager.instance.salvagingAudioSource.Play();
+                }
+
+                if (gameManager.instance.salvagingObjectReticle.fillAmount == 1)
+                {
+                    SalvageObject(hit.collider.gameObject);
+
+                    gameManager.instance.salvagingObjectReticle.fillAmount = 0;
+                    yield return new WaitForSeconds(0.01f);
+                }
+
+            }
+            // else what we are looking at is not salvageable, so stop our salvaging audio and set isSalvaging bool to false
+            else
+            {
+                playerAudioManager.instance.salvagingAudioSource.Stop();
+                isSalvaging = false;
+            }
+
+
+        }
+        else
+        {
+            isSalvaging = false;
+        }
+        yield return new WaitForSeconds(0.01f);
+        if (beam != null)
+        {
+            Destroy(beam, .1f);
+        }
     }
 
 
