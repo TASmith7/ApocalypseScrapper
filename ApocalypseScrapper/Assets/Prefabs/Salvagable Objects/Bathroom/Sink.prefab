@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4473368191815014}
   - component: {fileID: 33247865188468748}
   - component: {fileID: 23578132252467684}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: _Sink_HandleRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4255348292514390}
   - component: {fileID: 33446943523276180}
   - component: {fileID: 23211403927611702}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: _Sink_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4408685249136634}
   - component: {fileID: 400650843395952637}
   - component: {fileID: 1213566624}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ MonoBehaviour:
   _dcElectronicComponents: 0
   _rollEC: 0
   _dcDataProcessingCore: 0
-  _rollDCP: 0
+  _rollDPC: 0
   _dcDenseMetalPlate: 65
   _rollDMP: 2
   _dcHighTensileAlloyPlate: 15
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 4135545172510108}
   - component: {fileID: 33255916064692952}
   - component: {fileID: 23165008294739714}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: _Sink_HandleLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}

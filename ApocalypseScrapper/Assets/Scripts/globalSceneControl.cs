@@ -17,6 +17,7 @@ public class globalSceneControl : MonoBehaviour
 
     public float _MSsalvageRate = 1;
     public int   _MSsalvageRange = 5;
+    public float _MSsalvageSpread = 0.001f;
 
     public float _MSthrustPower = 8;
     public float _MSfuelConsumptionRate = 0.5f;
@@ -47,6 +48,7 @@ public class globalSceneControl : MonoBehaviour
     
     public float salvageRate = 1;
     public int   salvageRange = 5;
+    public float salvageSpread = 0.01f;
 
     public float thrustPower = 8;
     public float fuelConsumptionRate = 0.5f;
@@ -94,7 +96,7 @@ public class globalSceneControl : MonoBehaviour
 
             salvageRate = _MSsalvageRate;
             salvageRange = _MSsalvageRange;
-
+            salvageSpread = _MSsalvageSpread;
             thrustPower = _MSthrustPower;
             fuelConsumptionRate = _MSfuelConsumptionRate;
             fuelRefillRate = _MSfuelRefillRate;

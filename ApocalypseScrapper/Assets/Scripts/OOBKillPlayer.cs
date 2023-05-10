@@ -6,6 +6,7 @@ public class OOBKillPlayer : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        gameManager.instance.PlayerDead();
+        if(other.CompareTag("Player"))
+            gameManager.instance.PlayerDead();
     }
 }

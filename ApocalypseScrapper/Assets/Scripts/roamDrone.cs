@@ -183,18 +183,20 @@ public class roamDrone : MonoBehaviour, IDamage
 
     IEnumerator Shoot()
     {
-
-        isShooting = true;
-        //anim.SetTrigger("Shoot");
-        Debug.Log("AI shot!");
-        // to reference a bullet
-        GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
-        // to give bullet a velocity
-        // this transform would need to be the camera (Camera.main.transform.forward) for player to shoot bullets
-        bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
-        droneAudSource.PlayOneShot(shotAudio);
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
+        if (!gameManager.instance.playerScript.isDead)
+        {
+            isShooting = true;
+            //anim.SetTrigger("Shoot");
+            //Debug.Log("AI shot!");
+            // to reference a bullet
+            GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
+            // to give bullet a velocity
+            // this transform would need to be the camera (Camera.main.transform.forward) for player to shoot bullets
+            bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+            droneAudSource.PlayOneShot(shotAudio);
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
     }
 
     // syntax to be able to use Trigger function in the Sphere Collider

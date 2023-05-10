@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 14975824351061726}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Shelf Variation 03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2252466033840399701}
   - component: {fileID: 4802521124306763433}
   - component: {fileID: 4793178844530076123}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Shelf Grate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 8266922469214438111}
   - component: {fileID: 3573427141395677288}
   - component: {fileID: 3703455091088932780}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LP_shelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,6 +352,10 @@ PrefabInstance:
     - target: {fileID: 439239393980121046, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
       propertyPath: m_Name
       value: SciFiBarrel (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 439239393980121046, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 439239393980121046, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -487,6 +491,10 @@ PrefabInstance:
       value: SciFi_Crate_Short (19)
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -579,26 +587,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678922298515975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -614,6 +622,10 @@ PrefabInstance:
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_Name
       value: SciFi_pallet (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -743,6 +755,10 @@ PrefabInstance:
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Long (59)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -886,6 +902,10 @@ PrefabInstance:
       value: SciFi_Crate_Short (49)
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -990,26 +1010,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678922464665806 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -1025,6 +1045,10 @@ PrefabInstance:
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Long (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1156,6 +1180,10 @@ PrefabInstance:
       value: SciFi_Crate_Long (11)
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -1285,6 +1313,10 @@ PrefabInstance:
       value: SciFi_Crate_Short (51)
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -1389,26 +1421,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678922014144947 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -1424,6 +1456,10 @@ PrefabInstance:
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Long (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1555,6 +1591,10 @@ PrefabInstance:
       value: SciFi_pallet (12)
       objectReference: {fileID: 0}
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -1682,6 +1722,10 @@ PrefabInstance:
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Long (57)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1825,6 +1869,10 @@ PrefabInstance:
       value: SciFi_Crate_Long (27)
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -1966,6 +2014,10 @@ PrefabInstance:
       value: SciFi_pallet (14)
       objectReference: {fileID: 0}
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -2093,6 +2145,10 @@ PrefabInstance:
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Long (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2236,6 +2292,10 @@ PrefabInstance:
       value: SciFi_Crate_Short (45)
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -2340,26 +2400,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678922826503120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -2375,6 +2435,10 @@ PrefabInstance:
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Long (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2506,6 +2570,10 @@ PrefabInstance:
       value: SciFi_Crate_Long (10)
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -2633,6 +2701,10 @@ PrefabInstance:
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Long (53)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2776,6 +2848,10 @@ PrefabInstance:
       value: SciFi_Crate_Long (54)
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -2917,6 +2993,10 @@ PrefabInstance:
       value: SciFi_Crate_Short (11)
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -3009,26 +3089,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678922521883648 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -3044,6 +3124,10 @@ PrefabInstance:
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Short (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3150,26 +3234,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678922507648833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -3185,6 +3269,10 @@ PrefabInstance:
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Short (56)
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3291,26 +3379,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678922498270034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -3326,6 +3414,10 @@ PrefabInstance:
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Short (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3420,26 +3512,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678922601130768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -3455,6 +3547,10 @@ PrefabInstance:
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_Name
       value: SciFi_pallet (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3586,6 +3682,10 @@ PrefabInstance:
       value: SciFi_Crate_Short (10)
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -3678,26 +3778,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678922680043099 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -3713,6 +3813,10 @@ PrefabInstance:
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Short (53)
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3819,26 +3923,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678921156473633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -3854,6 +3958,10 @@ PrefabInstance:
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Short (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3960,26 +4068,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678921136193664 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -3995,6 +4103,10 @@ PrefabInstance:
     - target: {fileID: 439239393980121046, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
       propertyPath: m_Name
       value: SciFiBarrel (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 439239393980121046, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 439239393980121046, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4130,6 +4242,10 @@ PrefabInstance:
       value: SciFi_pallet (15)
       objectReference: {fileID: 0}
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -4259,6 +4375,10 @@ PrefabInstance:
       value: SciFi_Crate_Short (13)
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -4351,26 +4471,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678921294837897 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -4386,6 +4506,10 @@ PrefabInstance:
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Short (47)
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4492,26 +4616,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678921268988226 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -4527,6 +4651,10 @@ PrefabInstance:
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_Name
       value: SciFi_pallet (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4658,6 +4786,10 @@ PrefabInstance:
       value: SciFi_Crate_Short (48)
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -4762,26 +4894,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678920895555301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -4797,6 +4929,10 @@ PrefabInstance:
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_Name
       value: SciFi_pallet (45)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4928,6 +5064,10 @@ PrefabInstance:
       value: SciFi_pallet (11)
       objectReference: {fileID: 0}
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -5057,6 +5197,10 @@ PrefabInstance:
       value: SciFi_Crate_Short (21)
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -5149,26 +5293,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678921002847674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -5184,6 +5328,10 @@ PrefabInstance:
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Long (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5315,6 +5463,10 @@ PrefabInstance:
       value: SciFi_pallet (44)
       objectReference: {fileID: 0}
     - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102363584748082429, guid: 528f6c40ba01da34f96f492e501fd927, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -5442,6 +5594,10 @@ PrefabInstance:
     - target: {fileID: 439239393980121046, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
       propertyPath: m_Name
       value: SciFiBarrel (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 439239393980121046, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 439239393980121046, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5577,6 +5733,10 @@ PrefabInstance:
       value: SciFi_Crate_Short (52)
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -5681,26 +5841,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678921745940137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -5716,6 +5876,10 @@ PrefabInstance:
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Long (56)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5859,6 +6023,10 @@ PrefabInstance:
       value: SciFi_Crate_Short (20)
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -5951,26 +6119,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678921832909336 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -5986,6 +6154,10 @@ PrefabInstance:
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Short (50)
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6092,26 +6264,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678921891249889 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -6127,6 +6299,10 @@ PrefabInstance:
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Short (55)
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6233,26 +6409,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678921442865757 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -6268,6 +6444,10 @@ PrefabInstance:
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Short (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6362,26 +6542,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678921516475165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -6397,6 +6577,10 @@ PrefabInstance:
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Long (55)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6540,6 +6724,10 @@ PrefabInstance:
       value: SciFi_Crate_Short (54)
       objectReference: {fileID: 0}
     - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 387364091424724237, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -6644,26 +6832,26 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcElectronicComponents: 24
+  _rollEC: 1
+  _dcDataProcessingCore: 23
+  _rollDPC: 1
+  _dcDenseMetalPlate: 20
+  _rollDMP: 1
+  _dcHighTensileAlloyPlate: 22
+  _rollHTAP: 1
+  _dcGlassPane: 21
+  _rollGP: 1
+  _dcHighPoweredLightDiode: 23
+  _rollHPLD: 1
+  _dcElectricMotor: 20
+  _rollEM: 1
+  _dcCeramicPlate: 20
+  _rollCP: 1
+  _dcGoldAlloy: 16
+  _rollGA: 1
+  _dcValuableLoot: 18
+  _rollVL: 1
 --- !u!4 &9042678921652995001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
@@ -6679,6 +6867,10 @@ PrefabInstance:
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Name
       value: SciFi_Crate_Long (58)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_StaticEditorFlags

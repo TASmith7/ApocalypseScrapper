@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 4969002113540464}
   - component: {fileID: 33242112850331660}
   - component: {fileID: 23225576292160158}
-  - component: {fileID: 5810071540105816929}
-  - component: {fileID: 4930982025095436438}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GasTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,46 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5810071540105816929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1160718755220558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  salvageValue: 800
-  salvageTime: 0
-  _dcBioMass: 0
-  _dcIntactOrgan: 0
-  _dcElectronicComponents: 1.8
-  _dcDataProcessingCore: 0.52
-  _dcDenseMetalPlate: 4.12
-  _dcHighTensileAlloyPlate: 3.08
-  _dcGlassPane: 0
-  _dcHighPoweredLightDiode: 2.37
-  _dcElectricMotor: 3.31
-  _dcCeramicPlate: 0
-  _dcGoldAlloy: 0
-  _dcValuableLoot: 0
---- !u!64 &4930982025095436438
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1160718755220558}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 355e7b79ef5301043b6408f82ebfac05, type: 3}
 --- !u!1 &1649821477338394
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +96,7 @@ GameObject:
   - component: {fileID: 4151723095152508}
   - component: {fileID: 33513329980124296}
   - component: {fileID: 64476112266042748}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
