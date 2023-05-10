@@ -589,6 +589,11 @@ public class gameManager : MonoBehaviour
         if (voiceoversToggle.isOn)
         {
             levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOPlayerDead);
+
+            if(subtitlesToggle.isOn)
+            {
+                StartCoroutine(StartSubtitles(subtitleManager.instance.playerDeathVoiceLines));
+            }
         }
 
         StartCoroutine(PlayerDeadMenuDelay());
@@ -1304,7 +1309,7 @@ public class gameManager : MonoBehaviour
 
     public IEnumerator StartSubtitles(subtitleManager.VoiceLine[] subtitleSelection)
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.6f);
 
         subtitleParentObject.SetActive(true);
 

@@ -4909,7 +4909,7 @@ RectTransform:
   m_Children:
   - {fileID: 2037846344}
   m_Father: {fileID: 2517184957286297176}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9094,7 +9094,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2517184957286297176}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20601,6 +20601,15 @@ MonoBehaviour:
     time: 1.5
   - text: 'Wahler out. '
     time: 1.6
+  playerDeathVoiceLines:
+  - text: Youngblood?
+    time: 0.9
+  - text: Youngblood?!
+    time: 1.1
+  - text: 'God dammit. We''re losing him.  '
+    time: 1.9
+  - text: Get the evac ready!
+    time: 2
 --- !u!1 &1918848377
 GameObject:
   m_ObjectHideFlags: 0
@@ -29315,8 +29324,8 @@ RectTransform:
   - {fileID: 2517184956520167944}
   - {fileID: 1355839617}
   - {fileID: 1905437562}
-  - {fileID: 536241392}
   - {fileID: 921315167}
+  - {fileID: 536241392}
   - {fileID: 2517184956129054496}
   - {fileID: 2517184956191094717}
   - {fileID: 2517184957782531006}
