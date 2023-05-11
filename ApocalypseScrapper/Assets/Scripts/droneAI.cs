@@ -14,7 +14,7 @@ public class droneAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] SphereCollider droneDetection;
     [SerializeField] AnimationClip wakeAnimation;
-
+    [SerializeField] playerController playerScript;
     [Header("----- Audio -----")]
     [SerializeField] AudioSource droneAudSource;
     [SerializeField] AudioClip hoverAudio;
@@ -191,7 +191,7 @@ public class droneAI : MonoBehaviour, IDamage
 
     IEnumerator Shoot()
     {
-        if (!gameManager.instance.playerScript.isDead)
+        if (!playerScript.isDead)
         {
             isShooting = true;
             //anim.SetTrigger("Shoot");

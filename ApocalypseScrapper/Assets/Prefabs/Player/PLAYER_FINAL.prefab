@@ -269,10 +269,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.4, y: 0.4}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1314660211
@@ -318,7 +318,6 @@ GameObject:
   - component: {fileID: 661115328687326001}
   - component: {fileID: 661115328687326002}
   - component: {fileID: 661115328687326000}
-  - component: {fileID: 661115328687326015}
   - component: {fileID: 661115328687326014}
   - component: {fileID: 2041960472}
   - component: {fileID: 2041960466}
@@ -411,27 +410,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 584761fab006d6d42b4d0d8c56a51241, type: 3}
---- !u!114 &661115328687326015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661115328687326004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afad3131b87bf414a8e75ae14ddaa8b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smooth: 8
-  swayMultiplier: 4
-  gunAnimator: {fileID: 661115328687326014}
-  sprintBobSpeed: 2
-  walkBobSpeed: 1
-  crouchBobSpeed: 0.65
-  playerCont: {fileID: 0}
-  player: {fileID: 0}
-  playerScript: {fileID: 0}
 --- !u!95 &661115328687326014
 Animator:
   serializedVersion: 5
@@ -689,6 +667,7 @@ GameObject:
   - component: {fileID: 5333339247771160565}
   - component: {fileID: 5333339247771160564}
   - component: {fileID: 5333339247771160563}
+  - component: {fileID: 4443499076703194895}
   m_Layer: 3
   m_Name: PLAYER_FINAL
   m_TagString: Player
@@ -891,4 +870,18 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!136 &4443499076703194895
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5333339247780691351}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.25
+  m_Height: 0.9
+  m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}

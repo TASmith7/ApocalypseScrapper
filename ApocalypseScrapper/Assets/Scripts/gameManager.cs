@@ -39,7 +39,7 @@ public class gameManager : MonoBehaviour
     public GameObject ControlsSplashFromOptions;
     public GameObject ApocSplash;
     public GameObject checkpointMenu;
-    public GameObject storeMenu;
+    
     public GameObject craftingMenu;
     public GameObject playerStatsScreen;
     public GameObject optionsMenu;
@@ -104,8 +104,8 @@ public class gameManager : MonoBehaviour
     public GameObject DeclinedPurchasePopUp;
 
     public int spent;
-    [Header("----- Store Objects -----")]
-    public TextMeshProUGUI FloorAvailDataStore;
+    
+   
     //public TextMeshProUGUI LevelScrapCollectedStore;
     //public TextMeshProUGUI SpentScrapStore;
     //public GameObject DeclinedPurchasePopUpStore;
@@ -221,14 +221,14 @@ public class gameManager : MonoBehaviour
 
         // setting our current scene
         currentScene = SceneManager.GetActiveScene();
-
         if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
             StartCoroutine(SplashScreen());
         }
 
+
         player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<playerController>();
+        //playerScript = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
 
         timeScaleOriginal = Time.timeScale;
@@ -251,9 +251,11 @@ public class gameManager : MonoBehaviour
             verticalSens.value = 300;
             Debug.Log("Player prefs sensitivity keys do not exist");
         }
-
-        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
-        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
+        
+        
+           // playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
+           // playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
+        
 
         // setting the sensitivity labels equal the sliders current values
         horSensValue.text = horizontalSens.value.ToString();
@@ -333,6 +335,7 @@ public class gameManager : MonoBehaviour
         {
             endGameBeam.SetActive(false);
         }
+        
     }
 
     IEnumerator SplashScreen()
@@ -387,15 +390,12 @@ public class gameManager : MonoBehaviour
         floorScoreLabel.SetActive(true);
     }
 
-    private void Start()
-    {
-
-    }
+   
 
     // Update is called once per frame
     void Update()
     {
-        UpdateInventory();
+                     
 
 
 
@@ -455,6 +455,19 @@ public class gameManager : MonoBehaviour
             horSensValue.text = horizontalSens.value.ToString();
             vertSensValue.text = verticalSens.value.ToString();
             musicVolumeValue.text = musicVolume.value.ToString();
+        } 
+        if (Time.fixedTime - timeOfLastMessage >= timeToClearGamelog)
+        {
+            gamelogMain.SetActive(false);
+            for (int i = 0; i < gamelog.Count; i++)
+            {
+                Destroy(gamelog[i].textObject.gameObject);
+            }
+            gamelog.Clear();
+        }
+        if (Inventory.Instance)
+        {
+            UpdateInventory();
         }
         if (Input.GetButtonDown("Tab") && !craftingOpen && activeMenu == null)
         {
@@ -482,15 +495,7 @@ public class gameManager : MonoBehaviour
             TurnOffInventoryUI();
         }
 
-        if (Time.fixedTime - timeOfLastMessage >= timeToClearGamelog)
-        {
-            gamelogMain.SetActive(false);
-            for (int i = 0; i < gamelog.Count; i++)
-            {
-                Destroy(gamelog[i].textObject.gameObject);
-            }
-            gamelog.Clear();
-        }
+       
 
     }
 
@@ -1367,14 +1372,14 @@ public class gameManager : MonoBehaviour
     public void UpdateInventory()
     {
         LevelScrapCollected.text = amtSalvaged.ToString();
-        if (gameManager.instance.playerScript.salvDetector)
-        {
-            FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
-        }
-        else
-        {
-            FloorAvailData.text = "Need Salv Detector";
-        }
+        //if (gameManager.instance.playerScript.salvDetector)
+        //{
+        //    FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
+        //}
+        //else
+        //{
+        //    FloorAvailData.text = "Need Salv Detector";
+        //}
         SpentScrap.text = spent.ToString();
         BioMassAmt.text = Inventory.Instance._iBioMass.ToString();
         IntactOrganAmt.text = Inventory.Instance._iIntactOrgan.ToString();

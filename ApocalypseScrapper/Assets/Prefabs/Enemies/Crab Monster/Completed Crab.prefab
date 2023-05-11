@@ -78,10 +78,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.4, y: 0.4}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3724512291067728384
@@ -1609,6 +1609,7 @@ MonoBehaviour:
   crabWakeColl: {fileID: 3666913497194558675}
   crabCapsuleCollider: {fileID: 1790242471}
   drop: {fileID: 3725011360167264616, guid: 3b7fcfc2c9257244ea2d2f0b413852bc, type: 3}
+  playerScript: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
   crabAudioSource: {fileID: 93931830}
   biteAudioClip:
   - {fileID: 8300000, guid: 6f28c2014d56cc146a33e6d943fc225d, type: 3}

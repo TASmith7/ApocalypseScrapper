@@ -10,7 +10,7 @@ public class TurretAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos2;
     [SerializeField] SphereCollider turretCollWake;
     [SerializeField] GameObject turretHeadDestroyed;
-
+    [SerializeField] playerController playerScript;
     [Header("----- Audio -----")]
     [SerializeField] AudioSource turretAudioSource;
     [SerializeField] AudioClip shotAudio;
@@ -68,7 +68,7 @@ public class TurretAI : MonoBehaviour, IDamage
     bool CanSeePlayer()
     {
         // this tells us what direction our player is in relative to our enemy
-        playerDirection = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y+1.6f - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
+        playerDirection = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
 
         // this calculates the angle between where our player is and where we (the enemy) are looking
         angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
@@ -96,7 +96,7 @@ public class TurretAI : MonoBehaviour, IDamage
                     FacePlayer();
                 
 
-                if (!isShooting && !gameManager.instance.playerScript.isDead)
+                if (!isShooting && !playerScript.isDead)
                 {
                     // if the player is within the sight range, which we check in update, and we are not already shooting (just so we don't shoot multiple times at once), start shooting
                     StartCoroutine(Shoot());

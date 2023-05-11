@@ -16,6 +16,7 @@ public class crabAI : MonoBehaviour, IDamage
     [SerializeField] SphereCollider crabWakeColl;
     [SerializeField] CapsuleCollider crabCapsuleCollider;
     public GameObject drop;
+    [SerializeField] playerController playerScript;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource crabAudioSource;
@@ -119,7 +120,7 @@ public class crabAI : MonoBehaviour, IDamage
     }
     IEnumerator shoot()
     {
-        if (!gameManager.instance.playerScript.isDead)
+        if (!playerScript.isDead)
         {
             isShooting = true;
             anim.SetTrigger("Shoot");

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class bulletPlayer : MonoBehaviour
@@ -7,15 +5,16 @@ public class bulletPlayer : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] float timer;
     [SerializeField] TrailRenderer trailRenderer;
+    [SerializeField] playerController playerScript;
 
     void Start()
     {
         //pulling damage from playerController, which should have proper damge w/ upgrades
-        damage = gameManager.instance.player.GetComponent<playerController>().shootDamage;
+       
         // destroying our bullet after a specified amount of time
         if(damage < 3)
         {
-
+            damage = playerScript.shootDamage;
             trailRenderer.startColor = Color.white;
             trailRenderer.endColor = Color.white;
 

@@ -14,7 +14,7 @@ public class BossAI : MonoBehaviour, IDamage
     [SerializeField] Transform bitePos;
     [SerializeField] Transform spitPos;
     [SerializeField] SphereCollider crabWakeColl;
-
+    [SerializeField] playerController playerScript;
     [SerializeField] GameObject[] crabSpawners;
     [SerializeField] GameObject[] droneSpawners;
 
@@ -148,7 +148,7 @@ public class BossAI : MonoBehaviour, IDamage
     }
     IEnumerator Bite()
     {
-        if (!gameManager.instance.playerScript.isDead)
+        if (playerScript.isDead)
         {
             anim.SetTrigger("Shoot");
             isBiting = true;
@@ -161,7 +161,7 @@ public class BossAI : MonoBehaviour, IDamage
     }
     IEnumerator Spit()
     {
-        if (!gameManager.instance.playerScript.isDead)
+        if (!playerScript.isDead)
         {
             isSpitting = true;
             GameObject spitClone = Instantiate(spit, spitPos.position, spit.transform.rotation);
@@ -271,7 +271,7 @@ public class BossAI : MonoBehaviour, IDamage
             }
 
             gameManager.instance.endGameBeam.SetActive(true);
-            gameManager.instance.playerScript.hazardPay += 1500;
+            playerScript.hazardPay += 1500;
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
 

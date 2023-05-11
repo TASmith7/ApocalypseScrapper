@@ -852,6 +852,7 @@ MonoBehaviour:
   shootPos: {fileID: 1309011078615383061}
   droneDetection: {fileID: 1309011078159000692}
   wakeAnimation: {fileID: -4209235661617177664, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
+  playerScript: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
   droneAudSource: {fileID: 1961707543}
   hoverAudio: {fileID: 8300000, guid: 5f9cdcb808278b2408f34ae604d40b87, type: 3}
   shotAudio: {fileID: 8300000, guid: eeba9573db2295c4ba0a25d00c73a95d, type: 3}
@@ -1095,10 +1096,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.4, y: 0.4}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8183655271938866962
