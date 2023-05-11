@@ -65025,70 +65025,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorFailVoiceLines.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorPassVoiceLines.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorFailVoiceLines.Array.data[0].text
-      value: 'Starry hells, Youngblood. '
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorFailVoiceLines.Array.data[0].time
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorFailVoiceLines.Array.data[1].text
-      value: You do realize the entire point of this expedition
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorFailVoiceLines.Array.data[1].time
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorFailVoiceLines.Array.data[2].text
-      value: is to gather scrap, right?
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorFailVoiceLines.Array.data[2].time
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorFailVoiceLines.Array.data[3].text
-      value: I just can't authorize any bonuses with that piss poor performance.
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorFailVoiceLines.Array.data[3].time
-      value: 3.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorFailVoiceLines.Array.data[4].text
-      value: 'Do better on the next floor. '
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorFailVoiceLines.Array.data[4].time
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorPassVoiceLines.Array.data[0].text
-      value: Congrats, Youngblood. You hauled enough off that floor
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorPassVoiceLines.Array.data[0].time
-      value: 2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorPassVoiceLines.Array.data[1].text
-      value: 'to earn yourself some bonus scrap. '
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905437563, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: floorPassVoiceLines.Array.data[1].time
-      value: 2.2
-      objectReference: {fileID: 0}
     - target: {fileID: 2517184957286297176, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -65176,38 +65112,6 @@ PrefabInstance:
     - target: {fileID: 2517184957286297180, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 3749309142800448815, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3749309142800448815, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3749309142800448815, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3749309142800448815, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4094506508132002526, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4094506508132002526, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4700823759936096989, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4700823759936096989, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6457653928648627063, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
       propertyPath: m_AnchorMax.x

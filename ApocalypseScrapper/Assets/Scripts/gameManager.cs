@@ -810,7 +810,7 @@ public class gameManager : MonoBehaviour
 
     //                if (subtitlesToggle.isOn)
     //                {
-    //                    StartCoroutine(DelayForStoreSubtitles());
+    //                    StartCoroutine(DelayForStoreSubtitlesFailFloor());
     //                }
 
     //                next.PlayDelayed(13);
@@ -825,7 +825,7 @@ public class gameManager : MonoBehaviour
     //            {
     //                if (subtitlesToggle.isOn)
     //                {
-    //                    StartCoroutine(DelayForStoreSubtitles());
+    //                    StartCoroutine(DelayForStoreSubtitlesFailFloor());
     //                }
 
     //                next.PlayDelayed(13);
@@ -838,7 +838,7 @@ public class gameManager : MonoBehaviour
     //        {
     //            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
 
-    //            if(subtitlesToggle.isOn)
+    //            if (subtitlesToggle.isOn)
     //            {
     //                StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.floorPassVoiceLines));
     //            }
@@ -850,6 +850,11 @@ public class gameManager : MonoBehaviour
     //            next.clip = levelAudioManager.instance.VOStoreTutorial;
     //            if (voiceoversToggle.isOn)
     //            {
+    //                if (subtitlesToggle.isOn)
+    //                {
+    //                    StartCoroutine(DelayForStoreSubtitlesPassFloor());
+    //                }
+
     //                next.PlayDelayed(6);
     //            }
     //        }
@@ -859,15 +864,32 @@ public class gameManager : MonoBehaviour
     //            next.clip = levelAudioManager.instance.VOBonusSpendIt;
     //            if (voiceoversToggle.isOn)
     //            {
+    //                if (subtitlesToggle.isOn)
+    //                {
+    //                    StartCoroutine(DelayForStoreSubtitlesPassFloor());
+    //                }
+
     //                next.PlayDelayed(6);
     //            }
     //        }
     //    }
     //}
 
-    IEnumerator DelayForStoreSubtitles()
+    IEnumerator DelayForStoreSubtitlesFailFloor()
     {
         yield return new WaitForSecondsRealtime(13);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+        {
+            StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.storeInfoVoiceLines));
+        }
+        else
+        {
+            StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.bonusSpendItVoiceLines));
+        }
+    }
+    IEnumerator DelayForStoreSubtitlesPassFloor()
+    {
+        yield return new WaitForSecondsRealtime(6);
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
         {
             StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.storeInfoVoiceLines));
