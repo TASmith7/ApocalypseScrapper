@@ -168,10 +168,13 @@ public class levelAudioManager : MonoBehaviour
         musicAudioSource.Pause();
         whiteNoiseAudioSource.Pause();
 
-        if(elevatorAudioSource.isPlaying)
+        if(elevatorAudioSource != null)
         {
-            elevatorWasPlaying = true;
-            elevatorAudioSource.Pause();
+            if(elevatorAudioSource.isPlaying)
+            {
+                elevatorWasPlaying = true;
+                elevatorAudioSource.Pause();
+            }
         }
     }
 
