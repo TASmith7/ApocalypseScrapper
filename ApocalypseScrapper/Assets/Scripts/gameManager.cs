@@ -504,7 +504,7 @@ public class gameManager : MonoBehaviour
             introVOPlaying = false;
             levelAudioManager.instance.elevatorAudioSource.Stop();
             levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorStop);
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(6);
             eleDoor.SetActive(false);
         }
     }
