@@ -840,7 +840,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         }
         isShieldRegen = false;
     }
-
+    
     void PlayerUIUpdate()
     {
         // updating the players health bar

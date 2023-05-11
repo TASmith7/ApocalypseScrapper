@@ -128,10 +128,11 @@ public class TurretAI : MonoBehaviour, IDamage
         turretAudioSource.PlayOneShot(shotAudio, shotAudioVolume);
 
         // this will set the bullets velocity via the rigidbody component of the game object
-
-        bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
-            yield return new WaitForSeconds(barrelSwitchSpeed/10);
-            bulletClone2.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+        if (bulletClone)
+            bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+        yield return new WaitForSeconds(barrelSwitchSpeed/10);
+           if(bulletClone2)
+                bulletClone2.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
 
         turretAudioSource.PlayOneShot(shotAudio, shotAudioVolume);
 
