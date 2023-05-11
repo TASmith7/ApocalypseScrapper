@@ -329,7 +329,7 @@ public class BossAI : MonoBehaviour, IDamage
 
         for (int i = 0; i < 5; i++)
         {
-            GameObject droneClone = Instantiate(drone, droneSpawners[i].transform.position, transform.rotation);
+            //GameObject droneClone = Instantiate(drone, droneSpawners[i].transform.position, transform.rotation);
         }
             HP += (HP / 4);
             
@@ -337,13 +337,13 @@ public class BossAI : MonoBehaviour, IDamage
     public void Wave3()
     {
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
         {
             GameObject crabClone = Instantiate(crab, crabSpawners[i].transform.position, transform.rotation);
         }
         for (int i = 0; i < 5; i++)
         {
-            GameObject droneClone = Instantiate(drone, droneSpawners[i].transform.position, transform.rotation);
+            //GameObject droneClone = Instantiate(drone, droneSpawners[i].transform.position, transform.rotation);
         }
         
 
