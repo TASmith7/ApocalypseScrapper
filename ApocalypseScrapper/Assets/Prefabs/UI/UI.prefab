@@ -20685,6 +20685,36 @@ MonoBehaviour:
     time: 2.8
   - text: 'Wahler out. '
     time: 1.5
+  storeInfoVoiceLines:
+  - text: You can use your bonus scrap of the scrap converter here
+    time: 2.3
+  - text: to make yourself some upgrades that should last you until extraction.
+    time: 3.5
+  - text: Any bonus scrap you save will be added to your cut at the end
+    time: 3.1
+  - text: 'so you can buy more permanent upgrades back at the Hub. '
+    time: 2.8
+  bonusSpendItVoiceLines:
+  - text: 'All right, Youngblood, another chance to take a breather  '
+    time: 2.7
+  - text: 'and nab some upgrades with your bonus scrap. '
+    time: 2
+  floorPassVoiceLines:
+  - text: Congrats, Youngblood. You hauled enough off that floor
+    time: 2.8
+  - text: 'to earn yourself some bonus scrap. '
+    time: 2.2
+  floorFailVoiceLines:
+  - text: 'Starry hells, Youngblood. '
+    time: 2.2
+  - text: You do realize the entire point of this expedition
+    time: 2.2
+  - text: is to gather scrap, right?
+    time: 2
+  - text: I just can't authorize any bonuses with that piss poor performance.
+    time: 3.8
+  - text: 'Do better on the next floor. '
+    time: 1.5
 --- !u!1 &1918848377
 GameObject:
   m_ObjectHideFlags: 0
@@ -28455,6 +28485,9 @@ MonoBehaviour:
   subtitleParentObject: {fileID: 536241391}
   subtitleText: {fileID: 2037846345}
   currentVoiceLine: []
+  introVOPlaying: 0
+  skipped: 0
+  eleDoor: {fileID: 0}
   isPaused: 0
   timeScaleOriginal: 0
   currentScene:

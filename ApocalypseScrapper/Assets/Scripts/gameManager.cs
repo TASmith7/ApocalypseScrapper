@@ -1,3 +1,4 @@
+using OpenCover.Framework.Model;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -187,6 +188,11 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI subtitleText;
     public subtitleManager.VoiceLine[] currentVoiceLine;
 
+    [Header("----- Intro Script Vars -----")]
+    public bool introVOPlaying;
+    public bool skipped;
+    public GameObject eleDoor;
+
     //public GameObject salvagingObjectParent;
 
 
@@ -347,12 +353,18 @@ public class gameManager : MonoBehaviour
         {
             // playing intro voice over
             levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
+            introVOPlaying = true;
 
             // if our subtitle toggle is on
             if (subtitlesToggle.isOn)
             {
                 StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.lvl1IntroVoiceLines));
             }
+        }
+        if (!levelAudioManager.instance.elevatorAudioSource.isPlaying)
+        {
+            levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorUp);
+            StartCoroutine(StopElevatorWait());
         }
         RSGSplash.SetActive(false);
         activeMenu = ApocSplash;
@@ -423,6 +435,16 @@ public class gameManager : MonoBehaviour
         // if we press T while listening to a VO, stop the VO
         if (Input.GetButtonDown("Skip") && levelAudioManager.instance.voiceOverAudioSource.isPlaying)
         {
+            if (introVOPlaying == true)
+            {
+                Debug.Log("Entered skip to elvator stop");
+                introVOPlaying = false;
+                skipped = true;
+                levelAudioManager.instance.elevatorAudioSource.Stop();
+                levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorStop);
+                eleDoor.SetActive(false);
+
+            }
             levelAudioManager.instance.voiceOverAudioSource.Stop();
             subtitleParentObject.SetActive(false);
         }
@@ -470,6 +492,21 @@ public class gameManager : MonoBehaviour
             gamelog.Clear();
         }
 
+    }
+
+    IEnumerator StopElevatorWait()
+    {
+        yield return new WaitForSeconds(levelAudioManager.instance.VOIntro.length);
+
+        if (!skipped)
+        {
+            Debug.Log("Entering 'not skipped' elevator block removal");
+            introVOPlaying = false;
+            levelAudioManager.instance.elevatorAudioSource.Stop();
+            levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorStop);
+            yield return new WaitForSeconds(5);
+            eleDoor.SetActive(false);
+        }
     }
     public void CueCrafting()
     {
@@ -754,9 +791,14 @@ public class gameManager : MonoBehaviour
 
     //    if (rank == 'F')
     //    {
-    //        if(voiceoversToggle.isOn)
+    //        if (voiceoversToggle.isOn)
     //        {
     //            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
+
+    //            if (subtitlesToggle.isOn)
+    //            {
+    //                StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.floorFailVoiceLines));
+    //            }
     //        }
 
     //        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
@@ -765,6 +807,12 @@ public class gameManager : MonoBehaviour
     //            next.clip = levelAudioManager.instance.VOStoreTutorial;
     //            if (voiceoversToggle.isOn)
     //            {
+
+    //                if (subtitlesToggle.isOn)
+    //                {
+    //                    StartCoroutine(DelayForStoreSubtitlesFailFloor());
+    //                }
+
     //                next.PlayDelayed(13);
     //            }
     //        }
@@ -775,6 +823,11 @@ public class gameManager : MonoBehaviour
 
     //            if (voiceoversToggle.isOn)
     //            {
+    //                if (subtitlesToggle.isOn)
+    //                {
+    //                    StartCoroutine(DelayForStoreSubtitlesFailFloor());
+    //                }
+
     //                next.PlayDelayed(13);
     //            }
     //        }
@@ -784,6 +837,11 @@ public class gameManager : MonoBehaviour
     //        if (voiceoversToggle.isOn)
     //        {
     //            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
+
+    //            if (subtitlesToggle.isOn)
+    //            {
+    //                StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.floorPassVoiceLines));
+    //            }
     //        }
 
     //        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
@@ -792,6 +850,11 @@ public class gameManager : MonoBehaviour
     //            next.clip = levelAudioManager.instance.VOStoreTutorial;
     //            if (voiceoversToggle.isOn)
     //            {
+    //                if (subtitlesToggle.isOn)
+    //                {
+    //                    StartCoroutine(DelayForStoreSubtitlesPassFloor());
+    //                }
+
     //                next.PlayDelayed(6);
     //            }
     //        }
@@ -801,11 +864,42 @@ public class gameManager : MonoBehaviour
     //            next.clip = levelAudioManager.instance.VOBonusSpendIt;
     //            if (voiceoversToggle.isOn)
     //            {
+    //                if (subtitlesToggle.isOn)
+    //                {
+    //                    StartCoroutine(DelayForStoreSubtitlesPassFloor());
+    //                }
+
     //                next.PlayDelayed(6);
     //            }
     //        }
     //    }
     //}
+
+    IEnumerator DelayForStoreSubtitlesFailFloor()
+    {
+        yield return new WaitForSecondsRealtime(13);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+        {
+            StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.storeInfoVoiceLines));
+        }
+        else
+        {
+            StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.bonusSpendItVoiceLines));
+        }
+    }
+    IEnumerator DelayForStoreSubtitlesPassFloor()
+    {
+        yield return new WaitForSecondsRealtime(6);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+        {
+            StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.storeInfoVoiceLines));
+        }
+        else
+        {
+            StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.bonusSpendItVoiceLines));
+        }
+    }
+
     public void CloseCrafting()
     {
         // levelAudioManager.instance.voiceOverAudioSource.Stop();
@@ -867,11 +961,12 @@ public class gameManager : MonoBehaviour
 
     public void NextLevel()
     {
-
+        PauseState();
         instance.playerScript.SavePlayerStats();
         Inventory.Instance.InvSnapshot();
         if (SceneManager.GetActiveScene().name == "Lvl 1")
         {
+            //start coroutine to load next level and show loading screen for 5 seconds
             StartCoroutine(Lvl2LoadScreen());
 
         }
@@ -882,7 +977,7 @@ public class gameManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == ("Lvl 3"))
         {
-            StartCoroutine(Lvl4LoadScreen());
+            StartCoroutine(BossLvlLoadScreen());
         }
         else if (SceneManager.GetActiveScene().name == "Boss Lvl")
         {
@@ -923,55 +1018,34 @@ public class gameManager : MonoBehaviour
 
     IEnumerator Lvl2LoadScreen()
     {
-        Time.timeScale = gameManager.instance.timeScaleOriginal;
+        
         lvl2.SetActive(true);
         Debug.Log("WFS Started");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 1 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 2 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 3 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 4 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 5 Done");
+        yield return new WaitForSecondsRealtime(5);
+        
+        Debug.Log("WFS Done");
         lvl2.SetActive(false);
         SceneManager.LoadScene("Lvl 2");
     }
     IEnumerator Lvl3LoadScreen()
     {
-        Time.timeScale = gameManager.instance.timeScaleOriginal;
+        
         lvl3.SetActive(true);
         Debug.Log("WFS Started");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 1 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 2 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 3 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 4 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 5 Done");
+        yield return new WaitForSecondsRealtime(5);
+        
+        Debug.Log("WFS Done");
 
         lvl3.SetActive(false);
         SceneManager.LoadScene("Lvl 3");
     }
-    IEnumerator Lvl4LoadScreen()
+    IEnumerator BossLvlLoadScreen()
     {
-        Time.timeScale = gameManager.instance.timeScaleOriginal;
+        
         lvl4.SetActive(true);
         Debug.Log("WFS Started");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 1 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 2 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 3 Done");
-        yield return new WaitForSeconds(1);
-        Debug.Log("WFS 4 Done");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(5);
+        
         Debug.Log("WFS 5 Done");
         lvl4.SetActive(false);
         SceneManager.LoadScene("Boss Lvl");

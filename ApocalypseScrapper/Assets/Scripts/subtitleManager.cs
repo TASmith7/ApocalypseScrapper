@@ -33,5 +33,9 @@ public class subtitleManager : MonoBehaviour
     public VoiceLine[] finishWithCRankVoiceLines;
     public VoiceLine[] finishWithDRankVoiceLines;
     public VoiceLine[] finishWithFRankVoiceLines;
+    public VoiceLine[] storeInfoVoiceLines;
+    public VoiceLine[] bonusSpendItVoiceLines;
+    public VoiceLine[] floorPassVoiceLines;
+    public VoiceLine[] floorFailVoiceLines;
 
 }

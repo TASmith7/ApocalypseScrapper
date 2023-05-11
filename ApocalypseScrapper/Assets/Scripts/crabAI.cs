@@ -13,8 +13,10 @@ public class crabAI : MonoBehaviour, IDamage
     [SerializeField] Animator anim;
     [SerializeField] Transform headPos;
     [SerializeField] Transform shootPos;
+    [SerializeField] Transform deathGoopPos;
     [SerializeField] SphereCollider crabWakeColl;
     [SerializeField] CapsuleCollider crabCapsuleCollider;
+    public GameObject drop;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource crabAudioSource;
@@ -121,10 +123,11 @@ public class crabAI : MonoBehaviour, IDamage
         if (!gameManager.instance.playerScript.isDead)
         {
             isShooting = true;
+            anim.SetTrigger("Shoot");
             GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
             crabAudioSource.PlayOneShot(biteAudioClip[UnityEngine.Random.Range(0, biteAudioClip.Length)]);
             bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
-            anim.SetTrigger("Shoot");
+            
             yield return new WaitForSeconds(shootRate);
             isShooting = false;
         }
@@ -194,22 +197,27 @@ public class crabAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+
             StopAllCoroutines();
             anim.SetBool("Dead", true);
             // now blood drop effect
             if (deathGoop)
             {
-                Instantiate(deathGoop, transform.position, deathGoop.transform.rotation);
+                Instantiate(deathGoop,deathGoopPos.transform.position,transform.rotation);
             }
-
+            if (drop)
+            {
+                Instantiate(drop, transform.position, transform.rotation);
+                
+            }
             // cue death audio
-            if(agent.isActiveAndEnabled)
+            if (agent.isActiveAndEnabled)
             {
                 crabAudioSource.PlayOneShot(dieAudioClip, 0.4f);
             }
             agent.enabled = false;
             crabCapsuleCollider.enabled = false;
-            
+            Destroy(gameObject);
             
             
 
