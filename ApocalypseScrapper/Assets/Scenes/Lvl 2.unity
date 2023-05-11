@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.568
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2089830947}
-  m_IndirectSpecularColor: {r: 0.095573545, g: 0.11206844, b: 0.11172629, a: 0.568}
+  m_IndirectSpecularColor: {r: 0.19385804, g: 0.18660648, b: 0.1638972, a: 0.568}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -65112,6 +65112,38 @@ PrefabInstance:
     - target: {fileID: 2517184957286297180, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749309142800448815, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749309142800448815, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749309142800448815, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749309142800448815, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4094506508132002526, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4094506508132002526, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4700823759936096989, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4700823759936096989, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6457653928648627063, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
       propertyPath: m_AnchorMax.x

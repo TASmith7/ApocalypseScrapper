@@ -577,7 +577,11 @@ public class gameManager : MonoBehaviour
         Time.timeScale = timeScaleOriginal;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        activeMenu.SetActive(false);
+        if(activeMenu != null)
+        {
+            activeMenu.SetActive(false);
+        }
+
         activeMenu = null;
 
         if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
