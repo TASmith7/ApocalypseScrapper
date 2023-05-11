@@ -580,7 +580,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = timeScaleOriginal;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        if (activeMenu != null)
+         if(activeMenu != null)
         {
             activeMenu.SetActive(false);
         }
