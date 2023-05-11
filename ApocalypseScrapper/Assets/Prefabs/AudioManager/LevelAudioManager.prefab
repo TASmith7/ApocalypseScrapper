@@ -48,6 +48,7 @@ MonoBehaviour:
   whiteNoiseAudioSource: {fileID: 0}
   pauseMenuAudioSource: {fileID: 0}
   voiceOverAudioSource: {fileID: 0}
+  elevatorAudioSource: {fileID: 0}
   lvl1MusicAudio: {fileID: 8300000, guid: 5faabcb7a4a8c1a4793f9341bb92bb33, type: 3}
   lvl2MusicAudio: {fileID: 8300000, guid: 951d37848ea19bd46ae0efa5e5c07e53, type: 3}
   lvl3MusicAudio: {fileID: 8300000, guid: d0605117c14c74e45978db571085528e, type: 3}
@@ -71,8 +72,11 @@ MonoBehaviour:
   VONextLevel: {fileID: 8300000, guid: 3274f36d3f2c77e4290c573aefb9fcc0, type: 3}
   VOBonusSpendIt: {fileID: 8300000, guid: 2d67a05f16dd3544682fba7af98fdadd, type: 3}
   VOStoreTutorial: {fileID: 8300000, guid: 3c32953d9829a1f43a6ed4def6d94146, type: 3}
+  elevatorUp: {fileID: 8300000, guid: 0f338afde4ae2544984c9d82ff461ea0, type: 3}
+  elevatorStop: {fileID: 8300000, guid: a0baade72817c58409f36d7298641261, type: 3}
   musicVolume: 0.65
   whiteNoiseVolume: 1
   pauseMenuVolume: 0.6
   voiceOverVolume: 1
+  elevatorVolume: 0.5
   musicPitch: 1

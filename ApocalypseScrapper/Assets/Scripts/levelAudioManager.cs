@@ -54,6 +54,8 @@ public class levelAudioManager : MonoBehaviour
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float musicPitch;
 
+    bool elevatorWasPlaying;
+
 
     private void Awake()
     {
@@ -165,12 +167,26 @@ public class levelAudioManager : MonoBehaviour
     {
         musicAudioSource.Pause();
         whiteNoiseAudioSource.Pause();
+
+        if(elevatorAudioSource != null)
+        {
+            if(elevatorAudioSource.isPlaying)
+            {
+                elevatorWasPlaying = true;
+                elevatorAudioSource.Pause();
+            }
+        }
     }
 
     public void UnpauseAllAudio()
     {
         musicAudioSource.Play();
         whiteNoiseAudioSource.Play();
+
+        if(elevatorWasPlaying)
+        {
+            elevatorAudioSource.UnPause();
+        }
     }
 
    

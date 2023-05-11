@@ -354,7 +354,7 @@ public class gameManager : MonoBehaviour
             // playing intro voice over
             levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
             introVOPlaying = true;
-                
+
             // if our subtitle toggle is on
             if (subtitlesToggle.isOn)
             {
@@ -497,14 +497,14 @@ public class gameManager : MonoBehaviour
     IEnumerator StopElevatorWait()
     {
         yield return new WaitForSeconds(levelAudioManager.instance.VOIntro.length);
-        
+
         if (!skipped)
         {
             Debug.Log("Entering 'not skipped' elevator block removal");
             introVOPlaying = false;
             levelAudioManager.instance.elevatorAudioSource.Stop();
             levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorStop);
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(6);
             eleDoor.SetActive(false);
         }
     }
@@ -791,9 +791,14 @@ public class gameManager : MonoBehaviour
 
     //    if (rank == 'F')
     //    {
-    //        if(voiceoversToggle.isOn)
+    //        if (voiceoversToggle.isOn)
     //        {
     //            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorFail);
+
+    //            if (subtitlesToggle.isOn)
+    //            {
+    //                StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.floorFailVoiceLines));
+    //            }
     //        }
 
     //        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
@@ -802,6 +807,12 @@ public class gameManager : MonoBehaviour
     //            next.clip = levelAudioManager.instance.VOStoreTutorial;
     //            if (voiceoversToggle.isOn)
     //            {
+
+    //                if (subtitlesToggle.isOn)
+    //                {
+    //                    StartCoroutine(DelayForStoreSubtitlesFailFloor());
+    //                }
+
     //                next.PlayDelayed(13);
     //            }
     //        }
@@ -812,6 +823,11 @@ public class gameManager : MonoBehaviour
 
     //            if (voiceoversToggle.isOn)
     //            {
+    //                if (subtitlesToggle.isOn)
+    //                {
+    //                    StartCoroutine(DelayForStoreSubtitlesFailFloor());
+    //                }
+
     //                next.PlayDelayed(13);
     //            }
     //        }
@@ -821,6 +837,11 @@ public class gameManager : MonoBehaviour
     //        if (voiceoversToggle.isOn)
     //        {
     //            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOFloorPass);
+
+    //            if (subtitlesToggle.isOn)
+    //            {
+    //                StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.floorPassVoiceLines));
+    //            }
     //        }
 
     //        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
@@ -829,6 +850,11 @@ public class gameManager : MonoBehaviour
     //            next.clip = levelAudioManager.instance.VOStoreTutorial;
     //            if (voiceoversToggle.isOn)
     //            {
+    //                if (subtitlesToggle.isOn)
+    //                {
+    //                    StartCoroutine(DelayForStoreSubtitlesPassFloor());
+    //                }
+
     //                next.PlayDelayed(6);
     //            }
     //        }
@@ -838,11 +864,42 @@ public class gameManager : MonoBehaviour
     //            next.clip = levelAudioManager.instance.VOBonusSpendIt;
     //            if (voiceoversToggle.isOn)
     //            {
+    //                if (subtitlesToggle.isOn)
+    //                {
+    //                    StartCoroutine(DelayForStoreSubtitlesPassFloor());
+    //                }
+
     //                next.PlayDelayed(6);
     //            }
     //        }
     //    }
     //}
+
+    IEnumerator DelayForStoreSubtitlesFailFloor()
+    {
+        yield return new WaitForSecondsRealtime(13);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+        {
+            StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.storeInfoVoiceLines));
+        }
+        else
+        {
+            StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.bonusSpendItVoiceLines));
+        }
+    }
+    IEnumerator DelayForStoreSubtitlesPassFloor()
+    {
+        yield return new WaitForSecondsRealtime(6);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Lvl 1"))
+        {
+            StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.storeInfoVoiceLines));
+        }
+        else
+        {
+            StartCoroutine(StartSubtitlesInPausedState(subtitleManager.instance.bonusSpendItVoiceLines));
+        }
+    }
+
     public void CloseCrafting()
     {
         // levelAudioManager.instance.voiceOverAudioSource.Stop();
