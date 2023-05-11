@@ -181,7 +181,7 @@ MonoBehaviour:
   HP: 20
   playerFaceSpeed: 1200
   sightAngle: 360
-  radiusSleep: 50
+  radiusSleep: 150
   radiusActive: 1000
   activeRadius: 0
   shootRate: 0.75
@@ -200,7 +200,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 50
+  m_Radius: 150
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &353114111588010699
 CapsuleCollider:
