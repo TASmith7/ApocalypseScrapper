@@ -945,7 +945,6 @@ GameObject:
   - component: {fileID: 8900562455022253980}
   - component: {fileID: 8900562455022253976}
   - component: {fileID: 7999313656994573555}
-  - component: {fileID: 7141846646993546906}
   m_Layer: 6
   m_Name: dead drone
   m_TagString: Enemy
@@ -1140,21 +1139,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!111 &7141846646993546906
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8900562455022253971}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 3333445364622988419, guid: 5090c1d92c3e3034a85460b495fcf820, type: 3}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 1
 --- !u!1001 &6703576126664761395
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -257,7 +257,7 @@ public class roamDrone : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             StopAllCoroutines();
-            anim.SetBool("Dead", true);
+            //anim.SetBool("Dead", true);
             if (drop)
             {
                 Instantiate(drop, transform.position, drop.transform.rotation);
