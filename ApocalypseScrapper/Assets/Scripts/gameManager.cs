@@ -969,6 +969,7 @@ public class gameManager : MonoBehaviour
         Debug.Log("WFS Done");
         lvl2.SetActive(false);
         SceneManager.LoadScene("Lvl 2");
+        UnpauseState();
     }
     IEnumerator Lvl3LoadScreen()
     {
@@ -981,6 +982,7 @@ public class gameManager : MonoBehaviour
 
         lvl3.SetActive(false);
         SceneManager.LoadScene("Lvl 3");
+        UnpauseState();
     }
     IEnumerator BossLvlLoadScreen()
     {
@@ -992,6 +994,7 @@ public class gameManager : MonoBehaviour
         Debug.Log("WFS 5 Done");
         lvl4.SetActive(false);
         SceneManager.LoadScene("Boss Lvl");
+        UnpauseState();
     }
     public void WinGame()
     {

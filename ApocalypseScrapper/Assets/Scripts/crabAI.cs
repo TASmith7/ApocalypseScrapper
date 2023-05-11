@@ -195,9 +195,9 @@ public class crabAI : MonoBehaviour, IDamage
     {
         HP -= (int) dmg;
 
-        if (HP <= 0)
+        if (HP <= 0 && agent.isActiveAndEnabled)
         {
-
+            agent.enabled = false;
             StopAllCoroutines();
             anim.SetBool("Dead", true);
             // now blood drop effect
@@ -215,14 +215,15 @@ public class crabAI : MonoBehaviour, IDamage
             {
                 crabAudioSource.PlayOneShot(dieAudioClip, 0.4f);
             }
-            agent.enabled = false;
+            
+            
             crabCapsuleCollider.enabled = false;
             Destroy(gameObject);
             
             
 
         }
-        else
+        else if(HP>0 && agent.isActiveAndEnabled)
         {
             anim.SetTrigger("Damage");
             agent.SetDestination(gameManager.instance.player.transform.position);
