@@ -108,6 +108,7 @@ public class buttonFunctions : MonoBehaviour
     {
         if (gameManager.instance.amtSalvaged >= 75 && Inventory.Instance._iBioMass >= 1 && gameManager.instance.playerScript.HP != gameManager.instance.playerScript.HPMax)
         {
+            gameManager.instance.playerScript.PlayerUIUpdate();
 
             if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP <= 25)
             {
@@ -130,6 +131,7 @@ public class buttonFunctions : MonoBehaviour
     {
         if (gameManager.instance.playerScript.playerFloorScore >= 200 && Inventory.Instance._iIntactOrgan>= 2 &&gameManager.instance.playerScript.HP != gameManager.instance.playerScript.HPMax)
         {
+            gameManager.instance.playerScript.PlayerUIUpdate();
 
             if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP <= 100)
             {
@@ -150,6 +152,7 @@ public class buttonFunctions : MonoBehaviour
     {
         if (gameManager.instance.amtSalvaged >= 150&& Inventory.Instance._iBioMass>=1&&Inventory.Instance._iIntactOrgan>=2)
         {
+            gameManager.instance.playerScript.PlayerUIUpdate();
 
             gameManager.instance.playerScript.HPMax += 25;
             gameManager.instance.playerScript.HP += 25;
@@ -168,7 +171,8 @@ public class buttonFunctions : MonoBehaviour
     public void GetShield()
     {
         if (gameManager.instance.amtSalvaged >= 200&& Inventory.Instance._iHighPoweredLightDiode>=2)
-        {   
+        {
+            gameManager.instance.playerScript.PlayerUIUpdate();
 
             gameManager.instance.playerScript.shielded = true;
             gameManager.instance.playerScript.shieldMax += 25;
@@ -188,6 +192,8 @@ public class buttonFunctions : MonoBehaviour
     {
         if (gameManager.instance.amtSalvaged >= 150 &&Inventory.Instance._iElectronicComponents>=2&&Inventory.Instance._sDataProcessingCore>=4&& gameManager.instance.playerScript.shielded == true)
         {
+            gameManager.instance.playerScript.PlayerUIUpdate();
+
             gameManager.instance.playerScript.shieldRate += 1;
             gameManager.instance.playerScript.shieldCD -= 1;
 

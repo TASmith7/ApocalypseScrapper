@@ -841,7 +841,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         isShieldRegen = false;
     }
 
-    void PlayerUIUpdate()
+    public void PlayerUIUpdate()
     {
         // updating the players health bar
         gameManager.instance.HPBar.fillAmount = (float)HP / (float)HPMax;
