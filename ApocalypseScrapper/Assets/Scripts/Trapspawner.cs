@@ -21,6 +21,7 @@ public class Trapspawner : MonoBehaviour
     int prefabsSpawnCount;
     bool playerInRange;
     bool isSpawning;
+    bool lockedDownMessageSent;
 
     public int testNumber;
 
@@ -87,10 +88,14 @@ public class Trapspawner : MonoBehaviour
 
     IEnumerator LockDownMessage()
     {
-        lockedOutMessage.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
-        lockedOutMessage.SetActive(false);
-        Destroy(lockedOutMessage);
+        if (!lockedDownMessageSent)
+        {
+            lockedDownMessageSent = true;
+            lockedOutMessage.SetActive(true);
+            yield return new WaitForSeconds(1.5f);
+            lockedOutMessage.SetActive(false);
+            Destroy(lockedOutMessage);
+        }
     }
 
     void UpdateEnemiesRemaining()
