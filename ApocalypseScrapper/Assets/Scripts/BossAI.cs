@@ -217,7 +217,7 @@ public class BossAI : MonoBehaviour, IDamage
 
                 FacePlayerAlways();
 
-                if (!isSpitting && !isBiting && hit.distance <= biteDistance)
+                if (!isSpitting && !isBiting && hit.distance < biteDistance)
                     StartCoroutine(Bite());
                 if (!isSpitting && !isBiting && hit.distance >= spitDistance)
                     StartCoroutine(Spit());
