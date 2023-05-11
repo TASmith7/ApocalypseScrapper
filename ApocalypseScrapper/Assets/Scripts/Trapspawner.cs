@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Trapspawner : MonoBehaviour
 {
@@ -9,6 +12,9 @@ public class Trapspawner : MonoBehaviour
     [SerializeField] Transform[] spawnPos;
     [SerializeField] int prefabMaxNum;
     [SerializeField] GameObject levelTrigger;
+    [SerializeField] GameObject lockedOutMessage;
+    [SerializeField] GameObject enemies;
+    [SerializeField] TextMeshProUGUI enemiesRemaining;
 
     public List<GameObject> prefabList = new List<GameObject>();
 
@@ -16,11 +22,16 @@ public class Trapspawner : MonoBehaviour
     bool playerInRange;
     bool isSpawning;
 
+    public int testNumber;
+
+
     // Start is called before the first frame update
     void Start()
     {
-       // gameManager.instance.updatGameGoal(prefabMaxNum);
-       //levelTrigger.GetComponent<Collider>().enabled = false;
+        // gameManager.instance.updatGameGoal(prefabMaxNum);
+        //levelTrigger.GetComponent<Collider>().enabled = false;
+
+        //enemyCount.GetComponent<Text>().text = "Enemies Remaining: " + prefabList.Count;
     }
 
     // Update is called once per frame
@@ -33,7 +44,9 @@ public class Trapspawner : MonoBehaviour
 
         if (prefabList.Count == 0)
         {
+            UpdateEnemiesRemaining();
             levelTrigger.SetActive(true);
+            enemies.SetActive(false);
         }
 
         for (int i = 0; i < prefabList.Count; i++)
@@ -41,8 +54,9 @@ public class Trapspawner : MonoBehaviour
             if (prefabList[i] == null)
             {
                 prefabList.RemoveAt(i);
-               // Debug.Log("Removed drone");
-               // Debug.Log(prefabList.Count);
+                // Debug.Log("Removed drone");
+                // Debug.Log(prefabList.Count);
+                UpdateEnemiesRemaining();
             }
         }
     }
@@ -54,6 +68,7 @@ public class Trapspawner : MonoBehaviour
             playerInRange = true;
             //Debug.Log("Player Enter Spawner");
             levelTrigger.SetActive(false);
+            StartCoroutine(LockDownMessage());
             //Debug.Log("Exit Level OFF!!!");
         }
     }
@@ -68,5 +83,20 @@ public class Trapspawner : MonoBehaviour
         prefabsSpawnCount++;
         yield return new WaitForSeconds(intervalTime);
         isSpawning = false;
+    }
+
+    IEnumerator LockDownMessage()
+    {
+        lockedOutMessage.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        lockedOutMessage.SetActive(false);
+        Destroy(lockedOutMessage);
+    }
+
+    void UpdateEnemiesRemaining()
+    {
+        //int enemiesRemaining = totalEnemies - prefabList.Count;
+        enemies.SetActive(true);
+        enemiesRemaining.GetComponent<TextMeshProUGUI>().text = "Enemies Remaining: " + prefabList.Count;
     }
 }
