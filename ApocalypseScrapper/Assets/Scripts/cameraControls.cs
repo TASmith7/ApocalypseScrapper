@@ -30,8 +30,8 @@ public class cameraControls : MonoBehaviour
 
     void Start()
     {
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         // setting our original FOV stats
         standardFOV = cam.fieldOfView;
