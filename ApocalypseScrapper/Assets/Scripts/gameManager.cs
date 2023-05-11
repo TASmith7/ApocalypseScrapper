@@ -574,14 +574,16 @@ public class gameManager : MonoBehaviour
 
     public void UnpauseState()
     {
+        totalScoreLabel.SetActive(true);
+        playerBonusLabel.SetActive(true);
+        floorScoreLabel.SetActive(true);
         Time.timeScale = timeScaleOriginal;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        if(activeMenu != null)
+        if (activeMenu != null)
         {
             activeMenu.SetActive(false);
         }
-
         activeMenu = null;
 
         if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
