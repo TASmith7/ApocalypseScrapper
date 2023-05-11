@@ -45,6 +45,8 @@ public class npcAI : MonoBehaviour
         // if we get untrapped
         if(!isTrapped)
         { 
+            player.GetComponent<playerController>().questPay += 1000;
+
             // if we haven't already started the rescue coroutine
             if(!rescueCoroutineStarted)
             {
