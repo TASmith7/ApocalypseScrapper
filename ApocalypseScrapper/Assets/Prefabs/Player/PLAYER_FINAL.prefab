@@ -321,11 +321,10 @@ GameObject:
   - component: {fileID: 661115328687326014}
   - component: {fileID: 2041960472}
   - component: {fileID: 2041960466}
-  - component: {fileID: 6534971313618473687}
-  - component: {fileID: 8228191777047513972}
+  - component: {fileID: 1289998221}
   m_Layer: 10
   m_Name: SciFiGunLightBlue
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -440,7 +439,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 661115328687326004}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.2
   m_Height: 1.03
   m_Direction: 2
@@ -458,21 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 5333339247771160564}
---- !u!136 &6534971313618473687
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661115328687326004}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1.03
-  m_Direction: 2
-  m_Center: {x: 0.06, y: 0, z: -0.04}
---- !u!114 &8228191777047513972
+--- !u!114 &1289998221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -481,10 +466,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 661115328687326004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae9064a00aac2b54b99645035bd480dc, type: 3}
+  m_Script: {fileID: 11500000, guid: afad3131b87bf414a8e75ae14ddaa8b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScript: {fileID: 5333339247771160564}
+  smooth: 8
+  swayMultiplier: 4
+  gunAnimator: {fileID: 661115328687326014}
+  sprintBobSpeed: 2
+  walkBobSpeed: 1
+  crouchBobSpeed: 0.65
+  playerCont: {fileID: 0}
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
 --- !u!1 &661115329407767795
 GameObject:
   m_ObjectHideFlags: 0

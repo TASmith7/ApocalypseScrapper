@@ -22,7 +22,7 @@ public class weaponMovement : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerCont = player.GetComponent<CharacterController>();
-        //playerScript = player.GetComponent<playerController>();
+        playerScript = player.GetComponent<playerController>();
     }
 
     private void Update()
@@ -45,11 +45,11 @@ public class weaponMovement : MonoBehaviour
         {
             gunAnimator.speed = sprintBobSpeed;
         }
-        //else if(playerScript.isCrouching)
-        //{
-        //    gunAnimator.speed = crouchBobSpeed;
-        //}
-        // else set it back to walking speed
+        else if (playerScript.isCrouching)
+        {
+            gunAnimator.speed = crouchBobSpeed;
+        }
+        //else set it back to walking speed
         else
         {
             gunAnimator.speed = walkBobSpeed;

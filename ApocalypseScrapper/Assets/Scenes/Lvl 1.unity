@@ -23564,17 +23564,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5333339247780454519, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
   m_PrefabInstance: {fileID: 1289998218}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1103862614 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
-  m_PrefabInstance: {fileID: 1289998218}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d6a9fd048424f3458f5c2949313f431, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1104345501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34069,10 +34058,6 @@ PrefabInstance:
       propertyPath: eleDoor
       value: 
       objectReference: {fileID: 2014404402}
-    - target: {fileID: 2517184956811140910, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
-      propertyPath: playerScript
-      value: 
-      objectReference: {fileID: 1103862614}
     - target: {fileID: 2517184957286297176, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
       propertyPath: m_Pivot.x
       value: 0

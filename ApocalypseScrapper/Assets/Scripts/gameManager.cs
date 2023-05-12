@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -39,7 +38,7 @@ public class gameManager : MonoBehaviour
     public GameObject ControlsSplashFromOptions;
     public GameObject ApocSplash;
     public GameObject checkpointMenu;
-    
+
     public GameObject craftingMenu;
     public GameObject playerStatsScreen;
     public GameObject optionsMenu;
@@ -104,8 +103,8 @@ public class gameManager : MonoBehaviour
     public GameObject DeclinedPurchasePopUp;
 
     public int spent;
-    
-   
+
+
     //public TextMeshProUGUI LevelScrapCollectedStore;
     //public TextMeshProUGUI SpentScrapStore;
     //public GameObject DeclinedPurchasePopUpStore;
@@ -228,6 +227,7 @@ public class gameManager : MonoBehaviour
 
 
         player = GameObject.FindGameObjectWithTag("Player");
+        Debug.Log("Object is named" + player.name);
         //playerScript = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
 
@@ -251,11 +251,11 @@ public class gameManager : MonoBehaviour
             verticalSens.value = 300;
             Debug.Log("Player prefs sensitivity keys do not exist");
         }
-        
-        
-           // playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
-           // playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
-        
+
+
+        // playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
+        // playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
+
 
         // setting the sensitivity labels equal the sliders current values
         horSensValue.text = horizontalSens.value.ToString();
@@ -335,7 +335,7 @@ public class gameManager : MonoBehaviour
         {
             endGameBeam.SetActive(false);
         }
-        
+
     }
 
     IEnumerator SplashScreen()
@@ -390,12 +390,12 @@ public class gameManager : MonoBehaviour
         floorScoreLabel.SetActive(true);
     }
 
-   
+
 
     // Update is called once per frame
     void Update()
     {
-                     
+
 
 
 
@@ -455,7 +455,7 @@ public class gameManager : MonoBehaviour
             horSensValue.text = horizontalSens.value.ToString();
             vertSensValue.text = verticalSens.value.ToString();
             musicVolumeValue.text = musicVolume.value.ToString();
-        } 
+        }
         if (Time.fixedTime - timeOfLastMessage >= timeToClearGamelog)
         {
             gamelogMain.SetActive(false);
@@ -495,7 +495,7 @@ public class gameManager : MonoBehaviour
             TurnOffInventoryUI();
         }
 
-       
+
 
     }
 
@@ -585,7 +585,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = timeScaleOriginal;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-         if(activeMenu != null)
+        if (activeMenu != null)
         {
             activeMenu.SetActive(false);
         }
@@ -625,6 +625,7 @@ public class gameManager : MonoBehaviour
     {
         blackOverlayForDeathParent.SetActive(true);
         playerScript.isDead = true;
+        Debug.Log("Player Dead");
         playerDeathOverlay.SetActive(true);
         // stop any voice over audio that might already be playing
         levelAudioManager.instance.voiceOverAudioSource.Stop();
@@ -970,6 +971,7 @@ public class gameManager : MonoBehaviour
     //    }
     //}
 
+
     public void NextLevel()
     {
         PauseState();
@@ -998,42 +1000,44 @@ public class gameManager : MonoBehaviour
         {
             Debug.Log("Level failed to load");
         }
-
-        //    switch (SceneManager.GetActiveScene().name)
-        //    {
-        //        case "Lvl 1":
-        //            StartCoroutine(Lvl2LoadScreen());
-        //            SceneManager.LoadScene("Lvl 2");
-        //            break;
-
-        //        case "Lvl 2":
-        //            StartCoroutine(Lvl3LoadScreen());
-        //            SceneManager.LoadScene("Lvl 3");
-        //            break;
-
-        //        case "Lvl 3":
-        //            StartCoroutine(Lvl4LoadScreen());
-        //            SceneManager.LoadScene("Boss Lvl");
-        //            break;
-
-        //        case "Boss Lvl":
-
-        //            WinGame();
-        //            break;
-
-        //        default:
-        //            Debug.Log("Level failed to load");
-        //            break;
-        //    }
     }
+
+
+    //    switch (SceneManager.GetActiveScene().name)
+    //    {
+    //        case "Lvl 1":
+    //            StartCoroutine(Lvl2LoadScreen());
+    //            SceneManager.LoadScene("Lvl 2");
+    //            break;
+
+    //        case "Lvl 2":
+    //            StartCoroutine(Lvl3LoadScreen());
+    //            SceneManager.LoadScene("Lvl 3");
+    //            break;
+
+    //        case "Lvl 3":
+    //            StartCoroutine(Lvl4LoadScreen());
+    //            SceneManager.LoadScene("Boss Lvl");
+    //            break;
+
+    //        case "Boss Lvl":
+
+    //            WinGame();
+    //            break;
+
+    //        default:
+    //            Debug.Log("Level failed to load");
+    //            break;
+    //    }
+
 
     IEnumerator Lvl2LoadScreen()
     {
-        
+
         lvl2.SetActive(true);
         Debug.Log("WFS Started");
         yield return new WaitForSecondsRealtime(5);
-        
+
         Debug.Log("WFS Done");
         lvl2.SetActive(false);
         SceneManager.LoadScene("Lvl 2");
@@ -1041,11 +1045,11 @@ public class gameManager : MonoBehaviour
     }
     IEnumerator Lvl3LoadScreen()
     {
-        
+
         lvl3.SetActive(true);
         Debug.Log("WFS Started");
         yield return new WaitForSecondsRealtime(5);
-        
+
         Debug.Log("WFS Done");
 
         lvl3.SetActive(false);
@@ -1054,11 +1058,11 @@ public class gameManager : MonoBehaviour
     }
     IEnumerator BossLvlLoadScreen()
     {
-        
+
         lvl4.SetActive(true);
         Debug.Log("WFS Started");
         yield return new WaitForSecondsRealtime(5);
-        
+
         Debug.Log("WFS 5 Done");
         lvl4.SetActive(false);
         SceneManager.LoadScene("Boss Lvl");

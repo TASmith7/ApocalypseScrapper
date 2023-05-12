@@ -54,11 +54,11 @@ public class cameraControls : MonoBehaviour
             xRotation -= mouseY;
         }
 
-        //if(gameManager.instance.dynamicFOVToggle.isOn)
-        //{
-        //    DynamicFOV();
-        //}    
-        
+        if (gameManager.instance.dynamicFOVToggle.isOn)
+        {
+            DynamicFOV();
+        }
+
         // Clamp camera rotation
         xRotation = Mathf.Clamp(xRotation, lockVertMin, lockVertMax);
 
