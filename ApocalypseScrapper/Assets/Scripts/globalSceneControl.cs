@@ -15,13 +15,16 @@ public class globalSceneControl : MonoBehaviour
     public int   _MSHP = 100;
     public int   _MSHPMax = 100;
 
-    public float _MSsalvageRate = 1;
+    public float _MSsalvageRate = .75f;
     public int   _MSsalvageRange = 5;
     public float _MSsalvageSpread = 0.001f;
 
     public float _MSthrustPower = 8;
     public float _MSfuelConsumptionRate = 0.5f;
     public float _MSfuelRefillRate = 0.2f;
+
+    public float _MSstaminaDrain = 0.296f;
+    public float _MSstaminaRegen = 0.1f;
 
     public int   _MSshootDamage = 1;
     public float _MSshootRate = 0.33f;
@@ -35,6 +38,8 @@ public class globalSceneControl : MonoBehaviour
     public int   _MSshieldRate = 1;
 
     public int   _MSplayerTotalScore = 0;
+    public int _MSspentScrap = 0;
+    public int _MSQuestPay = 0;
     public int   _MSplayerBonus = 0;
 
 
@@ -46,9 +51,12 @@ public class globalSceneControl : MonoBehaviour
     public int   HP = 100;
     public int   HPMax = 100;
     
-    public float salvageRate = 1;
+    public float salvageRate = 0.75f;
     public int   salvageRange = 5;
     public float salvageSpread = 0.01f;
+
+    public float staminaDrain = 0.296f;
+    public float staminaRegen = 0.1f;
 
     public float thrustPower = 8;
     public float fuelConsumptionRate = 0.5f;
@@ -67,6 +75,8 @@ public class globalSceneControl : MonoBehaviour
 
     public int playerTotalScore = 0;
     public int playerBonus = 0;
+    public int spentScrap = 0;
+    public int questPay = 0;
 
     #endregion
 
@@ -100,7 +110,8 @@ public class globalSceneControl : MonoBehaviour
             thrustPower = _MSthrustPower;
             fuelConsumptionRate = _MSfuelConsumptionRate;
             fuelRefillRate = _MSfuelRefillRate;
-
+            staminaDrain = _MSstaminaDrain;
+            staminaRegen = _MSstaminaRegen;
             shootDamage = _MSshootDamage;
             shootRate = _MSshootRate;             
             shootDistance = _MSshootDistance;

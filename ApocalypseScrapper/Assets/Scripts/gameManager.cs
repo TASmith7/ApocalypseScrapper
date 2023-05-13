@@ -129,6 +129,7 @@ public class gameManager : MonoBehaviour
 
     public Toggle invShown;
     public bool craftingOpen;
+    public bool statsOpen;
     public Image BioMass;
     public Image IntactOrgan;
     public Image ElectronicComponent;
@@ -234,7 +235,7 @@ public class gameManager : MonoBehaviour
         timeScaleOriginal = Time.timeScale;
         bossHealthBarParent.SetActive(false);
 
-        // setting our sensitivity sliders to equal the values set in our camera controller script
+        //// setting our sensitivity sliders to equal the values set in our camera controller script
         //horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
         //verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
 
@@ -253,8 +254,8 @@ public class gameManager : MonoBehaviour
         }
 
 
-        // playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
-        // playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
+        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
 
 
         // setting the sensitivity labels equal the sliders current values
@@ -465,16 +466,17 @@ public class gameManager : MonoBehaviour
             }
             gamelog.Clear();
         }
-        if (Inventory.Instance)
-        {
-            UpdateInventory();
-        }
+
         if (Input.GetButtonDown("Tab") && !craftingOpen && activeMenu == null)
         {
             craftingOpen = true;
 
 
             CueCrafting();
+            if (Inventory.Instance)
+            {
+                UpdateInventory();
+            }
 
         }
         else if (Input.GetButtonDown("Tab") && craftingOpen && activeMenu == craftingMenu)
@@ -484,7 +486,15 @@ public class gameManager : MonoBehaviour
             craftingOpen = false;
             CloseCrafting();
         }
-        if (invShown.isOn && craftingOpen)
+        if (Input.GetButtonDown("Tab") && statsOpen)
+        {
+            statsOpen = false;
+            playerStatsScreen.SetActive(false);
+            craftingMenu.SetActive(false);
+            InventroyParent.SetActive(false);
+        }
+
+        if (invShown.isOn && craftingOpen && !statsOpen)
         {
 
             TurnOnInventoryUI();
@@ -518,7 +528,7 @@ public class gameManager : MonoBehaviour
         // we don't need the below line as calling pause state method pauses the vo that was playing already
         // levelAudioManager.instance.voiceOverAudioSource.Stop();
         PauseState();
-        isPaused = true;
+
 
 
 
@@ -530,6 +540,7 @@ public class gameManager : MonoBehaviour
 
     public void PauseState()
     {
+        isPaused = true;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -579,6 +590,7 @@ public class gameManager : MonoBehaviour
 
     public void UnpauseState()
     {
+        isPaused = false;
         totalScoreLabel.SetActive(true);
         playerBonusLabel.SetActive(true);
         floorScoreLabel.SetActive(true);
@@ -617,7 +629,6 @@ public class gameManager : MonoBehaviour
         activeMenu = winMenu;
         activeMenu.SetActive(true);
         PauseState();
-        isPaused = true;
         WinGame();
     }
 
@@ -1320,14 +1331,21 @@ public class gameManager : MonoBehaviour
     }
     public void OpenPlayerStatsMenu()
     {
+        statsOpen = true;
+        TurnOffInventoryUI();
         craftingMenu.SetActive(false);
         playerStatsScreen.SetActive(true);
         SetPlayerStats();
     }
     public void ClosePlayerStatsMenu()
     {
+        statsOpen = false;
         playerStatsScreen.SetActive(false);
         craftingMenu.SetActive(true);
+        if (invShown)
+        {
+            TurnOnInventoryUI();
+        }
 
     }
     public void SetPlayerStats()
@@ -1370,8 +1388,9 @@ public class gameManager : MonoBehaviour
     }
     public void TurnOffInventoryUI()
     {
-        //activate the Inventory UI
+        //Deactivate the Inventory UI
         InventroyParent.SetActive(false);
+
     }
     public void UpdateInventory()
     {

@@ -83,7 +83,10 @@ public class droneAI : MonoBehaviour, IDamage
 
         if (agent.isActiveAndEnabled)
         {
-
+            if (agent.CompareTag("Minion"))
+            {
+                agent.SetDestination(gameManager.instance.player.transform.position);
+            }
             if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && anim.GetCurrentAnimatorStateInfo(0).IsName(wakeAnimation.name))
             {
                 canShoot = true;

@@ -10,7 +10,7 @@ public class Minimap : MonoBehaviour
     {
         //Follow Player
         Vector3 newPOS = player.position;
-        newPOS.y = transform.position.y;
+        newPOS.y = gameManager.instance.player.transform.position.y+120;
         transform.position = newPOS;
 
         //Rotate with Player

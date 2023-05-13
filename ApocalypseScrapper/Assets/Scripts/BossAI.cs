@@ -17,7 +17,7 @@ public class BossAI : MonoBehaviour, IDamage
     [SerializeField] playerController playerScript;
     [SerializeField] GameObject[] crabSpawners;
     [SerializeField] GameObject[] droneSpawners;
-
+    [SerializeField] GameObject DeadBoss;
     [Header("-----Crab Stats-----")]
     [SerializeField] float HP;
     public float HPOrig;
@@ -36,7 +36,7 @@ public class BossAI : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] int biteDamage;
     [Range(.1f, 5)][SerializeField] float biteRate;
     public float biteDistance;
-    
+
     [SerializeField] int biteSpeed;
     [SerializeField] GameObject bite;
     [Header("-----Spit Stats-----")]
@@ -44,7 +44,7 @@ public class BossAI : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] int spitDamage;
     [Range(.1f, 5)][SerializeField] float spitRate;
     [SerializeField] float spitDistance;
-    
+
     [SerializeField] int spitSpeed;
 
     [Header("----- Audio -----")]
@@ -100,7 +100,7 @@ public class BossAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        
+
         wave = 0;
         HPOrig = HP;
         activeRadius = radiusSleep;
@@ -116,7 +116,7 @@ public class BossAI : MonoBehaviour, IDamage
 
         timeBetweenFootstepsOrig = timeBetweenFootsteps;
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -148,7 +148,7 @@ public class BossAI : MonoBehaviour, IDamage
     }
     IEnumerator Bite()
     {
-        if (playerScript.isDead)
+        if (!playerScript.isDead)
         {
             anim.SetTrigger("Shoot");
             isBiting = true;
@@ -248,7 +248,7 @@ public class BossAI : MonoBehaviour, IDamage
         BossHPUIUpdate();
 
         // cue take damage audio
-        if(agent.isActiveAndEnabled && Time.fixedTime - takeDamageTimer > 1)
+        if (agent.isActiveAndEnabled && Time.fixedTime - takeDamageTimer > 1)
         {
             bossAudioSource.PlayOneShot(bossDamage[UnityEngine.Random.Range(0, bossDamage.Length)]);
             takeDamageTimer = Time.fixedTime;
@@ -258,12 +258,12 @@ public class BossAI : MonoBehaviour, IDamage
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
-
-            if(!hasPlayedEndGameAudio)
+            GameObject deadBossClone = Instantiate(DeadBoss, transform.position, transform.rotation);
+            if (!hasPlayedEndGameAudio)
             {
                 levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOKillBoss);
 
-                if(gameManager.instance.subtitlesToggle.isOn)
+                if (gameManager.instance.subtitlesToggle.isOn)
                 {
                     StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.killBossVoiceLines));
                 }
@@ -271,10 +271,13 @@ public class BossAI : MonoBehaviour, IDamage
             }
 
             gameManager.instance.endGameBeam.SetActive(true);
-            playerScript.hazardPay += 1500;
+            if (agent.enabled)
+            {
+                playerScript.hazardPay += 1500;
+            }
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
-
+            Destroy(gameObject);
         }
         else
         {
@@ -295,7 +298,7 @@ public class BossAI : MonoBehaviour, IDamage
     void FacePlayerAlways()
     {
 
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, playerDir.y, playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, playerDir.y + 2f, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
     //public void Flee()
@@ -320,6 +323,7 @@ public class BossAI : MonoBehaviour, IDamage
         for (int i = 0; i < 5; i++)
         {
             GameObject crabClone = Instantiate(crab, crabSpawners[i].transform.position, transform.rotation);
+            crabClone.tag = "Minion";
         }
         HP += (HP / 5);
     }
@@ -328,31 +332,38 @@ public class BossAI : MonoBehaviour, IDamage
 
         for (int i = 0; i < 5; i++)
         {
-            //GameObject droneClone = Instantiate(drone, droneSpawners[i].transform.position, transform.rotation);
-        }
-            HP += (HP / 4);
             
+            
+                GameObject droneClone = Instantiate(drone,droneSpawners[i].transform.position, transform.rotation);
+                droneClone.tag = "Minion";
+            
+            
+        }
+        HP += (HP / 4);
+
     }
     public void Wave3()
     {
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 8; i++)
         {
             GameObject crabClone = Instantiate(crab, crabSpawners[i].transform.position, transform.rotation);
+            crabClone.tag = "Minion";
         }
         for (int i = 0; i < 5; i++)
         {
-            //GameObject droneClone = Instantiate(drone, droneSpawners[i].transform.position, transform.rotation);
+            GameObject droneClone = Instantiate(drone, droneSpawners[i].transform.position, transform.rotation);
+            droneClone.tag = "Minion";
         }
-        
 
 
-            HP += (HP / 2);
+
+        HP += (HP / 3);
 
 
-        
 
-        
+
+
     }
     public void WaveSet()
     {
@@ -384,7 +395,7 @@ public class BossAI : MonoBehaviour, IDamage
                 {
 
 
-                    
+
 
                     Wave2();
 
@@ -401,7 +412,7 @@ public class BossAI : MonoBehaviour, IDamage
                 {
 
 
-                    
+
                     Wave3();
 
 

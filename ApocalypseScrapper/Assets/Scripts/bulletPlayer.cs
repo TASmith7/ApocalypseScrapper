@@ -10,11 +10,11 @@ public class bulletPlayer : MonoBehaviour
     void Start()
     {
         //pulling damage from playerController, which should have proper damge w/ upgrades
-       
+        damage = playerScript.shootDamage;
         // destroying our bullet after a specified amount of time
         if(damage < 3)
         {
-            damage = playerScript.shootDamage;
+            
             trailRenderer.startColor = Color.white;
             trailRenderer.endColor = Color.white;
 
@@ -42,7 +42,7 @@ public class bulletPlayer : MonoBehaviour
     {
         if (other is CapsuleCollider)
         {
-            if (other.CompareTag("Enemy"))
+            if (other.CompareTag("Enemy") || other.CompareTag("Minion"))
             {
                 // checking if the object that we collided with (other) has the IDamage script (i.e. is damageable)
                 IDamage damageable = other.GetComponent<IDamage>();

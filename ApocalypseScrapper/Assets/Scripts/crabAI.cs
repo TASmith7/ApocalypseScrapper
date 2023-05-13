@@ -95,24 +95,22 @@ public class crabAI : MonoBehaviour, IDamage
 
         if (agent.isActiveAndEnabled)
         {
-
+            if (agent.CompareTag("Minion"))
+            {
+                agent.SetDestination(gameManager.instance.player.transform.position);
+               
+            }
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
             anim.SetFloat("Speed", speed);
 
             if (playerInRange)
             {
-                if(agent.gameObject.CompareTag("Minion"))
-                {
-                    agent.SetDestination(gameManager.instance.player.transform.position);
-                }
+                
                     
                 CanSeePlayer();
 
             }
-            else if(!playerInRange)
-            {
-                // StartCoroutine(Roam());
-            }
+            
 
             CueFootstepAudio();
         }
@@ -134,13 +132,15 @@ public class crabAI : MonoBehaviour, IDamage
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            crabWakeColl.radius = radiusActive;
-            activeRadius = crabWakeColl.radius;
-            playerInRange = true;
+        
+            if (other.CompareTag("Player"))
+            {
+                crabWakeColl.radius = radiusActive;
+                activeRadius = crabWakeColl.radius;
+                playerInRange = true;
 
-        }
+            }
+        
     }
 
     bool CanSeePlayer()
@@ -188,7 +188,7 @@ public class crabAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            agent.stoppingDistance = 0;
+            
         }
     }
     public void TakeDamage(float dmg)

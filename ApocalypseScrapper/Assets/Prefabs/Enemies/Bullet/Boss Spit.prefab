@@ -76,7 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e975b0d81e05874d95d57c7cddd1e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 5
   splashBall: {fileID: 5323427463497266323, guid: eec2bf27af8d7484f9dd9b2eb1d68536, type: 3}
 --- !u!96 &-5858789046314304763
 TrailRenderer:
@@ -99,7 +98,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cadd1db5e54c3a946ab4f2df74fec973, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

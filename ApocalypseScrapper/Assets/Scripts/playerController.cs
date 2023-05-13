@@ -141,7 +141,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     private void Start()
     {
-
+        isDead = false;
         if (gameManager.instance.currentScene != SceneManager.GetSceneByName("Lvl 1"))
             SetPlayerStats();
         else DefaultPlayerStats();
@@ -902,11 +902,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
     }
 
     public void RestartMission()
     {
         SceneManager.LoadScene("Lvl 1");
+        
     }
 
     public void DefaultPlayerStats()
