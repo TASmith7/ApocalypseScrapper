@@ -194,7 +194,7 @@ public class droneAI : MonoBehaviour, IDamage
 
     IEnumerator Shoot()
     {
-        if (!playerScript.isDead)
+        if (!playerController.isDead)
         {
             isShooting = true;
             //anim.SetTrigger("Shoot");

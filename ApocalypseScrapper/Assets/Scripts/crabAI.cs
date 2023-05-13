@@ -118,7 +118,7 @@ public class crabAI : MonoBehaviour, IDamage
     }
     IEnumerator shoot()
     {
-        if (!playerScript.isDead)
+        if (!playerController.isDead)
         {
             isShooting = true;
             anim.SetTrigger("Shoot");

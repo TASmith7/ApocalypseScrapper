@@ -96,7 +96,7 @@ public class TurretAI : MonoBehaviour, IDamage
                     FacePlayer();
                 
 
-                if (!isShooting&&playerScript.isDead==false)
+                if (!isShooting && playerController.isDead == false)
                 {
                     // if the player is within the sight range, which we check in update, and we are not already shooting (just so we don't shoot multiple times at once), start shooting
                     StartCoroutine(Shoot());

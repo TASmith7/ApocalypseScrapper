@@ -641,8 +641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b9952d5a0a2794d9f5988005ba4bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensHorizontal: 225
-  sensVertical: 184
+  sensHorizontal: 223
+  sensVertical: 360
   player: {fileID: 0}
   lockVertMin: -90
   lockVertMax: 85
@@ -844,7 +844,7 @@ MonoBehaviour:
   playerFloorScore: 0
   playerTotalScore: 0
   playerBonus: 0
-  hazardPay: 0
+  hazardPay: 1500
   questPay: 0
 --- !u!143 &5333339247771160563
 CharacterController:

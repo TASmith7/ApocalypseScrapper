@@ -148,7 +148,7 @@ public class BossAI : MonoBehaviour, IDamage
     }
     IEnumerator Bite()
     {
-        if (!playerScript.isDead)
+        if (!playerController.isDead)
         {
             anim.SetTrigger("Shoot");
             isBiting = true;
@@ -161,7 +161,7 @@ public class BossAI : MonoBehaviour, IDamage
     }
     IEnumerator Spit()
     {
-        if (!playerScript.isDead)
+        if (!playerController.isDead)
         {
             isSpitting = true;
             GameObject spitClone = Instantiate(spit, spitPos.position, spit.transform.rotation);

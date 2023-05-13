@@ -27,7 +27,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     private Vector3 horizontalVelocity;
     private float horizontalSpeed;
     private bool groundedPlayer;
-    public bool isDead;
+    static public bool isDead;
     Vector3 move;
     Vector3 lastPosition;
     private float timeBetweenFootsteps;
@@ -203,15 +203,15 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 CueFootstepAudio();
             }
 
-            if (Input.GetButton("Shoot") && !isShooting)
+            if (Input.GetButton("Shoot") && !isShooting && !isDead)
                 StartCoroutine(Shoot());
 
-            if (Input.GetKeyDown(KeyCode.E) && !isShooting)
+            if (Input.GetKeyDown(KeyCode.E) && !isShooting && !isDead)
             {
                 Melee();
             }
 
-            if (!isSalvaging && Input.GetButton("Salvage"))
+            if (!isSalvaging && Input.GetButton("Salvage") && !isDead)
             {
                 StartCoroutine(Salvage());
             }
@@ -816,6 +816,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         if (HP <= 0)
         {
+            isDead = true;
             playerAudioManager.instance.footstepAudioSource.Stop();
             gameManager.instance.PlayerDead();
         }
