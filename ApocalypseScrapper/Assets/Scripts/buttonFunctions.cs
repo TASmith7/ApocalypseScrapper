@@ -40,14 +40,14 @@ public class buttonFunctions : MonoBehaviour
     public void Resume()
     {
         gameManager.instance.UnpauseState();
-        gameManager.instance.isPaused = !gameManager.instance.isPaused;
+        
     }
     public void RestartLevel()
     {
         Inventory.Instance.InvLevelRestart();
         gameManager.instance.playerScript.RestartLevel();
         gameManager.instance.UnpauseState();
-        gameManager.instance.isPaused = !gameManager.instance.isPaused;
+        
 
     }
     public void RestartMission()

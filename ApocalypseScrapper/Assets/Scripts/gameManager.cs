@@ -404,13 +404,7 @@ public class gameManager : MonoBehaviour
 
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
-            levelAudioManager.instance.pauseMenuAudioSource.Play();
-
-            isPaused = !isPaused;
-            activeMenu = pauseMenu;
-            pauseMenu.SetActive(isPaused);
-
-            if (isPaused)
+            if (!isPaused)
             {
                 PauseState();
             }
@@ -418,6 +412,12 @@ public class gameManager : MonoBehaviour
             {
                 UnpauseState();
             }
+
+            levelAudioManager.instance.pauseMenuAudioSource.Play();
+            activeMenu = pauseMenu;
+            pauseMenu.SetActive(isPaused);
+
+            
         }
 
         // if we are hearing a voice over, cue incoming transmission text
@@ -928,7 +928,7 @@ public class gameManager : MonoBehaviour
         // levelAudioManager.instance.voiceOverAudioSource.Stop();
         craftingMenu.SetActive(false);
         UnpauseState();
-        isPaused = false;
+        
     }
     public char Rank()
     {
