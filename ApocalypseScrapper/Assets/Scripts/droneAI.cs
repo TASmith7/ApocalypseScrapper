@@ -68,7 +68,7 @@ public class droneAI : MonoBehaviour, IDamage
         //gameManager.instance.updatGameGoal(1);
         // sets the stoppingDistOrig to the current stopping distance
 
-        droneRadius = droneSleep;
+13eqeqqeqe        droneRadius = droneSleep;
         stoppingDistOrig = agent.stoppingDistance;
         startingPos = transform.position;
 

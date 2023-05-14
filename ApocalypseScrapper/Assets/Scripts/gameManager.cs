@@ -223,7 +223,23 @@ public class gameManager : MonoBehaviour
         currentScene = SceneManager.GetActiveScene();
         if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
-            StartCoroutine(SplashScreen());
+            if (!levelAudioManager.instance.voiceOverAudioSource.isPlaying && voiceoversToggle.isOn)
+            {
+                // playing intro voice over
+                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
+                introVOPlaying = true;
+
+                // if our subtitle toggle is on
+                if (subtitlesToggle.isOn)
+                {
+                    StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.lvl1IntroVoiceLines));
+                }
+            }
+            if (!levelAudioManager.instance.elevatorAudioSource.isPlaying)
+            {
+                levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorUp);
+                StartCoroutine(StopElevatorWait());
+            }
         }
 
 
@@ -339,57 +355,7 @@ public class gameManager : MonoBehaviour
 
     }
 
-    IEnumerator SplashScreen()
-    {
-        // turning off all UI while splash screen is displayed
-        TurnOffJetpackUI();
-        TurnOffShieldUI();
-        TurnOffStaminaUI();
-        totalScoreLabel.SetActive(false);
-        playerBonusLabel.SetActive(false);
-        floorScoreLabel.SetActive(false);
-        //activating splash screens 
-
-        activeMenu = RSGSplash;
-        RSGSplash.SetActive(true);
-        yield return new WaitForSeconds(5);
-        if (!levelAudioManager.instance.voiceOverAudioSource.isPlaying && voiceoversToggle.isOn)
-        {
-            // playing intro voice over
-            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
-            introVOPlaying = true;
-
-            // if our subtitle toggle is on
-            if (subtitlesToggle.isOn)
-            {
-                StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.lvl1IntroVoiceLines));
-            }
-        }
-        if (!levelAudioManager.instance.elevatorAudioSource.isPlaying)
-        {
-            levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorUp);
-            StartCoroutine(StopElevatorWait());
-        }
-        RSGSplash.SetActive(false);
-        activeMenu = ApocSplash;
-        ApocSplash.SetActive(true);
-        yield return new WaitForSeconds(5);
-        ApocSplash.SetActive(false);
-        activeMenu = ControlsSplash;
-        ControlsSplash.SetActive(true);
-        yield return new WaitForSeconds(5);
-        ControlsSplash.SetActive(false);
-
-
-        activeMenu = null;
-
-
-
-        // turning back on salvage UI (all other UI is cued to turn back on elsewhere)
-        totalScoreLabel.SetActive(true);
-        playerBonusLabel.SetActive(true);
-        floorScoreLabel.SetActive(true);
-    }
+   
 
 
 
