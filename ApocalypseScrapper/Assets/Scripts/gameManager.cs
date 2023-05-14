@@ -223,23 +223,8 @@ public class gameManager : MonoBehaviour
         currentScene = SceneManager.GetActiveScene();
         if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
-            if (!levelAudioManager.instance.voiceOverAudioSource.isPlaying && voiceoversToggle.isOn)
-            {
-                // playing intro voice over
-                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
-                introVOPlaying = true;
-
-                // if our subtitle toggle is on
-                if (subtitlesToggle.isOn)
-                {
-                    StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.lvl1IntroVoiceLines));
-                }
-            }
-            if (!levelAudioManager.instance.elevatorAudioSource.isPlaying)
-            {
-                levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorUp);
-                StartCoroutine(StopElevatorWait());
-            }
+            //StartCoroutine(SplashScreen());
+           
         }
 
 
@@ -355,12 +340,62 @@ public class gameManager : MonoBehaviour
 
     }
 
-   
+    //IEnumerator SplashScreen()
+    //{
+    //    // turning off all UI while splash screen is displayed
+    //    TurnOffJetpackUI();
+    //    TurnOffShieldUI();
+    //    TurnOffStaminaUI();
+    //    totalScoreLabel.SetActive(false);
+    //    playerBonusLabel.SetActive(false);
+    //    floorScoreLabel.SetActive(false);
+    //    //activating splash screens 
+
+    //    activeMenu = RSGSplash;
+    //    RSGSplash.SetActive(true);
+    //    yield return new WaitForSeconds(5);
+//            if (!levelAudioManager.instance.voiceOverAudioSource.isPlaying && voiceoversToggle.isOn)
+//        {
+//            // playing intro voice over
+//            levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
+//            introVOPlaying = true;
+
+//            // if our subtitle toggle is on
+//            if (subtitlesToggle.isOn)
+//            {
+//                StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.lvl1IntroVoiceLines));
+//}
+//        }
+//        if (!levelAudioManager.instance.elevatorAudioSource.isPlaying)
+//{
+//    levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorUp);
+//    StartCoroutine(StopElevatorWait());
+//}
+//    RSGSplash.SetActive(false);
+//    activeMenu = ApocSplash;
+//    ApocSplash.SetActive(true);
+//    yield return new WaitForSeconds(5);
+//    ApocSplash.SetActive(false);
+//    activeMenu = ControlsSplash;
+//    ControlsSplash.SetActive(true);
+//    yield return new WaitForSeconds(5);
+//    ControlsSplash.SetActive(false);
+
+
+//    activeMenu = null;
 
 
 
-    // Update is called once per frame
-    void Update()
+//    // turning back on salvage UI (all other UI is cued to turn back on elsewhere)
+//    totalScoreLabel.SetActive(true);
+//    playerBonusLabel.SetActive(true);
+//    floorScoreLabel.SetActive(true);
+//}
+
+
+
+// Update is called once per frame
+void Update()
     {
 
 
@@ -600,15 +635,10 @@ public class gameManager : MonoBehaviour
 
     public void PlayerDead()
     {
-        if(!playerController.isDead)
-        {
-            playerController.isDead = true;
-        }
-
         blackOverlayForDeathParent.SetActive(true);
+        //playerScript.isDead = true;
         Debug.Log("Player Dead");
         playerDeathOverlay.SetActive(true);
-
         // stop any voice over audio that might already be playing
         levelAudioManager.instance.voiceOverAudioSource.Stop();
 

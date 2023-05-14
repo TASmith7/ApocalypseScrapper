@@ -185,11 +185,11 @@ MonoBehaviour:
   radiusSleep: 150
   radiusActive: 1000
   activeRadius: 0
-  shootRate: 0.75
-  barrelSwitchSpeed: 0.62
+  shootRate: 0.63
+  barrelSwitchSpeed: 0.96
   shootDistance: 200
   TurretBullet: {fileID: 2765080052109346540, guid: 5e895567bc6435b45834b52229dd99ea, type: 3}
-  bulletSpeed: 50
+  bulletSpeed: 70
 --- !u!135 &353114111588010697
 SphereCollider:
   m_ObjectHideFlags: 0

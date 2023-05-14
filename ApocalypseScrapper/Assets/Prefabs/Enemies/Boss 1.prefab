@@ -3401,6 +3401,7 @@ MonoBehaviour:
   playerScript: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
   crabSpawners: []
   droneSpawners: []
+  DeadBoss: {fileID: 2187219879762005501, guid: 38dfcc8af7f237a418468778ba6f9ec5, type: 3}
   HP: 600
   HPOrig: 600
   healAmt: 0
@@ -3444,7 +3445,7 @@ MonoBehaviour:
   bossSpit: {fileID: 8300000, guid: 0282c74e21cbc7a4f82557b72de152fc, type: 3}
   timeBetweenFootsteps: 0.175
   crab: {fileID: 3725011360167264616, guid: d34f7fd18d8d8f84b8e1d30031377215, type: 3}
-  drone: {fileID: 5682082307837556350, guid: 578c255348a9da344b14801841c11373, type: 3}
+  drone: {fileID: 2680840266458157390, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
 --- !u!195 &2236046669146650692
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3612,14 +3613,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2187219879762005501}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 900
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!1 &2187224827594491785
 GameObject:
   m_ObjectHideFlags: 0
