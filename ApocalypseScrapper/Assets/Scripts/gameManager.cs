@@ -634,10 +634,15 @@ public class gameManager : MonoBehaviour
 
     public void PlayerDead()
     {
+        if(!playerController.isDead)
+        {
+            playerController.isDead = true;
+        }
+
         blackOverlayForDeathParent.SetActive(true);
-        // playerScript.isDead = true;
         Debug.Log("Player Dead");
         playerDeathOverlay.SetActive(true);
+
         // stop any voice over audio that might already be playing
         levelAudioManager.instance.voiceOverAudioSource.Stop();
 

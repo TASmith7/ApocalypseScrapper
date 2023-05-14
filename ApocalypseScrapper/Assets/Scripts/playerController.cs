@@ -232,16 +232,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             if(isDead && !deathCued)
             {
                 deathCued = true;
-                Debug.Log("DeathCued true");
+
                 // disable all forms of movement
                 controller.enabled = false;
-                Debug.Log("controller disabled");
                 gunAnimator.enabled = false;
-                Debug.Log("gun animator disabled");
                 weaponMovementScript.enabled = false;
-                Debug.Log("weapon movement script");
                 playerCam.GetComponent<cameraControls>().enabled = false;
-                Debug.Log("player camera disabled");
+
                 // add a rigid body and a box collider to the player and apply a force to the rigid body to assimilate being pushed/shot down
                 Rigidbody rb = gameObject.AddComponent<Rigidbody>();
                 BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
