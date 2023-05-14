@@ -641,8 +641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b9952d5a0a2794d9f5988005ba4bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensHorizontal: 223
-  sensVertical: 360
+  sensHorizontal: 300
+  sensVertical: 300
   player: {fileID: 0}
   lockVertMin: -90
   lockVertMax: 85
@@ -812,7 +812,7 @@ MonoBehaviour:
   timeToCrouch: 0.25
   isCrouching: 0
   gunList: []
-  shootDamage: 29
+  shootDamage: 1
   shootRate: 0.34
   shootDistance: 100
   bullet: {fileID: 2765080052109346540, guid: 7c147af25d7a04043aba8b70539ba3b0, type: 3}

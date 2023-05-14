@@ -223,6 +223,7 @@ public class gameManager : MonoBehaviour
         currentScene = SceneManager.GetActiveScene();
         if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
+            eleDoor.SetActive(false);
             //StartCoroutine(SplashScreen());
            
         }

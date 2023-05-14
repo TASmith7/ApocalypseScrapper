@@ -148,10 +148,10 @@ public class crabAI : MonoBehaviour, IDamage
 
 
         // this tells us what direction our player is in relative to our enemy
-        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + 1 - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
-
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + 1.6f - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
+        Debug.DrawRay(headPos.position, playerDir, Color.red);
         // this calculates the angle between where our player is and where we (the enemy) are looking
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         // this returns the info of WHAT is HIT by the raycast
         RaycastHit hit;
