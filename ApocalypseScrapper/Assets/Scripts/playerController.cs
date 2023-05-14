@@ -930,7 +930,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         shieldCD = globalSceneControl.Instance._MSshieldCD;
         shieldRate = globalSceneControl.Instance._MSshieldRate;
 
-        playerTotalScore = globalSceneControl.Instance._MSplayerTotalScore;
+        playerTotalScore = globalSceneControl.Instance._MSplayerScrapCollected;
         playerBonus = globalSceneControl.Instance._MSplayerBonus;
     }
     
@@ -993,7 +993,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             globalSceneControl.Instance.shieldMax = shieldMax;
             globalSceneControl.Instance.shieldCD = shieldCD;
             globalSceneControl.Instance.shieldRate = shieldRate;
-            globalSceneControl.Instance.playerTotalScore = playerTotalScore;
+            globalSceneControl.Instance.playerScrapCollected = playerTotalScore;
             globalSceneControl.Instance.playerBonus = playerBonus;
 
             Debug.Log("Player Stats Saved");
@@ -1021,10 +1021,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             shieldMax = globalSceneControl.Instance.shieldMax;
             shieldCD = globalSceneControl.Instance.shieldCD;
             shieldRate = globalSceneControl.Instance.shieldRate;
-            playerTotalScore = globalSceneControl.Instance.playerTotalScore;
-            gameManager.instance.totalScoreData.text = playerTotalScore.ToString();
+            playerTotalScore = globalSceneControl.Instance.playerScrapCollected;
             playerBonus = globalSceneControl.Instance.playerBonus;
-            gameManager.instance.playerBonusData.text = playerBonus.ToString();
+            
+            
         }
         Debug.Log("Player stats loaded.");
     }

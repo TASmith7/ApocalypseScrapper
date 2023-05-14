@@ -122,7 +122,7 @@ public class droneAI : MonoBehaviour, IDamage
             // if we pause, stop all drone audio
             if(gameManager.instance.isPaused)
             {
-                droneAudSource.Stop();
+                droneAudSource.Pause();
             }
             
         }

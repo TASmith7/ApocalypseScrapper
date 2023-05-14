@@ -37,7 +37,7 @@ public class globalSceneControl : MonoBehaviour
     public int   _MSshieldCD = 5;
     public int   _MSshieldRate = 1;
 
-    public int   _MSplayerTotalScore = 0;
+    public int   _MSplayerScrapCollected = 0;
     public int _MSspentScrap = 0;
     public int _MSQuestPay = 0;
     public int   _MSplayerBonus = 0;
@@ -73,7 +73,7 @@ public class globalSceneControl : MonoBehaviour
     public int   shieldCD = 5;
     public int   shieldRate;
 
-    public int playerTotalScore = 0;
+    public int playerScrapCollected = 0;
     public int playerBonus = 0;
     public int spentScrap = 0;
     public int questPay = 0;
@@ -123,7 +123,7 @@ public class globalSceneControl : MonoBehaviour
             shieldCD = _MSshieldCD;
             shieldRate = _MSshieldRate;
 
-            playerTotalScore = _MSplayerTotalScore;
+            playerScrapCollected = _MSplayerScrapCollected;
             playerBonus = _MSplayerBonus;
             
         }

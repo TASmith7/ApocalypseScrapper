@@ -50,9 +50,9 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI salvageValueText;
     public TextMeshProUGUI salvageCollected;
     public TextMeshProUGUI scoreText;
-    public int amtSalvaged;
+    
     public TextMeshProUGUI grade;
-    public char playerGrade;
+    
     public GameObject totalScoreLabel;
     public GameObject playerBonusLabel;
     public GameObject floorScoreLabel;
@@ -87,8 +87,8 @@ public class gameManager : MonoBehaviour
     public GameObject salvageableItemReticle;
     public Image salvagingObjectReticle;
 
-    [Header("----- Score Text Bar -----")]
-    public TextMeshProUGUI playerSalvageScoreText;
+    //[Header("----- Score Text Bar -----")]
+    //public TextMeshProUGUI playerSalvageScoreText;
 
 
     [Header("----- Incoming Transmission -----")]
@@ -101,8 +101,9 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI LevelScrapCollected;
     public TextMeshProUGUI SpentScrap;
     public GameObject DeclinedPurchasePopUp;
-
+    public int amtSalvaged;
     public int spent;
+    public char playerGrade;
 
 
     //public TextMeshProUGUI LevelScrapCollectedStore;
@@ -195,13 +196,6 @@ public class gameManager : MonoBehaviour
 
     //public GameObject salvagingObjectParent;
 
-
-    //[Header("-----Turret Stuff-----")]
-
-    //public GameObject turret;
-    //[Header("-----Rat Stuff-----")]
-    //public GameObject rat;
-    //public int enemiesRemaining;
 
 
 
@@ -469,16 +463,13 @@ void Update()
             gamelog.Clear();
         }
 
-        if (Input.GetButtonDown("Tab") && !craftingOpen && activeMenu == null)
+        if (Input.GetButtonDown("Tab") && !playerController.isDead && !craftingOpen && activeMenu != craftingMenu && activeMenu != lvl2 && activeMenu != lvl3 && activeMenu != lvl4 && activeMenu != blackOverlayForDeathParent)
         {
             craftingOpen = true;
-
+            if(activeMenu!=lvl2&& activeMenu != lvl3&& activeMenu != lvl4&&activeMenu!=blackOverlayForDeathParent)
 
             CueCrafting();
-            if (Inventory.Instance)
-            {
-                UpdateInventory();
-            }
+            
 
         }
         else if (Input.GetButtonDown("Tab") && craftingOpen && activeMenu == craftingMenu)
@@ -496,7 +487,7 @@ void Update()
             InventroyParent.SetActive(false);
         }
 
-        if (invShown.isOn && craftingOpen && !statsOpen)
+        if (playerController.isDead==false&&invShown.isOn && craftingOpen && !statsOpen)
         {
 
             TurnOnInventoryUI();
@@ -507,7 +498,15 @@ void Update()
             TurnOffInventoryUI();
         }
 
-
+        if (craftingOpen && activeMenu == craftingMenu)
+        {
+            if (Inventory.Instance)
+            {
+                UpdateInventory();
+            }
+            SpentScrap.text=spent.ToString();
+            LevelScrapCollected.text=amtSalvaged.ToString();
+        }
 
     }
 
@@ -530,6 +529,7 @@ void Update()
         // we don't need the below line as calling pause state method pauses the vo that was playing already
         // levelAudioManager.instance.voiceOverAudioSource.Stop();
         PauseState();
+        Time.timeScale = timeScaleOriginal;
 
 
 
@@ -539,7 +539,15 @@ void Update()
         activeMenu = craftingMenu;
         activeMenu.SetActive(true);
     }
+    public void CloseCrafting()
+    {
+        
+        TurnOffInventoryUI();
+        // levelAudioManager.instance.voiceOverAudioSource.Stop();
+        craftingMenu.SetActive(false);
+        UnpauseState();
 
+    }
     public void PauseState()
     {
         isPaused = true;
@@ -636,6 +644,8 @@ void Update()
 
     public void PlayerDead()
     {
+        activeMenu = blackOverlayForDeathParent;
+        CloseCrafting();
         blackOverlayForDeathParent.SetActive(true);
         //playerScript.isDead = true;
         Debug.Log("Player Dead");
@@ -925,13 +935,7 @@ void Update()
         }
     }
 
-    public void CloseCrafting()
-    {
-        // levelAudioManager.instance.voiceOverAudioSource.Stop();
-        craftingMenu.SetActive(false);
-        UnpauseState();
-        
-    }
+    
     public char Rank()
     {
         int percentClear = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
@@ -1048,18 +1052,21 @@ void Update()
     {
 
         lvl2.SetActive(true);
+        activeMenu = lvl2;
         Debug.Log("WFS Started");
         yield return new WaitForSecondsRealtime(5);
 
         Debug.Log("WFS Done");
         lvl2.SetActive(false);
         SceneManager.LoadScene("Lvl 2");
+        
         UnpauseState();
     }
     IEnumerator Lvl3LoadScreen()
     {
 
         lvl3.SetActive(true);
+        activeMenu = lvl3;
         Debug.Log("WFS Started");
         yield return new WaitForSecondsRealtime(5);
 
@@ -1073,6 +1080,7 @@ void Update()
     {
 
         lvl4.SetActive(true);
+        activeMenu = lvl4;
         Debug.Log("WFS Started");
         yield return new WaitForSecondsRealtime(5);
 
@@ -1397,14 +1405,14 @@ void Update()
     public void UpdateInventory()
     {
         LevelScrapCollected.text = amtSalvaged.ToString();
-        //if (gameManager.instance.playerScript.salvDetector)
-        //{
-        //    FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
-        //}
-        //else
-        //{
-        //    FloorAvailData.text = "Need Salv Detector";
-        //}
+        if (gameManager.instance.playerScript.salvDetector)
+        {
+            FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
+        }
+        else
+        {
+            FloorAvailData.text = "Need Salv Detector";
+        }
         SpentScrap.text = spent.ToString();
         BioMassAmt.text = Inventory.Instance._iBioMass.ToString();
         IntactOrganAmt.text = Inventory.Instance._iIntactOrgan.ToString();
