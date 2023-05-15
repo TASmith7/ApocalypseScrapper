@@ -26018,15 +26018,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1514580609689459488, guid: a0d135b74f70b6f4ea0c46082035ba7c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.25011
+      value: -27.85
       objectReference: {fileID: 0}
     - target: {fileID: 1514580609689459488, guid: a0d135b74f70b6f4ea0c46082035ba7c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.000004
+      value: 1.529
       objectReference: {fileID: 0}
     - target: {fileID: 1514580609689459488, guid: a0d135b74f70b6f4ea0c46082035ba7c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.03
+      value: 3.122
       objectReference: {fileID: 0}
     - target: {fileID: 1514580609689459488, guid: a0d135b74f70b6f4ea0c46082035ba7c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -56298,6 +56298,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: lockdownSiren
+      value: 
+      objectReference: {fileID: 8300000, guid: a0407c7b14db73b4bb0f95d83482e8ba, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: lockdownSirenVolume
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: lockdownVoiceVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: lockdownShutdownSiren
+      value: 
+      objectReference: {fileID: 8300000, guid: d94d74ef8cae34044bcba911124af020, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: lockdownInitiatedVoice
+      value: 
+      objectReference: {fileID: 8300000, guid: ed0eb1c0b816ddb4f897cd05a9f4197c, type: 3}
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: lockdownDisengagedVoice
+      value: 
+      objectReference: {fileID: 8300000, guid: 35838dec8c8d5664c9025246b3009b73, type: 3}
     - target: {fileID: 8200925025790724419, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
       propertyPath: m_Name
       value: LevelAudioManager
@@ -56766,6 +56790,14 @@ PrefabInstance:
       propertyPath: lockedOutMessage
       value: 
       objectReference: {fileID: 1757376670}
+    - target: {fileID: 4863470704314090900, guid: 90bf72f5f3139664c879bf9dd6358e36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957404663935457269, guid: 90bf72f5f3139664c879bf9dd6358e36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.38
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90bf72f5f3139664c879bf9dd6358e36, type: 3}
 --- !u!1001 &1856085550

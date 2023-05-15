@@ -13,6 +13,8 @@ public class levelAudioManager : MonoBehaviour
     public AudioSource pauseMenuAudioSource;
     public AudioSource voiceOverAudioSource;
     public AudioSource elevatorAudioSource;
+    public AudioSource lockdownAudioSource;
+    public AudioSource lockdownSirenAudioSource;
 
     // audio clips (the actual sound)
     [Header("----- Clips -----")]
@@ -41,6 +43,10 @@ public class levelAudioManager : MonoBehaviour
     public AudioClip VOStoreTutorial;
     public AudioClip elevatorUp;
     public AudioClip elevatorStop;
+    public AudioClip lockdownInitiatedVoice;
+    public AudioClip lockdownSiren;
+    public AudioClip lockdownShutdownSiren;
+    public AudioClip lockdownDisengagedVoice;
 
 
     [Header("----- Volume -----")]
@@ -49,11 +55,15 @@ public class levelAudioManager : MonoBehaviour
     [Range(0f, 1.0f)][SerializeField] float pauseMenuVolume;
     [Range(0f, 1.0f)][SerializeField] float voiceOverVolume;
     [Range(0f, 1.0f)][SerializeField] float elevatorVolume;
+    [Range(0f, 1.0f)][SerializeField] float lockdownVoiceVolume;
+    [Range(0f, 1.0f)][SerializeField] float lockdownSirenVolume;
 
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float musicPitch;
 
     bool elevatorWasPlaying;
+    bool lockdownVoiceWasPlaying;
+    bool lockdownSirenWasPlaying;
 
 
     private void Awake()
@@ -73,12 +83,26 @@ public class levelAudioManager : MonoBehaviour
         whiteNoiseAudioSource = gameObject.AddComponent<AudioSource>();
         pauseMenuAudioSource = gameObject.AddComponent<AudioSource>();
         voiceOverAudioSource = gameObject.AddComponent<AudioSource>();
+
+
         if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
             elevatorAudioSource = gameObject.AddComponent<AudioSource>();
             elevatorAudioSource.volume = elevatorVolume;
         }
         
+        if(gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 3"))
+        {
+            lockdownAudioSource = gameObject.AddComponent<AudioSource>();
+            lockdownSirenAudioSource = gameObject.AddComponent<AudioSource>();
+
+            lockdownAudioSource.clip = lockdownInitiatedVoice;
+            lockdownSirenAudioSource.clip = lockdownSiren;
+
+            lockdownAudioSource.volume = lockdownVoiceVolume;
+            lockdownSirenAudioSource.volume = lockdownSirenVolume;
+        }
+
         // assigning each audio sources clip (the actual sound that it makes)
         whiteNoiseAudioSource.clip = whiteNoiseAudio;
         pauseMenuAudioSource.clip = pauseMenuAudio;
@@ -175,6 +199,24 @@ public class levelAudioManager : MonoBehaviour
                 elevatorAudioSource.Pause();
             }
         }
+
+        if(lockdownAudioSource != null)
+        {
+            if(lockdownAudioSource.isPlaying)
+            {
+                lockdownVoiceWasPlaying = true;
+                lockdownAudioSource.Pause();
+            }
+        }
+
+        if(lockdownSirenAudioSource != null)
+        {
+            if (lockdownSirenAudioSource.isPlaying)
+            {
+                lockdownSirenWasPlaying = true;
+                lockdownSirenAudioSource.Pause();
+            }
+        }
     }
 
     public void UnpauseAllAudio()
@@ -186,6 +228,23 @@ public class levelAudioManager : MonoBehaviour
         {
             elevatorAudioSource.UnPause();
         }
+
+        if (lockdownAudioSource != null)
+        {
+            if (lockdownVoiceWasPlaying)
+            {
+                lockdownAudioSource.UnPause();
+            }
+        }
+
+        if (lockdownSirenAudioSource != null)
+        {
+            if (lockdownSirenWasPlaying)
+            {
+                lockdownSirenAudioSource.UnPause();
+            }
+        }
+
     }
 
    
