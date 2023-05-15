@@ -530,7 +530,7 @@ void Update()
         // levelAudioManager.instance.voiceOverAudioSource.Stop();
         PauseState();
         Time.timeScale = timeScaleOriginal;
-
+        
 
 
 

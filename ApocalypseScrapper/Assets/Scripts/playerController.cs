@@ -1022,9 +1022,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             shieldCD = globalSceneControl.Instance.shieldCD;
             shieldRate = globalSceneControl.Instance.shieldRate;
             playerTotalScore = globalSceneControl.Instance.playerScrapCollected;
+            gameManager.instance.totalScoreData.text = playerTotalScore.ToString();
             playerBonus = globalSceneControl.Instance.playerBonus;
-            
-            
+            gameManager.instance.playerBonusData.text = playerBonus.ToString();
         }
         Debug.Log("Player stats loaded.");
     }
