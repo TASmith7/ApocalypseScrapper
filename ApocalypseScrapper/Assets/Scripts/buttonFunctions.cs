@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
@@ -99,6 +100,39 @@ public class buttonFunctions : MonoBehaviour
     public void PlayButtonClickAudio()
     {
         buttonClickAudioSource.Play();
+    }
+
+    public void RoleCredits()
+    {
+        SceneManager.LoadScene("EndCredits");
+    }
+
+    public void LoadLevelButton()
+    {
+        mainMenuManager.instance.CueLoadLevelMenu();
+    }
+
+    public void LoadLevel1()
+    {
+        SceneManager.LoadScene("Lvl 1");
+    }
+
+    public void LoadLevel2()
+    {
+        SceneManager.LoadScene("Lvl 2");
+    }
+    public void LoadLevel3()
+    {
+        SceneManager.LoadScene("Lvl 3");
+    }
+    public void LoadBossLevel()
+    {
+        SceneManager.LoadScene("Boss Lvl");
+    }
+
+    public void BackMainMenu()
+    {
+        mainMenuManager.instance.CueMainMenuFromLoadLevel();
     }
 
     #region Store Menu Buttons
@@ -388,6 +422,7 @@ public class buttonFunctions : MonoBehaviour
     }
 
     #endregion
+
 
     IEnumerator DeclinedPurchase()
     {
