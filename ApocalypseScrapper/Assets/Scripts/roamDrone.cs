@@ -53,6 +53,7 @@ public class roamDrone : MonoBehaviour, IDamage
     float stoppingDistOrig;
     bool destinationChosen;
     Vector3 startingPos;
+    bool droneAudioWasPlaying;
 
     //Animation 
     //private bool canShoot = false;
@@ -103,17 +104,26 @@ public class roamDrone : MonoBehaviour, IDamage
                 StartCoroutine(Roam());
             }
 
+            
+
+            // if we pause, stop all drone audio
+            if (droneAudSource.isPlaying && gameManager.instance.isPaused)
+            {
+                droneAudioWasPlaying = true;
+                droneAudSource.Pause();
+            }
+            if (droneAudioWasPlaying && !gameManager.instance.isPaused)
+            {
+                droneAudioWasPlaying = false;
+                droneAudSource.UnPause();
+            }
+
             // if audio source isn't playing and we are not paused, play hover audio
-            if (!droneAudSource.isPlaying)
+            if (!droneAudSource.isPlaying && !gameManager.instance.isPaused)
             {
                 droneAudSource.PlayOneShot(hoverAudio);
             }
 
-            // if we pause, stop all drone audio
-            if (gameManager.instance.isPaused)
-            {
-                droneAudSource.Pause();
-            }
 
         }
     }
