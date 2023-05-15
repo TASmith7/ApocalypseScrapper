@@ -666,7 +666,6 @@ void Update()
         activeMenu = blackOverlayForDeathParent;
         CloseCrafting();
         blackOverlayForDeathParent.SetActive(true);
-        //playerScript.isDead = true;
         Debug.Log("Player Dead");
         playerDeathOverlay.SetActive(true);
         // stop any voice over audio that might already be playing
