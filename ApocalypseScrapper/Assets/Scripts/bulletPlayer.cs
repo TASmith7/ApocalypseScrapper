@@ -133,6 +133,16 @@ public class bulletPlayer : MonoBehaviour
                 // destroying the bullet if it hits something
                 Destroy(gameObject);
             }
+            
+        }
+        
+            
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.collider.CompareTag("Enemy") ||   !collision.collider.CompareTag("Minion"))
+        {
+            Destroy(gameObject);
         }
     }
 }
