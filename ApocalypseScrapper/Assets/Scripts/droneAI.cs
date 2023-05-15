@@ -58,6 +58,7 @@ public class droneAI : MonoBehaviour, IDamage
     //Animation 
     private bool canShoot = false;
     private float wakeAnimationLength;
+    bool droneAudioWasPlaying;
 
 
 
@@ -113,17 +114,25 @@ public class droneAI : MonoBehaviour, IDamage
                 }
             }
 
+            // if we pause, stop all drone audio
+            if (droneAudSource.isPlaying && gameManager.instance.isPaused)
+            {
+                droneAudioWasPlaying = true;
+                droneAudSource.Pause();
+            }
+            if (droneAudioWasPlaying && !gameManager.instance.isPaused)
+            {
+                droneAudioWasPlaying = false;
+                droneAudSource.UnPause();
+            }
+
             // if audio source isn't playing and we are awake, play hover audio
-            if(!droneAudSource.isPlaying && isAwake)
+            if (!droneAudSource.isPlaying && isAwake && !gameManager.instance.isPaused)
             {
                 droneAudSource.PlayOneShot(hoverAudio);
             }
 
-            // if we pause, stop all drone audio
-            if(gameManager.instance.isPaused)
-            {
-                droneAudSource.Pause();
-            }
+            
             
         }
 

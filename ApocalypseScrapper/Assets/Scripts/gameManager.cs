@@ -196,8 +196,9 @@ public class gameManager : MonoBehaviour
 
     //public GameObject salvagingObjectParent;
 
-
-
+    [Header("----- Level Entry Text -----")]
+    public GameObject entryLevelTextParent;
+    public TextMeshProUGUI entryLevelText;
 
     public bool isPaused;
     public float timeScaleOriginal;
@@ -219,7 +220,6 @@ public class gameManager : MonoBehaviour
         {
             eleDoor.SetActive(false);
             //StartCoroutine(SplashScreen());
-           
         }
 
 
@@ -333,6 +333,25 @@ public class gameManager : MonoBehaviour
             endGameBeam.SetActive(false);
         }
 
+
+        // entry level text
+        if(currentScene == SceneManager.GetSceneByName("Lvl 1"))
+        {
+            entryLevelText.text = "Level 1 - Factory";
+        }
+        else if(currentScene == SceneManager.GetSceneByName("Lvl 2"))
+        {
+            entryLevelText.text = "Level 2 - Mainframe";
+        }
+        else if (currentScene == SceneManager.GetSceneByName("Lvl 3"))
+        {
+            entryLevelText.text = "Level 3 - Warehouse";
+        }
+        else if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        {
+            entryLevelText.text = "Level 4 - Rooftop";
+        }
+
     }
 
     //IEnumerator SplashScreen()
@@ -392,11 +411,6 @@ public class gameManager : MonoBehaviour
 // Update is called once per frame
 void Update()
     {
-
-
-
-
-
 
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
@@ -506,6 +520,11 @@ void Update()
             }
             SpentScrap.text=spent.ToString();
             LevelScrapCollected.text=amtSalvaged.ToString();
+        }
+
+        if(Time.timeSinceLevelLoad > 8.5f && entryLevelTextParent.activeInHierarchy)
+        {
+            entryLevelTextParent.SetActive(false);
         }
 
     }

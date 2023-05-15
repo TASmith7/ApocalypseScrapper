@@ -20,6 +20,8 @@ public class Trapspawner : MonoBehaviour
     bool playerInRange;
     bool isSpawning;
     bool lockedDownMessageSent;
+    bool inLockdown;
+    bool lockdownHasOccurred;
 
     public int testNumber;
 
@@ -41,11 +43,17 @@ public class Trapspawner : MonoBehaviour
             StartCoroutine(spawn());
         }
 
-        if (prefabList.Count == 0)
+        if (prefabList.Count == 0 && inLockdown)
         {
             UpdateEnemiesRemaining();
             levelTrigger.SetActive(true);
             enemies.SetActive(false);
+
+            inLockdown = false;
+            levelAudioManager.instance.lockdownSirenAudioSource.Stop();
+            levelAudioManager.instance.lockdownAudioSource.Stop();
+            levelAudioManager.instance.lockdownSirenAudioSource.PlayOneShot(levelAudioManager.instance.lockdownShutdownSiren);
+            levelAudioManager.instance.lockdownAudioSource.PlayOneShot(levelAudioManager.instance.lockdownDisengagedVoice);
         }
 
         for (int i = 0; i < prefabList.Count; i++)
@@ -58,13 +66,23 @@ public class Trapspawner : MonoBehaviour
                 UpdateEnemiesRemaining();
             }
         }
+
+        if (playerInRange && !levelAudioManager.instance.lockdownAudioSource.isPlaying && !levelAudioManager.instance.lockdownSirenAudioSource.isPlaying && inLockdown && !gameManager.instance.isPaused)
+        {
+            levelAudioManager.instance.lockdownAudioSource.Play();
+            levelAudioManager.instance.lockdownSirenAudioSource.Play();
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !lockdownHasOccurred)
         {
             playerInRange = true;
+            inLockdown = true;
+            lockdownHasOccurred = true;
+
             //Debug.Log("Player Enter Spawner");
             levelTrigger.SetActive(false);
             StartCoroutine(LockDownMessage());
@@ -90,7 +108,7 @@ public class Trapspawner : MonoBehaviour
         {
             lockedDownMessageSent = true;
             lockedOutMessage.SetActive(true);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(3.5f);
             lockedOutMessage.SetActive(false);
             Destroy(lockedOutMessage);
         }
