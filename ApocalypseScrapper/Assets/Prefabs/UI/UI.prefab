@@ -7128,7 +7128,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You do not have enough materials. try again when you have the items needed.
+  m_text: You do not have enough materials or have reached the maximum upgrade level.
+    Try again when you have the items needed.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: db11462ed90d625479b330b1486e2b62, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: db11462ed90d625479b330b1486e2b62, type: 2}
@@ -36421,7 +36422,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5361234339168360041}
   m_HandleRect: {fileID: 6457653928648627063}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -36626,7 +36627,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8083081769080208974}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.5031056
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

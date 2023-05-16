@@ -58,7 +58,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     float timeOfLastThrust;
 
     [Header("----- Stamina Stats -----")]
-    [Range(10, 20)][SerializeField] public static float sprintSpeed;
+    [Range(10, 20)][SerializeField] public float sprintSpeed;
     [Range(0, 1)][SerializeField] public static float staminaDrain;
     [Range(0, 0.5f)][SerializeField] public static float staminaRefillRate;
     [Range(1, 100)][SerializeField] int timeToTurnOffStaminaBar;
@@ -180,7 +180,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     void Update()
     {
 
-        if (GODMODE) { HP = 999; HPMax = 999;}
+        if (GODMODE) { HP = 999; HPMax = 999; shootDamage = 999; }
 
         horizontalVelocity = controller.velocity;
         horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);

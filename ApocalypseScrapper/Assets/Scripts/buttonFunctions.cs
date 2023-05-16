@@ -375,7 +375,7 @@ public class buttonFunctions : MonoBehaviour
     //}
     public void UpgradeSalvageEfficiency()
     {
-        if (gameManager.instance.amtSalvaged >=4000&&Inventory._iDataProcessingCore>=2&&Inventory._iElectronicComponents>=2)
+        if (gameManager.instance.amtSalvaged >=4000&&Inventory._iDataProcessingCore>=2&&Inventory._iElectronicComponents>=2 && playerController.salvageRate>0.1)
         {
             
             playerController.salvageRate -= 0.1f;
