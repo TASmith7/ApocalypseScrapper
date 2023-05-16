@@ -119,7 +119,7 @@ public class bulletPlayer : MonoBehaviour
     {
         if (other is CapsuleCollider)
         {
-            if (other.CompareTag("Enemy") || other.CompareTag("Minion"))
+            if (other.CompareTag("Enemy") || other.CompareTag("Minion") || other.CompareTag("Drone"))
             {
                 // checking if the object that we collided with (other) has the IDamage script (i.e. is damageable)
                 IDamage damageable = other.GetComponent<IDamage>();
