@@ -55,6 +55,7 @@ public class droneAI : MonoBehaviour, IDamage
     bool destinationChosen;
     Vector3 startingPos;
     private bool isAwake = false;
+    bool hasDroppedDeadDrone;
 
     //Animation 
     private bool canShoot = false;
@@ -277,8 +278,9 @@ public class droneAI : MonoBehaviour, IDamage
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
-            if (drop)
+            if (drop && !hasDroppedDeadDrone)
             {
+                hasDroppedDeadDrone = true;
                 Instantiate(drop, transform.position, drop.transform.rotation);
             }
 

@@ -54,6 +54,7 @@ public class roamDrone : MonoBehaviour, IDamage
     bool destinationChosen;
     Vector3 startingPos;
     bool droneAudioWasPlaying;
+    bool hasDroppedDeadDrone;
 
     //Animation 
     //private bool canShoot = false;
@@ -268,8 +269,9 @@ public class roamDrone : MonoBehaviour, IDamage
         {
             StopAllCoroutines();
             //anim.SetBool("Dead", true);
-            if (drop)
+            if (drop && !hasDroppedDeadDrone)
             {
+                hasDroppedDeadDrone = true;
                 Instantiate(drop, transform.position, drop.transform.rotation);
             }
 

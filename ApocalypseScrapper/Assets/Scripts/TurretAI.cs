@@ -43,9 +43,8 @@ public class TurretAI : MonoBehaviour, IDamage
     bool playerInRange;
     float angleToPlayer;
     bool isShooting;
+    bool headDropped;
     
-    
-
     void Start()
     {
         activeRadius = radiusSleep;
@@ -178,7 +177,11 @@ public class TurretAI : MonoBehaviour, IDamage
         {
             
             Destroy(gameObject);
-            GameObject turretHead = Instantiate(turretHeadDestroyed,transform.position, headPos.transform.rotation);
+            if(!headDropped)
+            {
+                headDropped = true;
+                GameObject turretHead = Instantiate(turretHeadDestroyed, transform.position, headPos.transform.rotation);
+            }
             //Rigidbody.Instantiate(rigidBody);
         }
     }
