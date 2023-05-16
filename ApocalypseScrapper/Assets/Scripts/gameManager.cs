@@ -341,7 +341,7 @@ public class gameManager : MonoBehaviour
         }
         else if(currentScene == SceneManager.GetSceneByName("Lvl 2"))
         {
-            entryLevelText.text = "Level 2 - Mainframe";
+            entryLevelText.text = "Level 2 - Office/Ventilation";
         }
         else if (currentScene == SceneManager.GetSceneByName("Lvl 3"))
         {
