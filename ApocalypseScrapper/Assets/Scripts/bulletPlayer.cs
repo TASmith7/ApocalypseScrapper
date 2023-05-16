@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class bulletPlayer : MonoBehaviour
 {
-    [SerializeField] int damage=0;
+    [SerializeField] int damage=1;
     [SerializeField] float timer;
     [SerializeField] TrailRenderer trailRenderer;
     [SerializeField] playerController playerScript;
@@ -140,9 +140,9 @@ public class bulletPlayer : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.collider.CompareTag("Enemy") ||   !collision.collider.CompareTag("Minion"))
+        if (!collision.collider.CompareTag("Player") || !collision.collider.CompareTag("Enemy") ||   !collision.collider.CompareTag("Minion"))
         {
-            Destroy(gameObject);
+            Destroy(gameObject,.05f);
         }
     }
 }

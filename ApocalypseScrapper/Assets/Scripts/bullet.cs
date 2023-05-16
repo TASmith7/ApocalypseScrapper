@@ -31,9 +31,12 @@ public class bullet : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    { 
-        // destroying the bullet if it hits something
-        Destroy(gameObject);
-        Debug.Log("Destroyed Bullet!");
+    {
+        if (!collision.collider.CompareTag("Player"))
+        {
+            // destroying the bullet if it hits something
+            Destroy(gameObject);
+            Debug.Log("Destroyed Bullet!");
+        }
     }
 }

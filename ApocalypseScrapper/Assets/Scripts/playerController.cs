@@ -610,15 +610,15 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         // play shooting audio
         playerAudioManager.instance.gunAudioSource.Play();
 
-        GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.identity);
+        GameObject bulletClone = Instantiate(bullet, shootPos.position, shootPos.rotation);
         GameObject flashClone = Instantiate(muzzleFlash, shootPos.position, Quaternion.identity);
         // Set the bullet's velocity to this 
-        bulletClone.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * bulletSpeed;
+        bulletClone.GetComponent<Rigidbody>().velocity = shootPos.transform.forward * bulletSpeed;
 
         gunAnimator.Play("WeaponRecoil");
 
         // Set the rotation of the bullet to match the direction the player is looking
-        bulletClone.transform.rotation = Camera.main.transform.rotation;
+        bulletClone.transform.rotation = shootPos.rotation;
 
         //we use this raycast to return the position of where our raycast hits
         RaycastHit hit2;
