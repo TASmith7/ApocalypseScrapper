@@ -33,7 +33,10 @@ public class crabSpawnerTimer : MonoBehaviour
                 for (int i = 0; i < numOfCrabsToSpawn; i++)
                 {
                     int spawnerChosen = Random.Range(0, crabSpawners.Length);
-                    crabSpawners[spawnerChosen].StartCoroutine(crabSpawners[spawnerChosen].spawnEnemy(crabPrefab));
+                    if (!crabSpawners[spawnerChosen].playerInRange)
+                    {
+                        crabSpawners[spawnerChosen].StartCoroutine(crabSpawners[spawnerChosen].spawnEnemy(crabPrefab));
+                    }
                 }
             }
         }

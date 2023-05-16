@@ -141,8 +141,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     private void Start()
     {
-        //HP = 100;
-       // HPMax = 100;
+        HP = 100;
+        HPMax = 100;
         isDead = false;
         if (gameManager.instance.currentScene != SceneManager.GetSceneByName("Lvl 1"))
             SetPlayerStats();
