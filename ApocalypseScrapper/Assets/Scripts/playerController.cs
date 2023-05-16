@@ -7,6 +7,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 {
     #region Player variables
 
+    public bool GODMODE;
+
     [Header("----- Components -----")]
     [SerializeField] public CharacterController controller;
     // [SerializeField] Animator anim;
@@ -177,6 +179,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     void Update()
     {
+
+        if (GODMODE) { HP = 999; HPMax = 999;}
 
         horizontalVelocity = controller.velocity;
         horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);

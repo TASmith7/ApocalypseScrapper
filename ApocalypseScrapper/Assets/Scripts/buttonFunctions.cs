@@ -378,7 +378,7 @@ public class buttonFunctions : MonoBehaviour
         if (gameManager.instance.amtSalvaged >=4000&&Inventory._iDataProcessingCore>=2&&Inventory._iElectronicComponents>=2)
         {
             
-            playerController.salvageRate += 0.1f;
+            playerController.salvageRate -= 0.1f;
             gameManager.instance.amtSalvaged -= 4000;
             gameManager.instance.spent += 4000;
         }
