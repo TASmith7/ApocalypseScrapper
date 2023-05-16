@@ -199,6 +199,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Level Entry Text -----")]
     public GameObject entryLevelTextParent;
     public TextMeshProUGUI entryLevelText;
+    public int level = 0;
 
     public bool isPaused;
     public float timeScaleOriginal;
@@ -216,11 +217,6 @@ public class gameManager : MonoBehaviour
 
         // setting our current scene
         currentScene = SceneManager.GetActiveScene();
-        //if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
-        //{
-        //    eleDoor.SetActive(true);
-        //}
-
 
         player = GameObject.FindGameObjectWithTag("Player");
         Debug.Log("Object is named" + player.name);
@@ -552,7 +548,7 @@ public class gameManager : MonoBehaviour
 
     IEnumerator WaitToRemoveEleDoor()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(3);
         eleDoor.SetActive(false);
     }
 

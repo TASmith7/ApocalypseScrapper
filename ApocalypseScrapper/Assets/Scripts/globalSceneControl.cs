@@ -15,7 +15,7 @@ public class globalSceneControl : MonoBehaviour
     public int   _MSHP = 100;
     public int   _MSHPMax = 100;
 
-    public float _MSsalvageRate = .75f;
+    public float _MSsalvageRate = 1.0f;
     public int   _MSsalvageRange = 5;
     public float _MSsalvageSpread = 0.001f;
 
