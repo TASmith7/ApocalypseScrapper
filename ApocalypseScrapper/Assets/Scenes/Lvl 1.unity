@@ -14113,6 +14113,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: turret_1_3 S2 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6133238500580151027, guid: 2ea21a555e3fa0f43a0a37534e6dabe8, type: 3}
+      propertyPath: m_Radius
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ea21a555e3fa0f43a0a37534e6dabe8, type: 3}
 --- !u!4 &685423158 stripped
@@ -20385,6 +20389,10 @@ PrefabInstance:
     - target: {fileID: 5920473421000082599, guid: 2ea21a555e3fa0f43a0a37534e6dabe8, type: 3}
       propertyPath: m_Name
       value: turret_1_3 S2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133238500580151027, guid: 2ea21a555e3fa0f43a0a37534e6dabe8, type: 3}
+      propertyPath: m_Radius
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ea21a555e3fa0f43a0a37534e6dabe8, type: 3}
@@ -45798,6 +45806,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: turret_1_3 S2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6133238500580151027, guid: 2ea21a555e3fa0f43a0a37534e6dabe8, type: 3}
+      propertyPath: m_Radius
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ea21a555e3fa0f43a0a37534e6dabe8, type: 3}
 --- !u!1001 &2034150438
@@ -52237,6 +52249,10 @@ PrefabInstance:
     - target: {fileID: 5920473421000082599, guid: 2ea21a555e3fa0f43a0a37534e6dabe8, type: 3}
       propertyPath: m_Name
       value: turret_1_3 S2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133238500580151027, guid: 2ea21a555e3fa0f43a0a37534e6dabe8, type: 3}
+      propertyPath: m_Radius
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ea21a555e3fa0f43a0a37534e6dabe8, type: 3}
