@@ -1722,12 +1722,12 @@ MonoBehaviour:
   player: {fileID: 0}
   agent: {fileID: 114217009}
   exitDestination: {fileID: 0}
+  speed: 0
   isTrapped: 0
   playerInRange: 0
   rescueCoroutineStarted: 0
   isStanding: 0
   isExiting: 0
-  reachedExit: 0
   rescuedAudioStarted: 0
   rescueLinesAreFinished: 0
   timeBetweenHelpMeLines: 10

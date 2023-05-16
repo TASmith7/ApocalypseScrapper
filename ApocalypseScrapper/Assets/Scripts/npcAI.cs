@@ -11,6 +11,7 @@ public class npcAI : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform exitDestination;
+    public float speed;
     
     Animator anim;
 
@@ -44,7 +45,10 @@ public class npcAI : MonoBehaviour
     {
         // if we get untrapped
         if(!isTrapped)
-        { 
+        {
+            speed = agent.velocity.normalized.magnitude;
+            anim.SetFloat("Speed", speed);
+
             player.GetComponent<playerController>().questPay += 1000;
 
             // if we haven't already started the rescue coroutine
