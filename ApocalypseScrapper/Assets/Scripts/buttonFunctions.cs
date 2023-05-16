@@ -143,16 +143,16 @@ public class buttonFunctions : MonoBehaviour
     #region Store Menu Buttons
     public void SmallHeal()
     {
-        if (gameManager.instance.amtSalvaged >= 750 && Inventory.Instance._iBioMass >= 1 && gameManager.instance.playerScript.HP != gameManager.instance.playerScript.HPMax)
+        if (gameManager.instance.amtSalvaged >= 750 && Inventory.Instance._iBioMass >= 1 && playerController.HP != playerController.HPMax)
         {
             
-            gameManager.instance.playerScript.PlayerUIUpdate();
-
-            if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP <= 25)
+            if (playerController.HPMax - playerController.HP <= 25)
             {
-                gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPMax;
+                playerController.HP = playerController.HPMax;
             }
-            else gameManager.instance.playerScript.HP += 25;
+            else playerController.HP += 25;
+
+            gameManager.instance.playerScript.PlayerUIUpdate();
 
             gameManager.instance.amtSalvaged -= 750;
             gameManager.instance.spent += 750;
@@ -168,15 +168,16 @@ public class buttonFunctions : MonoBehaviour
 
     public void LargeHeal()
     {
-        if (gameManager.instance.amtSalvaged >= 2500 && Inventory.Instance._iIntactOrgan>= 2 &&gameManager.instance.playerScript.HP != gameManager.instance.playerScript.HPMax)
+        if (gameManager.instance.amtSalvaged >= 2500 && Inventory.Instance._iIntactOrgan>= 2 && playerController.HP != playerController.HPMax)
         {
-            gameManager.instance.playerScript.PlayerUIUpdate();
             
-            if (gameManager.instance.playerScript.HPMax - gameManager.instance.playerScript.HP <= 100)
+            if (playerController.HPMax - playerController.HP <= 100)
             {
-                gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPMax;
+                playerController.HP = playerController.HPMax;
             }
-            else gameManager.instance.playerScript.HP += 100;
+            else playerController.HP += 100;
+
+            gameManager.instance.playerScript.PlayerUIUpdate();
 
             gameManager.instance.amtSalvaged -= 2500;
             gameManager.instance.spent += 2500;
@@ -192,16 +193,17 @@ public class buttonFunctions : MonoBehaviour
     {
         if (gameManager.instance.amtSalvaged >= 5000&& Inventory.Instance._iBioMass>=1&&Inventory.Instance._iIntactOrgan>=2)
         {
-            gameManager.instance.playerScript.PlayerUIUpdate();
 
-            gameManager.instance.playerScript.HPMax += 25;
-            gameManager.instance.playerScript.HP += 25;
+            playerController.HPMax += 25;
+            playerController.HP += 25;
             
             gameManager.instance.amtSalvaged -= 5000;
             gameManager.instance.spent += 5000;
             Inventory.Instance.RemBM(1);
             Inventory.Instance.RemIO(2);
             gameManager.instance.UpdateInventory();
+
+            gameManager.instance.playerScript.PlayerUIUpdate();
         }
         else
         {

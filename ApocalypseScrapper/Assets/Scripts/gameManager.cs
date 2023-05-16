@@ -1405,8 +1405,8 @@ public class gameManager : MonoBehaviour
     }
     public void SetPlayerStats()
     {
-        healthValue.text = playerScript.HP.ToString();
-        maxHealthValue.text = playerScript.HPMax.ToString();
+        healthValue.text = playerController.HP.ToString();
+        maxHealthValue.text = playerController.HPMax.ToString();
         if (playerScript.shielded)
         {
             shieldRechargeValue.text = playerScript.shieldRate.ToString();

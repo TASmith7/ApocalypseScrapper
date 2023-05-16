@@ -16,8 +16,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public LayerMask salvageLayer;
 
     [Header("----- Player Stats -----")]
-    [Range(1, 100)][SerializeField] public int HP;
-    [SerializeField] public int HPMax;
+    [Range(1, 100)][SerializeField] public static int HP;
+    [SerializeField] public static int HPMax;
     [SerializeField] public float playerSpeed;
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(0.3f, 1.0f)][SerializeField] float walkingFootstepRate;
@@ -141,6 +141,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     private void Start()
     {
+        //HP = 100;
+       // HPMax = 100;
         isDead = false;
         if (gameManager.instance.currentScene != SceneManager.GetSceneByName("Lvl 1"))
             SetPlayerStats();
