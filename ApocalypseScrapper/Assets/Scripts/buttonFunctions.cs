@@ -143,7 +143,7 @@ public class buttonFunctions : MonoBehaviour
     #region Store Menu Buttons
     public void SmallHeal()
     {
-        if (gameManager.instance.amtSalvaged >= 750 && Inventory.Instance._iBioMass >= 1 && playerController.HP != playerController.HPMax)
+        if (gameManager.instance.amtSalvaged >= 750 && Inventory._iBioMass >= 1 && playerController.HP != playerController.HPMax)
         {
             
             if (playerController.HPMax - playerController.HP <= 25)
@@ -168,7 +168,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void LargeHeal()
     {
-        if (gameManager.instance.amtSalvaged >= 2500 && Inventory.Instance._iIntactOrgan>= 2 && playerController.HP != playerController.HPMax)
+        if (gameManager.instance.amtSalvaged >= 2500 && Inventory._iIntactOrgan>= 2 && playerController.HP != playerController.HPMax)
         {
             
             if (playerController.HPMax - playerController.HP <= 100)
@@ -191,7 +191,7 @@ public class buttonFunctions : MonoBehaviour
     }
     public void MaxHealth()
     {
-        if (gameManager.instance.amtSalvaged >= 5000&& Inventory.Instance._iBioMass>=1&&Inventory.Instance._iIntactOrgan>=2)
+        if (gameManager.instance.amtSalvaged >= 5000&& Inventory._iBioMass>=1&&Inventory._iIntactOrgan>=2)
         {
 
             playerController.HPMax += 25;
@@ -213,13 +213,13 @@ public class buttonFunctions : MonoBehaviour
 
     public void GetShield()
     {
-        if (gameManager.instance.amtSalvaged >= 2000&& Inventory.Instance._iHighPoweredLightDiode>=2)
+        if (gameManager.instance.amtSalvaged >= 2000&& Inventory._iHighPoweredLightDiode>=2)
         {
             gameManager.instance.playerScript.PlayerUIUpdate();
 
-            gameManager.instance.playerScript.shielded = true;
-            gameManager.instance.playerScript.shieldMax += 25;
-            gameManager.instance.playerScript.shieldValue += 25;
+            playerController.shielded = true;
+            playerController.shieldMax += 25;
+            playerController.shieldValue += 25;
             gameManager.instance.amtSalvaged -= 2000;
             gameManager.instance.spent += 2000;
             Inventory.Instance.RemHPLD(2);
@@ -233,12 +233,12 @@ public class buttonFunctions : MonoBehaviour
 
     public void ModShield()
     {
-        if (gameManager.instance.amtSalvaged >= 5000 &&Inventory.Instance._iElectronicComponents>=2&&Inventory.Instance._sDataProcessingCore>=4&& gameManager.instance.playerScript.shielded == true)
+        if (gameManager.instance.amtSalvaged >= 5000 &&Inventory._iElectronicComponents>=2&&Inventory._sDataProcessingCore>=4&& playerController.shielded == true)
         {
             gameManager.instance.playerScript.PlayerUIUpdate();
             
-            gameManager.instance.playerScript.shieldRate += 1;
-            gameManager.instance.playerScript.shieldCD -= 1;
+            playerController.shieldRate += 1;
+            playerController.shieldCD -= 1;
 
             gameManager.instance.amtSalvaged -= 5000;
             gameManager.instance.spent += 5000;
@@ -254,10 +254,10 @@ public class buttonFunctions : MonoBehaviour
 
     public void PlusWeapDmg()
     {
-        if (gameManager.instance.amtSalvaged >= 4000 && Inventory.Instance._iElectronicComponents >= 2)
+        if (gameManager.instance.amtSalvaged >= 4000 && Inventory._iElectronicComponents >= 2)
         {
 
-            gameManager.instance.playerScript.shootDamage += 1;
+            playerController.shootDamage += 1;
             
             gameManager.instance.amtSalvaged -= 4000;
             gameManager.instance.spent += 4000;
@@ -272,10 +272,10 @@ public class buttonFunctions : MonoBehaviour
 
     public void OverchargeWeapDmg()
     {
-        if (gameManager.instance.amtSalvaged >= 3000 && Inventory.Instance._iElectricMotor >= 1 && Inventory.Instance._iDataProcessingCore >= 1)
+        if (gameManager.instance.amtSalvaged >= 3000 && Inventory._iElectricMotor >= 1 && Inventory._iDataProcessingCore >= 1)
         {
-            gameManager.instance.playerScript.shootDamage += 5;
-            gameManager.instance.playerScript.shootRate += 0.33f;
+            playerController.shootDamage += 5;
+            playerController.shootRate += 0.33f;
             
             gameManager.instance.amtSalvaged -= 3000;
             gameManager.instance.spent += 3000;
@@ -291,9 +291,9 @@ public class buttonFunctions : MonoBehaviour
 
     public void JPFuel()
     {
-        if (gameManager.instance.amtSalvaged >= 2000 && Inventory.Instance._iHighPoweredLightDiode >= 1 && Inventory.Instance._iGoldAlloy >= 2)
+        if (gameManager.instance.amtSalvaged >= 2000 && Inventory._iHighPoweredLightDiode >= 1 && Inventory._iGoldAlloy >= 2)
         {
-            gameManager.instance.playerScript.fuelConsumptionRate -= 0.1f;
+            playerController.fuelConsumptionRate -= 0.1f;
             
 
             gameManager.instance.amtSalvaged -= 2000;
@@ -310,9 +310,9 @@ public class buttonFunctions : MonoBehaviour
 
     public void JPRecharge()
     {
-        if (gameManager.instance.amtSalvaged >= 4000&&Inventory.Instance._iHighTensileAlloyPlate>=1&& Inventory.Instance._iGlassPane>=2)
+        if (gameManager.instance.amtSalvaged >= 4000&&Inventory._iHighTensileAlloyPlate>=1&& Inventory._iGlassPane>=2)
         {
-            gameManager.instance.playerScript.fuelRefillRate += 0.1f;
+            playerController.fuelRefillRate += 0.1f;
             gameManager.instance.amtSalvaged -= 4000;
             gameManager.instance.spent += 4000;
             Inventory.Instance.RemHTAP(1);
@@ -328,9 +328,9 @@ public class buttonFunctions : MonoBehaviour
 
     public void GetDetector()
     {
-        if (gameManager.instance.amtSalvaged >= 15000&&Inventory.Instance._iElectricMotor>=3&& Inventory.Instance._iDataProcessingCore>=4)
+        if (gameManager.instance.amtSalvaged >= 15000&&Inventory._iElectricMotor>=3&& Inventory._iDataProcessingCore>=4)
         {
-            gameManager.instance.playerScript.salvDetector = true;
+            playerController.salvDetector = true;
                 
             gameManager.instance.amtSalvaged -= 15000;
             gameManager.instance.spent += 15000;
@@ -346,9 +346,9 @@ public class buttonFunctions : MonoBehaviour
     }
     public void UpgradeSalvageRange()
     {
-        if(gameManager.instance.amtSalvaged >=3000&& Inventory.Instance._iElectricMotor>=2)
+        if(gameManager.instance.amtSalvaged >=3000&& Inventory._iElectricMotor>=2)
         {
-            gameManager.instance.playerScript.salvageRange += 1;
+            playerController.salvageRange += 1;
             gameManager.instance.amtSalvaged -= 3000;
             gameManager.instance.spent += 3000;
             Inventory.Instance.RemEM(2);
@@ -375,10 +375,10 @@ public class buttonFunctions : MonoBehaviour
     //}
     public void UpgradeSalvageEfficiency()
     {
-        if (gameManager.instance.amtSalvaged >=4000&&Inventory.Instance._iDataProcessingCore>=2&&Inventory.Instance._iElectronicComponents>=2)
+        if (gameManager.instance.amtSalvaged >=4000&&Inventory._iDataProcessingCore>=2&&Inventory._iElectronicComponents>=2)
         {
             
-            gameManager.instance.playerScript.salvageRate += 0.1f;
+            playerController.salvageRate += 0.1f;
             gameManager.instance.amtSalvaged -= 4000;
             gameManager.instance.spent += 4000;
         }
@@ -390,10 +390,10 @@ public class buttonFunctions : MonoBehaviour
     
     public void UpgradeStaminaEfficiency()
     {
-        if(gameManager.instance.amtSalvaged >=4000&&Inventory.Instance._iElectricMotor>=2&&Inventory.Instance._iElectronicComponents>=2)
+        if(gameManager.instance.amtSalvaged >=4000&&Inventory._iElectricMotor>=2&&Inventory._iElectronicComponents>=2)
         {
             
-            gameManager.instance.playerScript.staminaDrain -= 0.2f;
+            playerController.staminaDrain -= 0.2f;
             gameManager.instance.amtSalvaged -= 4000;
             gameManager.instance.spent += 4000;
             Inventory.Instance.RemEM(2);
@@ -407,9 +407,9 @@ public class buttonFunctions : MonoBehaviour
     }
     public void UpgradeStaminaRecharge()
     {
-        if (gameManager.instance.amtSalvaged >= 2000&&Inventory.Instance._iCeramicPlate>=2&&Inventory.Instance._iElectricMotor>=2)
+        if (gameManager.instance.amtSalvaged >= 2000&&Inventory._iCeramicPlate>=2&&Inventory._iElectricMotor>=2)
         {
-            gameManager.instance.playerScript.staminaRefillRate += 0.2f;
+            playerController.staminaRefillRate += 0.2f;
             gameManager.instance.amtSalvaged -= 2000;
             gameManager.instance.spent += 2000;
             Inventory.Instance.RemCP(2);

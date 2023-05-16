@@ -16,7 +16,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public LayerMask salvageLayer;
 
     [Header("----- Player Stats -----")]
-    [Range(1, 100)][SerializeField] public static int HP;
+    [Range(1, 999)][SerializeField] public static int HP;
     [SerializeField] public static int HPMax;
     [SerializeField] public float playerSpeed;
     [Range(10, 50)][SerializeField] float gravityValue;
@@ -35,8 +35,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [Header("----- Salvage Stats -----")]
 
-    [SerializeField] public int salvageRange;
-    [Range(0.1f, 1)][SerializeField] public float salvageRate;
+    [SerializeField] public static int salvageRange;
+    [Range(0.1f, 1)][SerializeField] public static float salvageRate;
     [Range(0.01f, 1)][SerializeField] public float salvageSpread;
     bool isSalvaging;
     
@@ -48,17 +48,17 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [SerializeField] GameObject muzzleFlash;
 
     [Header("----- Jetpack Stats -----")]
-    [Range(1, 8)][SerializeField] public float thrustPower;
-    [Range(0, 1)][SerializeField] public float fuelConsumptionRate;
-    [Range(0, 0.5f)][SerializeField] public float fuelRefillRate;
+    [Range(1, 8)][SerializeField] public static float thrustPower;
+    [Range(0, 1)][SerializeField] public static float fuelConsumptionRate;
+    [Range(0, 0.5f)][SerializeField] public static float fuelRefillRate;
     [Range(1, 100)][SerializeField] int timeToTurnOffFuelBar;
     bool isThrusting;
     float timeOfLastThrust;
 
     [Header("----- Stamina Stats -----")]
-    [Range(10, 20)][SerializeField] public float sprintSpeed;
-    [Range(0, 1)][SerializeField] public float staminaDrain;
-    [Range(0, 0.5f)][SerializeField] public float staminaRefillRate;
+    [Range(10, 20)][SerializeField] public static float sprintSpeed;
+    [Range(0, 1)][SerializeField] public static float staminaDrain;
+    [Range(0, 0.5f)][SerializeField] public static float staminaRefillRate;
     [Range(1, 100)][SerializeField] int timeToTurnOffStaminaBar;
     [Range(5, 10)][SerializeField] public float walkSpeed;
     public bool isSprinting;
@@ -85,8 +85,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [Header("----- Gun Stats -----")]
     public List<GunStats> gunList = new List<GunStats>();
-    [Range(1, 100)][SerializeField] public int shootDamage;
-    [Range(0.1f, 5)][SerializeField] public float shootRate;
+    [Range(1, 100)][SerializeField] public static int shootDamage;
+    [Range(0.1f, 5)][SerializeField] public static float shootRate;
     [Range(1, 100)][SerializeField] public int shootDistance;
     [SerializeField] GameObject bullet;
     [SerializeField] int bulletSpeed;
@@ -107,13 +107,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
 
     [Header("-----Upgrades-----")]
-    [SerializeField] public bool salvDetector;
-    [SerializeField] public bool shielded;
-    [SerializeField] public int shieldValue;
-    [SerializeField] public int shieldMax;
-    [SerializeField] public int shieldCD;
-    [SerializeField] public int shieldRate;
-    bool shieldOnCD;
+    [SerializeField] public static bool salvDetector;
+    [SerializeField] public static bool shielded;
+    [SerializeField] public static int shieldValue;
+    [SerializeField] public static int shieldMax;
+    [SerializeField] public static int shieldCD;
+    [SerializeField] public static int shieldRate;
+    
     bool isShieldRegen;
     float tookDamage;
 
@@ -130,12 +130,12 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
 
     [Header("----- Score Stats -----")]
-    [SerializeField] public float totalLevelSalvage;
-    [SerializeField] public int playerFloorScore;
-    [SerializeField] public int playerTotalScore;
-    [SerializeField] public int playerBonus;
-    [SerializeField] public int hazardPay;
-    [SerializeField] public int questPay;
+    [SerializeField] public static float totalLevelSalvage;
+    [SerializeField] public static int playerFloorScore;
+    [SerializeField] public static int playerTotalScore;
+    [SerializeField] public static int playerBonus;
+    [SerializeField] public static int hazardPay;
+    [SerializeField] public static int questPay;
 
     #endregion
 

@@ -7,32 +7,32 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
 
     [Header("----- PLayer Inventory -----")]
-    public int _iBioMass = 0;
-    public int _iIntactOrgan = 0;
-    public int _iElectronicComponents = 0;
-    public int _iDataProcessingCore = 0;
-    public int _iDenseMetalPlate = 0;
-    public int _iHighTensileAlloyPlate = 0;
-    public int _iGlassPane = 0;
-    public int _iHighPoweredLightDiode = 0;
-    public int _iElectricMotor = 0;
-    public int _iCeramicPlate = 0;
-    public int _iGoldAlloy = 0;
-    public int _iValuableLoot = 0;
+    public static int _iBioMass = 0;
+    public static int _iIntactOrgan = 0;
+    public static int _iElectronicComponents = 0;
+    public static int _iDataProcessingCore = 0;
+    public static int _iDenseMetalPlate = 0;
+    public static int _iHighTensileAlloyPlate = 0;
+    public static int _iGlassPane = 0;
+    public static int _iHighPoweredLightDiode = 0;
+    public static int _iElectricMotor = 0;
+    public static int _iCeramicPlate = 0;
+    public static int _iGoldAlloy = 0;
+    public static int _iValuableLoot = 0;
 
     [Header("----- PLayer Inventory Snapshot for level reset -----")]
-    public int _sBioMass;
-    public int _sIntactOrgan;
-    public int _sElectronicComponents;
-    public int _sDataProcessingCore;
-    public int _sDenseMetalPlate;
-    public int _sHighTensileAlloyPlate;
-    public int _sGlassPane;
-    public int _sHighPoweredLightDiode;
-    public int _sElectricMotor;
-    public int _sCeramicPlate;
-    public int _sGoldAlloy;
-    public int _sValuableLoot;
+    public static int _sBioMass;
+    public static int _sIntactOrgan;
+    public static int _sElectronicComponents;
+    public static int _sDataProcessingCore;
+    public static int _sDenseMetalPlate;
+    public static int _sHighTensileAlloyPlate;
+    public static int _sGlassPane;
+    public static int _sHighPoweredLightDiode;
+    public static int _sElectricMotor;
+    public static int _sCeramicPlate;
+    public static int _sGoldAlloy;
+    public static int _sValuableLoot;
 
     // Start is called before the first frame update
     private void Awake()

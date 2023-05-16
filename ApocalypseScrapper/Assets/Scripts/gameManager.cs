@@ -788,9 +788,9 @@ public class gameManager : MonoBehaviour
 
     public void UpdateSalvageScore(int score)
     {
-        if (playerScript.salvDetector == true)
+        if (playerController.salvDetector == true)
         {
-            salvageCollected.text = score.ToString() + " of " + playerScript.totalLevelSalvage;
+            salvageCollected.text = score.ToString() + " of " + playerController.totalLevelSalvage;
 
         }
         else salvageCollected.text = score.ToString();
@@ -983,7 +983,7 @@ public class gameManager : MonoBehaviour
     
     public char Rank()
     {
-        int percentClear = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
+        int percentClear = (int)((playerController.playerFloorScore / playerController.totalLevelSalvage) * 100);
 
         if (percentClear > 90)
         {
@@ -1137,25 +1137,25 @@ public class gameManager : MonoBehaviour
     public void WinGame()
     {
         // updating total score value
-        playerScript.playerTotalScore += playerScript.playerFloorScore;
-        hazardPayData.text = playerScript.hazardPay.ToString();
-        QuestCompletionPayData.text = playerScript.questPay.ToString();
-        playerScript.playerBonus += 50;
+        playerController.playerTotalScore += playerController.playerFloorScore;
+        hazardPayData.text = playerController.hazardPay.ToString();
+        QuestCompletionPayData.text = playerController.questPay.ToString();
+        playerController.playerBonus += 50;
 
         // updating total salvage for all levels
-        totalSalvagedData.text = playerScript.playerTotalScore.ToString();
+        totalSalvagedData.text = playerController.playerTotalScore.ToString();
 
         // updating salvage cut value
-        int salvageCut = (int)(playerScript.playerTotalScore * 0.03);
+        int salvageCut = (int)(playerController.playerTotalScore * 0.03);
         salvageCutData.text = salvageCut.ToString();
 
         // updating remaining bonus
-        remainingBonusData.text = playerScript.playerBonus.ToString();
+        remainingBonusData.text = playerController.playerBonus.ToString();
 
         // updating total payout
-        int totalPayout = salvageCut + playerScript.playerBonus;
-        totalPayout += playerScript.hazardPay +
-                       playerScript.questPay;
+        int totalPayout = salvageCut + playerController.playerBonus;
+        totalPayout += playerController.hazardPay +
+                       playerController.questPay;
         totalPayoutData.text = totalPayout.ToString();
 
         char rank = EndGameRank();
@@ -1236,7 +1236,7 @@ public class gameManager : MonoBehaviour
     {
         float totalPossibleSalvage = 50654.0f;
 
-        int percentClear = (int)((playerScript.playerTotalScore / totalPossibleSalvage) * 100);
+        int percentClear = (int)((playerController.playerTotalScore / totalPossibleSalvage) * 100);
 
         if (percentClear > 90)
         {
@@ -1407,24 +1407,24 @@ public class gameManager : MonoBehaviour
     {
         healthValue.text = playerController.HP.ToString();
         maxHealthValue.text = playerController.HPMax.ToString();
-        if (playerScript.shielded)
+        if (playerController.shielded)
         {
-            shieldRechargeValue.text = playerScript.shieldRate.ToString();
-            shieldHealthValue.text = playerScript.shieldValue.ToString();
+            shieldRechargeValue.text = playerController.shieldRate.ToString();
+            shieldHealthValue.text = playerController.shieldValue.ToString();
         }
         else
         {
             shieldRechargeValue.text = ("Shield Not Found");
             shieldHealthValue.text = ("Shield Not Found");
         }
-        jetpackRechargeValue.text = (playerScript.fuelRefillRate * 100).ToString();
+        jetpackRechargeValue.text = (playerController.fuelRefillRate * 100).ToString();
 
-        jetpackConsumptionValue.text = (playerScript.fuelConsumptionRate * 100).ToString();
-        DamageValue.text = playerScript.shootDamage.ToString();
-        rateOfFireValue.text = playerScript.shootRate.ToString();
+        jetpackConsumptionValue.text = (playerController.fuelConsumptionRate * 100).ToString();
+        DamageValue.text = playerController.shootDamage.ToString();
+        rateOfFireValue.text = playerController.shootRate.ToString();
         salvageSpreadValue.text = playerScript.salvageSpread.ToString();
-        salvageRangeValue.text = playerScript.salvageRange.ToString();
-        if (playerScript.salvDetector)
+        salvageRangeValue.text = playerController.salvageRange.ToString();
+        if (playerController.salvDetector)
         {
             salvageDetectorCondition.text = ("Active");
         }
@@ -1432,8 +1432,8 @@ public class gameManager : MonoBehaviour
         {
             salvageDetectorCondition.text = ("Inactive");
         }
-        staminaDrainValue.text = ((int)playerScript.staminaDrain * 100).ToString();
-        staminaRegenValue.text = ((int)playerScript.staminaRefillRate * 100).ToString();
+        staminaDrainValue.text = ((int)playerController.staminaDrain * 100).ToString();
+        staminaRegenValue.text = ((int)playerController.staminaRefillRate * 100).ToString();
 
     }
     public void TurnOnInventoryUI()
@@ -1450,27 +1450,27 @@ public class gameManager : MonoBehaviour
     public void UpdateInventory()
     {
         LevelScrapCollected.text = amtSalvaged.ToString();
-        if (gameManager.instance.playerScript.salvDetector)
+        if (playerController.salvDetector)
         {
-            FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
+            FloorAvailData.text = playerController.totalLevelSalvage.ToString();
         }
         else
         {
             FloorAvailData.text = "Need Salv Detector";
         }
         SpentScrap.text = spent.ToString();
-        BioMassAmt.text = Inventory.Instance._iBioMass.ToString();
-        IntactOrganAmt.text = Inventory.Instance._iIntactOrgan.ToString();
-        ElectricCompAmt.text = Inventory.Instance._iElectronicComponents.ToString();
-        DataCoreAmt.text = Inventory.Instance._iDataProcessingCore.ToString();
-        DenseMetalPlateAmt.text = Inventory.Instance._iDenseMetalPlate.ToString();
-        HighTensileAlloyAmt.text = Inventory.Instance._iHighTensileAlloyPlate.ToString();
-        ValuableLootAmt.text = Inventory.Instance._iValuableLoot.ToString();
-        GlassPaneAmt.text = Inventory.Instance._iGlassPane.ToString();
-        HPLDAmt.text = Inventory.Instance._iHighPoweredLightDiode.ToString();
-        ElectricMotorAmt.text = Inventory.Instance._iElectricMotor.ToString();
-        CeramicPlateAmt.text = Inventory.Instance._iCeramicPlate.ToString();
-        GoldAlloyAmt.text = Inventory.Instance._iGoldAlloy.ToString();
+        BioMassAmt.text = Inventory._iBioMass.ToString();
+        IntactOrganAmt.text = Inventory._iIntactOrgan.ToString();
+        ElectricCompAmt.text = Inventory._iElectronicComponents.ToString();
+        DataCoreAmt.text = Inventory._iDataProcessingCore.ToString();
+        DenseMetalPlateAmt.text = Inventory._iDenseMetalPlate.ToString();
+        HighTensileAlloyAmt.text = Inventory._iHighTensileAlloyPlate.ToString();
+        ValuableLootAmt.text = Inventory._iValuableLoot.ToString();
+        GlassPaneAmt.text = Inventory._iGlassPane.ToString();
+        HPLDAmt.text = Inventory._iHighPoweredLightDiode.ToString();
+        ElectricMotorAmt.text = Inventory._iElectricMotor.ToString();
+        CeramicPlateAmt.text = Inventory._iCeramicPlate.ToString();
+        GoldAlloyAmt.text = Inventory._iGoldAlloy.ToString();
 
     }
 
