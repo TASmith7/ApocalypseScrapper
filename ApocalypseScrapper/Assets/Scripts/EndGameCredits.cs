@@ -22,7 +22,7 @@ public class EndGameCredits : MonoBehaviour
 
         if(Time.timeSinceLevelLoad > 71)
         {
-            returnToMainMenu.ReturnToMainMenu();
+            buttonFunctions.ReturnToMainMenu();
         }
     }
 }

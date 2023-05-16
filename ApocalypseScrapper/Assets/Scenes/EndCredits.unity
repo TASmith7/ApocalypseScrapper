@@ -1120,7 +1120,6 @@ GameObject:
   - component: {fileID: 492402731}
   - component: {fileID: 492402730}
   - component: {fileID: 492402735}
-  - component: {fileID: 492402733}
   - component: {fileID: 492402734}
   m_Layer: 5
   m_Name: ReturnToMainMenu
@@ -1206,8 +1205,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 492402733}
-        m_TargetAssemblyTypeName: returnToMainMenu, Assembly-CSharp
+      - m_Target: {fileID: 492402734}
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: ReturnToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -1256,18 +1255,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 492402728}
   m_CullTransparentMesh: 1
---- !u!114 &492402733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492402728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e3cef6791d98644f9eb5eebfe80075a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &492402734
 MonoBehaviour:
   m_ObjectHideFlags: 0

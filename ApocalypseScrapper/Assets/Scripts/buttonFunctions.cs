@@ -135,6 +135,11 @@ public class buttonFunctions : MonoBehaviour
         mainMenuManager.instance.CueMainMenuFromLoadLevel();
     }
 
+    public static void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
+
     #region Store Menu Buttons
     public void SmallHeal()
     {
