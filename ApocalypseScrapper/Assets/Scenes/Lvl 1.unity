@@ -5174,10 +5174,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TableOffice (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 1897668207945844, guid: 0a304947e269c4d4baf50f19725555aa, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4013151085889374, guid: 0a304947e269c4d4baf50f19725555aa, type: 3}
       propertyPath: m_RootOrder
       value: 79
@@ -5221,22 +5217,6 @@ PrefabInstance:
     - target: {fileID: 4013151085889374, guid: 0a304947e269c4d4baf50f19725555aa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7953217592755885843, guid: 0a304947e269c4d4baf50f19725555aa, type: 3}
-      propertyPath: _rollBM
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7953217592755885843, guid: 0a304947e269c4d4baf50f19725555aa, type: 3}
-      propertyPath: _rollVL
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7953217592755885843, guid: 0a304947e269c4d4baf50f19725555aa, type: 3}
-      propertyPath: _dcBioMass
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7953217592755885843, guid: 0a304947e269c4d4baf50f19725555aa, type: 3}
-      propertyPath: _dcValuableLoot
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a304947e269c4d4baf50f19725555aa, type: 3}
@@ -7590,49 +7570,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &353533002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1897668207945844, guid: 0a304947e269c4d4baf50f19725555aa, type: 3}
-  m_PrefabInstance: {fileID: 239282973}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &353533007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 353533002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a155f9b680a00a40ab2bb30c2cdd007, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  salvageValue: 45
-  salvageTime: 0
-  _dcBioMass: 0
-  _rollBM: 0
-  _dcIntactOrgan: 0
-  _rollIO: 0
-  _dcElectronicComponents: 0
-  _rollEC: 0
-  _dcDataProcessingCore: 0
-  _rollDPC: 0
-  _dcDenseMetalPlate: 0
-  _rollDMP: 0
-  _dcHighTensileAlloyPlate: 0
-  _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
-  _dcHighPoweredLightDiode: 0
-  _rollHPLD: 0
-  _dcElectricMotor: 0
-  _rollEM: 0
-  _dcCeramicPlate: 0
-  _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
 --- !u!1001 &357244891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17857,10 +17794,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChairOffice (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1278913846851208, guid: 53284bd63043e7049ac08b0e9186f1ca, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4711020134367096, guid: 53284bd63043e7049ac08b0e9186f1ca, type: 3}
       propertyPath: m_RootOrder
       value: 87
@@ -17904,14 +17837,6 @@ PrefabInstance:
     - target: {fileID: 4711020134367096, guid: 53284bd63043e7049ac08b0e9186f1ca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7398725352205019039, guid: 53284bd63043e7049ac08b0e9186f1ca, type: 3}
-      propertyPath: _rollBM
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7398725352205019039, guid: 53284bd63043e7049ac08b0e9186f1ca, type: 3}
-      propertyPath: _dcBioMass
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53284bd63043e7049ac08b0e9186f1ca, type: 3}
@@ -24054,7 +23979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1381870202303233696, guid: 07dc667ebe7d28a42ae33841e77add0f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.187106
+      value: 8.237106
       objectReference: {fileID: 0}
     - target: {fileID: 1381870202303233696, guid: 07dc667ebe7d28a42ae33841e77add0f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25554,10 +25479,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PC_Monitor
       objectReference: {fileID: 0}
-    - target: {fileID: 1240376027092810, guid: 2f603782a54272140bd490519349fd88, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4281571602589966, guid: 2f603782a54272140bd490519349fd88, type: 3}
       propertyPath: m_RootOrder
       value: 78
@@ -25568,7 +25489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4281571602589966, guid: 2f603782a54272140bd490519349fd88, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.187102
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 4281571602589966, guid: 2f603782a54272140bd490519349fd88, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25601,30 +25522,6 @@ PrefabInstance:
     - target: {fileID: 4281571602589966, guid: 2f603782a54272140bd490519349fd88, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367626266121615303, guid: 2f603782a54272140bd490519349fd88, type: 3}
-      propertyPath: _rollEC
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367626266121615303, guid: 2f603782a54272140bd490519349fd88, type: 3}
-      propertyPath: _rollGP
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367626266121615303, guid: 2f603782a54272140bd490519349fd88, type: 3}
-      propertyPath: _rollHPLD
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367626266121615303, guid: 2f603782a54272140bd490519349fd88, type: 3}
-      propertyPath: _dcGlassPane
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367626266121615303, guid: 2f603782a54272140bd490519349fd88, type: 3}
-      propertyPath: _dcElectronicComponents
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367626266121615303, guid: 2f603782a54272140bd490519349fd88, type: 3}
-      propertyPath: _dcHighPoweredLightDiode
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f603782a54272140bd490519349fd88, type: 3}
@@ -28198,7 +28095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1381870202303233696, guid: 07dc667ebe7d28a42ae33841e77add0f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.187105
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 1381870202303233696, guid: 07dc667ebe7d28a42ae33841e77add0f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29038,6 +28935,10 @@ PrefabInstance:
     - target: {fileID: 1897668207945844, guid: 0a304947e269c4d4baf50f19725555aa, type: 3}
       propertyPath: m_Name
       value: TableOffice (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897668207945844, guid: 0a304947e269c4d4baf50f19725555aa, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1897668207945844, guid: 0a304947e269c4d4baf50f19725555aa, type: 3}
       propertyPath: m_StaticEditorFlags
