@@ -22,6 +22,7 @@ public class droneAI : MonoBehaviour, IDamage
     [SerializeField] AudioClip damageAudio;
 
 
+
     [Header("----- Enemy Stats -----")]
     // Health Points
     [SerializeField] int HP;
@@ -60,9 +61,6 @@ public class droneAI : MonoBehaviour, IDamage
     private float wakeAnimationLength;
     bool droneAudioWasPlaying;
 
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -81,7 +79,6 @@ public class droneAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-
         if (agent.isActiveAndEnabled)
         {
             if (agent.CompareTag("Minion"))
@@ -324,4 +321,5 @@ public class droneAI : MonoBehaviour, IDamage
         transform.LookAt(gameManager.instance.player.transform.position);
 
     }
+    
 }

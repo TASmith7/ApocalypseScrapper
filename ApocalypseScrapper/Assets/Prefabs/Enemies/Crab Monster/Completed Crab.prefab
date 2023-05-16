@@ -414,7 +414,7 @@ Transform:
   - {fileID: 3726732301144072196}
   m_Father: {fileID: 3726829095569372398}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98021, y: 8.592991e-31, z: 0}
 --- !u!1 &3724815534992971680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,6 +1541,8 @@ GameObject:
   - component: {fileID: 1790242471}
   - component: {fileID: 93931830}
   - component: {fileID: 2028720189}
+  - component: {fileID: 7377018454182244881}
+  - component: {fileID: 6001661280584349197}
   m_Layer: 6
   m_Name: Completed Crab
   m_TagString: Enemy
@@ -1821,6 +1823,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &7377018454182244881
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725011360167264616}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 0.1
+  m_Direction: 1
+  m_Center: {x: 1.72, y: 0.5, z: 1}
+--- !u!136 &6001661280584349197
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725011360167264616}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 0.1
+  m_Direction: 1
+  m_Center: {x: -1.72, y: 0.5, z: 1.4}
 --- !u!1 &3725015626787484954
 GameObject:
   m_ObjectHideFlags: 0
