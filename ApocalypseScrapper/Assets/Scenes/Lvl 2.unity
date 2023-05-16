@@ -91516,6 +91516,10 @@ PrefabInstance:
       value: CrabSpawnTimerMaster
       objectReference: {fileID: 0}
     - target: {fileID: 2649636337546057369, guid: 1d9ddfff33c5df34c9289d0f96675073, type: 3}
+      propertyPath: numOfCrabsToSpawn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2649636337546057369, guid: 1d9ddfff33c5df34c9289d0f96675073, type: 3}
       propertyPath: crabSpawners.Array.size
       value: 16
       objectReference: {fileID: 0}
