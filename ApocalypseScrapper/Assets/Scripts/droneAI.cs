@@ -219,7 +219,7 @@ public class droneAI : MonoBehaviour, IDamage
     // syntax to be able to use Trigger function in the Sphere Collider
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("PlayerBullet"))
         {
             droneDetection.radius = droneActive;
             playerInRange = true;

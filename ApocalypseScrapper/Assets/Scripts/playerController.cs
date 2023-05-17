@@ -150,6 +150,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         PlayerUIUpdate();
         playerFloorSalvage = 0;
+        gameManager.instance.UpdateSalvageScore();
 
         StartCoroutine(FindTotalLevelSalvage());
         SpawnPlayer();
@@ -1027,8 +1028,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     public void SetPlayerStats()
     {
-       
-
         if (PlayerPrefs.HasKey(gameManager.instance.level + "HP"))
         {
             HP = PlayerPrefs.GetInt(gameManager.instance.level + "HP");
@@ -1058,6 +1057,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             shieldRate = PlayerPrefs.GetInt(gameManager.instance.level + "shieldRate");
 
             playerTotalSalvage = PlayerPrefs.GetInt(gameManager.instance.level + "playerTotalSalvage");
+
+            Inventory.Instance.InvLoad(gameManager.instance.level);
 
         }
         else globalSceneControl.Instance.DefaultStats();
