@@ -5468,7 +5468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '3000 Scrap + 1 Electric Motor + 1 Data Core
+  m_text: '5000 Scrap + 3 Electric Motor + 3 Data Core + 2 gold alloy
 
 '
   m_isRightToLeft: 0
@@ -15381,7 +15381,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -4, y: -11.8}
+  m_AnchoredPosition: {x: 10.6, y: -11.8}
   m_SizeDelta: {x: 378.9, y: 40}
   m_Pivot: {x: 0.5, y: 0.49999967}
 --- !u!222 &1468847743
@@ -15412,7 +15412,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: -1 Weapon Rate of Fire & +5 Weapon Damage
+  m_text: -0.05/s shot cycle rate & -20% wEAPON sPREAD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: db11462ed90d625479b330b1486e2b62, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: db11462ed90d625479b330b1486e2b62, type: 2}
@@ -15475,7 +15475,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 29.284119, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -18326,7 +18326,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.75
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -19042,7 +19042,7 @@ GameObject:
   - component: {fileID: 1782141906}
   - component: {fileID: 1782141905}
   m_Layer: 5
-  m_Name: -1 Weapon RoF
+  m_Name: Cycle/Spread Reduction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26409,14 +26409,11 @@ MonoBehaviour:
   scoreText: {fileID: 793847279}
   grade: {fileID: 2517184956349857834}
   totalScoreLabel: {fileID: 887700856}
-  playerBonusLabel: {fileID: 1602493923}
   floorScoreLabel: {fileID: 2517184957063307075}
   totalScoreData: {fileID: 2054541675}
-  playerBonusData: {fileID: 634979773}
   floorScoreData: {fileID: 2517184956642034932}
   salvageCutData: {fileID: 180165286}
   totalPayoutData: {fileID: 1216824595}
-  remainingBonusData: {fileID: 970369989}
   totalSalvagedData: {fileID: 1050430069}
   finalRankData: {fileID: 1176602718}
   bossHealthBar: {fileID: 149417874}

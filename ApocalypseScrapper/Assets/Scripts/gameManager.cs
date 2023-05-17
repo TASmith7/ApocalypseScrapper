@@ -260,8 +260,8 @@ public class gameManager : MonoBehaviour
         }
 
 
-        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
-        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
+        cameraControls.sensHorizontal = (int)horizontalSens.value;
+        cameraControls.sensVertical = (int)verticalSens.value;
 
 
         // setting the sensitivity labels equal the sliders current values
@@ -456,7 +456,7 @@ public class gameManager : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("Cancel") && activeMenu == null)
+        if (Input.GetButtonDown("Cancel") && activeMenu == null&&activeMenu!=craftingMenu)
         {
             if (!isPaused)
             {
@@ -598,6 +598,8 @@ public class gameManager : MonoBehaviour
     {
         // we don't need the below line as calling pause state method pauses the vo that was playing already
         // levelAudioManager.instance.voiceOverAudioSource.Stop();
+        activeMenu = craftingMenu;
+        activeMenu.SetActive(true);
         PauseState();
         Time.timeScale = timeScaleOriginal;
         
@@ -606,8 +608,7 @@ public class gameManager : MonoBehaviour
 
 
 
-        activeMenu = craftingMenu;
-        activeMenu.SetActive(true);
+       
     }
     public void CloseCrafting()
     {
@@ -626,45 +627,48 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         mainReticle.SetActive(false);
         salvageableItemReticle.SetActive(false);
-
-        // stopping all game audio that might be playing
-        playerAudioManager.instance.PauseAllAudio();
-        levelAudioManager.instance.PauseAllAudio();
-
-        if (currentScene == SceneManager.GetSceneByName("Lvl 2") && npcAudioManager.instance != null)
+        if(activeMenu!=craftingMenu)
         {
-            npcAudioManager.instance.PauseAllAudio();
-        }
+            // stopping all game audio that might be playing
+            playerAudioManager.instance.PauseAllAudio();
+            levelAudioManager.instance.PauseAllAudio();
 
-        if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
-        {
-            gameManager.instance.endGameBeam.GetComponent<AudioSource>().Stop();
-        }
-
-        // if we are playing a voice over, pause when in pause state and set flag to true
-        if (levelAudioManager.instance.voiceOverAudioSource.isPlaying)
-        {
-            levelAudioManager.instance.voiceOverAudioSource.Pause();
-            voWasPlaying = true;
-        }
-        // else set flag to false
-        else
-        {
-            voWasPlaying = false;
-        }
-
-        if (currentScene == SceneManager.GetSceneByName("Lvl 2") && npcAudioManager.instance != null)
-        {
-            if (npcAudioManager.instance.npcVoiceAudioSource.isPlaying)
+            if (currentScene == SceneManager.GetSceneByName("Lvl 2") && npcAudioManager.instance != null)
             {
-                npcAudioManager.instance.npcVoiceAudioSource.Pause();
-                npcWasTalking = true;
+                npcAudioManager.instance.PauseAllAudio();
+            }
+
+            if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+            {
+                gameManager.instance.endGameBeam.GetComponent<AudioSource>().Stop();
+            }
+
+            // if we are playing a voice over, pause when in pause state and set flag to true
+            if (levelAudioManager.instance.voiceOverAudioSource.isPlaying)
+            {
+                levelAudioManager.instance.voiceOverAudioSource.Pause();
+                voWasPlaying = true;
+            }
+            // else set flag to false
+            else
+            {
+                voWasPlaying = false;
+            }
+
+            if (currentScene == SceneManager.GetSceneByName("Lvl 2") && npcAudioManager.instance != null)
+            {
+                if (npcAudioManager.instance.npcVoiceAudioSource.isPlaying)
+                {
+                    npcAudioManager.instance.npcVoiceAudioSource.Pause();
+                    npcWasTalking = true;
+                }
+            }
+            else
+            {
+                npcWasTalking = false;
             }
         }
-        else
-        {
-            npcWasTalking = false;
-        }
+        
 
     }
 
@@ -687,20 +691,23 @@ public class gameManager : MonoBehaviour
         {
             gameManager.instance.endGameBeam.GetComponent<AudioSource>().Play();
         }
+        if(activeMenu!=craftingMenu)
+        {
+            levelAudioManager.instance.UnpauseAllAudio();
 
+            // if we were playing a vo when we paused, resume that vo
+            if (voWasPlaying && voiceoversToggle.isOn)
+            {
+                levelAudioManager.instance.voiceOverAudioSource.UnPause();
+            }
+
+            if (currentScene == SceneManager.GetSceneByName("Lvl 2") && npcWasTalking && npcAudioManager.instance != null)
+            {
+                npcAudioManager.instance.npcVoiceAudioSource.UnPause();
+            }
+        }
         // unpausing level audio
-        levelAudioManager.instance.UnpauseAllAudio();
-
-        // if we were playing a vo when we paused, resume that vo
-        if (voWasPlaying && voiceoversToggle.isOn)
-        {
-            levelAudioManager.instance.voiceOverAudioSource.UnPause();
-        }
-
-        if (currentScene == SceneManager.GetSceneByName("Lvl 2") && npcWasTalking && npcAudioManager.instance != null)
-        {
-            npcAudioManager.instance.npcVoiceAudioSource.UnPause();
-        }
+       
     }
 
     public void UpdateGameGoal()
@@ -1304,8 +1311,8 @@ public class gameManager : MonoBehaviour
     public void CloseOptionsMenu()
     {
         // changing our sens back to what it was before if we press back or cancel before we save settings
-        horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
-        verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
+        horizontalSens.value = cameraControls.sensHorizontal;
+        verticalSens.value = cameraControls.sensVertical;
 
         // updating sens labels
         horSensValue.text = ((int)horizontalSens.value).ToString();
@@ -1365,8 +1372,8 @@ public class gameManager : MonoBehaviour
     {
         // saving our camera sensitivity when we press the save settings button
         // the value we are actually setting here is the sensitivity multiplier in our camera controller script
-        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
-        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
+        cameraControls.sensHorizontal = (int)horizontalSens.value;
+        cameraControls.sensVertical = (int)verticalSens.value;
 
         PlayerPrefs.SetInt("HorizontalSensitivity", (int)horizontalSens.value);
         PlayerPrefs.SetInt("VerticalSensitivity", (int)verticalSens.value);

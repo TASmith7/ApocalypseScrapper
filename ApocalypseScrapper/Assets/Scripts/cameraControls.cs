@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class cameraControls : MonoBehaviour
 {
-    [SerializeField] public int sensHorizontal;
-    [SerializeField] public int sensVertical;
+    public static int sensHorizontal;
+    public static int sensVertical;
 
     [SerializeField] GameObject player;
 
