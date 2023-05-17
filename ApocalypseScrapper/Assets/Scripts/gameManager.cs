@@ -418,6 +418,7 @@ public class gameManager : MonoBehaviour
 
     private void Start()
     {
+        
         if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
             if (!levelAudioManager.instance.voiceOverAudioSource.isPlaying && voiceoversToggle.isOn)
@@ -439,6 +440,9 @@ public class gameManager : MonoBehaviour
             }
         }
         UpdateSalvageScore();
+        UnpauseState();
+        Debug.Log("Game has been unpaused due to GM Start");
+        
     }
 
     // Update is called once per frame
@@ -663,7 +667,7 @@ public class gameManager : MonoBehaviour
         totalScoreLabel.SetActive(true);
         //playerBonusLabel.SetActive(true);
         floorScoreLabel.SetActive(true);
-        Time.timeScale = timeScaleOriginal;
+        Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         if (activeMenu != null)
@@ -672,7 +676,7 @@ public class gameManager : MonoBehaviour
         }
         activeMenu = null;
 
-        if (currentScene == SceneManager.GetSceneByName("Boss Lvl"))
+        if (currentScene == SceneManager.GetSceneByName("Boss Lvl") && endGameBeam.activeInHierarchy)
         {
             gameManager.instance.endGameBeam.GetComponent<AudioSource>().Play();
         }
