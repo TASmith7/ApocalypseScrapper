@@ -65,6 +65,9 @@ public class levelAudioManager : MonoBehaviour
     bool lockdownVoiceWasPlaying;
     bool lockdownSirenWasPlaying;
 
+    Scene currentScene;
+
+
 
     private void Awake()
     {
@@ -73,22 +76,24 @@ public class levelAudioManager : MonoBehaviour
             instance = this;
         }
 
+        currentScene = SceneManager.GetActiveScene();
+
         // creating all audio sources for our level
         musicAudioSource = gameObject.AddComponent<AudioSource>();
         whiteNoiseAudioSource = gameObject.AddComponent<AudioSource>();
         pauseMenuAudioSource = gameObject.AddComponent<AudioSource>();
         voiceOverAudioSource = gameObject.AddComponent<AudioSource>();
+
+        if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
+        {
+            elevatorAudioSource = gameObject.AddComponent<AudioSource>();
+            elevatorAudioSource.volume = elevatorVolume;
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 1"))
-        {
-            elevatorAudioSource = gameObject.AddComponent<AudioSource>();
-            elevatorAudioSource.volume = elevatorVolume;
-        }
-        
         if(gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 3"))
         {
             lockdownAudioSource = gameObject.AddComponent<AudioSource>();
