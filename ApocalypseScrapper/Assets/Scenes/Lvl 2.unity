@@ -91352,6 +91352,10 @@ PrefabInstance:
       value: DroneSpawnTimerMaster
       objectReference: {fileID: 0}
     - target: {fileID: 8680005880203551516, guid: a3fd3f88523bcd3498a3b502139976fc, type: 3}
+      propertyPath: numOfDronesToSpawn
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8680005880203551516, guid: a3fd3f88523bcd3498a3b502139976fc, type: 3}
       propertyPath: droneSpawners.Array.size
       value: 4
       objectReference: {fileID: 0}

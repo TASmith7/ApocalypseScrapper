@@ -132,5 +132,6 @@ public class globalSceneControl : MonoBehaviour
         playerController.spent = _MSspentScrap;
         playerController.questPay = _MSquestPay;
         playerController.hazardPay = _MShazardPay;
+        Inventory.Instance.InvDefault();
 }
 }
