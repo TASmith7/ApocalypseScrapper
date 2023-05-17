@@ -121,6 +121,7 @@ public class bulletPlayer : MonoBehaviour
         {
             if (other.CompareTag("Enemy") || other.CompareTag("Minion") || other.CompareTag("Drone"))
             {
+                Debug.Log("Hit Enemy");
                 // checking if the object that we collided with (other) has the IDamage script (i.e. is damageable)
                 IDamage damageable = other.GetComponent<IDamage>();
 
@@ -140,9 +141,10 @@ public class bulletPlayer : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.collider.CompareTag("Player") || !collision.collider.CompareTag("Enemy") ||   !collision.collider.CompareTag("Minion"))
+        if (!collision.collider.CompareTag("Player") && !collision.collider.CompareTag("Enemy") &&   !collision.collider.CompareTag("Minion") && !collision.collider.CompareTag("Drone"))
         {
-            Destroy(gameObject,.05f);
+            Debug.Log("Hit " + collision.gameObject.name) ;
+            Destroy(gameObject);
         }
     }
 }

@@ -1109,12 +1109,18 @@ public class gameManager : MonoBehaviour
 
         lvl2.SetActive(true);
         activeMenu = lvl2;
+        
         Debug.Log("WFS Started");
         yield return new WaitForSecondsRealtime(5);
-
         Debug.Log("WFS Done");
-        lvl2.SetActive(false);
+        Debug.Log("Scene Load Started");
         SceneManager.LoadScene("Lvl 2");
+        Debug.Log("Scene Load Completed");
+        yield return new WaitForSecondsRealtime(5);
+
+
+        lvl2.SetActive(false);
+        
         
         UnpauseState();
     }
@@ -1123,13 +1129,16 @@ public class gameManager : MonoBehaviour
 
         lvl3.SetActive(true);
         activeMenu = lvl3;
+        Debug.Log("Scene Load Started");
+        SceneManager.LoadScene("Lvl 3");
+        Debug.Log("Scene Load Completed");
         Debug.Log("WFS Started");
         yield return new WaitForSecondsRealtime(5);
 
         Debug.Log("WFS Done");
 
         lvl3.SetActive(false);
-        SceneManager.LoadScene("Lvl 3");
+        
         UnpauseState();
     }
     IEnumerator BossLvlLoadScreen()
@@ -1137,12 +1146,15 @@ public class gameManager : MonoBehaviour
 
         lvl4.SetActive(true);
         activeMenu = lvl4;
+        Debug.Log("Scene Load Started");
+        SceneManager.LoadScene("Lvl 2");
+        Debug.Log("Scene Load Completed");
         Debug.Log("WFS Started");
         yield return new WaitForSecondsRealtime(5);
 
         Debug.Log("WFS 5 Done");
         lvl4.SetActive(false);
-        SceneManager.LoadScene("Boss Lvl");
+        
         UnpauseState();
     }
     public void WinGame()

@@ -14,17 +14,21 @@ public class TurretBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // checking if the object that we collided with (other) has the IDamage script (i.e. is damageable)
-        IDamage damageable = other.GetComponent<IDamage>();
-
-        // if the object is damageable
-        if(damageable != null)
+        if (!other.CompareTag("Crab Spawn") && !other.CompareTag("Drone Spawn"))
         {
-            // then take the specified amount of damage
-            damageable.TakeDamage(damage);
-        }
+            // Debug.Log("Bullet hit+", other.gameObject);
+            // checking if the object that we collided with (other) has the IDamage script (i.e. is damageable)
+            IDamage damageable = other.GetComponent<IDamage>();
 
-        // destroying the bullet if it hits something
-        Destroy(gameObject);
+            // if the object is damageable
+            if (damageable != null)
+            {
+                // then take the specified amount of damage
+                damageable.TakeDamage(damage);
+            }
+
+            // destroying the bullet if it hits something
+            Destroy(gameObject);
+        }
     }
 }
