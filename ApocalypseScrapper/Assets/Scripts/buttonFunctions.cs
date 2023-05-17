@@ -274,7 +274,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void OverchargeWeapDmg()
     {
-        if (playerController.playerTotalSalvage >= 5000 && Inventory._iElectricMotor >= 3 && Inventory._iDataProcessingCore >= 3 && Inventory._iGoldAlloy >= 2)
+        if (playerController.playerTotalSalvage >= 5000 && Inventory._iElectricMotor >= 3 && Inventory._iDataProcessingCore >= 3 && Inventory._iGoldAlloy >= 2 && playerController.shootRate >= 0.1f)
         {
             playerController.shootSpread -= 0.15f;
             playerController.shootRate -= 0.05f;
