@@ -260,8 +260,8 @@ public class gameManager : MonoBehaviour
         }
 
 
-        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
-        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
+        cameraControls.sensHorizontal = (int)horizontalSens.value;
+        cameraControls.sensVertical = (int)verticalSens.value;
 
 
         // setting the sensitivity labels equal the sliders current values
@@ -1304,8 +1304,8 @@ public class gameManager : MonoBehaviour
     public void CloseOptionsMenu()
     {
         // changing our sens back to what it was before if we press back or cancel before we save settings
-        horizontalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal;
-        verticalSens.value = playerScript.playerCam.GetComponent<cameraControls>().sensVertical;
+        horizontalSens.value = cameraControls.sensHorizontal;
+        verticalSens.value = cameraControls.sensVertical;
 
         // updating sens labels
         horSensValue.text = ((int)horizontalSens.value).ToString();
@@ -1365,8 +1365,8 @@ public class gameManager : MonoBehaviour
     {
         // saving our camera sensitivity when we press the save settings button
         // the value we are actually setting here is the sensitivity multiplier in our camera controller script
-        playerScript.playerCam.GetComponent<cameraControls>().sensHorizontal = (int)horizontalSens.value;
-        playerScript.playerCam.GetComponent<cameraControls>().sensVertical = (int)verticalSens.value;
+        cameraControls.sensHorizontal = (int)horizontalSens.value;
+        cameraControls.sensVertical = (int)verticalSens.value;
 
         PlayerPrefs.SetInt("HorizontalSensitivity", (int)horizontalSens.value);
         PlayerPrefs.SetInt("VerticalSensitivity", (int)verticalSens.value);
