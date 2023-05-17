@@ -1019,7 +1019,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         PlayerPrefs.SetInt(levelToSaveTo +"shieldRate" , shieldRate);
         PlayerPrefs.SetInt(levelToSaveTo + "playerTotalSalvage", playerTotalSalvage);
 
-        PlayerPrefs.SetFloat(gameManager.instance.level + "FloorSalvageAvailable", totalLevelSalvage);
+        
 
         
 
