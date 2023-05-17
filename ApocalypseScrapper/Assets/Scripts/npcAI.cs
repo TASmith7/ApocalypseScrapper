@@ -49,7 +49,7 @@ public class npcAI : MonoBehaviour
             speed = agent.velocity.normalized.magnitude;
             anim.SetFloat("Speed", speed);
 
-            player.GetComponent<playerController>().questPay += 1000;
+            playerController.questPay += 1000;
 
             // if we haven't already started the rescue coroutine
             if(!rescueCoroutineStarted)

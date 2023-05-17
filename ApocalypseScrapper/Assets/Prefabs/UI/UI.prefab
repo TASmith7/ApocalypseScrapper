@@ -7128,7 +7128,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You do not have enough materials. try again when you have the items needed.
+  m_text: You do not have enough materials or have reached the maximum upgrade level.
+    Try again when you have the items needed.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: db11462ed90d625479b330b1486e2b62, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: db11462ed90d625479b330b1486e2b62, type: 2}
@@ -17324,7 +17325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1602493924
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20081,7 +20082,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Floor Salvage Available:'
+  m_text: 'Floor Salvage :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: db11462ed90d625479b330b1486e2b62, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: db11462ed90d625479b330b1486e2b62, type: 2}
@@ -20647,7 +20648,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -3.032959, z: 0, w: 0}
+  m_margin: {x: -150.82593, y: -3.032959, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -26435,8 +26436,6 @@ MonoBehaviour:
   LevelScrapCollected: {fileID: 1117861782}
   SpentScrap: {fileID: 5365713387296213490}
   DeclinedPurchasePopUp: {fileID: 1701999945}
-  amtSalvaged: 0
-  spent: 0
   playerGrade: 48
   healthValue: {fileID: 5557729876270936298}
   maxHealthValue: {fileID: 4740565728403910941}
@@ -26505,6 +26504,7 @@ MonoBehaviour:
   eleDoor: {fileID: 0}
   entryLevelTextParent: {fileID: 868456625}
   entryLevelText: {fileID: 787502386}
+  level: 0
   isPaused: 0
   timeScaleOriginal: 0
   currentScene:
@@ -36421,7 +36421,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5361234339168360041}
   m_HandleRect: {fileID: 6457653928648627063}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -36626,7 +36626,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8083081769080208974}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.5031056
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

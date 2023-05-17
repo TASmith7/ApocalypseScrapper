@@ -54,14 +54,14 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI grade;
     
     public GameObject totalScoreLabel;
-    public GameObject playerBonusLabel;
+    //public GameObject playerBonusLabel;
     public GameObject floorScoreLabel;
     public TextMeshProUGUI totalScoreData;
-    public TextMeshProUGUI playerBonusData;
+    //public TextMeshProUGUI playerBonusData;
     public TextMeshProUGUI floorScoreData;
     public TextMeshProUGUI salvageCutData;
     public TextMeshProUGUI totalPayoutData;
-    public TextMeshProUGUI remainingBonusData;
+    //public TextMeshProUGUI remainingBonusData;
     public TextMeshProUGUI totalSalvagedData;
     public TextMeshProUGUI finalRankData;
 
@@ -101,8 +101,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI LevelScrapCollected;
     public TextMeshProUGUI SpentScrap;
     public GameObject DeclinedPurchasePopUp;
-    public int amtSalvaged;
-    public int spent;
+    //public int amtSalvaged;
+    //public int spent;
     public char playerGrade;
 
 
@@ -199,6 +199,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Level Entry Text -----")]
     public GameObject entryLevelTextParent;
     public TextMeshProUGUI entryLevelText;
+    public int level = 0;
 
     public bool isPaused;
     public float timeScaleOriginal;
@@ -216,10 +217,20 @@ public class gameManager : MonoBehaviour
 
         // setting our current scene
         currentScene = SceneManager.GetActiveScene();
-        //if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
-        //{
-        //    eleDoor.SetActive(true);
-        //}
+        switch (currentScene.name)
+        {
+            case "Lvl 1":
+                level = 1; break;
+
+            case "Lvl 2":
+                level = 2; break;
+
+            case "Lvl 3":
+                level = 3; break;
+
+            case "Boss Lvl":
+                level = 4; break;
+        }
 
 
         player = GameObject.FindGameObjectWithTag("Player");
@@ -539,8 +550,8 @@ public class gameManager : MonoBehaviour
             {
                 UpdateInventory();
             }
-            SpentScrap.text=spent.ToString();
-            LevelScrapCollected.text=amtSalvaged.ToString();
+            SpentScrap.text=playerController.spent.ToString();
+            LevelScrapCollected.text=playerController.playerFloorSalvage.ToString();
         }
 
         if(Time.timeSinceLevelLoad > 8.5f && entryLevelTextParent.activeInHierarchy)
@@ -552,7 +563,7 @@ public class gameManager : MonoBehaviour
 
     IEnumerator WaitToRemoveEleDoor()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(3);
         eleDoor.SetActive(false);
     }
 
@@ -648,7 +659,7 @@ public class gameManager : MonoBehaviour
     {
         isPaused = false;
         totalScoreLabel.SetActive(true);
-        playerBonusLabel.SetActive(true);
+        //playerBonusLabel.SetActive(true);
         floorScoreLabel.SetActive(true);
         Time.timeScale = timeScaleOriginal;
         Cursor.visible = false;
@@ -786,74 +797,74 @@ public class gameManager : MonoBehaviour
         mainReticle.SetActive(true);
     }
 
-    public void UpdateSalvageScore(int score)
+    public void UpdateSalvageScore()
     {
-        if (playerScript.salvDetector == true)
+        if (playerController.salvDetector == true)
         {
-            salvageCollected.text = score.ToString() + " of " + playerScript.totalLevelSalvage;
+            salvageCollected.text = playerController.playerFloorSalvage + " of " + playerController.totalLevelSalvage;
 
         }
-        else salvageCollected.text = score.ToString();
+        else salvageCollected.text = playerController.playerFloorSalvage + " of ????";
 
 
-        amtSalvaged = score;
+        totalScoreData.text = "" + playerController.playerTotalSalvage;
     }
-    public void PlayerWins()
-    {
-        string pText = SetGradeText(playerGrade);
-        scoreText.text = pText;
-        salvageCollected.text = amtSalvaged.ToString();
-        if (amtSalvaged > 4501)
-        {
+    //public void PlayerWins()
+    //{
+    //    string pText = SetGradeText(playerGrade);
+    //    scoreText.text = pText;
+    //    salvageCollected.text = playerController.playerTotalSalvage.ToString();
+    //    if (playerController.playerTotalSalvage > 4501)
+    //    {
 
-            playerGrade = 'S';
-        }
-        else if (amtSalvaged > 4001 && amtSalvaged <= 4500)
-        {
-            playerGrade = 'A';
-        }
-        else if (amtSalvaged > 3501 && amtSalvaged <= 4000)
-        {
-            playerGrade = 'B';
-        }
-        else if (amtSalvaged > 3001 && amtSalvaged <= 3500)
-        {
-            playerGrade = 'C';
+    //        playerGrade = 'S';
+    //    }
+    //    else if (playerController.playerTotalSalvage > 4001 && playerController.playerTotalSalvage <= 4500)
+    //    {
+    //        playerGrade = 'A';
+    //    }
+    //    else if (playerController.playerTotalSalvage > 3501 && playerController.playerTotalSalvage <= 4000)
+    //    {
+    //        playerGrade = 'B';
+    //    }
+    //    else if (playerController.playerTotalSalvage > 3001 && playerController.playerTotalSalvage <= 3500)
+    //    {
+    //        playerGrade = 'C';
 
-        }
-        else if (amtSalvaged > 2501 && amtSalvaged <= 3000)
-        {
-            playerGrade = 'D';
-        }
-        else
-        {
-            playerGrade = 'F';
-        }
-        grade.text = playerGrade.ToString();
+    //    }
+    //    else if (playerController.playerTotalSalvage > 2501 && playerController.playerTotalSalvage <= 3000)
+    //    {
+    //        playerGrade = 'D';
+    //    }
+    //    else
+    //    {
+    //        playerGrade = 'F';
+    //    }
+    //    grade.text = playerGrade.ToString();
 
-    }
-    public string SetGradeText(char grade)
-    {
-        switch (grade)
-        {
-            case 'S':
-                return "Good Job. \nYou Collected a lot of Scrap. \nHave fun Spending it.";
-            case 'A':
-                return "You understood what to do. \nGood Job.";
-            case 'B':
-                return "So close, yet so far.";
-            case 'C':
-                return "Getting there. \nThe odds increase";
-            case 'D':
-                return "Salvage=You live. It's not hard";
-            case 'F':
-                return "Maybe try collecting some salvage.\n Might make the game easier";
-            default:
-                return "Negative salvage. You owe us.";
-        }
+    //}
+    //public string SetGradeText(char grade)
+    //{
+    //    switch (grade)
+    //    {
+    //        case 'S':
+    //            return "Good Job. \nYou Collected a lot of Scrap. \nHave fun Spending it.";
+    //        case 'A':
+    //            return "You understood what to do. \nGood Job.";
+    //        case 'B':
+    //            return "So close, yet so far.";
+    //        case 'C':
+    //            return "Getting there. \nThe odds increase";
+    //        case 'D':
+    //            return "Salvage=You live. It's not hard";
+    //        case 'F':
+    //            return "Maybe try collecting some salvage.\n Might make the game easier";
+    //        default:
+    //            return "Negative salvage. You owe us.";
+    //    }
 
 
-    }
+    //}
 
     //public void CueStore()
     //{
@@ -983,7 +994,7 @@ public class gameManager : MonoBehaviour
     
     public char Rank()
     {
-        int percentClear = (int)((playerScript.playerFloorScore / playerScript.totalLevelSalvage) * 100);
+        int percentClear = (int)((playerController.playerFloorSalvage / playerController.totalLevelSalvage) * 100);
 
         if (percentClear > 90)
         {
@@ -1038,7 +1049,7 @@ public class gameManager : MonoBehaviour
     {
         PauseState();
         instance.playerScript.SavePlayerStats();
-        Inventory.Instance.InvSnapshot();
+        
         if (SceneManager.GetActiveScene().name == "Lvl 1")
         {
             //start coroutine to load next level and show loading screen for 5 seconds
@@ -1137,25 +1148,25 @@ public class gameManager : MonoBehaviour
     public void WinGame()
     {
         // updating total score value
-        playerScript.playerTotalScore += playerScript.playerFloorScore;
-        hazardPayData.text = playerScript.hazardPay.ToString();
-        QuestCompletionPayData.text = playerScript.questPay.ToString();
-        playerScript.playerBonus += 50;
+        playerController.playerTotalSalvage += playerController.playerFloorSalvage;
+        hazardPayData.text = playerController.hazardPay.ToString();
+        QuestCompletionPayData.text = playerController.questPay.ToString();
+        //playerController.playerBonus += 50;
 
         // updating total salvage for all levels
-        totalSalvagedData.text = playerScript.playerTotalScore.ToString();
+        totalSalvagedData.text = playerController.playerTotalSalvage.ToString();
 
         // updating salvage cut value
-        int salvageCut = (int)(playerScript.playerTotalScore * 0.03);
+        int salvageCut = (int)(playerController.playerTotalSalvage * 0.03);
         salvageCutData.text = salvageCut.ToString();
 
         // updating remaining bonus
-        remainingBonusData.text = playerScript.playerBonus.ToString();
+        //remainingBonusData.text = playerController.playerBonus.ToString();
 
         // updating total payout
-        int totalPayout = salvageCut + playerScript.playerBonus;
-        totalPayout += playerScript.hazardPay +
-                       playerScript.questPay;
+        int totalPayout = salvageCut; //+ playerController.playerBonus;
+        totalPayout += playerController.hazardPay +
+                       playerController.questPay;
         totalPayoutData.text = totalPayout.ToString();
 
         char rank = EndGameRank();
@@ -1236,7 +1247,7 @@ public class gameManager : MonoBehaviour
     {
         float totalPossibleSalvage = 50654.0f;
 
-        int percentClear = (int)((playerScript.playerTotalScore / totalPossibleSalvage) * 100);
+        int percentClear = (int)((playerController.playerTotalSalvage / totalPossibleSalvage) * 100);
 
         if (percentClear > 90)
         {
@@ -1407,24 +1418,24 @@ public class gameManager : MonoBehaviour
     {
         healthValue.text = playerController.HP.ToString();
         maxHealthValue.text = playerController.HPMax.ToString();
-        if (playerScript.shielded)
+        if (playerController.shielded)
         {
-            shieldRechargeValue.text = playerScript.shieldRate.ToString();
-            shieldHealthValue.text = playerScript.shieldValue.ToString();
+            shieldRechargeValue.text = playerController.shieldRate.ToString();
+            shieldHealthValue.text = playerController.shieldValue.ToString();
         }
         else
         {
             shieldRechargeValue.text = ("Shield Not Found");
             shieldHealthValue.text = ("Shield Not Found");
         }
-        jetpackRechargeValue.text = (playerScript.fuelRefillRate * 100).ToString();
+        jetpackRechargeValue.text = (playerController.fuelRefillRate * 100).ToString();
 
-        jetpackConsumptionValue.text = (playerScript.fuelConsumptionRate * 100).ToString();
-        DamageValue.text = playerScript.shootDamage.ToString();
-        rateOfFireValue.text = playerScript.shootRate.ToString();
+        jetpackConsumptionValue.text = (playerController.fuelConsumptionRate * 100).ToString();
+        DamageValue.text = playerController.shootDamage.ToString();
+        rateOfFireValue.text = playerController.shootRate.ToString();
         salvageSpreadValue.text = playerScript.salvageSpread.ToString();
-        salvageRangeValue.text = playerScript.salvageRange.ToString();
-        if (playerScript.salvDetector)
+        salvageRangeValue.text = playerController.salvageRange.ToString();
+        if (playerController.salvDetector)
         {
             salvageDetectorCondition.text = ("Active");
         }
@@ -1432,8 +1443,8 @@ public class gameManager : MonoBehaviour
         {
             salvageDetectorCondition.text = ("Inactive");
         }
-        staminaDrainValue.text = ((int)playerScript.staminaDrain * 100).ToString();
-        staminaRegenValue.text = ((int)playerScript.staminaRefillRate * 100).ToString();
+        staminaDrainValue.text = ((int)playerController.staminaDrain * 100).ToString();
+        staminaRegenValue.text = ((int)playerController.staminaRefillRate * 100).ToString();
 
     }
     public void TurnOnInventoryUI()
@@ -1449,28 +1460,28 @@ public class gameManager : MonoBehaviour
     }
     public void UpdateInventory()
     {
-        LevelScrapCollected.text = amtSalvaged.ToString();
-        if (gameManager.instance.playerScript.salvDetector)
+        LevelScrapCollected.text = playerController.playerTotalSalvage.ToString();
+        if (playerController.salvDetector)
         {
-            FloorAvailData.text = playerScript.totalLevelSalvage.ToString();
+            FloorAvailData.text = playerController.totalLevelSalvage.ToString();
         }
         else
         {
             FloorAvailData.text = "Need Salv Detector";
         }
-        SpentScrap.text = spent.ToString();
-        BioMassAmt.text = Inventory.Instance._iBioMass.ToString();
-        IntactOrganAmt.text = Inventory.Instance._iIntactOrgan.ToString();
-        ElectricCompAmt.text = Inventory.Instance._iElectronicComponents.ToString();
-        DataCoreAmt.text = Inventory.Instance._iDataProcessingCore.ToString();
-        DenseMetalPlateAmt.text = Inventory.Instance._iDenseMetalPlate.ToString();
-        HighTensileAlloyAmt.text = Inventory.Instance._iHighTensileAlloyPlate.ToString();
-        ValuableLootAmt.text = Inventory.Instance._iValuableLoot.ToString();
-        GlassPaneAmt.text = Inventory.Instance._iGlassPane.ToString();
-        HPLDAmt.text = Inventory.Instance._iHighPoweredLightDiode.ToString();
-        ElectricMotorAmt.text = Inventory.Instance._iElectricMotor.ToString();
-        CeramicPlateAmt.text = Inventory.Instance._iCeramicPlate.ToString();
-        GoldAlloyAmt.text = Inventory.Instance._iGoldAlloy.ToString();
+        SpentScrap.text = playerController.spent.ToString();
+        BioMassAmt.text = Inventory._iBioMass.ToString();
+        IntactOrganAmt.text = Inventory._iIntactOrgan.ToString();
+        ElectricCompAmt.text = Inventory._iElectronicComponents.ToString();
+        DataCoreAmt.text = Inventory._iDataProcessingCore.ToString();
+        DenseMetalPlateAmt.text = Inventory._iDenseMetalPlate.ToString();
+        HighTensileAlloyAmt.text = Inventory._iHighTensileAlloyPlate.ToString();
+        ValuableLootAmt.text = Inventory._iValuableLoot.ToString();
+        GlassPaneAmt.text = Inventory._iGlassPane.ToString();
+        HPLDAmt.text = Inventory._iHighPoweredLightDiode.ToString();
+        ElectricMotorAmt.text = Inventory._iElectricMotor.ToString();
+        CeramicPlateAmt.text = Inventory._iCeramicPlate.ToString();
+        GoldAlloyAmt.text = Inventory._iGoldAlloy.ToString();
 
     }
 

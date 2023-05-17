@@ -273,7 +273,7 @@ public class BossAI : MonoBehaviour, IDamage
             gameManager.instance.endGameBeam.SetActive(true);
             if (agent.enabled)
             {
-                playerScript.hazardPay += 1500;
+                playerController.hazardPay += 1500;
             }
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;

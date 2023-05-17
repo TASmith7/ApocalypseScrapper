@@ -11,7 +11,7 @@ public class bulletPlayer : MonoBehaviour
     void Start()
     {
         //pulling damage from playerController, which should have proper damge w/ upgrades
-        damage = playerScript.shootDamage;
+        damage = playerController.shootDamage;
         // destroying our bullet after a specified amount of time
         switch(damage)
         {
