@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4000012961768668}
   - component: {fileID: 198000014159833656}
   - component: {fileID: 199000012492269190}
+  - component: {fileID: -91498651819251108}
   m_Layer: 0
   m_Name: GoopStreamEffect
   m_TagString: Untagged
@@ -4700,6 +4701,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-91498651819251108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010675638318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e177723c6016848bc45ce87a10694f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDestroyGoop: 15
 --- !u!1 &1000010920581966
 GameObject:
   m_ObjectHideFlags: 0
