@@ -265,7 +265,7 @@ public class BossAI : MonoBehaviour, IDamage
 
                 if (gameManager.instance.subtitlesToggle.isOn)
                 {
-                    StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.killBossVoiceLines));
+                    gameManager.instance.StartCoroutine(gameManager.instance.StartSubtitles(subtitleManager.instance.killBossVoiceLines));
                 }
                 hasPlayedEndGameAudio = true;
             }
