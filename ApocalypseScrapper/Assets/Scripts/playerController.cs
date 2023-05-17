@@ -614,7 +614,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     IEnumerator Shoot()
     {
         isShooting = true;
-
+        float spread = .75f;
         // play shooting audio
         playerAudioManager.instance.gunAudioSource.Play();
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0));
@@ -626,13 +626,16 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         }
         else { targetPoint = ray.GetPoint(75); }
         Vector3 directionNoSpread = targetPoint - shootPos.position;
+        float x = Random.Range(-spread, spread);
+        float y = Random.Range(-spread, spread);
+        Vector3 directionWithSpread = directionNoSpread + new Vector3(x, y, 0);
         GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.identity);
         GameObject flashClone = Instantiate(muzzleFlash, shootPos.position, Quaternion.identity);
 
         // Set the rotation of the bullet to match the direction the player is looking
         bulletClone.transform.forward = directionNoSpread.normalized;
         // Set the bullet's velocity to this
-        bulletClone.GetComponent<Rigidbody>().AddForce(directionNoSpread.normalized * bulletSpeed, ForceMode.Impulse);
+        bulletClone.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * bulletSpeed, ForceMode.Impulse);
 
         gunAnimator.Play("WeaponRecoil");
 
