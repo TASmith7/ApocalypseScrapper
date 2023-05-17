@@ -150,7 +150,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         isDead = false;
         if (gameManager.instance.currentScene != SceneManager.GetSceneByName("Lvl 1"))
             SetPlayerStats();
-        else DefaultPlayerStats();
+        else globalSceneControl.Instance.DefaultStats();
         playerSpeed = walkSpeed;
 
         PlayerUIUpdate();
@@ -964,9 +964,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     
     IEnumerator ReduceStaminaUI()
     {
-        
-            
-
             // stopping the refill coroutine while sprinting
             StopCoroutine(RefillStaminaUI());
 
@@ -974,9 +971,6 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             gameManager.instance.staminaFillBar.fillAmount -= staminaDrain * Time.deltaTime;
 
             yield return new WaitForSeconds(0.25f);
-
-        
-        
     }
 
     IEnumerator RefillStaminaUI()
