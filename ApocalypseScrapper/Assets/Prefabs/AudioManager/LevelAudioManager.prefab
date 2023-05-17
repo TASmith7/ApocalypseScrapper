@@ -49,7 +49,9 @@ MonoBehaviour:
   pauseMenuAudioSource: {fileID: 0}
   voiceOverAudioSource: {fileID: 0}
   elevatorAudioSource: {fileID: 0}
-  lvl1MusicAudio: {fileID: 8300000, guid: 5faabcb7a4a8c1a4793f9341bb92bb33, type: 3}
+  lockdownAudioSource: {fileID: 0}
+  lockdownSirenAudioSource: {fileID: 0}
+  lvl1MusicAudio: {fileID: 8300000, guid: 8e4a3b00e324bcf4fa48280b16ad29e8, type: 3}
   lvl2MusicAudio: {fileID: 8300000, guid: 951d37848ea19bd46ae0efa5e5c07e53, type: 3}
   lvl3MusicAudio: {fileID: 8300000, guid: d0605117c14c74e45978db571085528e, type: 3}
   bossLvlMusicAudio: {fileID: 8300000, guid: c4e0256ff2f5ca045888d4ad38c2c6c1, type: 3}
@@ -74,9 +76,15 @@ MonoBehaviour:
   VOStoreTutorial: {fileID: 8300000, guid: 3c32953d9829a1f43a6ed4def6d94146, type: 3}
   elevatorUp: {fileID: 8300000, guid: 0f338afde4ae2544984c9d82ff461ea0, type: 3}
   elevatorStop: {fileID: 8300000, guid: a0baade72817c58409f36d7298641261, type: 3}
+  lockdownInitiatedVoice: {fileID: 0}
+  lockdownSiren: {fileID: 0}
+  lockdownShutdownSiren: {fileID: 0}
+  lockdownDisengagedVoice: {fileID: 0}
   musicVolume: 0.65
   whiteNoiseVolume: 1
   pauseMenuVolume: 0.6
   voiceOverVolume: 1
-  elevatorVolume: 0.5
+  elevatorVolume: 0.4
+  lockdownVoiceVolume: 0
+  lockdownSirenVolume: 0
   musicPitch: 1
