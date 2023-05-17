@@ -51,6 +51,7 @@ public class crabAI : MonoBehaviour, IDamage
     float angleToPlayer;
     float speed;
     bool isShooting;
+    bool hasDroppedDeadCrab;
     float stoppingDistanceOrig;
     bool destinationChosen;
     Vector3 startPos;
@@ -205,10 +206,10 @@ public class crabAI : MonoBehaviour, IDamage
             {
                 Instantiate(deathGoop,deathGoopPos.transform.position,transform.rotation);
             }
-            if (drop)
+            if (drop && !hasDroppedDeadCrab)
             {
+                hasDroppedDeadCrab = true;
                 Instantiate(drop, transform.position, transform.rotation);
-                
             }
             // cue death audio
             if (agent.isActiveAndEnabled)
