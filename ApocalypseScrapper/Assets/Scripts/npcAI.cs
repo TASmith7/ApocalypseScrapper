@@ -31,6 +31,7 @@ public class npcAI : MonoBehaviour
     [Range(0, 2)] public float timeBetweenFootsteps;
     float timeBetweenFootstepsOrig;
 
+    bool questPayAdded;
 
     private void Start()
     {
@@ -49,7 +50,11 @@ public class npcAI : MonoBehaviour
             speed = agent.velocity.normalized.magnitude;
             anim.SetFloat("Speed", speed);
 
-            playerController.questPay += 1000;
+            if(!questPayAdded)
+            {
+                playerController.questPay += 1000;
+                questPayAdded = true;
+            }
 
             // if we haven't already started the rescue coroutine
             if(!rescueCoroutineStarted)
