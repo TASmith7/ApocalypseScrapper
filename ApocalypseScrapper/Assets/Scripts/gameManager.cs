@@ -550,8 +550,9 @@ public class gameManager : MonoBehaviour
             {
                 UpdateInventory();
             }
+            UpdateSalvageScore();
             SpentScrap.text=playerController.spent.ToString();
-            LevelScrapCollected.text=playerController.playerFloorSalvage.ToString();
+            
         }
 
         if(Time.timeSinceLevelLoad > 8.5f && entryLevelTextParent.activeInHierarchy)
@@ -797,17 +798,22 @@ public class gameManager : MonoBehaviour
         mainReticle.SetActive(true);
     }
 
-    public void UpdateSalvageScore(int score)
+    public void UpdateSalvageScore()
     {
         if (playerController.salvDetector == true)
         {
-            salvageCollected.text = score.ToString() + " of " + playerController.totalLevelSalvage;
+            salvageCollected.text = playerController.playerFloorSalvage + " of " + playerController.totalLevelSalvage;
+            FloorAvailData.text = playerController.playerFloorSalvage + " of " + playerController.totalLevelSalvage;
 
         }
-        else salvageCollected.text = score.ToString() + " of ????";
+        else
+        {
+            salvageCollected.text = playerController.playerFloorSalvage + " of ????";
+            FloorAvailData.text = playerController.playerFloorSalvage + " of ????";
+        }
 
-
-        playerController.playerTotalSalvage = score;
+        totalScoreData.text = playerController.playerTotalSalvage.ToString();
+        LevelScrapCollected.text = playerController.playerTotalSalvage.ToString();
     }
     //public void PlayerWins()
     //{

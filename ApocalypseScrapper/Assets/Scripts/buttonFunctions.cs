@@ -245,6 +245,7 @@ public class buttonFunctions : MonoBehaviour
             Inventory.Instance.RemEC(2);
             Inventory.Instance.RemDPC(4);
             gameManager.instance.UpdateInventory();
+            gameManager.instance.UpdateSalvageScore();
         }
         else
         {
@@ -263,6 +264,7 @@ public class buttonFunctions : MonoBehaviour
             playerController.spent += 4000;
             Inventory.Instance.RemEC(2);
             gameManager.instance.UpdateInventory();
+            gameManager.instance.UpdateSalvageScore();
         }
         else
         {
@@ -282,6 +284,7 @@ public class buttonFunctions : MonoBehaviour
             Inventory.Instance.RemEC(1);
             Inventory.Instance.RemDPC(1);
             gameManager.instance.UpdateInventory();
+            gameManager.instance.UpdateSalvageScore();
         }
         else
         {
@@ -301,6 +304,7 @@ public class buttonFunctions : MonoBehaviour
             Inventory.Instance.RemHPLD(1);
             Inventory.Instance.RemGA(2);
             gameManager.instance.UpdateInventory();
+            gameManager.instance.UpdateSalvageScore();
         }
         else
         {
@@ -318,6 +322,7 @@ public class buttonFunctions : MonoBehaviour
             Inventory.Instance.RemHTAP(1);
             Inventory.Instance.RemGP(2);
             gameManager.instance.UpdateInventory();
+            gameManager.instance.UpdateSalvageScore();
 
         }
         else
@@ -337,6 +342,7 @@ public class buttonFunctions : MonoBehaviour
             Inventory.Instance.RemEM(3);
             Inventory.Instance.RemDPC(4);
             gameManager.instance.UpdateInventory();
+            gameManager.instance.UpdateSalvageScore();
 
         }
         else
@@ -353,6 +359,7 @@ public class buttonFunctions : MonoBehaviour
             playerController.spent += 3000;
             Inventory.Instance.RemEM(2);
             gameManager.instance.UpdateInventory();
+            gameManager.instance.UpdateSalvageScore();
         }
         else
         {
@@ -381,6 +388,8 @@ public class buttonFunctions : MonoBehaviour
             playerController.salvageRate -= 0.1f;
             playerController.playerTotalSalvage -= 4000;
             playerController.spent += 4000;
+            gameManager.instance.UpdateInventory();
+            gameManager.instance.UpdateSalvageScore();
         }
         else
         {
@@ -399,6 +408,7 @@ public class buttonFunctions : MonoBehaviour
             Inventory.Instance.RemEM(2);
             Inventory.Instance.RemEC(2);
             gameManager.instance.UpdateInventory();
+            gameManager.instance.UpdateSalvageScore();
         }
         else
         {
@@ -415,6 +425,7 @@ public class buttonFunctions : MonoBehaviour
             Inventory.Instance.RemCP(2);
             Inventory.Instance.RemEC(2);
             gameManager.instance.UpdateInventory();
+            gameManager.instance.UpdateSalvageScore();
         }
         else
         {
