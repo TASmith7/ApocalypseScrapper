@@ -88,6 +88,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     [Header("----- Gun Stats -----")]
     public List<GunStats> gunList = new List<GunStats>();
     [Range(1, 100)][SerializeField] public static int shootDamage;
+    public static float shootSpread;
     [Range(0.1f, 5)][SerializeField] public static float shootRate;
     [Range(1, 100)][SerializeField] public int shootDistance;
     [SerializeField] GameObject bullet;
@@ -612,7 +613,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     IEnumerator Shoot()
     {
         isShooting = true;
-        float spread = .75f;
+        
         // play shooting audio
         playerAudioManager.instance.gunAudioSource.Play();
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0));
@@ -624,8 +625,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         }
         else { targetPoint = ray.GetPoint(75); }
         Vector3 directionNoSpread = targetPoint - shootPos.position;
-        float x = Random.Range(-spread, spread);
-        float y = Random.Range(-spread, spread);
+        float x = Random.Range(-shootSpread, shootSpread);
+        float y = Random.Range(-shootSpread, shootSpread);
         Vector3 directionWithSpread = directionNoSpread + new Vector3(x, y, 0);
         GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.identity);
         GameObject flashClone = Instantiate(muzzleFlash, shootPos.position, Quaternion.identity);
