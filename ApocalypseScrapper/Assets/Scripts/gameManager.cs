@@ -438,6 +438,7 @@ public class gameManager : MonoBehaviour
                 StartCoroutine(StopElevatorWait());
             }
         }
+        UpdateSalvageScore();
     }
 
     // Update is called once per frame
@@ -1115,18 +1116,12 @@ public class gameManager : MonoBehaviour
 
         lvl2.SetActive(true);
         activeMenu = lvl2;
-        
         Debug.Log("WFS Started");
         yield return new WaitForSecondsRealtime(5);
+
         Debug.Log("WFS Done");
-        Debug.Log("Scene Load Started");
-        SceneManager.LoadScene("Lvl 2");
-        Debug.Log("Scene Load Completed");
-        yield return new WaitForSecondsRealtime(5);
-
-
         lvl2.SetActive(false);
-        
+        SceneManager.LoadScene("Lvl 2");
         
         UnpauseState();
     }
@@ -1135,16 +1130,13 @@ public class gameManager : MonoBehaviour
 
         lvl3.SetActive(true);
         activeMenu = lvl3;
-        Debug.Log("Scene Load Started");
-        SceneManager.LoadScene("Lvl 3");
-        Debug.Log("Scene Load Completed");
         Debug.Log("WFS Started");
         yield return new WaitForSecondsRealtime(5);
 
         Debug.Log("WFS Done");
 
         lvl3.SetActive(false);
-        
+        SceneManager.LoadScene("Lvl 3");
         UnpauseState();
     }
     IEnumerator BossLvlLoadScreen()
@@ -1152,21 +1144,18 @@ public class gameManager : MonoBehaviour
 
         lvl4.SetActive(true);
         activeMenu = lvl4;
-        Debug.Log("Scene Load Started");
-        SceneManager.LoadScene("Lvl 2");
-        Debug.Log("Scene Load Completed");
         Debug.Log("WFS Started");
         yield return new WaitForSecondsRealtime(5);
 
         Debug.Log("WFS 5 Done");
         lvl4.SetActive(false);
-        
+        SceneManager.LoadScene("Boss Lvl");
         UnpauseState();
     }
     public void WinGame()
     {
         // updating total score value
-        playerController.playerTotalSalvage += playerController.playerFloorSalvage;
+        
         hazardPayData.text = playerController.hazardPay.ToString();
         QuestCompletionPayData.text = playerController.questPay.ToString();
         //playerController.playerBonus += 50;
@@ -1263,31 +1252,31 @@ public class gameManager : MonoBehaviour
 
     public char EndGameRank()
     {
-        float totalPossibleSalvage = 50654.0f;
+        float totalPossibleSalvage = 677248.0f;
 
         int percentClear = (int)((playerController.playerTotalSalvage / totalPossibleSalvage) * 100);
 
-        if (percentClear > 90)
+        if (percentClear >= 50)
         {
             return 'S';
         }
-        else if (percentClear > 80 && percentClear <= 90)
+        else if (percentClear >= 40)
         {
             return 'A';
         }
-        else if (percentClear > 70 && percentClear <= 80)
+        else if (percentClear >=30)
         {
             return 'B';
         }
-        else if (percentClear > 60 && percentClear <= 70)
+        else if (percentClear >= 20)
         {
             return 'C';
         }
-        else if (percentClear > 50 && percentClear <= 60)
+        else if (percentClear >= 10)
         {
             return 'D';
         }
-        else if (percentClear < 50)
+        else if (percentClear < 10)
         {
             return 'F';
         }

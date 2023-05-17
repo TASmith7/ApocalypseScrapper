@@ -145,19 +145,14 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     private void Start()
     {
-        HP = 100;
-        HPMax = 100;
-        isDead = false;
-        if (gameManager.instance.currentScene != SceneManager.GetSceneByName("Lvl 1"))
-            SetPlayerStats();
-        else globalSceneControl.Instance.DefaultStats();
+        SetPlayerStats();
         playerSpeed = walkSpeed;
 
         PlayerUIUpdate();
         playerFloorSalvage = 0;
 
-        SpawnPlayer();
         StartCoroutine(FindTotalLevelSalvage());
+        SpawnPlayer();
 
         jetpackPowerDownAudioPlayed = false;
         outOfBreathAudioPlayed = false;
@@ -182,7 +177,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     void Update()
     {
 
-        if (GODMODE) { HP = 999; HPMax = 999; shootDamage = 999; }
+        if (GODMODE) { HP = 999; HPMax = 999; shootDamage = 999; salvDetector = true; shootRate = 0.01f; }
+
 
         horizontalVelocity = controller.velocity;
         horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
@@ -931,30 +927,30 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         
     }
 
-    public void DefaultPlayerStats()
-    {
-        HP = globalSceneControl.Instance._MSHP;
-        HPMax = globalSceneControl.Instance._MSHPMax;
+    //public void DefaultPlayerStats()
+    //{
+    //    HP = globalSceneControl.Instance._MSHP;
+    //    HPMax = globalSceneControl.Instance._MSHPMax;
 
-        salvageRate = globalSceneControl.Instance._MSsalvageRate;
-        salvageRange = globalSceneControl.Instance._MSsalvageRange;
-        salvageSpread= globalSceneControl.Instance._MSsalvageSpread;
-        thrustPower = globalSceneControl.Instance._MSthrustPower;
-        fuelConsumptionRate = globalSceneControl.Instance._MSfuelConsumptionRate;
-        fuelRefillRate = globalSceneControl.Instance._MSfuelRefillRate;
-        shootDamage = globalSceneControl.Instance._MSshootDamage;
-        shootRate = globalSceneControl.Instance._MSshootRate;
-        shootDistance = globalSceneControl.Instance._MSshootDistance;
-        salvDetector = globalSceneControl.Instance._MSsalvDetector;
-        shielded = globalSceneControl.Instance._MSshielded;
-        shieldValue = globalSceneControl.Instance._MSshieldValue;
-        shieldMax = globalSceneControl.Instance._MSshieldMax;
-        shieldCD = globalSceneControl.Instance._MSshieldCD;
-        shieldRate = globalSceneControl.Instance._MSshieldRate;
+    //    salvageRate = globalSceneControl.Instance._MSsalvageRate;
+    //    salvageRange = globalSceneControl.Instance._MSsalvageRange;
+    //    salvageSpread= globalSceneControl.Instance._MSsalvageSpread;
+    //    thrustPower = globalSceneControl.Instance._MSthrustPower;
+    //    fuelConsumptionRate = globalSceneControl.Instance._MSfuelConsumptionRate;
+    //    fuelRefillRate = globalSceneControl.Instance._MSfuelRefillRate;
+    //    shootDamage = globalSceneControl.Instance._MSshootDamage;
+    //    shootRate = globalSceneControl.Instance._MSshootRate;
+    //    shootDistance = globalSceneControl.Instance._MSshootDistance;
+    //    salvDetector = globalSceneControl.Instance._MSsalvDetector;
+    //    shielded = globalSceneControl.Instance._MSshielded;
+    //    shieldValue = globalSceneControl.Instance._MSshieldValue;
+    //    shieldMax = globalSceneControl.Instance._MSshieldMax;
+    //    shieldCD = globalSceneControl.Instance._MSshieldCD;
+    //    shieldRate = globalSceneControl.Instance._MSshieldRate;
 
-        playerTotalSalvage = globalSceneControl.Instance._MSplayerScrapCollected;
-        //playerBonus = globalSceneControl.Instance._MSplayerBonus;
-    }
+    //    playerTotalSalvage = globalSceneControl.Instance._MSplayerScrapCollected;
+    //    //playerBonus = globalSceneControl.Instance._MSplayerBonus;
+    //}
     
     public void SpawnPlayer()
     {
@@ -999,15 +995,18 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         PlayerPrefs.SetFloat(levelToSaveTo + "thrustPower", thrustPower);
         PlayerPrefs.SetFloat(levelToSaveTo + "fuelConsumptionRate", fuelConsumptionRate);
         PlayerPrefs.SetFloat(levelToSaveTo + "fuelRefillRate", fuelRefillRate);
-        
+
+        PlayerPrefs.SetFloat(levelToSaveTo + "staminaDrain", staminaDrain);
+        PlayerPrefs.SetFloat(levelToSaveTo + "staminaRefillRate", staminaRefillRate);
+
         PlayerPrefs.SetInt(levelToSaveTo + "shootDamage", shootDamage);
         PlayerPrefs.SetFloat(levelToSaveTo + "shootRate", shootRate);
         PlayerPrefs.SetInt(levelToSaveTo + "shootDistance", shootDistance);
 
-        if (playerController.salvDetector) { PlayerPrefs.SetInt(levelToSaveTo + "salvDetector", 1); }
+        if (salvDetector) { PlayerPrefs.SetInt(levelToSaveTo + "salvDetector", 1); }
         else PlayerPrefs.SetInt(levelToSaveTo + "salvDetector", 0);
 
-        if (playerController.shielded) { PlayerPrefs.SetInt(levelToSaveTo + "shielded", 1); }
+        if (shielded) { PlayerPrefs.SetInt(levelToSaveTo + "shielded", 1); }
         else PlayerPrefs.SetInt(levelToSaveTo + "shielded", 0);
 
 
@@ -1016,6 +1015,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         PlayerPrefs.SetInt(levelToSaveTo + "shieldCD" , shieldCD);
         PlayerPrefs.SetInt(levelToSaveTo +"shieldRate" , shieldRate);
         PlayerPrefs.SetInt(levelToSaveTo + "playerTotalSalvage", playerTotalSalvage);
+
+        PlayerPrefs.SetFloat(gameManager.instance.level + "FloorSalvageAvailable", totalLevelSalvage);
 
         
 
@@ -1026,29 +1027,62 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     public void SetPlayerStats()
     {
-        if (globalSceneControl.Instance != null)
+       
+
+        if (PlayerPrefs.HasKey(gameManager.instance.level + "HP"))
         {
-            HP = globalSceneControl.Instance.HP;
-            HPMax = globalSceneControl.Instance.HPMax;
-            salvageRate = globalSceneControl.Instance.salvageRate;
-            salvageRange = globalSceneControl.Instance.salvageRange;
-            thrustPower = globalSceneControl.Instance.thrustPower;
-            fuelConsumptionRate = globalSceneControl.Instance.fuelConsumptionRate;
-            fuelRefillRate = globalSceneControl.Instance.fuelRefillRate;
-            shootDamage = globalSceneControl.Instance.shootDamage;
-            shootRate = globalSceneControl.Instance.shootRate;
-            shootDistance = globalSceneControl.Instance.shootDistance;
-            salvDetector = globalSceneControl.Instance.salvDetector;
-            shielded = globalSceneControl.Instance.shielded;
-            shieldValue = globalSceneControl.Instance.shieldValue;
-            shieldMax = globalSceneControl.Instance.shieldMax;
-            shieldCD = globalSceneControl.Instance.shieldCD;
-            shieldRate = globalSceneControl.Instance.shieldRate;
-            playerTotalSalvage = globalSceneControl.Instance.playerScrapCollected;
-            gameManager.instance.totalScoreData.text = playerTotalSalvage.ToString();
-            //playerBonus = globalSceneControl.Instance.playerBonus;
-            //gameManager.instance.playerBonusData.text = playerBonus.ToString();
+            HP = PlayerPrefs.GetInt(gameManager.instance.level + "HP");
+            HPMax = PlayerPrefs.GetInt(gameManager.instance.level + "HPMax");
+
+            salvageRate = PlayerPrefs.GetFloat(gameManager.instance.level + "salvageRate");
+            salvageRange = PlayerPrefs.GetInt(gameManager.instance.level + "salvageRange");
+            
+            thrustPower = PlayerPrefs.GetFloat(gameManager.instance.level + "thrustPower");
+            fuelConsumptionRate = PlayerPrefs.GetFloat(gameManager.instance.level + "fuelConsumptionRate");
+            fuelRefillRate = PlayerPrefs.GetFloat(gameManager.instance.level + "fuelRefillRate");
+            
+            staminaDrain = PlayerPrefs.GetFloat(gameManager.instance.level + "staminaDrain");
+            staminaRefillRate = PlayerPrefs.GetFloat(gameManager.instance.level + "staminaRefillRate");
+            
+            shootDamage = PlayerPrefs.GetInt(gameManager.instance.level + "shootDamage");
+            shootRate = PlayerPrefs.GetFloat(gameManager.instance.level + "shootRate");
+            shootDistance = PlayerPrefs.GetInt(gameManager.instance.level + "shootDistance");
+
+            if(PlayerPrefs.GetInt(gameManager.instance.level + "salvDetector") == 1) salvDetector = true;
+
+            if (PlayerPrefs.GetInt(gameManager.instance.level + "shielded") == 1) shielded = true;
+
+            shieldValue = PlayerPrefs.GetInt(gameManager.instance.level + "shieldValue");
+            shieldMax = PlayerPrefs.GetInt(gameManager.instance.level + "shieldMax");
+            shieldCD = PlayerPrefs.GetInt(gameManager.instance.level + "shieldCD");
+            shieldRate = PlayerPrefs.GetInt(gameManager.instance.level + "shieldRate");
+
+            playerTotalSalvage = PlayerPrefs.GetInt(gameManager.instance.level + "playerTotalSalvage");
+
         }
+        else globalSceneControl.Instance.DefaultStats();
+
+        //HP = globalSceneControl.Instance.HP;
+        //HPMax = globalSceneControl.Instance.HPMax;
+        //salvageRate = globalSceneControl.Instance.salvageRate;
+        //salvageRange = globalSceneControl.Instance.salvageRange;
+        //thrustPower = globalSceneControl.Instance.thrustPower;
+        //fuelConsumptionRate = globalSceneControl.Instance.fuelConsumptionRate;
+        //fuelRefillRate = globalSceneControl.Instance.fuelRefillRate;
+        //shootDamage = globalSceneControl.Instance.shootDamage;
+        //shootRate = globalSceneControl.Instance.shootRate;
+        //shootDistance = globalSceneControl.Instance.shootDistance;
+        //salvDetector = globalSceneControl.Instance.salvDetector;
+        //shielded = globalSceneControl.Instance.shielded;
+        //shieldValue = globalSceneControl.Instance.shieldValue;
+        //shieldMax = globalSceneControl.Instance.shieldMax;
+        //shieldCD = globalSceneControl.Instance.shieldCD;
+        //shieldRate = globalSceneControl.Instance.shieldRate;
+        //playerTotalSalvage = globalSceneControl.Instance.playerScrapCollected;
+        //gameManager.instance.totalScoreData.text = playerTotalSalvage.ToString();
+        ////playerBonus = globalSceneControl.Instance.playerBonus;
+        ////gameManager.instance.playerBonusData.text = playerBonus.ToString();
+        
         Debug.Log("Player stats loaded.");
     }
 
