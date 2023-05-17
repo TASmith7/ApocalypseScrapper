@@ -133,11 +133,13 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     [Header("----- Score Stats -----")]
     [SerializeField] public static float totalLevelSalvage;
-    [SerializeField] public static int playerFloorScore;
-    [SerializeField] public static int playerTotalScore;
-    [SerializeField] public static int playerBonus;
+    [SerializeField] public static int playerFloorSalvage;
+    [SerializeField] public static int playerTotalSalvage;
+    //[SerializeField] public static int playerBonus;
+    [SerializeField] public static int spent;
     [SerializeField] public static int hazardPay;
     [SerializeField] public static int questPay;
+    public static string playerFloorGrade;
 
     #endregion
 
@@ -152,7 +154,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         playerSpeed = walkSpeed;
 
         PlayerUIUpdate();
-        playerFloorScore = 0;
+        playerFloorSalvage = 0;
 
         SpawnPlayer();
         StartCoroutine(FindTotalLevelSalvage());
@@ -886,7 +888,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
     public void SalvageObject(GameObject objectToSalvage)
     {
         // updating salvage score based on the objects salvage value assigned in inspector
-        playerFloorScore += (int)objectToSalvage.GetComponent<salvageableObject>().salvageValue;
+        playerFloorSalvage += (int)objectToSalvage.GetComponent<salvageableObject>().salvageValue;
 
         //Assigning drops based off SalvageableObject Script
         objectToSalvage.GetComponent<salvageableObject>().AssignDrops();
@@ -897,7 +899,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         playerAudioManager.instance.objectSalvagedAudioSource.Play();
 
         // updating salvage score UI
-        gameManager.instance.UpdateSalvageScore(playerFloorScore);
+        gameManager.instance.UpdateSalvageScore(playerFloorSalvage);
 
         // resetting my salvaging object reticle fill amount
         gameManager.instance.salvagingObjectReticle.fillAmount = 0;
@@ -936,8 +938,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         shieldCD = globalSceneControl.Instance._MSshieldCD;
         shieldRate = globalSceneControl.Instance._MSshieldRate;
 
-        playerTotalScore = globalSceneControl.Instance._MSplayerScrapCollected;
-        playerBonus = globalSceneControl.Instance._MSplayerBonus;
+        playerTotalSalvage = globalSceneControl.Instance._MSplayerScrapCollected;
+        //playerBonus = globalSceneControl.Instance._MSplayerBonus;
     }
     
     public void SpawnPlayer()
@@ -978,32 +980,39 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         
    public void SavePlayerStats()
     {
-        if (globalSceneControl.Instance != null)
-        {
-            globalSceneControl.Instance.HP = HP;
-            globalSceneControl.Instance.HPMax = HPMax;
-            globalSceneControl.Instance.salvageRate = salvageRate;
-            globalSceneControl.Instance.salvageRange = salvageRange;
+        Inventory.Instance.InvSnapshot();
+        int levelToSaveTo = gameManager.instance.level + 1;
+        
+        PlayerPrefs.SetInt(levelToSaveTo+"HP" , HP);
+        PlayerPrefs.SetInt(levelToSaveTo + "HPMax" , HPMax);
+        PlayerPrefs.SetFloat(levelToSaveTo + "salvageRate", salvageRate);
+        PlayerPrefs.SetInt(levelToSaveTo + "salvageRange", salvageRange);
+        
+        PlayerPrefs.SetFloat(levelToSaveTo + "thrustPower", thrustPower);
+        PlayerPrefs.SetFloat(levelToSaveTo + "fuelConsumptionRate", fuelConsumptionRate);
+        PlayerPrefs.SetFloat(levelToSaveTo + "fuelRefillRate", fuelRefillRate);
+        
+        PlayerPrefs.SetInt(levelToSaveTo + "shootDamage", shootDamage);
+        PlayerPrefs.SetFloat(levelToSaveTo + "shootRate", shootRate);
+        PlayerPrefs.SetInt(levelToSaveTo + "shootDistance", shootDistance);
 
-            globalSceneControl.Instance.thrustPower = thrustPower;
-            globalSceneControl.Instance.fuelConsumptionRate = fuelConsumptionRate;
-            globalSceneControl.Instance.fuelRefillRate = fuelRefillRate;
+        if (playerController.salvDetector) { PlayerPrefs.SetInt(levelToSaveTo + "salvDetector", 1); }
+        else PlayerPrefs.SetInt(levelToSaveTo + "salvDetector", 0);
 
-            globalSceneControl.Instance.shootDamage = shootDamage;
-            globalSceneControl.Instance.shootRate = shootRate;
-            globalSceneControl.Instance.shootDistance = shootDistance;
+        if (playerController.shielded) { PlayerPrefs.SetInt(levelToSaveTo + "shielded", 1); }
+        else PlayerPrefs.SetInt(levelToSaveTo + "shielded", 0);
 
-            globalSceneControl.Instance.salvDetector = salvDetector;
-            globalSceneControl.Instance.shielded = shielded;
-            globalSceneControl.Instance.shieldValue = shieldValue;
-            globalSceneControl.Instance.shieldMax = shieldMax;
-            globalSceneControl.Instance.shieldCD = shieldCD;
-            globalSceneControl.Instance.shieldRate = shieldRate;
-            globalSceneControl.Instance.playerScrapCollected = playerTotalScore;
-            globalSceneControl.Instance.playerBonus = playerBonus;
 
-            Debug.Log("Player Stats Saved");
-        }
+        PlayerPrefs.SetInt(levelToSaveTo + "shieldValue", shieldValue);
+        PlayerPrefs.SetInt(levelToSaveTo + "shieldMax", shieldMax);
+        PlayerPrefs.SetInt(levelToSaveTo + "shieldCD" , shieldCD);
+        PlayerPrefs.SetInt(levelToSaveTo +"shieldRate" , shieldRate);
+        PlayerPrefs.SetInt(levelToSaveTo + "playerTotalSalvage", playerTotalSalvage);
+
+        
+
+        Debug.Log("Player Stats Saved");
+        
     }
 
 
@@ -1027,10 +1036,10 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             shieldMax = globalSceneControl.Instance.shieldMax;
             shieldCD = globalSceneControl.Instance.shieldCD;
             shieldRate = globalSceneControl.Instance.shieldRate;
-            playerTotalScore = globalSceneControl.Instance.playerScrapCollected;
-            gameManager.instance.totalScoreData.text = playerTotalScore.ToString();
-            playerBonus = globalSceneControl.Instance.playerBonus;
-            gameManager.instance.playerBonusData.text = playerBonus.ToString();
+            playerTotalSalvage = globalSceneControl.Instance.playerScrapCollected;
+            gameManager.instance.totalScoreData.text = playerTotalSalvage.ToString();
+            //playerBonus = globalSceneControl.Instance.playerBonus;
+            //gameManager.instance.playerBonusData.text = playerBonus.ToString();
         }
         Debug.Log("Player stats loaded.");
     }

@@ -37,10 +37,13 @@ public class globalSceneControl : MonoBehaviour
     public int   _MSshieldCD = 5;
     public int   _MSshieldRate = 1;
 
-    public int   _MSplayerScrapCollected = 0;
+    public int _MSplayerScrapCollected = 0;
     public int _MSspentScrap = 0;
-    public int _MSQuestPay = 0;
-    public int   _MSplayerBonus = 0;
+    public int _MSquestPay = 0;
+    public int _MShazardPay = 0;
+    //public int _MSplayerBonus = 0;
+
+    public int _MStotalScrapAvailable = 0;
 
 
 
@@ -74,9 +77,11 @@ public class globalSceneControl : MonoBehaviour
     public int   shieldRate;
 
     public int playerScrapCollected = 0;
-    public int playerBonus = 0;
+    //public int playerBonus = 0;
     public int spentScrap = 0;
     public int questPay = 0;
+
+
 
     #endregion
 
@@ -124,8 +129,33 @@ public class globalSceneControl : MonoBehaviour
             shieldRate = _MSshieldRate;
 
             playerScrapCollected = _MSplayerScrapCollected;
-            playerBonus = _MSplayerBonus;
+            //playerBonus = _MSplayerBonus;
             
         }
     }
+
+    public void DefaultStats()
+    {
+        playerController.HP = _MSHP;
+        playerController.HPMax = _MSHPMax;
+        playerController.salvageRate = _MSsalvageRate;
+        playerController.salvageRange = _MSsalvageRange;
+        playerController.thrustPower = _MSthrustPower;
+        playerController.fuelConsumptionRate = _MSfuelConsumptionRate;
+        playerController.fuelRefillRate = _MSfuelRefillRate;
+        playerController.staminaDrain = _MSstaminaDrain;
+        playerController.staminaRefillRate = _MSstaminaRegen;
+        playerController.shootDamage = _MSshootDamage;
+        playerController.shootRate = _MSshootRate;
+        playerController.salvDetector = _MSsalvDetector;
+        playerController.shielded = _MSshielded;
+        playerController.shieldValue = _MSshieldValue;
+        playerController.shieldMax = _MSshieldMax;
+        playerController.shieldCD = _MSshieldCD;
+        playerController.shieldRate = _MSshieldRate;
+        playerController.playerTotalSalvage = _MSplayerScrapCollected;
+        playerController.spent = _MSspentScrap = 0;
+        playerController.questPay = _MSquestPay = 0;
+        playerController.hazardPay = _MShazardPay;
+}
 }
