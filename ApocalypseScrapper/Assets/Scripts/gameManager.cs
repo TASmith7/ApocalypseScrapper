@@ -797,17 +797,17 @@ public class gameManager : MonoBehaviour
         mainReticle.SetActive(true);
     }
 
-    public void UpdateSalvageScore(int score)
+    public void UpdateSalvageScore()
     {
         if (playerController.salvDetector == true)
         {
-            salvageCollected.text = score.ToString() + " of " + playerController.totalLevelSalvage;
+            salvageCollected.text = playerController.playerFloorSalvage + " of " + playerController.totalLevelSalvage;
 
         }
-        else salvageCollected.text = score.ToString() + " of ????";
+        else salvageCollected.text = playerController.playerFloorSalvage + " of ????";
 
 
-        playerController.playerTotalSalvage = score;
+        totalScoreData.text = "" + playerController.playerTotalSalvage;
     }
     //public void PlayerWins()
     //{
