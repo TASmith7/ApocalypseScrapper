@@ -145,6 +145,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
     private void Start()
     {
+        isDead = false;
         SetPlayerStats();
         playerSpeed = walkSpeed;
 

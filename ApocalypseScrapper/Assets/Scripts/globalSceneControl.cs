@@ -102,7 +102,10 @@ public class globalSceneControl : MonoBehaviour
 
         // setting our current scene
         currentScene = SceneManager.GetActiveScene();
+    }
 
+    private void Start()
+    {
         if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
             DefaultStats();
