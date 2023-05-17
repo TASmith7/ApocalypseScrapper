@@ -421,22 +421,29 @@ public class gameManager : MonoBehaviour
         
         if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
-            if (!levelAudioManager.instance.voiceOverAudioSource.isPlaying && voiceoversToggle.isOn)
+            if (levelAudioManager.instance.voiceOverAudioSource != null)
             {
-                // playing intro voice over
-                levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
-                introVOPlaying = true;
-
-                // if our subtitle toggle is on
-                if (subtitlesToggle.isOn)
+                if (!levelAudioManager.instance.voiceOverAudioSource.isPlaying && voiceoversToggle.isOn)
                 {
-                    StartCoroutine(StartSubtitles(subtitleManager.instance.lvl1IntroVoiceLines));
+                    // playing intro voice over
+                    levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOIntro);
+                    introVOPlaying = true;
+
+                    // if our subtitle toggle is on
+                    if (subtitlesToggle.isOn)
+                    {
+                        StartCoroutine(StartSubtitles(subtitleManager.instance.lvl1IntroVoiceLines));
+                    }
                 }
             }
-            if (!levelAudioManager.instance.elevatorAudioSource.isPlaying)
+
+            if (levelAudioManager.instance.elevatorAudioSource != null)
             {
-                levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorUp);
-                StartCoroutine(StopElevatorWait());
+                if (!levelAudioManager.instance.elevatorAudioSource.isPlaying)
+                {
+                    levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorUp);
+                    StartCoroutine(StopElevatorWait());
+                }
             }
         }
         UpdateSalvageScore();
