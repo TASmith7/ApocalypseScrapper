@@ -33,7 +33,10 @@ public class droneSpawnTimer : MonoBehaviour
                 for (int i = 0; i < numOfDronesToSpawn; i++)
                 {
                     int spawnerChosen = Random.Range(0, droneSpawners.Length);
-                    droneSpawners[spawnerChosen].StartCoroutine(droneSpawners[spawnerChosen].spawnEnemy(dronePrefab));
+                    if (!droneSpawners[spawnerChosen].playerInRange)
+                    {
+                        droneSpawners[spawnerChosen].StartCoroutine(droneSpawners[spawnerChosen].spawnEnemy(dronePrefab));
+                    }
                 }
             }
         }

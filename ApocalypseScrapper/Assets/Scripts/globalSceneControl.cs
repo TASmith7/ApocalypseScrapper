@@ -17,7 +17,7 @@ public class globalSceneControl : MonoBehaviour
 
     public float _MSsalvageRate = 1.0f;
     public int   _MSsalvageRange = 5;
-    public float _MSsalvageSpread = 0.001f;
+    //public float _MSsalvageSpread = 0.001f;
 
     public float _MSthrustPower = 8;
     public float _MSfuelConsumptionRate = 0.5f;
@@ -102,35 +102,13 @@ public class globalSceneControl : MonoBehaviour
 
         // setting our current scene
         currentScene = SceneManager.GetActiveScene();
+    }
 
+    private void Start()
+    {
         if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
-            //Reset player stats to mission start values
-            HP = _MSHP;
-            HPMax = _MSHPMax;
-
-            salvageRate = _MSsalvageRate;
-            salvageRange = _MSsalvageRange;
-            salvageSpread = _MSsalvageSpread;
-            thrustPower = _MSthrustPower;
-            fuelConsumptionRate = _MSfuelConsumptionRate;
-            fuelRefillRate = _MSfuelRefillRate;
-            staminaDrain = _MSstaminaDrain;
-            staminaRegen = _MSstaminaRegen;
-            shootDamage = _MSshootDamage;
-            shootRate = _MSshootRate;             
-            shootDistance = _MSshootDistance;
-
-            salvDetector = _MSsalvDetector;
-            shielded = _MSshielded;
-            shieldValue = _MSshieldValue;
-            shieldMax = _MSshieldMax;
-            shieldCD = _MSshieldCD;
-            shieldRate = _MSshieldRate;
-
-            playerScrapCollected = _MSplayerScrapCollected;
-            //playerBonus = _MSplayerBonus;
-            
+            DefaultStats();
         }
     }
 
@@ -154,8 +132,9 @@ public class globalSceneControl : MonoBehaviour
         playerController.shieldCD = _MSshieldCD;
         playerController.shieldRate = _MSshieldRate;
         playerController.playerTotalSalvage = _MSplayerScrapCollected;
-        playerController.spent = _MSspentScrap = 0;
-        playerController.questPay = _MSquestPay = 0;
+        playerController.spent = _MSspentScrap;
+        playerController.questPay = _MSquestPay;
         playerController.hazardPay = _MShazardPay;
+        Inventory.Instance.InvDefault();
 }
 }

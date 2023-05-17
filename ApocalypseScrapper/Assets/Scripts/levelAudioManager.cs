@@ -73,18 +73,16 @@ public class levelAudioManager : MonoBehaviour
             instance = this;
         }
 
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         // creating all audio sources for our level
         musicAudioSource = gameObject.AddComponent<AudioSource>();
         whiteNoiseAudioSource = gameObject.AddComponent<AudioSource>();
         pauseMenuAudioSource = gameObject.AddComponent<AudioSource>();
         voiceOverAudioSource = gameObject.AddComponent<AudioSource>();
+    }
 
-
+    // Start is called before the first frame update
+    void Start()
+    {
         if (gameManager.instance.currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
             elevatorAudioSource = gameObject.AddComponent<AudioSource>();
@@ -221,8 +219,14 @@ public class levelAudioManager : MonoBehaviour
 
     public void UnpauseAllAudio()
     {
-        musicAudioSource.Play();
-        whiteNoiseAudioSource.Play();
+        if(musicAudioSource != null)
+        {   
+            musicAudioSource.Play();
+        }
+        if(whiteNoiseAudioSource != null)
+        {
+            whiteNoiseAudioSource.Play();
+        }
 
         if(elevatorWasPlaying)
         {
