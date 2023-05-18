@@ -152,9 +152,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         PlayerUIUpdate();
         playerFloorSalvage = 0;
+        totalLevelSalvage = FindTotalLevelSalvage();
         gameManager.instance.UpdateSalvageScore();
 
-        StartCoroutine(FindTotalLevelSalvage());
         SpawnPlayer();
 
         jetpackPowerDownAudioPlayed = false;
@@ -1019,7 +1019,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         PlayerPrefs.SetInt(levelToSaveTo +"shieldRate" , shieldRate);
         PlayerPrefs.SetInt(levelToSaveTo + "playerTotalSalvage", playerTotalSalvage);
 
-        PlayerPrefs.SetFloat(gameManager.instance.level + "FloorSalvageAvailable", totalLevelSalvage);
+        
 
         
 
@@ -1089,20 +1089,20 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         Debug.Log("Player stats loaded.");
     }
 
-    IEnumerator FindTotalLevelSalvage()
+    float FindTotalLevelSalvage()
     {
-        yield return new WaitForSeconds(1);
+        float tls = 0f;
         GameObject[] enemList = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemList)
         {
             if (enemy.name.Contains("Drone"))
             {
-                totalLevelSalvage += 150;
+                tls += 150;
             }
 
             if (enemy.name.Contains("turret"))
             {
-                totalLevelSalvage += 400;
+                tls += 400;
             }
         }
 
@@ -1110,8 +1110,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         Debug.Log("Salvagable objects: " + salvList.Length);
         foreach (GameObject obj in salvList)
         {
-            totalLevelSalvage += obj.GetComponent<salvageableObject>().salvageValue;
+            tls += obj.GetComponent<salvageableObject>().salvageValue;
         }
+        return tls;
     }
 
     void CueFootstepAudio()

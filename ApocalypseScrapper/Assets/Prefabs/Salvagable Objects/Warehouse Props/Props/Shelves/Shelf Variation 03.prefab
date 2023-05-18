@@ -450,8 +450,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   salvageValue: 100
   salvageTime: 0
-  _dcBioMass: 0
-  _rollBM: 0
+  _dcBioMass: 10
+  _rollBM: 1
   _dcIntactOrgan: 0
   _rollIO: 0
   _dcElectronicComponents: 0
@@ -470,8 +470,8 @@ MonoBehaviour:
   _rollEM: 0
   _dcCeramicPlate: 0
   _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
+  _dcGoldAlloy: 10
+  _rollGA: 1
   _dcValuableLoot: 0
   _rollVL: 0
 --- !u!4 &9081017036920327569 stripped
@@ -587,25 +587,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678922298515975 stripped
 Transform:
@@ -873,8 +873,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -883,8 +883,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941724281586762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -1010,25 +1010,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678922464665806 stripped
 Transform:
@@ -1151,8 +1151,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -1161,8 +1161,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941724277338058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -1284,8 +1284,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -1294,8 +1294,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941724246001278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -1421,25 +1421,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678922014144947 stripped
 Transform:
@@ -1562,8 +1562,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -1572,8 +1572,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941723932716124 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -1840,8 +1840,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -1850,8 +1850,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941724015437701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -1985,8 +1985,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -1995,8 +1995,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941723979955952 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -2263,8 +2263,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -2273,8 +2273,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941724944465952 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -2400,25 +2400,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678922826503120 stripped
 Transform:
@@ -2541,8 +2541,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -2551,8 +2551,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941724751576916 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -2674,8 +2674,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -2684,8 +2684,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941724725945245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -2819,8 +2819,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -2829,8 +2829,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941724702199019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -2964,8 +2964,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -2974,8 +2974,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941724787518963 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -3089,25 +3089,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678922521883648 stripped
 Transform:
@@ -3234,25 +3234,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678922507648833 stripped
 Transform:
@@ -3379,25 +3379,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678922498270034 stripped
 Transform:
@@ -3512,25 +3512,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678922601130768 stripped
 Transform:
@@ -3778,25 +3778,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678922680043099 stripped
 Transform:
@@ -3923,25 +3923,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678921156473633 stripped
 Transform:
@@ -4068,25 +4068,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678921136193664 stripped
 Transform:
@@ -4201,8 +4201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   salvageValue: 100
   salvageTime: 0
-  _dcBioMass: 0
-  _rollBM: 0
+  _dcBioMass: 10
+  _rollBM: 1
   _dcIntactOrgan: 0
   _rollIO: 0
   _dcElectronicComponents: 0
@@ -4221,8 +4221,8 @@ MonoBehaviour:
   _rollEM: 0
   _dcCeramicPlate: 0
   _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
+  _dcGoldAlloy: 10
+  _rollGA: 1
   _dcValuableLoot: 0
   _rollVL: 0
 --- !u!4 &9081017037976256960 stripped
@@ -4471,25 +4471,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678921294837897 stripped
 Transform:
@@ -4616,25 +4616,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678921268988226 stripped
 Transform:
@@ -4894,25 +4894,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678920895555301 stripped
 Transform:
@@ -5293,25 +5293,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678921002847674 stripped
 Transform:
@@ -5434,8 +5434,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -5444,8 +5444,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941724979946412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -5692,8 +5692,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   salvageValue: 100
   salvageTime: 0
-  _dcBioMass: 0
-  _rollBM: 0
+  _dcBioMass: 10
+  _rollBM: 1
   _dcIntactOrgan: 0
   _rollIO: 0
   _dcElectronicComponents: 0
@@ -5712,8 +5712,8 @@ MonoBehaviour:
   _rollEM: 0
   _dcCeramicPlate: 0
   _rollCP: 0
-  _dcGoldAlloy: 0
-  _rollGA: 0
+  _dcGoldAlloy: 10
+  _rollGA: 1
   _dcValuableLoot: 0
   _rollVL: 0
 --- !u!4 &9081017037430996686 stripped
@@ -5841,25 +5841,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678921745940137 stripped
 Transform:
@@ -5994,8 +5994,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -6004,8 +6004,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941725796927990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -6119,25 +6119,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678921832909336 stripped
 Transform:
@@ -6264,25 +6264,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678921891249889 stripped
 Transform:
@@ -6409,25 +6409,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678921442865757 stripped
 Transform:
@@ -6542,25 +6542,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678921516475165 stripped
 Transform:
@@ -6695,8 +6695,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -6705,8 +6705,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941725566783619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
@@ -6832,25 +6832,25 @@ MonoBehaviour:
   _rollBM: 0
   _dcIntactOrgan: 0
   _rollIO: 0
-  _dcElectronicComponents: 24
+  _dcElectronicComponents: 10
   _rollEC: 1
-  _dcDataProcessingCore: 23
+  _dcDataProcessingCore: 10
   _rollDPC: 1
-  _dcDenseMetalPlate: 20
+  _dcDenseMetalPlate: 5
   _rollDMP: 1
-  _dcHighTensileAlloyPlate: 22
+  _dcHighTensileAlloyPlate: 10
   _rollHTAP: 1
-  _dcGlassPane: 21
+  _dcGlassPane: 10
   _rollGP: 1
-  _dcHighPoweredLightDiode: 23
+  _dcHighPoweredLightDiode: 5
   _rollHPLD: 1
-  _dcElectricMotor: 20
+  _dcElectricMotor: 5
   _rollEM: 1
-  _dcCeramicPlate: 20
+  _dcCeramicPlate: 5
   _rollCP: 1
-  _dcGoldAlloy: 16
+  _dcGoldAlloy: 5
   _rollGA: 1
-  _dcValuableLoot: 18
+  _dcValuableLoot: 5
   _rollVL: 1
 --- !u!4 &9042678921652995001 stripped
 Transform:
@@ -6985,8 +6985,8 @@ MonoBehaviour:
   _rollDMP: 0
   _dcHighTensileAlloyPlate: 0
   _rollHTAP: 0
-  _dcGlassPane: 0
-  _rollGP: 0
+  _dcGlassPane: 5
+  _rollGP: 1
   _dcHighPoweredLightDiode: 0
   _rollHPLD: 0
   _dcElectricMotor: 0
@@ -6995,8 +6995,8 @@ MonoBehaviour:
   _rollCP: 0
   _dcGoldAlloy: 0
   _rollGA: 0
-  _dcValuableLoot: 0
-  _rollVL: 0
+  _dcValuableLoot: 5
+  _rollVL: 1
 --- !u!4 &4346941725595144606 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8220780882054941164, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}

@@ -180,6 +180,1191 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41d71d00a41b60341887d43821a471b5, type: 3}
+--- !u!1001 &433138372
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 75277387, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 75277387, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 75277387, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 75277387, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 75277387, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 75277387, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 75277387, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 75277387, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 75277387, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 75277387, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 98963577, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 98963577, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 98963577, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 98963577, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 98963577, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 98963577, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 98963577, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 98963577, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 98963577, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 98963577, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 122860437, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 122860437, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 122860437, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 122860437, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 140183961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollBM
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 140183961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGA
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 140183961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcBioMass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 140183961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 183398479, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 183398479, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 183398479, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 183398479, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 183398479, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 183398479, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 183398479, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 183398479, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 183398479, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 183398479, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 213537022, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 213537022, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 213537022, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 213537022, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 213537022, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 213537022, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 213537022, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 213537022, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 213537022, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 213537022, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 356717427, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 356717427, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 356717427, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 356717427, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 356717427, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 356717427, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 356717427, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 356717427, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 356717427, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 356717427, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 443487634, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 443487634, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 443487634, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 443487634, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 483383961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 483383961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 483383961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 483383961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 483383961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 483383961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 483383961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 483383961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 483383961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 483383961, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 491955079, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 491955079, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 491955079, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 491955079, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 491955079, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 491955079, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 491955079, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 491955079, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 491955079, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 491955079, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 577701767, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollBM
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 577701767, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGA
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 577701767, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcBioMass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 577701767, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 607777252, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 607777252, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 607777252, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 607777252, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 607777252, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 607777252, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 607777252, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 607777252, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 607777252, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 607777252, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 616065311, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 616065311, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 616065311, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 616065311, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 616065311, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 616065311, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 616065311, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 616065311, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 616065311, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 616065311, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 620997057, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 620997057, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 620997057, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 620997057, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 734702205, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 734702205, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 734702205, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 734702205, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 772101490, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 772101490, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 772101490, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 772101490, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 772101490, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 772101490, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 772101490, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 772101490, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 772101490, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 772101490, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 833627132, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 833627132, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 833627132, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 833627132, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 833627132, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 833627132, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 833627132, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 833627132, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 833627132, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 833627132, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 954971849, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 954971849, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 954971849, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 954971849, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058175701, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058175701, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058175701, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058175701, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181748723, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181748723, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181748723, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181748723, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181748723, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181748723, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181748723, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181748723, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181748723, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181748723, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199593989, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199593989, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199593989, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199593989, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199593989, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199593989, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199593989, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199593989, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199593989, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199593989, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216853734, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216853734, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216853734, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216853734, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216853734, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216853734, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216853734, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216853734, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216853734, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216853734, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305603709, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305603709, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305603709, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305603709, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305603709, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305603709, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305603709, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305603709, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305603709, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305603709, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330273617, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330273617, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330273617, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330273617, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330273617, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330273617, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330273617, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330273617, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330273617, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330273617, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406872386, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406872386, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406872386, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406872386, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432110161, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432110161, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432110161, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432110161, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504502658, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504502658, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504502658, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504502658, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504502658, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504502658, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504502658, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504502658, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504502658, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504502658, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563245061, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563245061, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563245061, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563245061, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563245061, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563245061, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563245061, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563245061, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563245061, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563245061, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592817133, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592817133, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592817133, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592817133, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1698240394, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1698240394, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1698240394, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1698240394, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734562172, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734562172, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734562172, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734562172, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736094338, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollBM
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736094338, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGA
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736094338, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcBioMass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736094338, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736959444, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736959444, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736959444, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736959444, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736959444, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736959444, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736959444, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736959444, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736959444, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736959444, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838405004, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838405004, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838405004, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838405004, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884960773, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884960773, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884960773, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884960773, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921145158, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921145158, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921145158, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921145158, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967405855, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollGP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967405855, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _rollVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967405855, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967405855, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989024661, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989024661, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989024661, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989024661, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989024661, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989024661, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989024661, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989024661, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989024661, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989024661, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133588480, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGlassPane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133588480, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcGoldAlloy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133588480, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcCeramicPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133588480, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcValuableLoot
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133588480, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectricMotor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133588480, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDenseMetalPlate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133588480, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcDataProcessingCore
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133588480, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcElectronicComponents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133588480, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighPoweredLightDiode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133588480, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: _dcHighTensileAlloyPlate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 14975824351061726, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 14975824351061726, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.712286
+      objectReference: {fileID: 0}
+    - target: {fileID: 14975824351061726, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14975824351061726, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.68451
+      objectReference: {fileID: 0}
+    - target: {fileID: 14975824351061726, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 14975824351061726, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14975824351061726, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14975824351061726, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14975824351061726, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14975824351061726, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14975824351061726, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922192954965300429, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
+      propertyPath: m_Name
+      value: Shelf Variation 03
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 93dbbd1ed7cc33e42a99e4e6cebdde60, type: 3}
 --- !u!1001 &637162153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -508,7 +1693,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1047626567
 GameObject:
@@ -607,7 +1792,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1047626572
 MonoBehaviour:
@@ -680,7 +1865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8200925025790724445, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8200925025790724445, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -917,7 +2102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2517184957286297176, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2517184957286297176, guid: 3eb41810ba9f4394a97765cf4c2f806e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1303,7 +2488,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &2101320333
 PrefabInstance:

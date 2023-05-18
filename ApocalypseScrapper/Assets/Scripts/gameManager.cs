@@ -1019,37 +1019,37 @@ public char playerGrade;
     }
 
     
-    public char Rank()
-    {
-        int percentClear = (int)((playerController.playerFloorSalvage / playerController.totalLevelSalvage) * 100);
+    //public char Rank()
+    //{
+    //    int percentClear = (int)((playerController.playerFloorSalvage / playerController.totalLevelSalvage) * 100);
 
-        if (percentClear > 90)
-        {
-            return 'S';
-        }
-        else if (percentClear > 80 && percentClear <= 90)
-        {
-            return 'A';
-        }
-        else if (percentClear > 70 && percentClear <= 80)
-        {
-            return 'B';
-        }
-        else if (percentClear > 60 && percentClear <= 70)
-        {
-            return 'C';
-        }
-        else if (percentClear > 50 && percentClear <= 60)
-        {
-            return 'D';
-        }
-        else if (percentClear < 50)
-        {
-            return 'F';
-        }
+    //    if (percentClear > 90)
+    //    {
+    //        return 'S';
+    //    }
+    //    else if (percentClear > 80 && percentClear <= 90)
+    //    {
+    //        return 'A';
+    //    }
+    //    else if (percentClear > 70 && percentClear <= 80)
+    //    {
+    //        return 'B';
+    //    }
+    //    else if (percentClear > 60 && percentClear <= 70)
+    //    {
+    //        return 'C';
+    //    }
+    //    else if (percentClear > 50 && percentClear <= 60)
+    //    {
+    //        return 'D';
+    //    }
+    //    else if (percentClear < 50)
+    //    {
+    //        return 'F';
+    //    }
 
-        else return 'Z';
-    }
+    //    else return 'Z';
+    //}
 
     //public int Bonus(char rank)
     //{
