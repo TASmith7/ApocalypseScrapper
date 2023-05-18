@@ -152,7 +152,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
 
         PlayerUIUpdate();
         playerFloorSalvage = 0;
-        totalLevelSalvage = FindTotalLevelSalvage();
+        StartCoroutine(FindTotalLevelSalvage());
         gameManager.instance.UpdateSalvageScore();
 
         SpawnPlayer();
@@ -1089,8 +1089,9 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         Debug.Log("Player stats loaded.");
     }
 
-    float FindTotalLevelSalvage()
+    IEnumerator FindTotalLevelSalvage()
     {
+        yield return new WaitForSeconds(1);
         float tls = 0f;
         GameObject[] enemList = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemList)
@@ -1112,7 +1113,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         {
             tls += obj.GetComponent<salvageableObject>().salvageValue;
         }
-        return tls;
+        totalLevelSalvage = tls;
     }
 
     void CueFootstepAudio()
