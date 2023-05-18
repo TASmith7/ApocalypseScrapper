@@ -523,7 +523,7 @@ public char playerGrade;
             gamelog.Clear();
         }
 
-        if (Input.GetButtonDown("Tab") && !playerController.isDead && !craftingOpen && activeMenu != craftingMenu && activeMenu != lvl2 && activeMenu != lvl3 && activeMenu != lvl4 && activeMenu != blackOverlayForDeathParent)
+        if (Input.GetButtonDown("Tab") && !isPaused &&!playerController.isDead && !craftingOpen && activeMenu != craftingMenu && activeMenu != lvl2 && activeMenu != lvl3 && activeMenu != lvl4 && activeMenu != blackOverlayForDeathParent)
         {
             craftingOpen = true;
             if(activeMenu!=lvl2&& activeMenu != lvl3&& activeMenu != lvl4&&activeMenu!=blackOverlayForDeathParent)
