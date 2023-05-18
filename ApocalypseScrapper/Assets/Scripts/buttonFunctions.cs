@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,7 +20,7 @@ public class buttonFunctions : MonoBehaviour
 
     [Header("----- Pitch -----")]
     [Range(0f, 3.0f)][SerializeField] float buttonClickPitch;
-    
+
     private void Start()
     {
         buttonHoverAudioSource = gameObject.AddComponent<AudioSource>();
@@ -42,14 +41,14 @@ public class buttonFunctions : MonoBehaviour
     public void Resume()
     {
         gameManager.instance.UnpauseState();
-        
+
     }
     public void RestartLevel()
     {
         Inventory.Instance.InvLoad(gameManager.instance.level);
         gameManager.instance.playerScript.RestartLevel();
         gameManager.instance.UnpauseState();
-        
+
 
     }
     public void RestartMission()
@@ -145,7 +144,7 @@ public class buttonFunctions : MonoBehaviour
     {
         if (playerController.playerTotalSalvage >= 750 && Inventory._iBioMass >= 1 && playerController.HP != playerController.HPMax)
         {
-            
+
             if (playerController.HPMax - playerController.HP <= 25)
             {
                 playerController.HP = playerController.HPMax;
@@ -159,18 +158,19 @@ public class buttonFunctions : MonoBehaviour
             Inventory.Instance.RemBM(1);
             gameManager.instance.UpdateInventory();
         }
+
         else
         {
             StartCoroutine(DeclinedPurchase());
         }
-        
+
     }
 
     public void LargeHeal()
     {
-        if (playerController.playerTotalSalvage >= 2500 && Inventory._iIntactOrgan>= 2 && playerController.HP != playerController.HPMax)
+        if (playerController.playerTotalSalvage >= 2500 && Inventory._iIntactOrgan >= 2 && playerController.HP != playerController.HPMax)
         {
-            
+
             if (playerController.HPMax - playerController.HP <= 100)
             {
                 playerController.HP = playerController.HPMax;
@@ -184,6 +184,7 @@ public class buttonFunctions : MonoBehaviour
             Inventory.Instance.RemIO(2);
             gameManager.instance.UpdateInventory();
         }
+
         else
         {
             StartCoroutine(DeclinedPurchase());
@@ -191,186 +192,254 @@ public class buttonFunctions : MonoBehaviour
     }
     public void MaxHealth()
     {
-        if (playerController.playerTotalSalvage >= 5000&& Inventory._iBioMass>=1&&Inventory._iIntactOrgan>=2)
+        if (playerController.HPMax >= 250)
         {
-
-            playerController.HPMax += 25;
-            playerController.HP += 25;
-            
-            playerController.playerTotalSalvage -= 5000;
-            playerController.spent += 5000;
-            Inventory.Instance.RemBM(1);
-            Inventory.Instance.RemIO(2);
-            gameManager.instance.UpdateInventory();
-
-            gameManager.instance.playerScript.PlayerUIUpdate();
+            StartCoroutine(MaxLevelReached());
         }
         else
         {
-            StartCoroutine(DeclinedPurchase());
+
+
+            if (playerController.playerTotalSalvage >= 5000 && Inventory._iBioMass >= 1 && Inventory._iIntactOrgan >= 2)
+            {
+
+                playerController.HPMax += 25;
+                playerController.HP += 25;
+
+                playerController.playerTotalSalvage -= 5000;
+                playerController.spent += 5000;
+                Inventory.Instance.RemBM(1);
+                Inventory.Instance.RemIO(2);
+                gameManager.instance.UpdateInventory();
+
+                gameManager.instance.playerScript.PlayerUIUpdate();
+            }
+
+            else
+            {
+                StartCoroutine(DeclinedPurchase());
+            }
         }
     }
 
     public void GetShield()
     {
-        if (playerController.playerTotalSalvage >= 2000&& Inventory._iHighPoweredLightDiode>=2)
+        if (playerController.shieldMax >= 150)
         {
-            gameManager.instance.playerScript.PlayerUIUpdate();
-
-            playerController.shielded = true;
-            playerController.shieldMax += 25;
-            playerController.shieldValue += 25;
-            playerController.playerTotalSalvage -= 2000;
-            playerController.spent += 2000;
-            Inventory.Instance.RemHPLD(2);
-            gameManager.instance.UpdateInventory();
+            StartCoroutine(MaxLevelReached());
         }
         else
         {
-            StartCoroutine(DeclinedPurchase());
+            if (playerController.playerTotalSalvage >= 2000 && Inventory._iHighPoweredLightDiode >= 2)
+            {
+                gameManager.instance.playerScript.PlayerUIUpdate();
+
+                playerController.shielded = true;
+                playerController.shieldMax += 25;
+                playerController.shieldValue += 25;
+                playerController.playerTotalSalvage -= 2000;
+                playerController.spent += 2000;
+                Inventory.Instance.RemHPLD(2);
+                gameManager.instance.UpdateInventory();
+            }
+            else
+            {
+                StartCoroutine(DeclinedPurchase());
+            }
         }
     }
 
     public void ModShield()
     {
-        if (playerController.playerTotalSalvage >= 5000 &&Inventory._iElectronicComponents>=2&&Inventory._iDataProcessingCore>=4&& playerController.shielded == true)
+        if (playerController.shieldCD <= 0)
         {
-            gameManager.instance.playerScript.PlayerUIUpdate();
-            
-            playerController.shieldRate += 1;
-            playerController.shieldCD -= 1;
-
-            playerController.playerTotalSalvage -= 5000;
-            playerController.spent += 5000;
-            Inventory.Instance.RemEC(2);
-            Inventory.Instance.RemDPC(4);
-            gameManager.instance.UpdateInventory();
-            gameManager.instance.UpdateSalvageScore();
+            StartCoroutine(MaxLevelReached());
         }
         else
         {
-            StartCoroutine(DeclinedPurchase());
+            if (playerController.playerTotalSalvage >= 5000 && Inventory._iElectronicComponents >= 2 && Inventory._iDataProcessingCore >= 4 && playerController.shielded == true)
+            {
+                gameManager.instance.playerScript.PlayerUIUpdate();
+
+                playerController.shieldRate += 1;
+                playerController.shieldCD -= 1;
+
+                playerController.playerTotalSalvage -= 5000;
+                playerController.spent += 5000;
+                Inventory.Instance.RemEC(2);
+                Inventory.Instance.RemDPC(4);
+                gameManager.instance.UpdateInventory();
+                gameManager.instance.UpdateSalvageScore();
+            }
+            else
+            {
+                StartCoroutine(DeclinedPurchase());
+            }
         }
     }
 
     public void PlusWeapDmg()
     {
-        if (playerController.playerTotalSalvage >= 4000 && Inventory._iElectronicComponents >= 2)
+        if (playerController.shootDamage >= 17)
         {
-
-            playerController.shootDamage += 1;
-            
-            playerController.playerTotalSalvage -= 4000;
-            playerController.spent += 4000;
-            Inventory.Instance.RemEC(2);
-            gameManager.instance.UpdateInventory();
-            gameManager.instance.UpdateSalvageScore();
+            StartCoroutine(MaxLevelReached());
         }
         else
         {
-            StartCoroutine(DeclinedPurchase());
+            if (playerController.playerTotalSalvage >= 4000 && Inventory._iElectronicComponents >= 2)
+            {
+
+                playerController.shootDamage += 1;
+
+                playerController.playerTotalSalvage -= 4000;
+                playerController.spent += 4000;
+                Inventory.Instance.RemEC(2);
+                gameManager.instance.UpdateInventory();
+                gameManager.instance.UpdateSalvageScore();
+            }
+            else
+            {
+                StartCoroutine(DeclinedPurchase());
+            }
         }
     }
 
     public void OverchargeWeapDmg()
     {
-        if (playerController.playerTotalSalvage >= 3000 && Inventory._iElectricMotor >= 1 && Inventory._iDataProcessingCore >= 1)
+        if (playerController.shootRate <= .03f)
         {
-            playerController.shootDamage += 5;
-            playerController.shootRate += 0.33f;
-            
-            playerController.playerTotalSalvage -= 3000;
-            playerController.spent += 3000;
-            Inventory.Instance.RemEC(1);
-            Inventory.Instance.RemDPC(1);
-            gameManager.instance.UpdateInventory();
-            gameManager.instance.UpdateSalvageScore();
+            StartCoroutine(MaxLevelReached());
         }
         else
         {
-            StartCoroutine(DeclinedPurchase());
+
+
+            if (playerController.playerTotalSalvage >= 3000 && Inventory._iElectricMotor >= 1 && Inventory._iDataProcessingCore >= 1)
+            {
+                playerController.shootDamage += 5;
+                playerController.shootRate += 0.33f;
+
+                playerController.playerTotalSalvage -= 3000;
+                playerController.spent += 3000;
+                Inventory.Instance.RemEC(1);
+                Inventory.Instance.RemDPC(1);
+                gameManager.instance.UpdateInventory();
+                gameManager.instance.UpdateSalvageScore();
+            }
+            else
+            {
+                StartCoroutine(DeclinedPurchase());
+            }
         }
     }
 
     public void JPFuel()
     {
-        if (playerController.playerTotalSalvage >= 2000 && Inventory._iHighPoweredLightDiode >= 1 && Inventory._iGoldAlloy >= 2)
+        if (playerController.fuelConsumptionRate <= 0.1f)
         {
-            playerController.fuelConsumptionRate -= 0.1f;
-            
-
-            playerController.playerTotalSalvage -= 2000;
-            playerController.spent += 2000;
-            Inventory.Instance.RemHPLD(1);
-            Inventory.Instance.RemGA(2);
-            gameManager.instance.UpdateInventory();
-            gameManager.instance.UpdateSalvageScore();
+            StartCoroutine(MaxLevelReached());
         }
         else
         {
-            StartCoroutine(DeclinedPurchase());
+            if (playerController.playerTotalSalvage >= 2000 && Inventory._iHighPoweredLightDiode >= 1 && Inventory._iGoldAlloy >= 2)
+            {
+                playerController.fuelConsumptionRate -= 0.1f;
+
+
+                playerController.playerTotalSalvage -= 2000;
+                playerController.spent += 2000;
+                Inventory.Instance.RemHPLD(1);
+                Inventory.Instance.RemGA(2);
+                gameManager.instance.UpdateInventory();
+                gameManager.instance.UpdateSalvageScore();
+            }
+            else
+            {
+                StartCoroutine(DeclinedPurchase());
+            }
         }
     }
 
     public void JPRecharge()
     {
-        if (playerController.playerTotalSalvage >= 4000&&Inventory._iHighTensileAlloyPlate>=1&& Inventory._iGlassPane>=2)
+        if (playerController.fuelRefillRate >= 1)
         {
-            playerController.fuelRefillRate += 0.1f;
-            playerController.playerTotalSalvage -= 4000;
-            playerController.spent += 4000;
-            Inventory.Instance.RemHTAP(1);
-            Inventory.Instance.RemGP(2);
-            gameManager.instance.UpdateInventory();
-            gameManager.instance.UpdateSalvageScore();
-
+            StartCoroutine(MaxLevelReached());
         }
         else
         {
-            StartCoroutine(DeclinedPurchase());
+            if (playerController.playerTotalSalvage >= 4000 && Inventory._iHighTensileAlloyPlate >= 1 && Inventory._iGlassPane >= 2)
+            {
+                playerController.fuelRefillRate += 0.1f;
+                playerController.playerTotalSalvage -= 4000;
+                playerController.spent += 4000;
+                Inventory.Instance.RemHTAP(1);
+                Inventory.Instance.RemGP(2);
+                gameManager.instance.UpdateInventory();
+                gameManager.instance.UpdateSalvageScore();
+
+            }
+            else
+            {
+                StartCoroutine(DeclinedPurchase());
+            }
         }
     }
 
     public void GetDetector()
     {
-        if (playerController.playerTotalSalvage >= 15000&&Inventory._iElectricMotor>=3&& Inventory._iDataProcessingCore>=4)
+        if (playerController.salvDetector == true)
         {
-            playerController.salvDetector = true;
-                
-            playerController.playerTotalSalvage -= 15000;
-            playerController.spent += 15000;
-            Inventory.Instance.RemEM(3);
-            Inventory.Instance.RemDPC(4);
-            gameManager.instance.UpdateInventory();
-            gameManager.instance.UpdateSalvageScore();
-
+            StartCoroutine(SalvDetectorBought());
         }
         else
         {
-            StartCoroutine(DeclinedPurchase());
+            if (playerController.playerTotalSalvage >= 15000 && Inventory._iElectricMotor >= 3 && Inventory._iDataProcessingCore >= 4)
+            {
+                playerController.salvDetector = true;
+
+                playerController.playerTotalSalvage -= 15000;
+                playerController.spent += 15000;
+                Inventory.Instance.RemEM(3);
+                Inventory.Instance.RemDPC(4);
+                gameManager.instance.UpdateInventory();
+                gameManager.instance.UpdateSalvageScore();
+
+            }
+            else
+            {
+                StartCoroutine(DeclinedPurchase());
+            }
         }
     }
     public void UpgradeSalvageRange()
     {
-        if(playerController.playerTotalSalvage >=3000&& Inventory._iElectricMotor>=2)
+        if (playerController.salvageRange >= 25)
         {
-            playerController.salvageRange += 1;
-            playerController.playerTotalSalvage -= 3000;
-            playerController.spent += 3000;
-            Inventory.Instance.RemEM(2);
-            gameManager.instance.UpdateInventory();
-            gameManager.instance.UpdateSalvageScore();
+            StartCoroutine(MaxLevelReached());
         }
         else
         {
-            StartCoroutine(DeclinedPurchase());
+            if (playerController.playerTotalSalvage >= 3000 && Inventory._iElectricMotor >= 2)
+            {
+                playerController.salvageRange += 1;
+                playerController.playerTotalSalvage -= 3000;
+                playerController.spent += 3000;
+                Inventory.Instance.RemEM(2);
+                gameManager.instance.UpdateInventory();
+                gameManager.instance.UpdateSalvageScore();
+            }
+            else
+            {
+                StartCoroutine(DeclinedPurchase());
+            }
         }
     }
     //public void UpgradeSalvageSpread()
     //{
     //    if (gameManager.instance.amtSalvaged >= 1000&&Inventory.Instance._iElectricMotor>=4&&Inventory.Instance._iDataProcessingCore>=8)
     //    {
-            
+
     //        gameManager.instance.playerScript.salvageSpread += .03f;
     //        gameManager.instance.amtSalvaged -= 400;
     //        gameManager.instance.spent += 400;
@@ -382,54 +451,75 @@ public class buttonFunctions : MonoBehaviour
     //}
     public void UpgradeSalvageEfficiency()
     {
-        if (playerController.playerTotalSalvage >=4000&&Inventory._iDataProcessingCore>=2&&Inventory._iElectronicComponents>=2 && playerController.salvageRate>0.1f)
+        if (playerController.salvageRate <= 0.1f)
         {
-            
-            playerController.salvageRate -= 0.1f;
-            playerController.playerTotalSalvage -= 4000;
-            playerController.spent += 4000;
-            gameManager.instance.UpdateInventory();
-            gameManager.instance.UpdateSalvageScore();
+            StartCoroutine(MaxLevelReached());
         }
         else
         {
-            StartCoroutine(DeclinedPurchase());
+            if (playerController.playerTotalSalvage >= 4000 && Inventory._iDataProcessingCore >= 2 && Inventory._iElectronicComponents >= 2 && playerController.salvageRate > 0.1f)
+            {
+
+                playerController.salvageRate -= 0.1f;
+                playerController.playerTotalSalvage -= 4000;
+                playerController.spent += 4000;
+                gameManager.instance.UpdateInventory();
+                gameManager.instance.UpdateSalvageScore();
+            }
+            else
+            {
+                StartCoroutine(DeclinedPurchase());
+            }
         }
     }
-    
+
     public void UpgradeStaminaEfficiency()
     {
-        if(playerController.playerTotalSalvage >=4000&&Inventory._iElectricMotor>=2&&Inventory._iElectronicComponents>=2)
+        if (playerController.staminaDrain <= 0.2f)
         {
-            
-            playerController.staminaDrain -= 0.2f;
-            playerController.playerTotalSalvage -= 4000;
-            playerController.spent += 4000;
-            Inventory.Instance.RemEM(2);
-            Inventory.Instance.RemEC(2);
-            gameManager.instance.UpdateInventory();
-            gameManager.instance.UpdateSalvageScore();
+            StartCoroutine(MaxLevelReached());
         }
         else
         {
-            StartCoroutine(DeclinedPurchase());
+            if (playerController.playerTotalSalvage >= 4000 && Inventory._iElectricMotor >= 2 && Inventory._iElectronicComponents >= 2)
+            {
+
+                playerController.staminaDrain -= 0.2f;
+                playerController.playerTotalSalvage -= 4000;
+                playerController.spent += 4000;
+                Inventory.Instance.RemEM(2);
+                Inventory.Instance.RemEC(2);
+                gameManager.instance.UpdateInventory();
+                gameManager.instance.UpdateSalvageScore();
+            }
+            else
+            {
+                StartCoroutine(DeclinedPurchase());
+            }
         }
     }
     public void UpgradeStaminaRecharge()
     {
-        if (playerController.playerTotalSalvage >= 2000&&Inventory._iCeramicPlate>=2&&Inventory._iElectricMotor>=2)
+        if (playerController.staminaRefillRate >= 1)
         {
-            playerController.staminaRefillRate += 0.2f;
-            playerController.playerTotalSalvage -= 2000;
-            playerController.spent += 2000;
-            Inventory.Instance.RemCP(2);
-            Inventory.Instance.RemEC(2);
-            gameManager.instance.UpdateInventory();
-            gameManager.instance.UpdateSalvageScore();
+            StartCoroutine(MaxLevelReached());
         }
         else
         {
-            StartCoroutine(DeclinedPurchase());
+            if (playerController.playerTotalSalvage >= 2000 && Inventory._iCeramicPlate >= 2 && Inventory._iElectricMotor >= 2)
+            {
+                playerController.staminaRefillRate += 0.2f;
+                playerController.playerTotalSalvage -= 2000;
+                playerController.spent += 2000;
+                Inventory.Instance.RemCP(2);
+                Inventory.Instance.RemEC(2);
+                gameManager.instance.UpdateInventory();
+                gameManager.instance.UpdateSalvageScore();
+            }
+            else
+            {
+                StartCoroutine(DeclinedPurchase());
+            }
         }
     }
 
@@ -438,7 +528,7 @@ public class buttonFunctions : MonoBehaviour
 
     IEnumerator DeclinedPurchase()
     {
-       
+
         gameManager.instance.DeclinedPurchasePopUp.SetActive(true);
         Debug.Log("Declined True");
         Debug.Log("WFS Started");
@@ -446,7 +536,29 @@ public class buttonFunctions : MonoBehaviour
         Debug.Log("WFS Over");
         gameManager.instance.DeclinedPurchasePopUp.SetActive(false);
         Debug.Log("Declined False");
-       
+
+
+    }
+    IEnumerator MaxLevelReached()
+    {
+        gameManager.instance.MaxLevelReachedPopUp.SetActive(true);
+        Debug.Log("Max Level True");
+        Debug.Log("WFS Started");
+        yield return new WaitForSecondsRealtime(2);
+        Debug.Log("WFS Over");
+        gameManager.instance.MaxLevelReachedPopUp.SetActive(false);
+        Debug.Log("Max Level False");
+
+    }
+    IEnumerator SalvDetectorBought()
+    {
+        gameManager.instance.SalvBoughtPopUp.SetActive(true);
+        Debug.Log("Salv Bought Pop Up True");
+        Debug.Log("WFS Started");
+        yield return new WaitForSecondsRealtime(2);
+        Debug.Log("WFS Over");
+        gameManager.instance.SalvBoughtPopUp.SetActive(false);
+        Debug.Log("Salv Bought Pop Up False");
 
     }
 }
