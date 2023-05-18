@@ -226,11 +226,11 @@ public class levelAudioManager : MonoBehaviour
     {
         if(musicAudioSource != null)
         {   
-            musicAudioSource.Play();
+            musicAudioSource.UnPause();
         }
         if(whiteNoiseAudioSource != null)
         {
-            whiteNoiseAudioSource.Play();
+            whiteNoiseAudioSource.UnPause();
         }
 
         if(elevatorWasPlaying)
