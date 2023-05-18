@@ -65,6 +65,7 @@ public class BossAI : MonoBehaviour, IDamage
     bool isBiting;
     bool isSpitting;
     float takeDamageTimer;
+    bool deadBodyDropped;
 
     bool hasPlayedEndGameAudio = false;
 
@@ -258,7 +259,13 @@ public class BossAI : MonoBehaviour, IDamage
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
-            GameObject deadBossClone = Instantiate(DeadBoss, transform.position, transform.rotation);
+
+            if(!deadBodyDropped)
+            {
+                deadBodyDropped = true;
+                GameObject deadBossClone = Instantiate(DeadBoss, transform.position, transform.rotation);
+            }
+
             if (!hasPlayedEndGameAudio)
             {
                 levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOKillBoss);
