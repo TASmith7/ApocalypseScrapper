@@ -280,19 +280,19 @@ public class buttonFunctions : MonoBehaviour
 
     public void PlusWeapDmg()
     {
-        if (playerController.shootDamage >= 17)
+        if (playerController.shootDamage >= 15)
         {
             StartCoroutine(MaxLevelReached());
         }
         else
         {
-            if (playerController.playerTotalSalvage >= 4000 && Inventory._iElectronicComponents >= 2)
+            if (playerController.playerTotalSalvage >= 8000 && Inventory._iElectronicComponents >= 2)
             {
 
                 playerController.shootDamage += 1;
 
-                playerController.playerTotalSalvage -= 4000;
-                playerController.spent += 4000;
+                playerController.playerTotalSalvage -= 8000;
+                playerController.spent += 8000;
                 Inventory.Instance.RemEC(2);
                 gameManager.instance.UpdateInventory();
                 gameManager.instance.UpdateSalvageScore();
