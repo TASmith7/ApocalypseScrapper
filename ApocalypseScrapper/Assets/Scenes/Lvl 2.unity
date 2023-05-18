@@ -22784,6 +22784,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mus_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114628, guid: df7be1b805d4a014a876df24650370de, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628, guid: df7be1b805d4a014a876df24650370de, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 434558, guid: df7be1b805d4a014a876df24650370de, type: 3}
       propertyPath: m_RootOrder
       value: 139
@@ -68457,6 +68465,14 @@ PrefabInstance:
     - target: {fileID: 114628, guid: df7be1b805d4a014a876df24650370de, type: 3}
       propertyPath: m_Name
       value: Mus_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628, guid: df7be1b805d4a014a876df24650370de, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114628, guid: df7be1b805d4a014a876df24650370de, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 434558, guid: df7be1b805d4a014a876df24650370de, type: 3}
       propertyPath: m_RootOrder

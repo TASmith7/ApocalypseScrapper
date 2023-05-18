@@ -29,6 +29,7 @@ public class globalSceneControl : MonoBehaviour
     public int   _MSshootDamage = 1;
     public float _MSshootRate = 0.33f;
     public int   _MSshootDistance = 100;
+    public float _MSshootSpread = 0.75f;
 
     public bool  _MSsalvDetector = false;
     public bool  _MSshielded = false;
@@ -135,6 +136,7 @@ public class globalSceneControl : MonoBehaviour
         playerController.spent = _MSspentScrap;
         playerController.questPay = _MSquestPay;
         playerController.hazardPay = _MShazardPay;
+        playerController.shootSpread = _MSshootSpread;
         Inventory.Instance.InvDefault();
 }
 }
