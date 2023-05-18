@@ -230,7 +230,7 @@ MonoBehaviour:
   droneDetection: {fileID: 8774146109267952452}
   playerScript: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
   HP: 6
-  playerFaceSpeed: 5
+  playerFaceSpeed: 500
   sightAngle: 180
   roamPauseTime: 1
   roamDist: 20
@@ -243,7 +243,7 @@ MonoBehaviour:
   damageAudio: {fileID: 8300000, guid: 8da5d0467745a77419bf61e75cd6e0c7, type: 3}
   shootDamage: 1
   shootRate: 2
-  shootDist: 50
+  shootDist: 62
   bullet: {fileID: 1366219754717700336, guid: b82f1ff65d11256438556a8a2d35466f, type: 3}
   bulletSpeed: 50
   drop: {fileID: 8900562455022253971, guid: 3094b6b8c479cb24384c3208af623446, type: 3}
