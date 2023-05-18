@@ -286,13 +286,13 @@ public class buttonFunctions : MonoBehaviour
         }
         else
         {
-            if (playerController.playerTotalSalvage >= 8000 && Inventory._iElectronicComponents >= 2)
+            if (playerController.playerTotalSalvage >= 10000 && Inventory._iElectronicComponents >= 2)
             {
 
                 playerController.shootDamage += 1;
 
-                playerController.playerTotalSalvage -= 8000;
-                playerController.spent += 8000;
+                playerController.playerTotalSalvage -= 10000;
+                playerController.spent += 10000;
                 Inventory.Instance.RemEC(2);
                 gameManager.instance.UpdateInventory();
                 gameManager.instance.UpdateSalvageScore();
