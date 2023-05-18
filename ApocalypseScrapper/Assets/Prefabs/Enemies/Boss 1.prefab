@@ -3416,13 +3416,13 @@ MonoBehaviour:
   biteDamage: 1
   biteRate: 1.37
   biteDistance: 0
-  biteSpeed: 75
+  biteSpeed: 50
   bite: {fileID: 2765080052109346540, guid: c39c673e0ce8d804ca90a982cc2b40de, type: 3}
   spit: {fileID: 3427304231639500766, guid: 9c36e34379dc33043907e3be74333a58, type: 3}
   spitDamage: 6
   spitRate: 1.4
   spitDistance: 0
-  spitSpeed: 25
+  spitSpeed: 15
   bossAudioSource: {fileID: 715744490}
   bossFootsteps:
   - {fileID: 8300000, guid: 2bdfec8f832d0744c8a25de0fc175fd8, type: 3}

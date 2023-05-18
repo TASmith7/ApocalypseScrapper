@@ -154,7 +154,8 @@ public class BossAI : MonoBehaviour, IDamage
             anim.SetTrigger("Shoot");
             isBiting = true;
             GameObject biteClone = Instantiate(bite, bitePos.position, bite.transform.rotation);
-            biteClone.GetComponent<Rigidbody>().velocity = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + 0.5f - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z)) * biteSpeed;
+            biteClone.GetComponent<Rigidbody>().velocity = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, 
+                gameManager.instance.player.transform.position.y + 0.5f - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z)) * biteSpeed;
             bossAudioSource.PlayOneShot(bossBite[UnityEngine.Random.Range(0, bossBite.Length)], 0.6f);
             yield return new WaitForSeconds(biteRate);
             isBiting = false;
