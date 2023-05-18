@@ -280,19 +280,19 @@ public class buttonFunctions : MonoBehaviour
 
     public void PlusWeapDmg()
     {
-        if (playerController.shootDamage >= 17)
+        if (playerController.shootDamage >= 15)
         {
             StartCoroutine(MaxLevelReached());
         }
         else
         {
-            if (playerController.playerTotalSalvage >= 4000 && Inventory._iElectronicComponents >= 2)
+            if (playerController.playerTotalSalvage >= 10000 && Inventory._iElectronicComponents >= 2)
             {
 
                 playerController.shootDamage += 1;
 
-                playerController.playerTotalSalvage -= 4000;
-                playerController.spent += 4000;
+                playerController.playerTotalSalvage -= 10000;
+                playerController.spent += 10000;
                 Inventory.Instance.RemEC(2);
                 gameManager.instance.UpdateInventory();
                 gameManager.instance.UpdateSalvageScore();
@@ -336,7 +336,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void JPFuel()
     {
-        if (playerController.fuelConsumptionRate <= 0.1f)
+        if (playerController.fuelConsumptionRate <= 0.35f)
         {
             StartCoroutine(MaxLevelReached());
         }
@@ -344,7 +344,7 @@ public class buttonFunctions : MonoBehaviour
         {
             if (playerController.playerTotalSalvage >= 2000 && Inventory._iHighPoweredLightDiode >= 1 && Inventory._iGoldAlloy >= 2)
             {
-                playerController.fuelConsumptionRate -= 0.1f;
+                playerController.fuelConsumptionRate -= 0.05f;
 
 
                 playerController.playerTotalSalvage -= 2000;
@@ -363,7 +363,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void JPRecharge()
     {
-        if (playerController.fuelRefillRate >= 1)
+        if (playerController.fuelRefillRate >= 0.3f)
         {
             StartCoroutine(MaxLevelReached());
         }
@@ -371,7 +371,7 @@ public class buttonFunctions : MonoBehaviour
         {
             if (playerController.playerTotalSalvage >= 4000 && Inventory._iHighTensileAlloyPlate >= 1 && Inventory._iGlassPane >= 2)
             {
-                playerController.fuelRefillRate += 0.1f;
+                playerController.fuelRefillRate += 0.05f;
                 playerController.playerTotalSalvage -= 4000;
                 playerController.spent += 4000;
                 Inventory.Instance.RemHTAP(1);

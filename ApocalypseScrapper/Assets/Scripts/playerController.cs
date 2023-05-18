@@ -1005,6 +1005,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
         PlayerPrefs.SetInt(levelToSaveTo + "shootDamage", shootDamage);
         PlayerPrefs.SetFloat(levelToSaveTo + "shootRate", shootRate);
         PlayerPrefs.SetInt(levelToSaveTo + "shootDistance", shootDistance);
+        PlayerPrefs.SetFloat(levelToSaveTo + "shootSpread", shootSpread);
 
         if (salvDetector) { PlayerPrefs.SetInt(levelToSaveTo + "salvDetector", 1); }
         else PlayerPrefs.SetInt(levelToSaveTo + "salvDetector", 0);
@@ -1048,6 +1049,7 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
             shootDamage = PlayerPrefs.GetInt(gameManager.instance.level + "shootDamage");
             shootRate = PlayerPrefs.GetFloat(gameManager.instance.level + "shootRate");
             shootDistance = PlayerPrefs.GetInt(gameManager.instance.level + "shootDistance");
+            shootSpread = PlayerPrefs.GetFloat(gameManager.instance.level + "shootSpread");
 
             if(PlayerPrefs.GetInt(gameManager.instance.level + "salvDetector") == 1) salvDetector = true;
 

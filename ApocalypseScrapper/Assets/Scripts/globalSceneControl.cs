@@ -20,8 +20,8 @@ public class globalSceneControl : MonoBehaviour
     //public float _MSsalvageSpread = 0.001f;
 
     public float _MSthrustPower = 8;
-    public float _MSfuelConsumptionRate = 0.5f;
-    public float _MSfuelRefillRate = 0.2f;
+    public float _MSfuelConsumptionRate = 0.6f;
+    public float _MSfuelRefillRate = 0.1f;
 
     public float _MSstaminaDrain = 0.296f;
     public float _MSstaminaRegen = 0.1f;
@@ -29,6 +29,7 @@ public class globalSceneControl : MonoBehaviour
     public int   _MSshootDamage = 1;
     public float _MSshootRate = 0.33f;
     public int   _MSshootDistance = 100;
+    public float _MSshootSpread = 0.75f;
 
     public bool  _MSsalvDetector = false;
     public bool  _MSshielded = false;
@@ -62,8 +63,8 @@ public class globalSceneControl : MonoBehaviour
     public float staminaRegen = 0.1f;
 
     public float thrustPower = 8;
-    public float fuelConsumptionRate = 0.5f;
-    public float fuelRefillRate = 0.2f;
+    public float fuelConsumptionRate = 0.6f;
+    public float fuelRefillRate = 0.1f;
 
     public int   shootDamage = 1;
     public float shootRate = 0.33f;
@@ -106,6 +107,9 @@ public class globalSceneControl : MonoBehaviour
 
     private void Start()
     {
+        _MSfuelConsumptionRate = 0.6f;
+        _MSfuelRefillRate = 0.1f;
+
         if (currentScene == SceneManager.GetSceneByName("Lvl 1"))
         {
             DefaultStats();
@@ -135,6 +139,7 @@ public class globalSceneControl : MonoBehaviour
         playerController.spent = _MSspentScrap;
         playerController.questPay = _MSquestPay;
         playerController.hazardPay = _MShazardPay;
+        playerController.shootSpread = _MSshootSpread;
         Inventory.Instance.InvDefault();
 }
 }

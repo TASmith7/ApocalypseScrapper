@@ -14827,7 +14827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7563826680530695161, guid: 787c3293fe570ef40bec532c4256c431, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 40
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7563826680530695163, guid: 787c3293fe570ef40bec532c4256c431, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -34423,6 +34423,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8200925025790724418, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
+      propertyPath: elevatorStop
+      value: 
+      objectReference: {fileID: 8300000, guid: 2004867dd1c1d214298a4f168757e889, type: 3}
     - target: {fileID: 8200925025790724419, guid: f455e26ad53adfd4e863ea06655acc3d, type: 3}
       propertyPath: m_Name
       value: LevelAudioManager

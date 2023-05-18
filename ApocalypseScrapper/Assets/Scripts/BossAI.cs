@@ -65,6 +65,7 @@ public class BossAI : MonoBehaviour, IDamage
     bool isBiting;
     bool isSpitting;
     float takeDamageTimer;
+    bool deadBodyDropped;
 
     bool hasPlayedEndGameAudio = false;
 
@@ -165,7 +166,7 @@ public class BossAI : MonoBehaviour, IDamage
         {
             isSpitting = true;
             GameObject spitClone = Instantiate(spit, spitPos.position, spit.transform.rotation);
-            spitClone.GetComponent<Rigidbody>().velocity = new Vector3(transform.forward.x, transform.forward.y + .5f, transform.forward.z) * spitSpeed;
+            spitClone.GetComponent<Rigidbody>().velocity = new Vector3(transform.forward.x, transform.forward.y + .75f, transform.forward.z) * spitSpeed;
             bossAudioSource.PlayOneShot(bossSpit);
             yield return new WaitForSeconds(spitRate);
             isSpitting = false;
@@ -258,7 +259,13 @@ public class BossAI : MonoBehaviour, IDamage
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
-            GameObject deadBossClone = Instantiate(DeadBoss, transform.position, transform.rotation);
+
+            if(!deadBodyDropped)
+            {
+                deadBodyDropped = true;
+                GameObject deadBossClone = Instantiate(DeadBoss, transform.position, transform.rotation);
+            }
+
             if (!hasPlayedEndGameAudio)
             {
                 levelAudioManager.instance.voiceOverAudioSource.PlayOneShot(levelAudioManager.instance.VOKillBoss);
