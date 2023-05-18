@@ -154,7 +154,7 @@ public class BossAI : MonoBehaviour, IDamage
             anim.SetTrigger("Shoot");
             isBiting = true;
             GameObject biteClone = Instantiate(bite, bitePos.position, bite.transform.rotation);
-            biteClone.GetComponent<Rigidbody>().velocity = playerDir * biteSpeed;
+            biteClone.GetComponent<Rigidbody>().velocity = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + 0.5f - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z)) * biteSpeed;
             bossAudioSource.PlayOneShot(bossBite[UnityEngine.Random.Range(0, bossBite.Length)], 0.6f);
             yield return new WaitForSeconds(biteRate);
             isBiting = false;
@@ -190,7 +190,7 @@ public class BossAI : MonoBehaviour, IDamage
 
 
         // this tells us what direction our player is in relative to our enemy
-        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + 1 - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
+        playerDir = (new Vector3(gameManager.instance.player.transform.position.x - headPos.position.x, gameManager.instance.player.transform.position.y + 1.6f - headPos.position.y, gameManager.instance.player.transform.position.z - headPos.position.z));
 
         // this calculates the angle between where our player is and where we (the enemy) are looking
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
@@ -304,9 +304,9 @@ public class BossAI : MonoBehaviour, IDamage
     }
     void FacePlayerAlways()
     {
-
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, playerDir.y + 2f, playerDir.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
+        transform.LookAt(gameManager.instance.player.transform.position);
+        //Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, playerDir.y + 2f, playerDir.z));
+        //transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
     //public void Flee()
     //{
