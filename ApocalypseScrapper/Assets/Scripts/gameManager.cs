@@ -1270,31 +1270,31 @@ public class gameManager : MonoBehaviour
 
     public char EndGameRank()
     {
-        float totalPossibleSalvage = 677248.0f;
+        float totalPossibleSalvage = 397426.0f;
 
         int percentClear = (int)((playerController.playerTotalSalvage / totalPossibleSalvage) * 100);
 
-        if (percentClear >= 50)
+        if (percentClear >= 70)
         {
             return 'S';
         }
-        else if (percentClear >= 40)
+        else if (percentClear >= 60)
         {
             return 'A';
         }
-        else if (percentClear >=30)
+        else if (percentClear >=50)
         {
             return 'B';
         }
-        else if (percentClear >= 20)
+        else if (percentClear >= 40)
         {
             return 'C';
         }
-        else if (percentClear >= 10)
+        else if (percentClear >= 30)
         {
             return 'D';
         }
-        else if (percentClear < 10)
+        else if (percentClear < 30)
         {
             return 'F';
         }
