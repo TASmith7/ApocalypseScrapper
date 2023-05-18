@@ -101,9 +101,11 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI LevelScrapCollected;
     public TextMeshProUGUI SpentScrap;
     public GameObject DeclinedPurchasePopUp;
-    //public int amtSalvaged;
-    //public int spent;
-    public char playerGrade;
+    public GameObject MaxLevelReachedPopUp;
+    public GameObject SalvBoughtPopUp;
+//public int amtSalvaged;
+//public int spent;
+public char playerGrade;
 
 
     //public TextMeshProUGUI LevelScrapCollectedStore;
