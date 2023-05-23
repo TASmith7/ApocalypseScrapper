@@ -94,6 +94,8 @@ GameObject:
   - component: {fileID: 8271465781224802272}
   - component: {fileID: 7148170251412078186}
   - component: {fileID: 6396609427743539553}
+  - component: {fileID: 2135853250}
+  - component: {fileID: 2135853251}
   m_Layer: 6
   m_Name: turret_mount1_top
   m_TagString: Untagged
@@ -166,6 +168,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &2135853250
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993536091020724151}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 150
+  m_Center: {x: -0.000000021158082, y: 0.80226606, z: -0.6848746}
+--- !u!114 &2135853251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993536091020724151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7c5d28fd56de2428cb863b9f5ec231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInRange: 0
+  turretCollWake: {fileID: 2135853250}
+  radiusActive: 500
+  radiusSleep: 150
+  activeRadius: 0
 --- !u!1 &1233728102610308117
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +588,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5920473421000082599}
-  m_LocalRotation: {x: -0.9238403, y: -0.0016866872, z: -0.3826786, w: 0.00856358}
+  m_LocalRotation: {x: -0.92384, y: -0.0016880245, z: -0.38267928, w: 0.0085669225}
   m_LocalPosition: {x: -33.275127, y: 18.799997, z: 33.038395}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
@@ -578,7 +610,6 @@ GameObject:
   - component: {fileID: 3940063989255095365}
   - component: {fileID: 1631046877142906104}
   - component: {fileID: 6951260499052659953}
-  - component: {fileID: 6133238500580151027}
   - component: {fileID: 6133238500580151025}
   - component: {fileID: 5907351081043505407}
   m_Layer: 6
@@ -673,9 +704,9 @@ MonoBehaviour:
   headPos: {fileID: 6413348848523515640}
   shootPos: {fileID: 6312908321472899930}
   shootPos2: {fileID: 5907351079377601057}
-  turretCollWake: {fileID: 6133238500580151027}
   turretHeadDestroyed: {fileID: 4812178373746964264, guid: c9546a1f799edec4eb475fe4af31a208, type: 3}
   playerScript: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
+  playerInRangeScript: {fileID: 2135853251}
   turretAudioSource: {fileID: 5907351081043505407}
   shotAudio: {fileID: 8300000, guid: 46123e778ea6b0d428b75ced853bfc23, type: 3}
   damageAudio: {fileID: 8300000, guid: 8e646c469d1b4f7488faa8ebc8d169cb, type: 3}
@@ -684,27 +715,11 @@ MonoBehaviour:
   HP: 20
   playerFaceSpeed: 1200
   sightAngle: 360
-  radiusSleep: 150
-  radiusActive: 1000
-  activeRadius: 0
   shootRate: 0.63
   barrelSwitchSpeed: 0.96
   shootDistance: 200
   TurretBullet: {fileID: 2765080052109346540, guid: 5e895567bc6435b45834b52229dd99ea, type: 3}
   bulletSpeed: 70
---- !u!135 &6133238500580151027
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6133238500580151024}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 150
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &6133238500580151025
 CapsuleCollider:
   m_ObjectHideFlags: 0
