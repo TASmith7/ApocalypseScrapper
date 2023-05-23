@@ -542,6 +542,10 @@ public char playerGrade;
             {
                 playerAudioManager.instance.salvagingAudioSource.Stop();
             }
+            if (playerAudioManager.instance.jetpackAudioSource.isPlaying)
+            {
+                playerAudioManager.instance.jetpackAudioSource.Stop();
+            }
 
         }
         else if (Input.GetButtonDown("Tab") && craftingOpen && activeMenu == craftingMenu)
