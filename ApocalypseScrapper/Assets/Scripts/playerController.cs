@@ -375,10 +375,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                     }
                 }
 
-                // reducing the stamina bar while the player is pressing shift and moving
-
-
-                StartCoroutine(ReduceStaminaUI());
+                // reducing the stamina bar while the player is pressing shift AND moving
+                if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+                {
+                    StartCoroutine(ReduceStaminaUI());
+                }
 
             }
             else
