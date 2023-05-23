@@ -223,9 +223,9 @@ public class roamDrone : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false;
+            // playerInRange = false;
 
-            agent.stoppingDistance = 0;
+            // agent.stoppingDistance = 0;
         }
     }
 

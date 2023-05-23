@@ -8,9 +8,10 @@ public class TurretAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform shootPos2;
-    [SerializeField] SphereCollider turretCollWake;
     [SerializeField] GameObject turretHeadDestroyed;
     [SerializeField] playerController playerScript;
+    [SerializeField] turretDetectionRange playerInRangeScript;
+
     [Header("----- Audio -----")]
     [SerializeField] AudioSource turretAudioSource;
     [SerializeField] AudioClip shotAudio;
@@ -19,16 +20,15 @@ public class TurretAI : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float damageAudioVolume;
 
 
-
     //[SerializeField] Rigidbody rigidBody;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int sightAngle;
-    [Range(10, 200)][SerializeField] float radiusSleep;
-    [Range(10, 1000)][SerializeField] float radiusActive;
-    public float activeRadius;
+    //[Range(10, 200)][SerializeField] float radiusSleep;
+    //[Range(10, 1000)][SerializeField] float radiusActive;
+    //public float activeRadius;
 
     [Header("----- Gun Stats -----")]
     
@@ -47,7 +47,7 @@ public class TurretAI : MonoBehaviour, IDamage
     
     void Start()
     {
-        activeRadius = radiusSleep;
+        // activeRadius = radiusSleep;
         // caching the original stopping distance that we set
 
     }
@@ -56,7 +56,7 @@ public class TurretAI : MonoBehaviour, IDamage
     void Update()
     {
         // we only want to activate our AI if the player is within our enemy's range (or trigger)
-        if (playerInRange)
+        if (playerInRangeScript.playerInRange)
         {
             CanSeePlayer();
             
@@ -141,24 +141,24 @@ public class TurretAI : MonoBehaviour, IDamage
     }
 
     // any object that ENTERS the collider
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Player"))
-        {
-            turretCollWake.radius = radiusActive;
-            activeRadius = turretCollWake.radius;
-            playerInRange = true;
-        }
-    }
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.CompareTag("Player"))
+    //    {
+    //        turretCollWake.radius = radiusActive;
+    //        activeRadius = turretCollWake.radius;
+    //        playerInRange = true;
+    //    }
+    //}
 
     // any object that EXITS the collider
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-        }
-    }
+    //public void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        playerInRange = false;
+    //    }
+    //}
     public void TakeDamage(float amount)
     {
         HP -= (int)amount;
