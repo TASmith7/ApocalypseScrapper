@@ -845,7 +845,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547110a96b8ed8b4b9e919fbdf94e555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 7526805716407476171}
+  model:
+  - {fileID: 4511969495565162902}
+  - {fileID: 7526805716407476171}
   agent: {fileID: 1309011078159000694}
   anim: {fileID: 1588528049709787415}
   headPos: {fileID: 1309011078615383061}
