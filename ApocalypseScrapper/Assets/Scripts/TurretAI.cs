@@ -11,13 +11,14 @@ public class TurretAI : MonoBehaviour, IDamage
     [SerializeField] SphereCollider turretCollWake;
     [SerializeField] GameObject turretHeadDestroyed;
     [SerializeField] playerController playerScript;
+    [SerializeField] turretDetectionRange playerInRangeScript;
+
     [Header("----- Audio -----")]
     [SerializeField] AudioSource turretAudioSource;
     [SerializeField] AudioClip shotAudio;
     [SerializeField] AudioClip damageAudio;
     [Range(0, 1)][SerializeField] float shotAudioVolume;
     [Range(0, 1)][SerializeField] float damageAudioVolume;
-
 
 
     //[SerializeField] Rigidbody rigidBody;
@@ -56,7 +57,7 @@ public class TurretAI : MonoBehaviour, IDamage
     void Update()
     {
         // we only want to activate our AI if the player is within our enemy's range (or trigger)
-        if (playerInRange)
+        if (playerInRangeScript.playerInRange)
         {
             CanSeePlayer();
             
@@ -152,13 +153,13 @@ public class TurretAI : MonoBehaviour, IDamage
     }
 
     // any object that EXITS the collider
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-        }
-    }
+    //public void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        playerInRange = false;
+    //    }
+    //}
     public void TakeDamage(float amount)
     {
         HP -= (int)amount;
