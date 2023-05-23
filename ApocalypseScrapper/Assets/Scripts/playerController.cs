@@ -367,6 +367,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 // else if we are out of stamina
                 else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
                 {
+                    timeOfLastSprint = Time.fixedTime;
+
                     // if not already playing our out of breath audio, and we haven't already played it once
                     if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
                     {
