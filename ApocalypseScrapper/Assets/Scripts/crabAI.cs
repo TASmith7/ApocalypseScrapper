@@ -188,7 +188,12 @@ public class crabAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false;
+            // this is the line that was causing our crabs to bug out when you went inside of them
+            // it's calling on trigger exit on any collider on the crab, not just the detection collider
+            // honestly this line isn't even necessary, if a crab starts seeing the player,
+            // they will now never not see the player, which isn't that big of a deal
+
+            //playerInRange = false;
             
         }
     }
