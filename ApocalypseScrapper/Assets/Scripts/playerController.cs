@@ -367,6 +367,8 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                 // else if we are out of stamina
                 else if (gameManager.instance.staminaFillBar.fillAmount <= 0)
                 {
+                    timeOfLastSprint = Time.fixedTime;
+
                     // if not already playing our out of breath audio, and we haven't already played it once
                     if (!playerAudioManager.instance.outOfBreathAudioSource.isPlaying && outOfBreathAudioPlayed == false)
                     {
@@ -375,10 +377,11 @@ public class playerController : MonoBehaviour, IDamage, ISalvageable
                     }
                 }
 
-                // reducing the stamina bar while the player is pressing shift and moving
-
-
-                StartCoroutine(ReduceStaminaUI());
+                // reducing the stamina bar while the player is pressing shift AND moving
+                if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+                {
+                    StartCoroutine(ReduceStaminaUI());
+                }
 
             }
             else
