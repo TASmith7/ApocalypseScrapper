@@ -208,6 +208,8 @@ public char playerGrade;
     public Scene currentScene;
     bool voWasPlaying;
     bool npcWasTalking;
+    bool playElevatorStopBecauseVOToggleWasTurnedOff;
+    bool elevatorStopAudioWasPlayed;
 
     AudioClip currentVOPlaying;
 
@@ -441,10 +443,15 @@ public char playerGrade;
 
             if (levelAudioManager.instance.elevatorAudioSource != null)
             {
-                if (!levelAudioManager.instance.elevatorAudioSource.isPlaying)
+                if (!levelAudioManager.instance.elevatorAudioSource.isPlaying && voiceoversToggle.isOn)
                 {
                     levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorUp);
                     StartCoroutine(StopElevatorWait());
+                }
+                else
+                {
+                    levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorStop);
+                    StartCoroutine(WaitToRemoveEleDoor());
                 }
             }
         }
@@ -579,6 +586,7 @@ public char playerGrade;
     IEnumerator WaitToRemoveEleDoor()
     {
         yield return new WaitForSeconds(3);
+        elevatorStopAudioWasPlayed = true;
         eleDoor.SetActive(false);
     }
 
@@ -708,8 +716,15 @@ public char playerGrade;
                 npcAudioManager.instance.npcVoiceAudioSource.UnPause();
             }
         }
-        // unpausing level audio
-       
+
+        // this will only play if the user turns off the voice over toggle while the intro vo was playing on lvl 1
+        if(currentScene == SceneManager.GetSceneByName("Lvl 1") && playElevatorStopBecauseVOToggleWasTurnedOff 
+            && !elevatorStopAudioWasPlayed && !voiceoversToggle.isOn)
+        {
+            levelAudioManager.instance.elevatorAudioSource.PlayOneShot(levelAudioManager.instance.elevatorStop);
+            elevatorStopAudioWasPlayed = true;
+        }
+
     }
 
     public void UpdateGameGoal()
@@ -1407,6 +1422,17 @@ public char playerGrade;
             {
                 subtitleParentObject.SetActive(false);
                 voWasPlaying = false;
+            }
+
+            if (introVOPlaying == true && currentScene == SceneManager.GetSceneByName("Lvl 1"))
+            {
+                Debug.Log("Entered skip to elvator stop");
+                introVOPlaying = false;
+                skipped = true;
+                levelAudioManager.instance.elevatorAudioSource.Stop();
+                playElevatorStopBecauseVOToggleWasTurnedOff = true;
+
+                StartCoroutine(WaitToRemoveEleDoor());
             }
         }
 
