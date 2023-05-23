@@ -1397,6 +1397,7 @@ public char playerGrade;
         if (voiceoversToggle.isOn)
         {
             PlayerPrefs.SetInt("UseVoiceovers", 1);
+            
         }
         // else set it to 0
         else
@@ -1408,11 +1409,16 @@ public char playerGrade;
         if (subtitlesToggle.isOn)
         {
             PlayerPrefs.SetInt("Subtitles", 1);
+            if (voWasPlaying)
+            {
+                subtitleParentObject.SetActive(true);
+            }
         }
         // else set it to 0
         else
         {
             PlayerPrefs.SetInt("Subtitles", 0);
+            subtitleParentObject.SetActive(false);
         }
 
         CloseOptionsMenu();
