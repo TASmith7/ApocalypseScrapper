@@ -1397,12 +1397,17 @@ public char playerGrade;
         if (voiceoversToggle.isOn)
         {
             PlayerPrefs.SetInt("UseVoiceovers", 1);
-            
+
         }
         // else set it to 0
         else
         {
             PlayerPrefs.SetInt("UseVoiceovers", 0);
+            if (subtitleParentObject.activeInHierarchy)
+            {
+                subtitleParentObject.SetActive(false);
+                voWasPlaying = false;
+            }
         }
 
         // if our subtitles is selected, set the key value to 1
