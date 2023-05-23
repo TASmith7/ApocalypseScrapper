@@ -6,7 +6,7 @@ public class roamDrone : MonoBehaviour, IDamage
 {
 
     [Header("----- Components -----")]
-    [SerializeField] Renderer model;
+    [SerializeField] Renderer[] model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     // allows us to cast the ray from anywhere but we choice to cast it from the head
@@ -293,11 +293,18 @@ public class roamDrone : MonoBehaviour, IDamage
     IEnumerator FlashColor()
     {
         // turns enemy red
-        model.material.color = Color.red;
+        for (int i = 0; i < model.Length; i++)
+        {
+            model[i].material.color = Color.red;
+        }
+        
         // waits a few seconds
         yield return new WaitForSeconds(0.1f);
         // returns enemy back to white
-        model.material.color = Color.white;
+        for (int i = 0;i< model.Length; i++)
+        {
+            model[i].material.color = Color.white;
+        }
     }
 
     // fixes Bug that enemy does not turn when not moving
