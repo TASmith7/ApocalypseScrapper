@@ -538,6 +538,11 @@ public char playerGrade;
             CueCrafting();
             
 
+            if(playerAudioManager.instance.salvagingAudioSource.isPlaying)
+            {
+                playerAudioManager.instance.salvagingAudioSource.Stop();
+            }
+
         }
         else if (Input.GetButtonDown("Tab") && craftingOpen && activeMenu == craftingMenu)
         {
