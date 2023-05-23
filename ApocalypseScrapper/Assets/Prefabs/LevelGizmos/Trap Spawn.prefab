@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 2680840266458157390, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
-  intervalTime: 0
+  intervalTime: 0.8
   spawnPos:
   - {fileID: 4457873116398849306}
   - {fileID: 4457873117286367985}
@@ -112,7 +112,12 @@ MonoBehaviour:
   - {fileID: 4957404663935457269}
   prefabMaxNum: 8
   levelTrigger: {fileID: 0}
+  lockedOutMessage: {fileID: 0}
+  enemies: {fileID: 0}
+  enemiesRemaining: {fileID: 0}
+  particleEffectPrefab: {fileID: 2319981170194385086, guid: 6f3200a9f6d612244ad283c359ea36e9, type: 3}
   prefabList: []
+  testNumber: 5
 --- !u!65 &4457873116796075920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -196,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6152919428566889731}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.02, y: 0, z: -3.25}
+  m_LocalPosition: {x: -11.02, y: 0, z: -4.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -241,7 +246,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7733098352718632965}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.74, y: 0, z: -3.8}
+  m_LocalPosition: {x: 5.74, y: 0, z: -7.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

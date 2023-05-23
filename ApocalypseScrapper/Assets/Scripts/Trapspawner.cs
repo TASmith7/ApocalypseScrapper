@@ -6,13 +6,14 @@ using UnityEngine;
 public class Trapspawner : MonoBehaviour
 {
     [SerializeField] GameObject prefab;
-    [SerializeField] int intervalTime;
+    [SerializeField] float intervalTime;
     [SerializeField] Transform[] spawnPos;
     [SerializeField] int prefabMaxNum;
     [SerializeField] GameObject levelTrigger;
     [SerializeField] GameObject lockedOutMessage;
     [SerializeField] GameObject enemies;
     [SerializeField] TextMeshProUGUI enemiesRemaining;
+    [SerializeField] GameObject particleEffectPrefab;
 
     public List<GameObject> prefabList = new List<GameObject>();
 
@@ -89,17 +90,24 @@ public class Trapspawner : MonoBehaviour
             //Debug.Log("Exit Level OFF!!!");
         }
     }
-
+    IEnumerator spawnStall()
+    {
+        yield return new WaitForSeconds(.8f);
+    }
     IEnumerator spawn()
     {
         isSpawning = true;
-        GameObject prefabClone = Instantiate(prefab, spawnPos[Random.Range(0, spawnPos.Length)].position, prefab.transform.rotation);
+        // will need to instatiate the particle effect first than spawn the drones or enemies to the location of the smoke
+        GameObject particleClone = Instantiate(particleEffectPrefab, spawnPos[Random.Range(0, spawnPos.Length)].position, particleEffectPrefab.transform.rotation);
+        StartCoroutine(spawnStall());
 
+        GameObject prefabClone = Instantiate(prefab, particleClone.transform.position, prefab.transform.rotation);
         prefabList.Add(prefabClone);
 
         prefabsSpawnCount++;
         yield return new WaitForSeconds(intervalTime);
         isSpawning = false;
+        Destroy(particleClone);
     }
 
     IEnumerator LockDownMessage()

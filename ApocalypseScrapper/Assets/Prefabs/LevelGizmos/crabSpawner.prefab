@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crabPrefab: {fileID: 3725011360167264616, guid: d34f7fd18d8d8f84b8e1d30031377215, type: 3}
+  particleEffectPrefab: {fileID: 2319981170194385086, guid: 6f3200a9f6d612244ad283c359ea36e9, type: 3}
   playerInRange: 0
 --- !u!65 &618132108
 BoxCollider:

@@ -26103,15 +26103,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1514580609689459488, guid: a0d135b74f70b6f4ea0c46082035ba7c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.85
+      value: 48.969997
       objectReference: {fileID: 0}
     - target: {fileID: 1514580609689459488, guid: a0d135b74f70b6f4ea0c46082035ba7c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.529
+      value: 20.869999
       objectReference: {fileID: 0}
     - target: {fileID: 1514580609689459488, guid: a0d135b74f70b6f4ea0c46082035ba7c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.122
+      value: 26.99
       objectReference: {fileID: 0}
     - target: {fileID: 1514580609689459488, guid: a0d135b74f70b6f4ea0c46082035ba7c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -30329,7 +30329,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
       propertyPath: GODMODE
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5333339247771160564, guid: 7d79d5d8fc769774a89e21fc1914508a, type: 3}
       propertyPath: salvDetector
@@ -57400,14 +57400,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1592491883}
     - target: {fileID: 4457873116796075935, guid: 90bf72f5f3139664c879bf9dd6358e36, type: 3}
-      propertyPath: enemyCount
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4457873116796075935, guid: 90bf72f5f3139664c879bf9dd6358e36, type: 3}
-      propertyPath: testNumber
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4457873116796075935, guid: 90bf72f5f3139664c879bf9dd6358e36, type: 3}
       propertyPath: levelTrigger
       value: 
       objectReference: {fileID: 313380622}
@@ -57419,14 +57411,6 @@ PrefabInstance:
       propertyPath: lockedOutMessage
       value: 
       objectReference: {fileID: 1757376670}
-    - target: {fileID: 4863470704314090900, guid: 90bf72f5f3139664c879bf9dd6358e36, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957404663935457269, guid: 90bf72f5f3139664c879bf9dd6358e36, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.38
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90bf72f5f3139664c879bf9dd6358e36, type: 3}
 --- !u!1001 &1856085550

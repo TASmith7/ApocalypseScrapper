@@ -5,6 +5,7 @@ public class droneSpawner : MonoBehaviour
 {
     
     [SerializeField]  GameObject dronePrefab;
+    [SerializeField] GameObject particleEffectPrefab;
     public bool playerInRange;
     // Start is called before the first frame update
     void Start()
@@ -19,8 +20,9 @@ public class droneSpawner : MonoBehaviour
     // Update is called once per frame
     public IEnumerator spawnEnemy(GameObject enemy)
     {
-        yield return new WaitForSeconds(1);
-        GameObject newEnemy=Instantiate(enemy,new Vector3(transform.position.x,transform.position.y,transform.position.z),Quaternion.identity);
+        GameObject particleClone = Instantiate(particleEffectPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        yield return new WaitForSeconds(.5f);
+        GameObject newEnemy=Instantiate(enemy,particleClone.transform.position,Quaternion.identity);
     }
     public void OnTriggerEnter(Collider other)
     {

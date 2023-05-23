@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dronePrefab: {fileID: 2680840266458157390, guid: 6d545f82f3288464c9aaf050ccb2449f, type: 3}
+  particleEffectPrefab: {fileID: 2319981170194385086, guid: 6f3200a9f6d612244ad283c359ea36e9, type: 3}
   playerInRange: 0
 --- !u!65 &1092625523
 BoxCollider:
